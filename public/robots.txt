@@ -1,0 +1,18 @@
+# robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+Sitemap: https://cookingconverter.pro/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 2
+
+# Ads bots
+User-agent: AdsBot-Google
+Allow: /
+
+# Image bots
+User-agent: Googlebot-Image
+Allow: /

@@ -1,0 +1,72 @@
+{
+  "homepage": {
+    "hero": {
+      "title": "Free Cooking & Baking Converters",
+      "subtitle": "Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly"
+    },
+    "content": [
+      {
+        "title": "Cooking Measurement Conversion",
+        "content": "Our cooking measurement converters provide accurate conversions for all your cooking and baking needs. Convert between cups, tablespoons, teaspoons, milliliters, ounces, grams, and more. Whether you're following an American recipe with cups or a European recipe with grams, our converters make it easy."
+      },
+      {
+        "title": "Oven Temp Conversion",
+        "content": "Convert oven temperatures between Fahrenheit, Celsius, and Gas Marks. Our oven temperature converter helps you bake perfectly no matter what temperature scale your recipe uses."
+      },
+      {
+        "title": "American to Metric Cooking Conversion",
+        "content": "Convert American measurements to metric and vice versa. Essential for following international recipes or using kitchen scales that measure in grams."
+      },
+
+      {
+        "title": "Baking & Oven Conversion Tools",
+        "content": "Easily convert baking measurements, oven temperatures, and cooking units between metric and US standards using our free calculators."
+      },
+      {
+        "title": "Oven Temperature Conversion Guide",
+        "content": "Learn how to convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for perfect baking results every time."
+      }
+
+    ],
+    "faqs": [
+      {
+        "question": "How accurate are your converters?",
+        "answer": "Our converters use standard conversion factors recognized by culinary organizations. For baking, we recommend using a digital kitchen scale for maximum accuracy."
+      },
+      {
+        "question": "Do you support both US and UK measurements?",
+        "answer": "Yes, our converters handle both US Customary and UK Imperial measurements, including the different cup sizes (240ml US vs 284ml UK)."
+      },
+      {
+        "question": "Are the converters free to use?",
+        "answer": "Yes, all our converters are completely free. No registration required."
+      }
+    ]
+  },
+  "about": {
+    "title": "About Cooking Converter Pro",
+    "description": "Learn about our mission to make cooking and baking measurements easy",
+    "content": "<h2>Our Mission</h2><p>Cooking Converter Pro was created to help home cooks and professional chefs convert cooking measurements accurately and instantly. We believe that accurate measurements are the foundation of successful cooking and baking.</p><h2>Why We Started</h2><p>As cooking enthusiasts, we often struggled with converting measurements between different systems. Whether it was converting grams to cups for a European recipe or Fahrenheit to Celsius for oven temperatures, we wanted a simple, accurate solution.</p><h2>Our Commitment</h2><p>We're committed to providing free, accurate conversion tools that work on all devices. All our converters are mobile-friendly and work without requiring any downloads or installations.</p>",
+    "faqs": [
+      {
+        "question": "Who created Cooking Converter Pro?",
+        "answer": "We're a team of cooking enthusiasts and web developers passionate about making cooking easier for everyone."
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "description": "Privacy policy for Cooking Converter Pro",
+    "content": "<h2>Information Collection</h2><p>We collect minimal information to improve our services. We do not collect personal information unless voluntarily provided.</p><h2>Cookies</h2><p>We use cookies to improve user experience and analyze site traffic.</p><h2>Third-Party Services</h2><p>We use third-party services like Google Analytics to understand how visitors use our site.</p>"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "description": "Terms of service for Cooking Converter Pro",
+    "content": "<h2>Acceptance of Terms</h2><p>By using Cooking Converter Pro, you agree to these terms of service.</p><h2>Use of Service</h2><p>Our converters are provided free of charge for personal and commercial use.</p><h2>Accuracy Disclaimer</h2><p>While we strive for accuracy, all conversions are approximate and should be verified for critical applications.</p>"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Contact Cooking Converter Pro",
+    "content": "<h2>Get in Touch</h2><p>We'd love to hear from you! For questions, feedback, or partnership inquiries, please contact us at:</p><p><strong>Email:</strong> contact@cookingconverter.pro</p><h2>Feedback</h2><p>We welcome suggestions for new converters or improvements to existing tools.</p>"
+  }
+}

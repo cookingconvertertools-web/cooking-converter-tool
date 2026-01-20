@@ -1,0 +1,1325 @@
+{
+  "converters": [
+    {
+      "id": "cups-to-grams",
+      "slug": "cups-to-grams",
+      "title": "Cups to Grams Converter",
+      "description": "Convert cups to grams for all cooking ingredients",
+      "keywords": [
+        "cups to grams",
+        "1 cup in grams",
+        "baking measurement conversion"
+      ],
+      "defaults": {
+        "value": 1,
+        "from": "cup",
+        "to": "gram"
+      },
+      "supportedUnits": [
+        "cup",
+        "gram",
+        "ounce",
+        "tablespoon",
+        "teaspoon"
+      ],
+      "conversions": {
+        "cup": {
+          "gram": 125,
+          "ounce": 8.8,
+          "tablespoon": 16,
+          "teaspoon": 48
+        },
+        "gram": {
+          "cup": 0.008,
+          "ounce": 0.035,
+          "tablespoon": 0.067,
+          "teaspoon": 0.2
+        },
+        "ounce": {
+          "cup": 0.113,
+          "gram": 28.35,
+          "tablespoon": 2,
+          "teaspoon": 6
+        }
+      },
+      "conversionTable": [
+        {
+          "from": "cup",
+          "to": "grams",
+          "factor": "125g"
+        },
+        {
+          "from": "cup",
+          "to": "ounces",
+          "factor": "8.8 oz"
+        },
+        {
+          "from": "cup",
+          "to": "tablespoons",
+          "factor": "16 tbsp"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "How many grams are in 1 cup of flour?",
+          "answer": "1 cup of all-purpose flour equals approximately 125 grams."
+        },
+        {
+          "question": "Is 1 cup always 240ml?",
+          "answer": "Yes, in the US measurement system, 1 cup equals 240 milliliters."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Understanding Cup Measurements",
+          "content": "Cup measurements vary between countries. In the United States, 1 cup equals 240 milliliters, while in the United Kingdom, 1 cup equals 284 milliliters. Always check which measurement system your recipe uses.",
+          "tips": [
+            "Use dry measuring cups for dry ingredients",
+            "Use liquid measuring cups for liquids",
+            "Level off dry ingredients with a straight edge"
+          ]
+        }
+      ],
+      "featured": true
+    },
+
+    {
+      "id": "oven-temp-conversion",
+      "slug": "oven-temp-conversion",
+      "title": "Oven Temperature Conversion",
+      "description": "Convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for accurate cooking and baking.",
+      "keywords": [
+        "oven temp conversion"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 180,
+        "from": "celsius",
+        "to": "fahrenheit"
+      },
+      "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+      "conversionFormulas": [
+        {
+          "from": "celsius",
+          "to": "celsius",
+          "formula": "x"
+        },
+        {
+          "from": "fahrenheit",
+          "to": "fahrenheit",
+          "formula": "x"
+        },
+        {
+          "from": "gas mark",
+          "to": "gas mark",
+          "formula": "x"
+        },
+        {
+          "from": "celsius",
+          "to": "fahrenheit",
+          "formula": "(x * 9/5) + 32"
+        },
+        {
+          "from": "fahrenheit",
+          "to": "celsius",
+          "formula": "(x - 32) * 5/9"
+        },
+        {
+          "from": "celsius",
+          "to": "fahrenheit",
+          "formula": "(x * 9/5) + 32"
+        },
+        {
+          "from": "fahrenheit",
+          "to": "celsius",
+          "formula": "(x - 32) * 5/9"
+        },
+        {
+          "from": "celsius",
+          "to": "gas mark",
+          "formula": "x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"
+        },
+        {
+          "from": "gas mark",
+          "to": "celsius",
+          "formula": "x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"
+        },
+        {
+          "from": "fahrenheit",
+          "to": "gas mark",
+          "formula": "((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"
+        },
+        {
+          "from": "gas mark",
+          "to": "fahrenheit",
+          "formula": "(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"
+        }
+      ],
+      "conversionTable": [
+        { "from": "140°C", "to": "284°F", "factor": "Gas Mark 1" },
+        { "from": "150°C", "to": "302°F", "factor": "Gas Mark 2" },
+        { "from": "160°C", "to": "320°F", "factor": "Gas Mark 3" },
+        { "from": "180°C", "to": "356°F", "factor": "Gas Mark 4" },
+        { "from": "190°C", "to": "374°F", "factor": "Gas Mark 5" },
+        { "from": "200°C", "to": "392°F", "factor": "Gas Mark 6" }
+      ],
+      "faqs": [
+        {
+          "question": "What is oven temperature conversion?",
+          "answer": "Oven temperature conversion allows you to convert between Celsius, Fahrenheit, and Gas Mark used in different countries."
+        },
+        {
+          "question": "Why do oven temperatures differ by country?",
+          "answer": "Different regions use different temperature units, making conversion necessary for international recipes."
+        },
+        {
+          "question": "Are convection ovens hotter?",
+          "answer": "Convection ovens cook more efficiently, often requiring temperatures 20°C lower than standard ovens."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Understanding Oven Temperature Units",
+          "content": "Celsius is used in most countries, Fahrenheit in the US, and Gas Mark mainly in the UK. Converting correctly ensures even cooking.",
+          "tips": [
+            "Always preheat your oven",
+            "Reduce temperature slightly for convection ovens",
+            "Use an oven thermometer for accuracy"
+          ]
+        },
+        {
+          "title": "Common Oven Temperature Conversions",
+          "content": "Examples include: 180°C = 356°F = Gas Mark 4, 200°C = 392°F = Gas Mark 6.",
+          "tips": [
+            "Fan ovens run hotter",
+            "Baking times may change with temperature"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 92,
+      "lastUpdated": "2024-01-15"
+    },
+    {
+      "id": "baking-grams-to-cups-calculator",
+      "slug": "baking-grams-to-cups-calculator",
+      "title": "Baking Conversion Calculator: Grams to Cups",
+      "description": "Accurate baking conversion calculator to convert grams to cups for flour, sugar, and other baking ingredients.",
+      "keywords": [
+        "baking conversion calculator grams to cups"
+      ],
+      "category": "baking",
+      "directory": "converters",
+      "defaults": {
+        "value": 100,
+        "from": "gram",
+        "to": "cup"
+      },
+      "supportedUnits": ["gram", "cup", "ml", "ounce"],
+      "conversions": {
+        "gram": { "cup": 0.008, "ml": 1, "ounce": 0.035 },
+        "cup": { "gram": 125, "ml": 240, "ounce": 8.8 },
+        "ounce": { "gram": 28.35, "cup": 0.113 },
+        "ml": { "gram": 1, "cup": 0.0042 }
+      },
+      "conversionTable": [
+        { "from": "100 grams", "to": "0.8 cups", "factor": "÷ 125" },
+        { "from": "1 cup", "to": "125 grams", "factor": "× 125" },
+        { "from": "1 ounce", "to": "28.35 grams", "factor": "× 28.35" }
+      ],
+      "faqs": [
+        {
+          "question": "How do I convert grams to cups in baking?",
+          "answer": "To convert grams to cups, divide the weight by the ingredient-specific grams-per-cup value. Flour typically uses 125 grams per cup."
+        },
+        {
+          "question": "Why do baking conversions vary by ingredient?",
+          "answer": "Different ingredients have different densities, so grams-to-cups values are not universal."
+        },
+        {
+          "question": "Is grams or cups better for baking?",
+          "answer": "Grams are more accurate and recommended for consistent baking results."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Why Grams to Cups Conversion Matters in Baking",
+          "content": "Baking requires precision. Using grams instead of cups reduces measurement errors and improves consistency across batches.",
+          "tips": [
+            "Weigh flour instead of scooping",
+            "Use ingredient-specific conversion values",
+            "Avoid compressing dry ingredients"
+          ]
+        },
+        {
+          "title": "Common Baking Ingredient Conversions",
+          "content": "Typical conversions include: Flour: 1 cup = 125g, Sugar: 1 cup = 200g, Butter: 1 cup = 227g.",
+          "tips": [
+            "Sugar packs differently than flour",
+            "Butter weight is more consistent than volume"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 94,
+      "lastUpdated": "2024-01-15"
+    },
+    {
+      "id": "american-to-metric-cooking-conversion",
+      "slug": "american-to-metric-cooking-conversion",
+      "title": "American to Metric Cooking Conversion",
+      "description": "Convert American cooking measurements to metric units like grams, milliliters, and liters accurately.",
+      "keywords": [
+        "american to metric cooking conversion"
+      ],
+      "category": "cooking",
+      "directory": "converters",
+      "defaults": {
+        "value": 1,
+        "from": "cup",
+        "to": "gram"
+      },
+      "supportedUnits": ["cup", "gram", "ml", "ounce", "tablespoon", "teaspoon"],
+      "conversions": {
+        "cup": { "gram": 125, "ml": 240, "ounce": 8.8, "tablespoon": 16, "teaspoon": 48 },
+        "gram": { "cup": 0.008, "ml": 1, "ounce": 0.035 },
+        "ml": { "cup": 0.0042, "gram": 1 },
+        "ounce": { "gram": 28.35, "cup": 0.113 },
+        "tablespoon": { "gram": 7.5, "cup": 0.0625 },
+        "teaspoon": { "gram": 2.5, "cup": 0.0208 }
+      },
+      "conversionTable": [
+        { "from": "1 cup", "to": "125 grams", "factor": "× 125" },
+        { "from": "1 cup", "to": "240 milliliters", "factor": "× 240" },
+        { "from": "1 ounce", "to": "28.35 grams", "factor": "× 28.35" },
+        { "from": "1 tablespoon", "to": "7.5 grams", "factor": "× 7.5" }
+      ],
+      "faqs": [
+        {
+          "question": "What is American to metric cooking conversion?",
+          "answer": "American to metric cooking conversion translates US cooking measurements like cups and ounces into metric units such as grams and milliliters."
+        },
+        {
+          "question": "Why do recipes differ between US and metric systems?",
+          "answer": "The US uses volume-based measurements, while most countries use weight-based metric measurements for better accuracy."
+        },
+        {
+          "question": "Is metric better for baking?",
+          "answer": "Yes, metric measurements are more precise, especially for baking where ingredient ratios matter."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Understanding American vs Metric Cooking Measurements",
+          "content": "American recipes typically use cups, tablespoons, and ounces, while metric recipes rely on grams and milliliters. Converting between these systems ensures consistent results, especially when following international recipes.",
+          "tips": [
+            "Use a digital kitchen scale for best accuracy",
+            "Convert dry and liquid ingredients separately",
+            "Always check whether the recipe uses US or metric standards"
+          ]
+        },
+        {
+          "title": "Common American to Metric Conversions",
+          "content": "Some common conversions include: 1 cup = 240 ml, 1 cup flour = 125 g, 1 ounce = 28.35 g, and 1 tablespoon = 15 ml.",
+          "tips": [
+            "Flour weights vary by type",
+            "Liquids convert more consistently than dry ingredients"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": false,
+      "popularity": 90,
+      "lastUpdated": "2024-01-15"
+    },
+
+    {
+      "id": "oven-temperature-for-cake",
+      "slug": "oven-temperature-for-cake",
+      "title": "Oven Temperature for Cake",
+      "description": "Find the correct oven temperature for cake baking. Convert cake baking temperatures between Celsius, Fahrenheit, and Gas Mark for perfect results every time.",
+      "keywords": [
+        "oven temperature for cake"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 180,
+        "from": "celsius",
+        "to": "fahrenheit"
+      },
+      "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+      "conversionFormulas": [
+        { "from": "celsius", "to": "celsius", "formula": "x" },
+        { "from": "fahrenheit", "to": "fahrenheit", "formula": "x" },
+        { "from": "gas mark", "to": "gas mark", "formula": "x" },
+        { "from": "celsius", "to": "fahrenheit", "formula": "(x * 9/5) + 32" },
+        { "from": "fahrenheit", "to": "celsius", "formula": "(x - 32) * 5/9" },
+        { "from": "celsius", "to": "gas mark", "formula": "x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : 6" },
+        { "from": "gas mark", "to": "celsius", "formula": "x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : 200" },
+        { "from": "fahrenheit", "to": "gas mark", "formula": "((x - 32) * 5/9) <= 160 ? 2 : ((x - 32) * 5/9) <= 170 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : 5" },
+        { "from": "gas mark", "to": "fahrenheit", "formula": "(x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : 190) * 9/5 + 32" }
+      ],
+      "conversionTable": [
+        { "from": "160°C", "to": "320°F", "factor": "Gas Mark 3" },
+        { "from": "170°C", "to": "338°F", "factor": "Gas Mark 3" },
+        { "from": "180°C", "to": "356°F", "factor": "Gas Mark 4" },
+        { "from": "190°C", "to": "374°F", "factor": "Gas Mark 5" }
+      ],
+      "faqs": [
+        {
+          "question": "What is the ideal oven temperature for cake?",
+          "answer": "Most cakes bake best at 170–180°C (340–356°F). This temperature allows the cake to rise evenly without burning the edges."
+        },
+        {
+          "question": "Does cake baking temperature vary by cake type?",
+          "answer": "Yes. Sponge and chiffon cakes bake at lower temperatures, while fruit and butter cakes require slightly higher heat."
+        },
+        {
+          "question": "Should I change temperature for convection ovens?",
+          "answer": "Yes. Reduce the temperature by about 20°C when using a fan or convection oven."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Best Oven Temperature for Baking Cakes",
+          "content": "Choosing the correct oven temperature for cake baking is crucial for texture and rise. Most standard cakes are baked at 170–180°C, which allows the batter to cook evenly from the inside out. Baking at too high a temperature can cause cracking or a dry texture.",
+          "tips": [
+            "Preheat the oven fully before baking",
+            "Use the middle rack for even heat distribution",
+            "Avoid opening the oven door during the first 20 minutes",
+            "Use an oven thermometer for accuracy"
+          ]
+        },
+        {
+          "title": "Global Cake Baking Temperature Guide",
+          "content": "Different countries use different temperature units. A recipe calling for 180°C in Europe equals 356°F in the US and Gas Mark 4 in the UK. Using correct conversions ensures consistent baking results worldwide.",
+          "tips": [
+            "Check whether the recipe uses fan or conventional oven",
+            "Adjust baking time slightly when converting temperatures",
+            "Dense cakes may need lower heat for longer time"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 96,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "oven-temperature-for-pizza",
+      "slug": "oven-temperature-for-pizza",
+      "title": "Oven Temperature for Pizza",
+      "description": "Find the best oven temperature for pizza. Convert pizza baking temperatures between Celsius, Fahrenheit, and Gas Mark for crispy crusts and perfect toppings.",
+      "keywords": [
+        "oven temperature for pizza"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 220,
+        "from": "celsius",
+        "to": "fahrenheit"
+      },
+      "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+      "conversionFormulas": [
+        { "from": "celsius", "to": "celsius", "formula": "x" },
+        { "from": "fahrenheit", "to": "fahrenheit", "formula": "x" },
+        { "from": "gas mark", "to": "gas mark", "formula": "x" },
+        { "from": "celsius", "to": "fahrenheit", "formula": "(x * 9/5) + 32" },
+        { "from": "fahrenheit", "to": "celsius", "formula": "(x - 32) * 5/9" },
+        { "from": "celsius", "to": "gas mark", "formula": "x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : 9" },
+        { "from": "gas mark", "to": "celsius", "formula": "x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : 240" },
+        { "from": "fahrenheit", "to": "gas mark", "formula": "((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : 8" },
+        { "from": "gas mark", "to": "fahrenheit", "formula": "(x === 6 ? 200 : x === 7 ? 220 : 230) * 9/5 + 32" }
+      ],
+      "conversionTable": [
+        { "from": "200°C", "to": "392°F", "factor": "Gas Mark 6" },
+        { "from": "220°C", "to": "428°F", "factor": "Gas Mark 7" },
+        { "from": "230°C", "to": "446°F", "factor": "Gas Mark 8" }
+      ],
+      "faqs": [
+        {
+          "question": "What temperature should I bake pizza at?",
+          "answer": "Most homemade pizzas bake best between 220–250°C for a crispy crust and evenly cooked toppings."
+        },
+        {
+          "question": "Does pizza need a hotter oven than cake?",
+          "answer": "Yes. Pizza requires higher temperatures to cook the base quickly without drying out the toppings."
+        },
+        {
+          "question": "Can I bake pizza in a regular oven?",
+          "answer": "Yes. Preheat the oven fully and use a pizza stone or steel for best results."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Best Oven Temperature for Pizza Baking",
+          "content": "Pizza requires high heat to achieve a crisp base and melted toppings. Most home ovens work best at 220–250°C. Lower temperatures may result in a soft or undercooked crust.",
+          "tips": [
+            "Preheat oven for at least 30 minutes",
+            "Use a pizza stone for better heat retention",
+            "Bake pizza on the lowest rack",
+            "Avoid overloading with toppings"
+          ]
+        },
+        {
+          "title": "Pizza Temperature Conversion Guide",
+          "content": "Pizza recipes vary globally. Italian recipes often specify Celsius, US recipes use Fahrenheit, and UK recipes may use Gas Mark. Converting accurately ensures consistent results.",
+          "tips": [
+            "Higher heat equals shorter bake time",
+            "Thin crust needs hotter temperatures",
+            "Thick crust requires slightly lower heat"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 95,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "oven-temperature-for-cookies",
+      "slug": "oven-temperature-for-cookies",
+      "title": "Oven Temperature for Cookies",
+      "description": "Learn the best oven temperature for cookies. Convert cookie baking temperatures between Celsius, Fahrenheit, and Gas Mark for soft or crispy cookies.",
+      "keywords": [
+        "oven temperature for cookies"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 180,
+        "from": "celsius",
+        "to": "fahrenheit"
+      },
+      "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+      "conversionFormulas": [
+        { "from": "celsius", "to": "celsius", "formula": "x" },
+        { "from": "fahrenheit", "to": "fahrenheit", "formula": "x" },
+        { "from": "gas mark", "to": "gas mark", "formula": "x" },
+        { "from": "celsius", "to": "fahrenheit", "formula": "(x * 9/5) + 32" },
+        { "from": "fahrenheit", "to": "celsius", "formula": "(x - 32) * 5/9" },
+        { "from": "celsius", "to": "gas mark", "formula": "x <= 170 ? 3 : x <= 180 ? 4 : 5" },
+        { "from": "gas mark", "to": "celsius", "formula": "x === 3 ? 170 : x === 4 ? 180 : 190" },
+        { "from": "fahrenheit", "to": "gas mark", "formula": "((x - 32) * 5/9) <= 170 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : 5" },
+        { "from": "gas mark", "to": "fahrenheit", "formula": "(x === 3 ? 170 : x === 4 ? 180 : 190) * 9/5 + 32" }
+      ],
+      "conversionTable": [
+        { "from": "170°C", "to": "338°F", "factor": "Gas Mark 3" },
+        { "from": "180°C", "to": "356°F", "factor": "Gas Mark 4" },
+        { "from": "190°C", "to": "374°F", "factor": "Gas Mark 5" }
+      ],
+      "faqs": [
+        {
+          "question": "What is the best oven temperature for cookies?",
+          "answer": "Most cookies bake best at 175–190°C depending on whether you prefer soft or crispy cookies."
+        },
+        {
+          "question": "Why do my cookies spread too much?",
+          "answer": "Oven temperature may be too low, causing butter to melt before the cookie sets."
+        },
+        {
+          "question": "Should I bake cookies on convection mode?",
+          "answer": "Yes, but reduce the temperature by about 20°C to prevent over-browning."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Ideal Oven Temperature for Baking Cookies",
+          "content": "Cookies require balanced heat to bake evenly. Lower temperatures create softer cookies, while higher temperatures produce crisp edges. Understanding temperature conversion helps achieve consistent texture.",
+          "tips": [
+            "Chill dough before baking",
+            "Use parchment paper",
+            "Rotate trays halfway through baking",
+            "Bake one tray at a time"
+          ]
+        },
+        {
+          "title": "Cookie Baking Temperature Conversion Guide",
+          "content": "Recipes from different countries may list cookie temperatures in Celsius, Fahrenheit, or Gas Mark. Accurate conversion ensures even baking and prevents burning.",
+          "tips": [
+            "Smaller cookies bake faster",
+            "Dark trays absorb more heat",
+            "Adjust time for thicker cookies"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 94,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "oven-temperature-for-bread",
+      "slug": "oven-temperature-for-bread",
+      "title": "Oven Temperature for Bread",
+      "description": "Discover the ideal oven temperature for bread baking. Convert bread baking temperatures between Celsius, Fahrenheit, and Gas Mark for perfect crust and crumb.",
+      "keywords": [
+        "oven temperature for bread"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 200,
+        "from": "celsius",
+        "to": "fahrenheit"
+      },
+      "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+      "conversionFormulas": [
+        { "from": "celsius", "to": "celsius", "formula": "x" },
+        { "from": "fahrenheit", "to": "fahrenheit", "formula": "x" },
+        { "from": "gas mark", "to": "gas mark", "formula": "x" },
+        { "from": "celsius", "to": "fahrenheit", "formula": "(x * 9/5) + 32" },
+        { "from": "fahrenheit", "to": "celsius", "formula": "(x - 32) * 5/9" },
+        { "from": "celsius", "to": "gas mark", "formula": "x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : 8" },
+        { "from": "gas mark", "to": "celsius", "formula": "x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : 230" },
+        { "from": "fahrenheit", "to": "gas mark", "formula": "((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : 8" },
+        { "from": "gas mark", "to": "fahrenheit", "formula": "(x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : 230) * 9/5 + 32" }
+      ],
+      "conversionTable": [
+        { "from": "190°C", "to": "374°F", "factor": "Gas Mark 5" },
+        { "from": "200°C", "to": "392°F", "factor": "Gas Mark 6" },
+        { "from": "220°C", "to": "428°F", "factor": "Gas Mark 7" }
+      ],
+      "faqs": [
+        {
+          "question": "What is the best oven temperature for bread?",
+          "answer": "Most breads bake best between 190–220°C depending on the type of bread and desired crust."
+        },
+        {
+          "question": "Why does bread need a hotter oven?",
+          "answer": "High heat helps bread rise quickly (oven spring) and creates a crisp crust while keeping the inside soft."
+        },
+        {
+          "question": "Should I use steam when baking bread?",
+          "answer": "Yes. Steam during the first 10 minutes helps develop a better crust and oven spring."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Ideal Oven Temperature for Baking Bread",
+          "content": "Bread baking relies heavily on correct oven temperature. A properly heated oven allows yeast activity to peak early, creating good rise and structure. Lower temperatures can result in dense bread, while excessive heat may burn the crust before the inside is cooked.",
+          "tips": [
+            "Preheat oven for at least 30 minutes",
+            "Use a baking stone or steel for even heat",
+            "Introduce steam at the beginning of baking",
+            "Check doneness using internal temperature"
+          ]
+        },
+        {
+          "title": "Bread Baking Temperature Conversion Guide",
+          "content": "International bread recipes use different temperature units. European recipes usually list Celsius, American recipes use Fahrenheit, and UK recipes may reference Gas Mark. Accurate conversion ensures consistent results regardless of origin.",
+          "tips": [
+            "Lean breads require higher temperatures",
+            "Enriched breads bake at slightly lower heat",
+            "Adjust time if using fan-assisted ovens"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 93,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "oven-temperature-for-brownies",
+      "slug": "oven-temperature-for-brownies",
+      "title": "Oven Temperature for Brownies",
+      "description": "Learn the perfect oven temperature for brownies. Convert brownie baking temperatures between Celsius, Fahrenheit, and Gas Mark for fudgy or cakey results.",
+      "keywords": [
+        "oven temperature for brownies"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 170,
+        "from": "celsius",
+        "to": "fahrenheit"
+      },
+      "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+      "conversionFormulas": [
+        { "from": "celsius", "to": "celsius", "formula": "x" },
+        { "from": "fahrenheit", "to": "fahrenheit", "formula": "x" },
+        { "from": "gas mark", "to": "gas mark", "formula": "x" },
+        { "from": "celsius", "to": "fahrenheit", "formula": "(x * 9/5) + 32" },
+        { "from": "fahrenheit", "to": "celsius", "formula": "(x - 32) * 5/9" },
+        { "from": "celsius", "to": "gas mark", "formula": "x <= 160 ? 3 : x <= 170 ? 4 : 5" },
+        { "from": "gas mark", "to": "celsius", "formula": "x === 3 ? 160 : x === 4 ? 170 : 180" },
+        { "from": "fahrenheit", "to": "gas mark", "formula": "((x - 32) * 5/9) <= 160 ? 3 : ((x - 32) * 5/9) <= 170 ? 4 : 5" },
+        { "from": "gas mark", "to": "fahrenheit", "formula": "(x === 3 ? 160 : x === 4 ? 170 : 180) * 9/5 + 32" }
+      ],
+      "conversionTable": [
+        { "from": "160°C", "to": "320°F", "factor": "Gas Mark 3" },
+        { "from": "170°C", "to": "338°F", "factor": "Gas Mark 4" },
+        { "from": "180°C", "to": "356°F", "factor": "Gas Mark 5" }
+      ],
+      "faqs": [
+        {
+          "question": "What is the best oven temperature for brownies?",
+          "answer": "Brownies usually bake best at 160–180°C depending on whether you prefer fudgy or cakey texture."
+        },
+        {
+          "question": "Why are my brownies dry?",
+          "answer": "Overbaking or using too high oven temperature can dry out brownies."
+        },
+        {
+          "question": "Should brownies be baked in a fan oven?",
+          "answer": "Yes, but reduce the temperature by about 20°C to avoid overcooking the edges."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Ideal Oven Temperature for Baking Brownies",
+          "content": "Brownies require gentle, even heat to achieve their signature texture. Lower temperatures produce fudgier brownies, while slightly higher temperatures create a more cake-like structure.",
+          "tips": [
+            "Use the middle rack",
+            "Avoid opening the oven door early",
+            "Test doneness with a toothpick",
+            "Cool brownies fully before cutting"
+          ]
+        },
+        {
+          "title": "Brownie Baking Temperature Conversion Guide",
+          "content": "Brownie recipes vary globally, often listing temperatures in Celsius, Fahrenheit, or Gas Mark. Proper conversion ensures consistent baking results across regions.",
+          "tips": [
+            "Dark pans absorb more heat",
+            "Glass dishes need lower temperature",
+            "Thicker brownies require longer baking"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 94,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "cup-to-ml",
+      "slug": "cup-to-ml",
+      "title": "Cup to ML Converter",
+      "description": "Convert cups to milliliters (ml) for cooking and baking. Supports US and international cup measurements for accurate recipes.",
+      "keywords": [
+        "cup to ml",
+        "1 cup in ml",
+        "cups to milliliters",
+        "cooking cup to ml"
+      ],
+      "category": "baking",
+      "directory": "converters",
+      "defaults": {
+        "value": 1,
+        "from": "cup",
+        "to": "ml"
+      },
+      "supportedUnits": ["cup", "ml", "liter", "tablespoon", "teaspoon"],
+      "conversions": {
+        "cup": {
+          "ml": 240,
+          "liter": 0.24,
+          "tablespoon": 16,
+          "teaspoon": 48
+        },
+        "ml": {
+          "cup": 0.00417,
+          "liter": 0.001,
+          "tablespoon": 0.067,
+          "teaspoon": 0.2
+        },
+        "liter": {
+          "cup": 4.17,
+          "ml": 1000,
+          "tablespoon": 67,
+          "teaspoon": 200
+        },
+        "tablespoon": {
+          "cup": 0.0625,
+          "ml": 15,
+          "liter": 0.015,
+          "teaspoon": 3
+        },
+        "teaspoon": {
+          "cup": 0.0208,
+          "ml": 5,
+          "liter": 0.005,
+          "tablespoon": 0.333
+        }
+      },
+      "conversionTable": [
+        { "from": "1 cup", "to": "240 ml", "factor": "× 240" },
+        { "from": "1 cup", "to": "0.24 liter", "factor": "× 0.24" },
+        { "from": "1 cup", "to": "16 tablespoons", "factor": "× 16" },
+        { "from": "1 cup", "to": "48 teaspoons", "factor": "× 48" }
+      ],
+      "faqs": [
+        {
+          "question": "How many ml are in 1 cup?",
+          "answer": "In US measurements, 1 cup equals 240 milliliters. Some countries may use slightly different cup sizes."
+        },
+        {
+          "question": "Is cup to ml conversion the same worldwide?",
+          "answer": "No. US cups are 240 ml, while metric cups are usually 250 ml. Always check the recipe origin."
+        },
+        {
+          "question": "Should liquids be measured in ml or cups?",
+          "answer": "Milliliters provide more accuracy, especially in baking and international recipes."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Understanding Cup to ML Conversion",
+          "content": "Cup to milliliter conversion is essential when following recipes from different countries. While cups measure volume, milliliters provide a precise metric measurement. Most American recipes use a 240 ml cup, whereas many international recipes use a 250 ml metric cup.",
+          "tips": [
+            "Use liquid measuring cups for best accuracy",
+            "Check if the recipe uses US or metric cups",
+            "Measure liquids at eye level",
+            "Avoid using dry cups for liquids"
+          ]
+        },
+        {
+          "title": "Common Cooking and Baking Uses",
+          "content": "Cup to ml conversion is commonly used for measuring water, milk, oil, and other liquids. Accurate measurement helps maintain recipe balance and consistency.",
+          "tips": [
+            "Liquids should be poured slowly",
+            "Use transparent measuring jugs",
+            "Avoid guessing measurements",
+            "Metric units are preferred for precision baking"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 97,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "grams-to-teaspoon",
+      "slug": "grams-to-teaspoon",
+      "title": "Grams to Teaspoon Converter",
+      "description": "Convert grams to teaspoons for cooking and baking ingredients. Accurate weight to volume conversion for common ingredients.",
+      "keywords": [
+        "grams to teaspoon",
+        "grams to tsp",
+        "convert grams to teaspoons",
+        "baking grams to teaspoon"
+      ],
+      "category": "baking",
+      "directory": "converters",
+      "defaults": {
+        "value": 5,
+        "from": "gram",
+        "to": "teaspoon"
+      },
+      "supportedUnits": ["gram", "teaspoon", "tablespoon", "ounce"],
+      "conversions": {
+        "gram": {
+          "teaspoon": 0.2,
+          "tablespoon": 0.067,
+          "ounce": 0.035
+        },
+        "teaspoon": {
+          "gram": 5,
+          "tablespoon": 0.333,
+          "ounce": 0.17
+        },
+        "tablespoon": {
+          "gram": 15,
+          "teaspoon": 3,
+          "ounce": 0.5
+        },
+        "ounce": {
+          "gram": 28.35,
+          "teaspoon": 6,
+          "tablespoon": 2
+        }
+      },
+      "conversionTable": [
+        { "from": "1 gram", "to": "0.2 teaspoon", "factor": "× 0.2" },
+        { "from": "5 grams", "to": "1 teaspoon", "factor": "÷ 5" },
+        { "from": "15 grams", "to": "1 tablespoon", "factor": "÷ 15" }
+      ],
+      "faqs": [
+        {
+          "question": "How many teaspoons are in 1 gram?",
+          "answer": "Approximately 0.2 teaspoons equal 1 gram for water-like ingredients. This varies by ingredient density."
+        },
+        {
+          "question": "Is grams to teaspoon conversion accurate?",
+          "answer": "It is approximate because grams measure weight and teaspoons measure volume. Ingredient density matters."
+        },
+        {
+          "question": "When should I use grams instead of teaspoons?",
+          "answer": "Grams are more accurate and preferred for baking, especially for dry ingredients."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Understanding Grams to Teaspoon Conversion",
+          "content": "Grams to teaspoon conversion is useful when recipes mix metric weight and volume measurements. Since teaspoons measure volume, conversions depend on ingredient density, making them approximate.",
+          "tips": [
+            "Use grams for better accuracy",
+            "Teaspoons are best for small quantities",
+            "Spoon ingredients lightly, do not pack",
+            "Level teaspoons with a straight edge"
+          ]
+        },
+        {
+          "title": "Common Ingredient Conversions",
+          "content": "For many ingredients, 1 teaspoon equals about 5 grams. However, sugar, salt, and spices may vary slightly depending on texture and granule size.",
+          "tips": [
+            "Fine salt weighs more than coarse salt",
+            "Powders compact easily",
+            "Always follow recipe notes",
+            "Use a kitchen scale when possible"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 96,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "100-c-to-gas-mark",
+      "slug": "100-c-to-gas-mark",
+      "title": "100°C to Gas Mark Conversion (Low Oven Temperature Guide)",
+      "description": "Learn how to convert 100°C to Gas Mark accurately. This guide explains low oven temperatures, fan oven equivalents, cooking uses, and common mistakes for slow cooking and warming.",
+      "keywords": [
+        "100 c to gas mark",
+        "100 degrees celsius gas mark",
+        "low oven temperature gas mark",
+        "celsius to gas mark conversion",
+        "100c oven temperature"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 100,
+        "from": "celsius",
+        "to": "gas_mark"
+      },
+      "supportedUnits": ["celsius", "gas_mark", "fan_celsius", "fahrenheit"],
+      "conversions": {
+        "celsius": {
+          "gas_mark": 0.25,
+          "fan_celsius": 80,
+          "fahrenheit": 212
+        }
+      },
+      "conversionTable": [
+        { "from": "100°C", "to": "Gas Mark 1/4", "factor": "Very low oven" },
+        { "from": "110°C", "to": "Gas Mark 1/4", "factor": "Low slow heat" },
+        { "from": "120°C", "to": "Gas Mark 1/2", "factor": "Gentle oven" },
+        { "from": "140°C", "to": "Gas Mark 1", "factor": "Low oven" },
+        { "from": "160°C", "to": "Gas Mark 3", "factor": "Moderate oven" }
+      ],
+      "faqs": [
+        {
+          "question": "What gas mark is 100°C?",
+          "answer": "100°C is approximately Gas Mark 1/4. This is considered a very low oven temperature and is typically used for warming food, drying ingredients, or very slow cooking rather than baking."
+        },
+        {
+          "question": "Is 100°C suitable for baking cakes?",
+          "answer": "No, 100°C is far too low for baking cakes. Most cakes require temperatures between 160°C and 180°C to rise and cook properly."
+        },
+        {
+          "question": "What is 100°C in a fan oven?",
+          "answer": "In a fan oven, 100°C conventional temperature is reduced to about 80°C due to the circulating hot air."
+        },
+        {
+          "question": "Why are gas marks inaccurate at low temperatures?",
+          "answer": "Gas ovens are less precise at very low settings, and many ovens do not maintain stable heat below Gas Mark 1, so results may vary."
+        },
+        {
+          "question": "What is 100°C used for in cooking?",
+          "answer": "This temperature is commonly used for warming plates, keeping food warm, drying herbs, meringues, or slow dehydration."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Understanding 100°C Oven Temperature",
+          "content": "An oven temperature of 100°C is classified as a very low heat setting. It is not intended for standard baking or roasting, but rather for gentle cooking processes that require minimal heat. Many home cooks use 100°C for warming food without continuing to cook it, drying herbs, dehydrating fruits, or keeping meals warm before serving. Because the heat is so low, food will not brown or crisp at this temperature.",
+          "tips": [
+            "Always use an oven thermometer",
+            "Avoid opening the oven frequently",
+            "Best for warming, not baking",
+            "Use shallow trays for drying"
+          ]
+        },
+        {
+          "title": "100°C to Gas Mark Explained",
+          "content": "Gas Mark 1/4 is the closest equivalent to 100°C, although not all gas ovens officially label this setting. Older gas ovens may struggle to maintain such a low temperature consistently. For this reason, monitoring is important. If your oven does not support Gas Mark 1/4, slightly cracking the oven door can help regulate excess heat.",
+          "tips": [
+            "Gas ovens vary by model",
+            "Preheating is still required",
+            "Fan assistance improves accuracy",
+            "Check food regularly"
+          ]
+        },
+        {
+          "title": "Fan Oven and International Conversions",
+          "content": "In fan ovens, temperatures are generally reduced by 20°C. This means 100°C conventional becomes approximately 80°C fan. Internationally, this temperature equals 212°F, which is the boiling point of water. Understanding these conversions is essential when following recipes from different countries.",
+          "tips": [
+            "Reduce by 20°C for fan ovens",
+            "Use Fahrenheit for US recipes",
+            "Gas Mark mainly used in the UK",
+            "Convert before preheating"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 90,
+      "lastUpdated": "2026-01-19"
+    },
+    {
+      "id": "50-c-fan-oven-equivalent",
+      "slug": "50-c-fan-oven-equivalent",
+      "title": "50°C Fan Oven Equivalent – Low Temperature Cooking Guide",
+      "description": "Find the correct 50°C fan oven equivalent. Learn how very low oven temperatures work, what foods can be cooked, warming uses, and international conversions.",
+      "keywords": [
+        "50 c fan oven equivalent",
+        "50 degrees celsius fan oven",
+        "low fan oven temperature",
+        "50c oven setting",
+        "fan oven temperature conversion"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 50,
+        "from": "celsius",
+        "to": "fan_celsius"
+      },
+      "supportedUnits": ["celsius", "fan_celsius", "fahrenheit"],
+      "conversions": {
+        "celsius": {
+          "fan_celsius": 30,
+          "fahrenheit": 122
+        }
+      },
+      "conversionTable": [
+        { "from": "50°C", "to": "30°C Fan", "factor": "−20°C rule" },
+        { "from": "60°C", "to": "40°C Fan", "factor": "Low heat" },
+        { "from": "80°C", "to": "60°C Fan", "factor": "Very low oven" },
+        { "from": "100°C", "to": "80°C Fan", "factor": "Low oven" },
+        { "from": "120°C", "to": "100°C Fan", "factor": "Gentle cooking" }
+      ],
+      "faqs": [
+        {
+          "question": "What is 50°C in a fan oven?",
+          "answer": "50°C in a conventional oven equals approximately 30°C in a fan oven due to improved air circulation."
+        },
+        {
+          "question": "Can you cook food at 50°C?",
+          "answer": "50°C is too low for cooking but is useful for warming food, proofing dough, or drying herbs."
+        },
+        {
+          "question": "Is 50°C safe for keeping food warm?",
+          "answer": "Yes, for short periods. For food safety, avoid holding cooked food below 60°C for long durations."
+        },
+        {
+          "question": "Why reduce temperature for fan ovens?",
+          "answer": "Fan ovens distribute heat more evenly and efficiently, allowing food to cook at lower temperatures."
+        },
+        {
+          "question": "What is 50°C in Fahrenheit?",
+          "answer": "50°C equals 122°F, commonly referenced in low-temperature warming guides."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "What Does 50°C Mean in Oven Cooking?",
+          "content": "An oven temperature of 50°C represents extremely gentle heat. This setting is not intended for baking, roasting, or grilling, but instead for warming, resting, or lightly drying foods. Many modern ovens include this temperature for plate warming or dough proofing. At this level, no browning or cooking occurs.",
+          "tips": [
+            "Ideal for warming plates",
+            "Useful for dough proofing",
+            "Not suitable for baking",
+            "Monitor food closely"
+          ]
+        },
+        {
+          "title": "50°C Fan Oven Equivalent Explained",
+          "content": "Fan ovens typically operate around 20°C lower than conventional ovens. Therefore, 50°C converts to roughly 30°C fan. Some fan ovens may not even display temperatures this low, so alternative methods like leaving the oven door slightly open may be required.",
+          "tips": [
+            "Reduce by 20°C",
+            "Check oven manual",
+            "Use thermometer",
+            "Avoid overheating"
+          ]
+        },
+        {
+          "title": "Global Usage and Practical Applications",
+          "content": "Internationally, low oven temperatures like 50°C are commonly used for slow dehydration, warming serving dishes, or gently melting ingredients. Understanding these conversions ensures accurate results regardless of oven type or region.",
+          "tips": [
+            "Convert before preheating",
+            "Fan ovens cook evenly",
+            "Not all ovens support 30°C",
+            "Use shallow trays"
+          ]
+        }
+      ],
+      "ads": {
+        "top": false,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 88,
+      "lastUpdated": "2026-01-19"
+    },
+
+    {
+      "id": "180-equivalent-in-fan-oven",
+      "slug": "180-equivalent-in-fan-oven",
+      "title": "180°C Equivalent in Fan Oven (Baking Temperature Guide)",
+      "description": "Discover the correct 180°C fan oven equivalent. Learn why 180°C is ideal for baking cakes, cookies, bread, and brownies with perfect results.",
+      "keywords": [
+        "180 equivalent in fan oven",
+        "180 c fan oven",
+        "fan oven baking temperature",
+        "cake baking fan oven",
+        "180 degrees baking temperature"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 180,
+        "from": "celsius",
+        "to": "fan_celsius"
+      },
+      "supportedUnits": ["celsius", "fan_celsius", "fahrenheit"],
+      "conversions": {
+        "celsius": {
+          "fan_celsius": 160,
+          "fahrenheit": 356
+        }
+      },
+      "conversionTable": [
+        { "from": "180°C", "to": "160°C Fan", "factor": "−20°C rule" },
+        { "from": "170°C", "to": "150°C Fan", "factor": "Sponge cakes" },
+        { "from": "160°C", "to": "140°C Fan", "factor": "Slow baking" },
+        { "from": "190°C", "to": "170°C Fan", "factor": "Cookies" },
+        { "from": "200°C", "to": "180°C Fan", "factor": "Bread & pizza" }
+      ],
+      "faqs": [
+        {
+          "question": "What is 180°C in a fan oven?",
+          "answer": "180°C conventional equals 160°C in a fan oven."
+        },
+        {
+          "question": "Why is 180°C so common in baking?",
+          "answer": "180°C provides balanced heat for even rising, moisture retention, and browning."
+        },
+        {
+          "question": "Is fan oven baking faster?",
+          "answer": "Yes, fan ovens cook faster due to air circulation, often reducing baking time."
+        },
+        {
+          "question": "Can I bake cakes at 160°C fan?",
+          "answer": "Yes, 160°C fan is ideal for cakes originally calling for 180°C conventional."
+        },
+        {
+          "question": "Should baking time be adjusted?",
+          "answer": "Check food 5–10 minutes earlier when using a fan oven."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "Why 180°C Is the Standard Baking Temperature",
+          "content": "180°C is one of the most commonly used baking temperatures worldwide. It allows cakes, cookies, bread, and brownies to cook evenly without burning the outside or undercooking the inside. This temperature supports proper rise and structure formation.",
+          "tips": [
+            "Preheat fully",
+            "Use middle rack",
+            "Avoid overcrowding",
+            "Rotate trays if needed"
+          ]
+        },
+        {
+          "title": "180°C Fan Oven Conversion Explained",
+          "content": "Fan ovens require a lower temperature due to efficient heat circulation. Reducing by 20°C gives a fan oven equivalent of 160°C. This prevents over-browning while ensuring even cooking.",
+          "tips": [
+            "Reduce temperature",
+            "Shorten cooking time",
+            "Watch browning",
+            "Use baking thermometer"
+          ]
+        },
+        {
+          "title": "Best Foods for 180°C / 160°C Fan",
+          "content": "This temperature range is ideal for sponge cakes, brownies, cookies, banana bread, and muffins. It is also suitable for roasting vegetables lightly without excessive caramelization.",
+          "tips": [
+            "Cakes rise evenly",
+            "Cookies bake uniformly",
+            "Bread develops structure",
+            "Avoid opening oven door"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 94,
+      "lastUpdated": "2026-01-19"
+    },
+
+    {
+      "id": "air-fryer-to-oven-temperature-conversion",
+      "slug": "air-fryer-to-oven-temperature-conversion",
+      "title": "Air Fryer to Oven Temperature Conversion Guide",
+      "description": "Convert air fryer temperatures to oven equivalents accurately. Learn cooking differences, conversion rules, and best practices for global recipes.",
+      "keywords": [
+        "air fryer to oven temperature conversion",
+        "air fryer oven equivalent",
+        "air fryer temperature guide",
+        "convert air fryer to oven",
+        "air fryer baking temperature"
+      ],
+      "category": "oven",
+      "directory": "converters",
+      "defaults": {
+        "value": 180,
+        "from": "air_fryer",
+        "to": "celsius"
+      },
+      "supportedUnits": ["air_fryer", "celsius", "fahrenheit"],
+      "conversions": {
+        "air_fryer": {
+          "air_fryer": 1,
+          "celsius": 200,
+          "fahrenheit": 392
+        },
+        "celsius": {
+          "air_fryer": 0.9,
+          "celsius": 1,
+          "fahrenheit": 1.8
+        },
+        "fahrenheit": {
+          "air_fryer": 0.5,
+          "celsius": 0.5556,
+          "fahrenheit": 1
+        }
+      },
+      "conversionTable": [
+        { "from": "160°C Air Fryer", "to": "180°C Oven", "factor": "+20°C" },
+        { "from": "180°C Air Fryer", "to": "200°C Oven", "factor": "+20°C" },
+        { "from": "200°C Air Fryer", "to": "220°C Oven", "factor": "+20°C" },
+        { "from": "170°C Air Fryer", "to": "190°C Oven", "factor": "+20°C" },
+        { "from": "150°C Air Fryer", "to": "170°C Oven", "factor": "+20°C" }
+      ],
+      "faqs": [
+        {
+          "question": "Why do air fryers use lower temperatures?",
+          "answer": "Air fryers cook faster due to intense air circulation in a compact space."
+        },
+        {
+          "question": "How much hotter should the oven be?",
+          "answer": "Generally, increase oven temperature by 20°C compared to air fryer settings."
+        },
+        {
+          "question": "Does cooking time change?",
+          "answer": "Yes, ovens usually require longer cooking times than air fryers."
+        },
+        {
+          "question": "Can I bake cakes from air fryer recipes?",
+          "answer": "Yes, but increase temperature and adjust time carefully."
+        },
+        {
+          "question": "Are results identical?",
+          "answer": "No, air fryers produce crisper textures due to rapid airflow."
+        }
+      ],
+      "contentSections": [
+        {
+          "title": "How Air Fryers and Ovens Differ",
+          "content": "Air fryers function like powerful mini convection ovens, circulating hot air rapidly around food. This allows cooking at lower temperatures while achieving crisp results. Conventional ovens require higher temperatures to compensate for slower air movement.",
+          "tips": [
+            "Air fryers cook faster",
+            "Ovens need more heat",
+            "Adjust time accordingly",
+            "Use thermometer"
+          ]
+        },
+        {
+          "title": "Air Fryer to Oven Conversion Rule",
+          "content": "The most reliable conversion rule is to increase oven temperature by approximately 20°C compared to air fryer recipes. This ensures similar cooking intensity and texture.",
+          "tips": [
+            "Increase by 20°C",
+            "Extend cooking time",
+            "Check doneness early",
+            "Rotate trays"
+          ]
+        },
+        {
+          "title": "Best Foods for Conversion",
+          "content": "Foods like pizza, cookies, bread, brownies, fries, and roasted vegetables convert well from air fryer to oven when temperature and time are adjusted correctly.",
+          "tips": [
+            "Use baking trays",
+            "Avoid overcrowding",
+            "Monitor browning",
+            "Preheat oven fully"
+          ]
+        }
+      ],
+      "ads": {
+        "top": true,
+        "middle": true,
+        "bottom": true
+      },
+      "featured": true,
+      "popularity": 96,
+      "lastUpdated": "2026-01-19"
+    }
+
+  ]
+}

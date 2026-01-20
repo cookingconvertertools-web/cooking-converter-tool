@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Cooking Converter Pro | Cooking Converter Pro</title>
+    <meta name="description" content="Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly">
+    <meta name="keywords" content="cooking measurement conversion,oven temp conversion,1 cooking cup in grams,1 cup in baking is how many ml,180 oven conversion,american to english cooking conversion,american to metric cooking conversion,baking conversion calculator grams to cups,baking grams to cups,common cooking conversions,convection oven conversion calculator">
+    <meta name="author" content="Cooking Converter Pro">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cookingconverter.pro/">
+    <meta property="og:title" content="Cooking Converter Pro | Cooking Converter Pro">
+    <meta property="og:description" content="Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly">
+    <meta property="og:image" content="https://cookingconverter.pro/og-image.jpg">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Cooking Converter Pro">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cookingconverter.pro/">
+    <meta property="twitter:title" content="Cooking Converter Pro | Cooking Converter Pro">
+    <meta property="twitter:description" content="Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly">
+    <meta property="twitter:image" content="https://cookingconverter.pro/og-image.jpg">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://cookingconverter.pro/">
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Cooking Converter Pro",
+  "description": "Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly",
+  "url": "https://cookingconverter.pro/",
+  "datePublished": "2026-01-19",
+  "dateModified": "2026-01-19",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cooking Converter Pro",
+    "url": "https://cookingconverter.pro"
+  }
+}</script>
+    
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2e7d32;
+    --primary-dark: #1b5e20;
+    --primary-light: #4caf50;
+    --background: #f5f9f5;
+    --surface: #ffffff;
+    --text: #333333;
+    --border: #e0e0e0;
+    --success: #4caf50;
+    --warning: #ff9800;
+    --error: #f44336;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--background);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: var(--surface);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+    background: var(--background);
+}
+
+/* Breadcrumbs - NEW */
+.breadcrumb-container {
+    padding: 1rem 0;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.breadcrumb-link {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.breadcrumb-link:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.breadcrumb-current {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.breadcrumb-separator {
+    color: #999;
+    margin: 0 0.25rem;
+}
+
+/* Main Content */
+.main-content {
+    padding: 2rem 0;
+    min-height: 70vh;
+}
+
+/* Cards */
+.card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border: 1px solid var(--border);
+}
+
+/* Converter UI - FIXED LAYOUT */
+.converter-wrapper {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.converter-ui {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: nowrap;
+}
+
+.converter-box {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+}
+
+.converter-input {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    min-width: 140px;
+    height: 56px;
+}
+
+.converter-select {
+    padding: 1rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 160px;
+    height: 56px;
+}
+
+.converter-swap {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+
+.converter-swap:hover {
+    background: var(--primary-dark);
+    transform: rotate(180deg);
+}
+
+.converter-result {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--background);
+    border-radius: 8px;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.conversion-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.conversion-table th {
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.conversion-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.conversion-table tr:last-child td {
+    border-bottom: none;
+}
+
+.conversion-table tr:hover {
+    background-color: var(--background);
+}
+
+/* Ads */
+.ad-unit {
+    margin: 2rem 0;
+    text-align: center;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 2px dashed var(--border);
+}
+
+.ad-label {
+    color: #666;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.ad-content {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background);
+    border-radius: 4px;
+    color: #666;
+}
+
+/* FAQ */
+.faq-section {
+    margin: 2rem 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    padding: 0.5rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-answer {
+    padding: 1rem 0;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Footer */
+.footer {
+    background: var(--primary-dark);
+    color: white;
+    padding: 3rem 0 1.5rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+}
+
+/* Responsive Design - FIXED CONVERTER */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .converter-ui {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .converter-box {
+        flex-direction: row;
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+    }
+
+    .converter-input,
+    .converter-select {
+        width: 50%;
+        height: 52px;
+    }
+
+    .converter-swap {
+        margin: 0.5rem auto;
+        order: 3;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .table-container {
+        margin: 1rem -1rem;
+    }
+
+    .conversion-table {
+        min-width: 100%;
+    }
+
+    .conversion-table th,
+    .conversion-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .card, .converter-wrapper {
+        padding: 1.5rem;
+    }
+
+    .converter-input {
+        font-size: 1rem;
+        padding: 0.75rem;
+        height: 48px;
+    }
+
+    .converter-select {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+        height: 48px;
+    }
+
+    .converter-swap {
+        width: 48px;
+        height: 48px;
+    }
+}
+</style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>">
+</head>
+<body>
+    
+        <header class="header">
+            <div class="container">
+                <nav class="navbar">
+                    <a href="index.html" class="logo">
+                        🍳 Cooking Converter Pro
+                    </a>
+                    <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+                    <ul class="nav-links">
+                        <li><a href="index.html" style="color:#2e7d32;font-weight:600;">Home</a></li>
+                        <li><a href="converters/" >Converters</a></li>
+                        <li><a href="about/index.html" >About</a></li>
+                        <li><a href="contact/index.html" >Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+    
+    
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="card">
+                <h1 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">
+                    Free Cooking & Baking Converters
+                </h1>
+                <p style="font-size: 1.2rem; color: var(--text); margin-bottom: 2rem;">
+                    Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly
+                </p>
+            </div>
+
+            
+    <div class="ad-unit ad-top">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-content">
+            <!-- Ad code would be inserted here -->
+            <div>Cooking Converter Pro - Ad Space</div>
+        </div>
+    </div>
+    
+
+                <!-- Featured Converter -->
+                
+                <div class="converter-wrapper">
+                    <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-dark);">
+                        Cups to Grams Converter
+                    </h2>
+                    <div class="converter-ui">
+                        <div class="converter-box">
+                            <input type="number" id="fromValue" class="converter-input" value="1" step="0.01" aria-label="Value to convert">
+                            <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
+                        </div>
+                        <button class="converter-swap" aria-label="Swap units">⇄</button>
+                        <div class="converter-box">
+                            <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
+                            <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
+                        </div>
+                    </div>
+                    <div class="converter-result" id="converterResult"></div>
+                    <script type="application/json" id="converter-data">
+                    {"id":"cups-to-grams","slug":"cups-to-grams","title":"Cups to Grams Converter","description":"Convert cups to grams for all cooking ingredients","keywords":["cups to grams","1 cup in grams","baking measurement conversion"],"defaults":{"value":1,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","ounce","tablespoon","teaspoon"],"conversions":{"cup":{"gram":125,"ounce":8.8,"tablespoon":16,"teaspoon":48},"gram":{"cup":0.008,"ounce":0.035,"tablespoon":0.067,"teaspoon":0.2},"ounce":{"cup":0.113,"gram":28.35,"tablespoon":2,"teaspoon":6}},"conversionTable":[{"from":"cup","to":"grams","factor":"125g"},{"from":"cup","to":"ounces","factor":"8.8 oz"},{"from":"cup","to":"tablespoons","factor":"16 tbsp"}],"faqs":[{"question":"How many grams are in 1 cup of flour?","answer":"1 cup of all-purpose flour equals approximately 125 grams."},{"question":"Is 1 cup always 240ml?","answer":"Yes, in the US measurement system, 1 cup equals 240 milliliters."}],"contentSections":[{"title":"Understanding Cup Measurements","content":"Cup measurements vary between countries. In the United States, 1 cup equals 240 milliliters, while in the United Kingdom, 1 cup equals 284 milliliters. Always check which measurement system your recipe uses.","tips":["Use dry measuring cups for dry ingredients","Use liquid measuring cups for liquids","Level off dry ingredients with a straight edge"]}],"featured":true}
+                    </script>
+                </div>
+                
+
+            
+    <div class="ad-unit ad-middle">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-content">
+            <!-- Ad code would be inserted here -->
+            <div>Cooking Converter Pro - Ad Space</div>
+        </div>
+    </div>
+    
+
+            <!-- Converter Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                
+                <div class="card">
+                    <h3>Cups to Grams Converter</h3>
+                    <p>Convert cups to grams for all cooking ingredients</p>
+                    <a href="converters/cups-to-grams/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Oven Temperature Conversion</h3>
+                    <p>Convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for accurate cooking and baking.</p>
+                    <a href="converters/oven-temp-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Baking Conversion Calculator: Grams to Cups</h3>
+                    <p>Accurate baking conversion calculator to convert grams to cups for flour, sugar, and other baking ingredients.</p>
+                    <a href="converters/baking-grams-to-cups-calculator/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>American to Metric Cooking Conversion</h3>
+                    <p>Convert American cooking measurements to metric units like grams, milliliters, and liters accurately.</p>
+                    <a href="converters/american-to-metric-cooking-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Oven Temperature for Cake</h3>
+                    <p>Find the correct oven temperature for cake baking. Convert cake baking temperatures between Celsius, Fahrenheit, and Gas Mark for perfect results every time.</p>
+                    <a href="converters/oven-temperature-for-cake/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Oven Temperature for Pizza</h3>
+                    <p>Find the best oven temperature for pizza. Convert pizza baking temperatures between Celsius, Fahrenheit, and Gas Mark for crispy crusts and perfect toppings.</p>
+                    <a href="converters/oven-temperature-for-pizza/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Oven Temperature for Cookies</h3>
+                    <p>Learn the best oven temperature for cookies. Convert cookie baking temperatures between Celsius, Fahrenheit, and Gas Mark for soft or crispy cookies.</p>
+                    <a href="converters/oven-temperature-for-cookies/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Oven Temperature for Bread</h3>
+                    <p>Discover the ideal oven temperature for bread baking. Convert bread baking temperatures between Celsius, Fahrenheit, and Gas Mark for perfect crust and crumb.</p>
+                    <a href="converters/oven-temperature-for-bread/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Oven Temperature for Brownies</h3>
+                    <p>Learn the perfect oven temperature for brownies. Convert brownie baking temperatures between Celsius, Fahrenheit, and Gas Mark for fudgy or cakey results.</p>
+                    <a href="converters/oven-temperature-for-brownies/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Cup to ML Converter</h3>
+                    <p>Convert cups to milliliters (ml) for cooking and baking. Supports US and international cup measurements for accurate recipes.</p>
+                    <a href="converters/cup-to-ml/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Grams to Teaspoon Converter</h3>
+                    <p>Convert grams to teaspoons for cooking and baking ingredients. Accurate weight to volume conversion for common ingredients.</p>
+                    <a href="converters/grams-to-teaspoon/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>100°C to Gas Mark Conversion (Low Oven Temperature Guide)</h3>
+                    <p>Learn how to convert 100°C to Gas Mark accurately. This guide explains low oven temperatures, fan oven equivalents, cooking uses, and common mistakes for slow cooking and warming.</p>
+                    <a href="converters/100-c-to-gas-mark/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>50°C Fan Oven Equivalent – Low Temperature Cooking Guide</h3>
+                    <p>Find the correct 50°C fan oven equivalent. Learn how very low oven temperatures work, what foods can be cooked, warming uses, and international conversions.</p>
+                    <a href="converters/50-c-fan-oven-equivalent/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>180°C Equivalent in Fan Oven (Baking Temperature Guide)</h3>
+                    <p>Discover the correct 180°C fan oven equivalent. Learn why 180°C is ideal for baking cakes, cookies, bread, and brownies with perfect results.</p>
+                    <a href="converters/180-equivalent-in-fan-oven/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Air Fryer to Oven Temperature Conversion Guide</h3>
+                    <p>Convert air fryer temperatures to oven equivalents accurately. Learn cooking differences, conversion rules, and best practices for global recipes.</p>
+                    <a href="converters/air-fryer-to-oven-temperature-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.75rem 1.5rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        font-weight: 500;
+                    ">Use Converter</a>
+                </div>
+                
+            </div>
+
+            
+    <div class="ad-unit ad-bottom">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-content">
+            <!-- Ad code would be inserted here -->
+            <div>Cooking Converter Pro - Ad Space</div>
+        </div>
+    </div>
+    
+
+            <!-- SEO Content -->
+            <div class="card">
+                <h2>Cooking Conversion Guide</h2>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Cooking Measurement Conversion</h3>
+                    <p>Our cooking measurement converters provide accurate conversions for all your cooking and baking needs. Convert between cups, tablespoons, teaspoons, milliliters, ounces, grams, and more. Whether you're following an American recipe with cups or a European recipe with grams, our converters make it easy.</p>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Oven Temp Conversion</h3>
+                    <p>Convert oven temperatures between Fahrenheit, Celsius, and Gas Marks. Our oven temperature converter helps you bake perfectly no matter what temperature scale your recipe uses.</p>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">American to Metric Cooking Conversion</h3>
+                    <p>Convert American measurements to metric and vice versa. Essential for following international recipes or using kitchen scales that measure in grams.</p>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Baking & Oven Conversion Tools</h3>
+                    <p>Easily convert baking measurements, oven temperatures, and cooking units between metric and US standards using our free calculators.</p>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Oven Temperature Conversion Guide</h3>
+                    <p>Learn how to convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for perfect baking results every time.</p>
+                </div>
+                
+            </div>
+
+            <!-- FAQ Section -->
+            
+            <div class="card">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-section">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How accurate are your converters?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Our converters use standard conversion factors recognized by culinary organizations. For baking, we recommend using a digital kitchen scale for maximum accuracy.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Do you support both US and UK measurements?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Yes, our converters handle both US Customary and UK Imperial measurements, including the different cup sizes (240ml US vs 284ml UK).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Are the converters free to use?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Yes, all our converters are completely free. No registration required.</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Cooking Converter Pro</h3>
+                        <p>Free Cooking Measurement Converters</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            
+                            <li><a href="converters/cups-to-grams/">Cups to Grams Converter</a></li>
+                            
+                            <li><a href="converters/oven-temp-conversion/">Oven Temperature Conversion</a></li>
+                            
+                            <li><a href="converters/baking-grams-to-cups-calculator/">Baking Conversion Calculator: Grams to Cups</a></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Legal</h3>
+                        <ul class="footer-links">
+                            <li><a href="privacy/index.html">Privacy Policy</a></li>
+                            <li><a href="terms/index.html">Terms of Service</a></li>
+                            <li><a href="contact/index.html">Contact Us</a></li>
+                            <li><a href="sitemap.xml">Sitemap</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
+                    <p>Generated on: 2026-01-19</p>
+                </div>
+            </div>
+        </footer>
+    
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    }
+
+    // Initialize converter if present
+    const converterData = document.getElementById('converter-data');
+    if (converterData) {
+        initConverter(JSON.parse(converterData.textContent));
+    }
+
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+            // Close other FAQs
+            if (!isExpanded) {
+                document.querySelectorAll('.faq-question[aria-expanded="true"]').forEach(otherBtn => {
+                    otherBtn.setAttribute('aria-expanded', 'false');
+                    otherBtn.nextElementSibling.style.display = 'none';
+                });
+            }
+
+            // Toggle current FAQ
+            this.setAttribute('aria-expanded', !isExpanded);
+            answer.style.display = isExpanded ? 'none' : 'block';
+        });
+    });
+});
+
+function initConverter(data) {
+    const fromInput = document.getElementById('fromValue');
+    const fromUnit = document.getElementById('fromUnit');
+    const toInput = document.getElementById('toValue');
+    const toUnit = document.getElementById('toUnit');
+    const swapBtn = document.querySelector('.converter-swap');
+    const resultSpan = document.getElementById('converterResult') || document.querySelector('.converter-result');
+
+    if (!fromInput) return;
+
+    // Populate unit options
+    if (data.supportedUnits && Array.isArray(data.supportedUnits)) {
+        data.supportedUnits.forEach(unit => {
+            const option1 = document.createElement('option');
+            option1.value = unit;
+            option1.textContent = unit;
+            fromUnit.appendChild(option1);
+
+            const option2 = document.createElement('option');
+            option2.value = unit;
+            option2.textContent = unit;
+            toUnit.appendChild(option2);
+        });
+
+        // Set default values
+        if (data.defaults) {
+            fromInput.value = data.defaults.value || 1;
+            fromUnit.value = data.defaults.from || data.supportedUnits[0];
+            toUnit.value = data.defaults.to || data.supportedUnits[1];
+        }
+    }
+
+    function convert() {
+        const value = parseFloat(fromInput.value) || 0;
+        const from = fromUnit.value;
+        const to = toUnit.value;
+
+        // Get conversion from JSON data
+        if (data.conversions && data.conversions[from] && data.conversions[from][to]) {
+            const result = value * data.conversions[from][to];
+            toInput.value = result.toFixed(2);
+
+            if (resultSpan) {
+                resultSpan.textContent = `${value} ${from} = ${result.toFixed(2)} ${to}`;
+            }
+
+            // Update URL for sharing
+            updateURL(value, from, to);
+        } else if (data.conversionFormulas) {
+            // Use formula-based conversion
+            const result = applyFormula(value, from, to, data.conversionFormulas);
+            if (result !== null) {
+                toInput.value = result.toFixed(2);
+                if (resultSpan) {
+                    resultSpan.textContent = `${value} ${from} = ${result.toFixed(2)} ${to}`;
+                }
+                updateURL(value, from, to);
+            }
+        }
+    }
+
+    function applyFormula(value, from, to, formulas) {
+        for (const formula of formulas) {
+            if (formula.from === from && formula.to === to) {
+                try {
+                    // Safely create a function where 'x' is the parameter
+                    const func = new Function('x', 'return ' + formula.formula);
+                    return func(value);
+                } catch (e) {
+                    console.error('Formula error:', e, 'for', formula);
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    function updateURL(value, from, to) {
+        const params = new URLSearchParams();
+        params.set('value', value);
+        params.set('from', from);
+        params.set('to', to);
+
+        const newURL = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({}, '', newURL);
+    }
+
+    function swapUnits() {
+        const tempUnit = fromUnit.value;
+        const tempValue = fromInput.value;
+
+        fromUnit.value = toUnit.value;
+        toUnit.value = tempUnit;
+        fromInput.value = toInput.value;
+        toInput.value = tempValue;
+
+        convert();
+    }
+
+    // Event listeners
+    fromInput.addEventListener('input', convert);
+    fromUnit.addEventListener('change', convert);
+    toUnit.addEventListener('change', convert);
+
+    if (swapBtn) {
+        swapBtn.addEventListener('click', swapUnits);
+    }
+
+    // Check URL parameters for initial values
+    const params = new URLSearchParams(window.location.search);
+    const urlValue = params.get('value');
+    const urlFrom = params.get('from');
+    const urlTo = params.get('to');
+
+    if (urlValue && urlFrom && urlTo) {
+        fromInput.value = urlValue;
+        fromUnit.value = urlFrom;
+        toUnit.value = urlTo;
+    }
+
+    // Initial conversion
+    convert();
+}
+</script>
+</body>
+</html>
+    
