@@ -6,7 +6,7 @@
     "tagline": "Free Cooking Measurement Converters",
     "description": "Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly",
     "keywords": [
-      "cooking measurement conversions",
+      "cooking measurement conversion",
       "oven temp conversion",
       "1 cooking cup in grams",
       "1 cup in baking is how many ml",
@@ -28,15 +28,45 @@
     "text": "#333333"
   },
   "ads": {
-    "enabled": true,
+    "enabled": false,
     "placements": {
       "home_top": true,
       "home_middle": true,
       "home_bottom": true,
       "converter_top": true,
       "converter_middle": true,
-      "converter_bottom": true
+      "converter_bottom": true,
+      "sidebar_right": true,
+      "mobile_sticky": true
     },
-    "excludePages": []
+    "excludePages": [],
+    "sidebar": {
+      "enabled": true,
+      "width": "300px",
+      "gap": "20px",
+      "sticky": true
+    },
+    "mobile": {
+      "stickyAd": {
+        "enabled": true,
+        "position": "bottom",
+        "showAfterScroll": 500,
+        "hideOnConverter": false
+      }
+    }
+  },
+  "content": {
+    "defaultSequence": [
+      "hero",
+      "converter",
+      "quickReference",
+      "comparisonTable",
+      "tips",
+      "faq",
+      "related"
+    ],
+    "showSectionIcons": true,
+    "enablePrintStyles": true,
+    "enableDarkMode": true
   }
 }
