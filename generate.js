@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');  // Use regular fs
+const fs = require('fs');
 const path = require('path');
 const { existsSync, mkdirSync } = require('fs');
 
@@ -87,10 +87,8 @@ function slugify(text) {
 // ==============================
 
 function generateNavigation(currentPage = '', location = 'root') {
-    // Helper to determine path based on location
     function getPath(target, currentLoc) {
         if (currentLoc === 'root') {
-            // We're at root: /index.html
             const paths = {
                 home: 'index.html',
                 converters: 'converters/',
@@ -103,7 +101,6 @@ function generateNavigation(currentPage = '', location = 'root') {
         }
 
         if (currentLoc === 'converters') {
-            // We're at /converters/
             const paths = {
                 home: '../index.html',
                 converters: './',
@@ -116,7 +113,6 @@ function generateNavigation(currentPage = '', location = 'root') {
         }
 
         if (currentLoc.startsWith('converters/')) {
-            // We're at /converters/[slug]/
             const paths = {
                 home: '../../index.html',
                 converters: '../',
@@ -128,7 +124,6 @@ function generateNavigation(currentPage = '', location = 'root') {
             return paths[target];
         }
 
-        // For static pages (about, contact, etc.)
         const paths = {
             home: '../index.html',
             converters: '../converters/',
@@ -164,7 +159,6 @@ function generateNavigation(currentPage = '', location = 'root') {
     `;
 }
 
-// Add RELATED CONVERTERS function
 function getRelatedConverters(currentConverterId, category) {
     if (!category) return [];
 
@@ -173,18 +167,14 @@ function getRelatedConverters(currentConverterId, category) {
         .slice(0, 4);
 }
 
-// NEW: Breadcrumb generator function
 function generateBreadcrumbs(pageType, pageData = {}, location = 'root') {
-    const baseUrl = CONFIG.site.url;
     let breadcrumbs = [];
 
-    // Always start with Home
     breadcrumbs.push({
         name: 'Home',
         url: location === 'root' ? 'index.html' : '../index.html'
     });
 
-    // Add converters category for converter pages
     if (pageType === 'converter') {
         breadcrumbs.push({
             name: 'Converters',
@@ -196,7 +186,6 @@ function generateBreadcrumbs(pageType, pageData = {}, location = 'root') {
         });
     }
 
-    // Add category for collection pages
     if (pageType === 'collection') {
         breadcrumbs.push({
             name: 'Converters',
@@ -204,7 +193,6 @@ function generateBreadcrumbs(pageType, pageData = {}, location = 'root') {
         });
     }
 
-    // Add static page name
     if (pageType === 'static') {
         breadcrumbs.push({
             name: pageData.title || 'Page',
@@ -212,7 +200,6 @@ function generateBreadcrumbs(pageType, pageData = {}, location = 'root') {
         });
     }
 
-    // Generate HTML for breadcrumbs
     if (breadcrumbs.length <= 1) return '';
 
     const breadcrumbHtml = breadcrumbs.map((crumb, index) => {
@@ -232,13 +219,11 @@ function generateBreadcrumbs(pageType, pageData = {}, location = 'root') {
     `;
 }
 
-// NEW: Generate BreadcrumbList schema
 function generateBreadcrumbSchema(pageType, pageData = {}, location = 'root') {
     const baseUrl = CONFIG.site.url;
     let schemaItems = [];
     let position = 1;
 
-    // Home item
     schemaItems.push({
         "@type": "ListItem",
         "position": position++,
@@ -246,7 +231,6 @@ function generateBreadcrumbSchema(pageType, pageData = {}, location = 'root') {
         "item": baseUrl + (location === 'root' ? '/' : '../')
     });
 
-    // Converters category for converter pages
     if (pageType === 'converter') {
         schemaItems.push({
             "@type": "ListItem",
@@ -256,7 +240,6 @@ function generateBreadcrumbSchema(pageType, pageData = {}, location = 'root') {
         });
     }
 
-    // Current page (converters collection or converter detail)
     if (pageType === 'collection') {
         schemaItems.push({
             "@type": "ListItem",
@@ -294,7 +277,6 @@ function generateBreadcrumbSchema(pageType, pageData = {}, location = 'root') {
 }
 
 function generateFooter(location = 'root') {
-    // Helper to determine path based on location (SAME LOGIC AS generateNavigation)
     function getPath(target, currentLoc) {
         if (currentLoc === 'root') {
             const paths = {
@@ -323,7 +305,6 @@ function generateFooter(location = 'root') {
         }
 
         if (currentLoc.startsWith('converters/')) {
-            // We're at /converters/[slug]/
             const paths = {
                 home: '../../index.html',
                 converters: '../',
@@ -336,7 +317,6 @@ function generateFooter(location = 'root') {
             return paths[target];
         }
 
-        // For static pages
         const paths = {
             home: '../index.html',
             converters: '../converters/',
@@ -383,6 +363,608 @@ function generateFooter(location = 'root') {
                 </div>
             </div>
         </footer>
+    `;
+}
+
+// ==============================
+// NEW: CONTENT SECTION GENERATORS
+// ==============================
+
+function generateHeroSection(converter) {
+    const hero = converter.contentSections?.hero || {};
+    return `
+    <section class="content-section hero-section">
+        <h1>${hero.title || converter.title}</h1>
+        <p class="hero-subtitle">${hero.subtitle || converter.description}</p>
+        ${hero.intro ? `<p class="hero-intro">${hero.intro}</p>` : ''}
+    </section>
+    `;
+}
+
+function generateConverterUI(converter) {
+    return `
+    <section class="content-section converter-ui-section">
+        <div class="converter-wrapper">
+            <div class="converter-ui">
+                <div class="converter-box">
+                    <input type="number" id="fromValue" class="converter-input" value="${converter.defaults?.value || 1}" step="0.01" aria-label="Value to convert">
+                    <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
+                </div>
+                <button class="converter-swap" aria-label="Swap units">⇄</button>
+                <div class="converter-box">
+                    <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
+                    <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
+                </div>
+            </div>
+            <div class="converter-result" id="converterResult"></div>
+            <script type="application/json" id="converter-data">
+            ${JSON.stringify(converter)}
+            </script>
+        </div>
+    </section>
+    `;
+}
+
+function generateQuickReferenceSection(converter) {
+    const section = converter.contentSections?.quickReference;
+    if (!section) return '';
+
+    const items = section.items || [];
+    if (items.length === 0) return '';
+
+    return `
+    <section class="content-section quick-reference">
+        <div class="section-header">
+            <h2>${section.title || 'Quick Reference'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="quick-reference-grid">
+            ${items.map(item => `
+            <div class="reference-item">
+                ${item.icon ? `<div class="reference-icon">${item.icon}</div>` : ''}
+                <div class="reference-content">
+                    <h3>${item.ingredient}</h3>
+                    <div class="reference-values">
+                        <span class="reference-from">${item.cup} cup${item.cup !== 1 ? 's' : ''}</span>
+                        <span class="reference-arrow">→</span>
+                        <span class="reference-to">${item.grams}g</span>
+                    </div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateComparisonTableSection(converter) {
+    const section = converter.contentSections?.comparisonTable;
+    if (!section) return '';
+
+    const rows = section.rows || [];
+    if (rows.length === 0) return '';
+
+    const columns = section.columns || ['Type', 'Value', 'Details'];
+
+    return `
+    <section class="content-section comparison-table">
+        <div class="section-header">
+            <h2>${section.title || 'Comparison Table'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="table-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        ${columns.map(col => `<th>${col}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows.map(row => `
+                    <tr>
+                        ${Object.values(row).map(cell => `<td>${cell}</td>`).join('')}
+                    </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    `;
+}
+
+function generateVisualChartSection(converter) {
+    const section = converter.contentSections?.visualChart;
+    if (!section) return '';
+
+    const items = section.items || [];
+    if (items.length === 0) return '';
+
+    return `
+    <section class="content-section visual-chart">
+        <div class="section-header">
+            <h2>${section.title || 'Visual Guide'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="visual-chart-container">
+            ${items.map(item => `
+            <div class="visual-item" style="${item.color ? `border-color: ${item.color};` : ''}">
+                ${item.visual ? `<div class="visual-icon">${item.visual}</div>` : ''}
+                <div class="visual-content">
+                    <h3>${item.name}</h3>
+                    <div class="visual-weight">${item.weight}</div>
+                    <div class="visual-comparison">${item.comparison}</div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateStepByStepSection(converter) {
+    const section = converter.contentSections?.stepByStep;
+    if (!section) return '';
+
+    const steps = section.steps || [];
+    if (steps.length === 0) return '';
+
+    return `
+    <section class="content-section step-by-step">
+        <div class="section-header">
+            <h2>${section.title || 'Step-by-Step Guide'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="steps-container">
+            ${steps.map(step => `
+            <div class="step">
+                <div class="step-number">${step.number}</div>
+                <div class="step-content">
+                    <h3>${step.title}</h3>
+                    <p>${step.content}</p>
+                    ${step.tip ? `<div class="step-tip"><strong>Tip:</strong> ${step.tip}</div>` : ''}
+                    ${step.warning ? `<div class="step-warning"><strong>Warning:</strong> ${step.warning}</div>` : ''}
+                    ${step.note ? `<div class="step-note"><strong>Note:</strong> ${step.note}</div>` : ''}
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateCommonMistakesSection(converter) {
+    const section = converter.contentSections?.commonMistakes;
+    if (!section) return '';
+
+    const mistakes = section.mistakes || [];
+    if (mistakes.length === 0) return '';
+
+    return `
+    <section class="content-section common-mistakes">
+        <div class="section-header">
+            <h2>${section.title || 'Common Mistakes to Avoid'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="mistakes-container">
+            ${mistakes.map(mistake => `
+            <div class="mistake-item ${mistake.severity || 'medium'}">
+                ${mistake.icon ? `<div class="mistake-icon">${mistake.icon}</div>` : ''}
+                <div class="mistake-content">
+                    <h3>${mistake.mistake}</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> ${mistake.consequence}</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> ${mistake.solution}</div>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateEquipmentGuideSection(converter) {
+    const section = converter.contentSections?.equipmentGuide;
+    if (!section) return '';
+
+    const tools = section.tools || [];
+    if (tools.length === 0) return '';
+
+    return `
+    <section class="content-section equipment-guide">
+        <div class="section-header">
+            <h2>${section.title || 'Recommended Equipment'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="equipment-container">
+            ${tools.map(tool => `
+            <div class="equipment-item">
+                <div class="equipment-header">
+                    ${tool.icon ? `<span class="equipment-icon">${tool.icon}</span>` : ''}
+                    <h3>${tool.name}</h3>
+                    <span class="equipment-importance ${tool.importance?.toLowerCase() || 'recommended'}">
+                        ${tool.importance || 'Recommended'}
+                    </span>
+                </div>
+                <div class="equipment-details">
+                    ${tool.features ? `
+                    <div class="equipment-features">
+                        <h4>Features:</h4>
+                        <ul>
+                            ${tool.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    ${tool.priceRange ? `<div class="equipment-price"><strong>Price:</strong> ${tool.priceRange}</div>` : ''}
+                    ${tool.recommendedBrands ? `
+                    <div class="equipment-brands">
+                        <strong>Brands:</strong> ${tool.recommendedBrands.join(', ')}
+                    </div>
+                    ` : ''}
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateScientificBackgroundSection(converter) {
+    const section = converter.contentSections?.scientificBackground;
+    if (!section) return '';
+
+    const concepts = section.concepts || [];
+    if (concepts.length === 0) return '';
+
+    return `
+    <section class="content-section scientific-background">
+        <div class="section-header">
+            <h2>${section.title || 'Scientific Background'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="concepts-container">
+            ${concepts.map(concept => `
+            <div class="concept">
+                <h3>${concept.concept}</h3>
+                <p>${concept.explanation}</p>
+                ${concept.examples ? `
+                <div class="concept-examples">
+                    <strong>Examples:</strong>
+                    <ul>
+                        ${concept.examples.map(example => `<li>${example}</li>`).join('')}
+                    </ul>
+                </div>
+                ` : ''}
+                ${concept.impact ? `<div class="concept-impact"><strong>Impact:</strong> ${concept.impact}</div>` : ''}
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateRegionalVariationsSection(converter) {
+    const section = converter.contentSections?.regionalVariations;
+    if (!section) return '';
+
+    const regions = section.regions || [];
+    if (regions.length === 0) return '';
+
+    return `
+    <section class="content-section regional-variations">
+        <div class="section-header">
+            <h2>${section.title || 'Regional Variations'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        <div class="regions-container">
+            ${regions.map(region => `
+            <div class="region-item">
+                <div class="region-header">
+                    <h3>${region.region}</h3>
+                    ${region.cupSize ? `<div class="region-cup-size">Cup: ${region.cupSize}</div>` : ''}
+                </div>
+                <div class="region-details">
+                    ${region.commonUnits ? `
+                    <div class="region-units">
+                        <strong>Units:</strong> ${region.commonUnits.join(', ')}
+                    </div>
+                    ` : ''}
+                    ${region.system ? `<div class="region-system"><strong>System:</strong> ${region.system}</div>` : ''}
+                    ${region.note ? `<div class="region-note">${region.note}</div>` : ''}
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateRecipeExamplesSection(converter) {
+    const section = converter.contentSections?.recipeExamples;
+    if (!section) return '';
+
+    const examples = section.examples || [];
+    if (examples.length === 0) return '';
+
+    return `
+    <section class="content-section recipe-examples">
+        <div class="section-header">
+            <h2>${section.title || 'Recipe Applications'}</h2>
+            ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
+        </div>
+        ${examples.map(example => `
+        <div class="recipe-example">
+            <h3>${example.recipe}</h3>
+            <div class="recipe-comparison">
+                <div class="recipe-original">
+                    <h4>Original Recipe</h4>
+                    <ul>
+                        ${example.original.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="recipe-arrow">→</div>
+                <div class="recipe-converted">
+                    <h4>Converted (Metric)</h4>
+                    <ul>
+                        ${example.converted.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+            ${example.serves ? `<div class="recipe-serves"><strong>Serves:</strong> ${example.serves}</div>` : ''}
+            ${example.tip ? `<div class="recipe-tip"><strong>Tip:</strong> ${example.tip}</div>` : ''}
+        </div>
+        `).join('')}
+    </section>
+    `;
+}
+
+function generateTipsSection(converter) {
+    const oldSections = converter.contentSections || []; // Old format
+    const newTips = converter.contentSections?.tips; // New format
+
+    let tipsHTML = '';
+
+    // Check new format first
+    if (newTips && newTips.tips && newTips.tips.length > 0) {
+        tipsHTML += `
+        <section class="content-section tips-section">
+            <h2>${newTips.title || 'Tips'}</h2>
+            <ul class="tips-list">
+                ${newTips.tips.map(tip => `<li>${tip}</li>`).join('')}
+            </ul>
+        </section>
+        `;
+    }
+    // Fallback to old format
+    else if (Array.isArray(oldSections)) {
+        oldSections.forEach(section => {
+            if (section.tips && section.tips.length > 0) {
+                tipsHTML += `
+                <section class="content-section tips-section">
+                    <h2>${section.title || 'Tips'}</h2>
+                    <ul class="tips-list">
+                        ${section.tips.map(tip => `<li>${tip}</li>`).join('')}
+                    </ul>
+                </section>
+                `;
+            }
+        });
+    }
+
+    return tipsHTML;
+}
+
+function generateFAQSection(converter) {
+    const faqs = converter.faqs || [];
+    if (faqs.length === 0) return '';
+
+    return `
+    <section class="content-section faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            ${faqs.map(faq => `
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    ${faq.question}
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>${faq.answer}</p>
+                </div>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+function generateRelatedConvertersSection(converter) {
+    console.log(`\n=== DEBUG for ${converter.id} ===`);
+    console.log('1. Manual Links:', converter.manualRelatedLinks);
+
+    let related = [];
+
+    // 1. MANUAL LIST CHECK
+    if (converter.manualRelatedLinks && Array.isArray(converter.manualRelatedLinks)) {
+        console.log('2. Processing manual links...');
+
+        for (const linkId of converter.manualRelatedLinks) {
+            // Find converter by ID
+            const found = CONVERTERS.converters.find(c => c.id === linkId);
+            console.log(`   Looking for "${linkId}":`, found ? `FOUND (${found.title})` : 'NOT FOUND');
+
+            if (found && found.id !== converter.id) { // Don't link to itself
+                related.push(found);
+            }
+        }
+
+        console.log('3. Manual list result:', related.map(c => c.id));
+    }
+
+    // 2. FALLBACK TO CATEGORY
+    if (related.length === 0) {
+        console.log('4. Falling back to category-based...');
+        related = getRelatedConverters(converter.id, converter.category);
+        console.log('5. Category result:', related.map(c => c.id));
+    }
+
+    // 3. FINAL CHECK
+    console.log('6. Final related list:', related.map(c => c.id));
+
+    if (related.length === 0) {
+        console.log('7. No related converters found.');
+        return '';
+    }
+
+    // 4. GENERATE HTML
+    console.log('8. Generating HTML block...\n');
+    return `
+    <section class="content-section related-converters">
+        <h2>Related Converters</h2>
+        <div class="related-grid">
+            ${related.map(r => `
+            <div class="related-item">
+                <h3>${r.title}</h3>
+                <p>${r.description.slice(0, 80)}...</p>
+                <a href="../${r.slug}/" class="related-link">Use Tool</a>
+            </div>
+            `).join('')}
+        </div>
+    </section>
+    `;
+}
+
+// ==============================
+// NEW: GENERATE CONTENT BY SEQUENCE
+// ==============================
+
+function generateContentBySequence(converter) {
+    const sequence = converter.contentSequence ||
+                   CONFIG.content?.defaultSequence ||
+                   ['hero', 'converter', 'quickReference', 'comparisonTable', 'tips', 'faq', 'related'];
+
+    let content = '';
+
+    sequence.forEach(sectionType => {
+        switch(sectionType) {
+            case 'hero':
+                content += generateHeroSection(converter);
+                break;
+            case 'converter':
+                content += generateConverterUI(converter);
+                break;
+            case 'quickReference':
+                content += generateQuickReferenceSection(converter);
+                break;
+            case 'comparisonTable':
+                content += generateComparisonTableSection(converter);
+                break;
+            case 'visualChart':
+                content += generateVisualChartSection(converter);
+                break;
+            case 'stepByStep':
+                content += generateStepByStepSection(converter);
+                break;
+            case 'commonMistakes':
+                content += generateCommonMistakesSection(converter);
+                break;
+            case 'equipmentGuide':
+                content += generateEquipmentGuideSection(converter);
+                break;
+            case 'scientificBackground':
+                content += generateScientificBackgroundSection(converter);
+                break;
+            case 'regionalVariations':
+                content += generateRegionalVariationsSection(converter);
+                break;
+            case 'recipeExamples':
+                content += generateRecipeExamplesSection(converter);
+                break;
+            case 'tips':
+                content += generateTipsSection(converter);
+                break;
+            case 'faq':
+                content += generateFAQSection(converter);
+                break;
+            case 'related':
+                content += generateRelatedConvertersSection(converter);
+                break;
+        }
+    });
+
+    return content;
+}
+
+// ==============================
+// UPDATED: AD GENERATION WITH SIDEBAR
+// ==============================
+
+function generateAdUnit(position, pageType, pageId = '') {
+    const adsConfig = CONFIG.ads || {};
+
+    if (!adsConfig.enabled) return '';
+
+    if (pageType === 'converter' && pageId) {
+        const converter = CONVERTERS.converters.find(c => c.id === pageId);
+        if (converter && converter.ads && converter.ads[position] === false) {
+            return '';
+        }
+    }
+
+    const placementKey = `${pageType}_${position}`;
+    const placements = adsConfig.placements || {};
+    if (!placements[placementKey]) return '';
+
+    const excludePages = adsConfig.excludePages || [];
+    if (excludePages.includes(pageId)) return '';
+
+    return `
+    <div class="ad-unit ad-${position}">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-content">
+            <div>${CONFIG.site.name} - Ad Space</div>
+        </div>
+    </div>
+    `;
+}
+
+function generateSidebarAds(converter) {
+    const adsConfig = CONFIG.ads || {};
+    if (!adsConfig.enabled || !adsConfig.sidebar?.enabled) return '';
+
+    const converterAds = converter.ads || {};
+    if (converterAds.sidebar?.enabled === false) return '';
+
+    return `
+    <aside class="sidebar-ad-container">
+        <div class="sidebar-ad">
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-content">
+                <div>Sidebar Ad - Related Tools</div>
+            </div>
+        </div>
+        <div class="sidebar-ad">
+            <div class="ad-label">Sponsored</div>
+            <div class="ad-content">
+                <div>Recommended Kitchen Scale</div>
+            </div>
+        </div>
+    </aside>
+    `;
+}
+
+function generateMobileStickyAd(converter) {
+    const adsConfig = CONFIG.ads || {};
+    if (!adsConfig.enabled || !adsConfig.mobile?.stickyAd?.enabled) return '';
+
+    const converterAds = converter.ads || {};
+    if (converterAds.mobile?.sticky === false) return '';
+
+    return `
+    <div class="mobile-sticky-ad">
+        <div class="ad-content">
+            <span>📱 ${CONFIG.site.name} - Free Converter</span>
+            <button class="ad-close" aria-label="Close ad">×</button>
+        </div>
+    </div>
     `;
 }
 
@@ -479,7 +1061,7 @@ body {
     background: var(--background);
 }
 
-/* Breadcrumbs - NEW */
+/* Breadcrumbs */
 .breadcrumb-container {
     padding: 1rem 0;
     background: var(--background);
@@ -515,6 +1097,28 @@ body {
     margin: 0 0.25rem;
 }
 
+/* Back to converters link */
+.back-to-converters {
+    margin: 0.5rem 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.back-to-converters a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+
+.back-to-converters a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
 /* Main Content */
 .main-content {
     padding: 2rem 0;
@@ -531,7 +1135,7 @@ body {
     border: 1px solid var(--border);
 }
 
-/* Converter UI - FIXED LAYOUT */
+/* Converter UI */
 .converter-wrapper {
     background: var(--surface);
     border-radius: 16px;
@@ -751,7 +1355,584 @@ body {
     font-size: 0.9rem;
 }
 
-/* Responsive Design - FIXED CONVERTER */
+/* NEW: Content Section Styles */
+.content-section {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-header h2 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.section-description {
+    color: var(--text);
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 2rem 2rem 1.5rem;
+}
+
+.hero-section h1 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-intro {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+}
+
+/* Quick Reference */
+.quick-reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.reference-item {
+    background: var(--background);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.reference-item:hover {
+    transform: translateY(-5px);
+}
+
+.reference-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.reference-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+}
+
+.reference-values {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.reference-from {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.reference-arrow {
+    color: var(--primary);
+}
+
+.reference-to {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Comparison Table */
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.comparison-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Visual Chart */
+.visual-chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.visual-item {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.visual-item:hover {
+    transform: translateY(-5px);
+}
+
+.visual-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.visual-weight {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 0.5rem 0;
+}
+
+.visual-comparison {
+    color: var(--text);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Step by Step */
+.steps-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.step-tip, .step-warning, .step-note {
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+.step-tip {
+    background: #e8f5e9;
+    border-left: 4px solid var(--success);
+}
+
+.step-warning {
+    background: #fff3e0;
+    border-left: 4px solid var(--warning);
+}
+
+.step-note {
+    background: #e3f2fd;
+    border-left: 4px solid var(--primary-light);
+}
+
+/* Common Mistakes */
+.mistakes-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.mistake-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #ddd;
+    transition: transform 0.3s;
+}
+
+.mistake-item:hover {
+    transform: translateX(5px);
+}
+
+.mistake-item.high {
+    border-left-color: var(--error);
+}
+
+.mistake-item.medium {
+    border-left-color: var(--warning);
+}
+
+.mistake-item.low {
+    border-left-color: var(--success);
+}
+
+.mistake-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mistake-consequence, .mistake-solution {
+    margin-top: 0.5rem;
+}
+
+/* Equipment Guide */
+.equipment-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.equipment-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.equipment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.equipment-icon {
+    font-size: 1.2rem;
+}
+
+.equipment-header h3 {
+    flex: 1;
+    color: var(--primary-dark);
+}
+
+.equipment-importance {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.equipment-importance.essential {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.equipment-importance.recommended {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.equipment-importance.optional {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.equipment-features h4 {
+    margin: 0.5rem 0;
+    color: var(--primary-dark);
+}
+
+.equipment-features ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.equipment-price, .equipment-brands {
+    margin: 0.5rem 0;
+}
+
+/* Scientific Background */
+.concepts-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.concept {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.concept h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.concept-examples, .concept-impact {
+    margin-top: 1rem;
+}
+
+.concept-examples ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Regional Variations */
+.regions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.region-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.region-header h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.region-cup-size {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+.region-units, .region-system, .region-note {
+    margin: 0.5rem 0;
+}
+
+/* Recipe Examples */
+.recipe-example {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.recipe-example h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.recipe-comparison {
+    display: flex;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.recipe-original, .recipe-converted {
+    flex: 1;
+    min-width: 250px;
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.recipe-original h4, .recipe-converted h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.recipe-original ul, .recipe-converted ul {
+    margin-left: 1.5rem;
+}
+
+.recipe-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.recipe-serves, .recipe-tip {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: 6px;
+}
+
+/* Related Converters */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.related-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.related-item h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.related-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.related-link:hover {
+    background: var(--primary-dark);
+}
+
+/* Tips Section */
+.tips-section ul {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tips-section li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.tips-section li:before {
+    content: "✓";
+    color: var(--success);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* FAQ Container */
+.faq-container {
+    margin-top: 1.5rem;
+}
+
+/* Sidebar Ads */
+.sidebar-ad-container {
+    width: 300px;
+    margin-left: 2rem;
+}
+
+.sidebar-ad {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Mobile Sticky Ad */
+.mobile-sticky-ad {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 1rem;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-sticky-ad .ad-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Two Column Layout for Converter Pages */
+.converter-page-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.converter-main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .converter-page-layout {
+        flex-direction: column;
+    }
+
+    .sidebar-ad-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .mobile-menu-btn {
         display: block;
@@ -776,7 +1957,7 @@ body {
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     .converter-box {
@@ -789,12 +1970,74 @@ body {
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 52px;
+        height: 44px;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .converter-input {
+        min-width: 80px;
+    }
+
+    .converter-select {
+        font-size: 0.9rem;
+        min-width: 120px;
     }
 
     .converter-swap {
-        margin: 0.5rem auto;
+            width: 44px;
+        height: 44px;
+        font-size: 1rem;
+        margin: 0.25rem auto;
         order: 3;
+    }
+
+    /* NEW: Stacked conversion result for mobile */
+    .converter-result {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+        text-align: left;
+        line-height: 1.4;
+        background: var(--background);
+        border-radius: 8px;
+        margin-top: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .converter-result::before {
+        content: "Result:";
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: normal;
+        margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 480px) {
+        .converter-input,
+        .converter-select {
+            height: 40px;
+            padding: 0.4rem;
+        }
+
+        .converter-input {
+            font-size: 0.95rem;
+        }
+
+        .converter-select {
+            font-size: 0.85rem;
+        }
+
+        .converter-swap {
+            width: 40px;
+            height: 40px;
+        }
+
+        .converter-result {
+            font-size: 1rem;
+            padding: 0.6rem;
+        }
     }
 
     .footer-content {
@@ -818,6 +2061,56 @@ body {
 
     .breadcrumb {
         font-size: 0.85rem;
+    }
+
+    .content-section {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .quick-reference-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visual-chart-container {
+        flex-direction: column;
+    }
+
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .step-number {
+        margin: 0 auto 1rem;
+    }
+
+    .recipe-comparison {
+        flex-direction: column;
+    }
+
+    .recipe-arrow {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+        justify-content: center;
+    }
+
+    .mobile-sticky-ad {
+        display: flex;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 
@@ -846,11 +2139,20 @@ body {
         width: 48px;
         height: 48px;
     }
+
+    .equipment-container,
+    .regions-container,
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
 }
 `;
 
 // ==============================
-// CONVERTER JAVASCRIPT LOGIC (UNCHANGED)
+// CONVERTER JAVASCRIPT LOGIC
+// ==============================
+// ==============================
+// CONVERTER JAVASCRIPT LOGIC - FIXED WITH FORMULA SUPPORT
 // ==============================
 
 const CONVERTER_JS = `
@@ -884,22 +2186,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const answer = this.nextElementSibling;
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-            // Close other FAQs
-            if (!isExpanded) {
-                document.querySelectorAll('.faq-question[aria-expanded="true"]').forEach(otherBtn => {
-                    otherBtn.setAttribute('aria-expanded', 'false');
-                    otherBtn.nextElementSibling.style.display = 'none';
-                });
-            }
-
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
         });
     });
+
+    // Mobile sticky ad close
+    const closeBtn = document.querySelector('.ad-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            this.closest('.mobile-sticky-ad').style.display = 'none';
+        });
+    }
 });
 
 function initConverter(data) {
+    console.log('Initializing converter with data:', data);
+
     const fromInput = document.getElementById('fromValue');
     const fromUnit = document.getElementById('fromUnit');
     const toInput = document.getElementById('toValue');
@@ -907,10 +2211,19 @@ function initConverter(data) {
     const swapBtn = document.querySelector('.converter-swap');
     const resultSpan = document.getElementById('converterResult') || document.querySelector('.converter-result');
 
-    if (!fromInput) return;
+    if (!fromInput) {
+        console.error('Converter input not found!');
+        return;
+    }
+
+    // Clear existing options
+    fromUnit.innerHTML = '';
+    toUnit.innerHTML = '';
 
     // Populate unit options
     if (data.supportedUnits && Array.isArray(data.supportedUnits)) {
+        console.log('Populating units:', data.supportedUnits);
+
         data.supportedUnits.forEach(unit => {
             const option1 = document.createElement('option');
             option1.value = unit;
@@ -925,10 +2238,31 @@ function initConverter(data) {
 
         // Set default values
         if (data.defaults) {
+            console.log('Setting defaults:', data.defaults);
             fromInput.value = data.defaults.value || 1;
-            fromUnit.value = data.defaults.from || data.supportedUnits[0];
-            toUnit.value = data.defaults.to || data.supportedUnits[1];
+
+            // Set from unit
+            if (data.supportedUnits.includes(data.defaults.from)) {
+                fromUnit.value = data.defaults.from;
+            } else {
+                fromUnit.value = data.supportedUnits[0];
+            }
+
+            // Set to unit
+            if (data.supportedUnits.includes(data.defaults.to)) {
+                toUnit.value = data.defaults.to;
+            } else {
+                toUnit.value = data.supportedUnits[1] || data.supportedUnits[0];
+            }
+        } else {
+            // Fallback defaults
+            fromInput.value = 1;
+            fromUnit.value = data.supportedUnits[0];
+            toUnit.value = data.supportedUnits[1] || data.supportedUnits[0];
         }
+    } else {
+        console.error('No supported units defined in converter data');
+        return;
     }
 
     function convert() {
@@ -936,43 +2270,168 @@ function initConverter(data) {
         const from = fromUnit.value;
         const to = toUnit.value;
 
-        // Get conversion from JSON data
+        console.log('Converting:', value, from, 'to', to);
+
+        let result = null;
+
+        // Try direct conversions first
         if (data.conversions && data.conversions[from] && data.conversions[from][to]) {
-            const result = value * data.conversions[from][to];
-            toInput.value = result.toFixed(2);
+            result = value * data.conversions[from][to];
+            console.log('Using direct conversion:', result);
+        }
+        // Try formula-based conversion
+        else if (data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
+            result = applyFormula(value, from, to, data.conversionFormulas);
+            console.log('Using formula conversion:', result);
+        }
+        // Try reciprocal conversion
+        else if (data.conversions && data.conversions[to] && data.conversions[to][from]) {
+            result = value / data.conversions[to][from];
+            console.log('Using reciprocal conversion:', result);
+        }
+
+        if (result !== null && !isNaN(result)) {
+            // Format result based on magnitude
+            let formattedResult;
+            if (Math.abs(result) < 0.0001) {
+                formattedResult = result.toExponential(4);
+            } else if (Math.abs(result) < 0.01) {
+                formattedResult = result.toFixed(6);
+            } else if (Math.abs(result) < 1) {
+                formattedResult = result.toFixed(4);
+            } else if (Math.abs(result) < 1000) {
+                formattedResult = result.toFixed(2);
+            } else {
+                formattedResult = result.toFixed(0);
+            }
+
+            toInput.value = formattedResult;
 
             if (resultSpan) {
-                resultSpan.textContent = \`\${value} \${from} = \${result.toFixed(2)} \${to}\`;
+                // Format display result
+                let displayResult;
+                if (Math.abs(result) < 0.0001) {
+                    displayResult = result.toExponential(4);
+                } else if (Math.abs(result) < 0.01) {
+                    displayResult = result.toFixed(6);
+                } else if (Math.abs(result) < 1) {
+                    displayResult = result.toFixed(4);
+                } else if (Math.abs(result) < 100) {
+                    displayResult = result.toFixed(2);
+                } else {
+                    displayResult = Math.round(result * 100) / 100;
+                }
+
+                resultSpan.textContent = \`\${value} \${from} = \${displayResult} \${to}\`;
+                resultSpan.style.color = 'var(--primary)';
             }
 
             // Update URL for sharing
             updateURL(value, from, to);
-        } else if (data.conversionFormulas) {
-            // Use formula-based conversion
-            const result = applyFormula(value, from, to, data.conversionFormulas);
-            if (result !== null) {
-                toInput.value = result.toFixed(2);
-                if (resultSpan) {
-                    resultSpan.textContent = \`\${value} \${from} = \${result.toFixed(2)} \${to}\`;
-                }
-                updateURL(value, from, to);
+        } else {
+            console.error('Conversion failed for', from, 'to', to);
+            toInput.value = '';
+            if (resultSpan) {
+                resultSpan.textContent = 'Conversion not available';
+                resultSpan.style.color = 'var(--error)';
             }
         }
     }
 
     function applyFormula(value, from, to, formulas) {
+        console.log('Looking for formula:', from, '->', to);
+
+        // Direct formula match
         for (const formula of formulas) {
             if (formula.from === from && formula.to === to) {
+                console.log('Found direct formula:', formula.formula);
                 try {
-                    // Safely create a function where 'x' is the parameter
                     const func = new Function('x', 'return ' + formula.formula);
-                    return func(value);
+                    const result = func(value);
+                    console.log('Formula result:', result);
+                    return result;
                 } catch (e) {
                     console.error('Formula error:', e, 'for', formula);
                     return null;
                 }
             }
         }
+
+        // Try reverse formula
+        for (const formula of formulas) {
+            if (formula.from === to && formula.to === from) {
+                console.log('Found reverse formula, calculating inverse:', formula.formula);
+                try {
+                    // For inverse, we need to solve for x: formula(x) = value
+                    // This is complex, so we'll use numerical approximation
+                    const func = new Function('x', 'return ' + formula.formula);
+
+                    // Simple binary search for inverse
+                    let low = -1e6;
+                    let high = 1e6;
+                    let mid;
+
+                    // If function is monotonic (most conversions are)
+                    for (let i = 0; i < 100; i++) {
+                        mid = (low + high) / 2;
+                        const midVal = func(mid);
+
+                        if (Math.abs(midVal - value) < 0.0001) {
+                            return mid;
+                        }
+
+                        if (midVal < value) {
+                            low = mid;
+                        } else {
+                            high = mid;
+                        }
+                    }
+
+                    return mid; // Approximate inverse
+                } catch (e) {
+                    console.error('Inverse formula error:', e);
+                    return null;
+                }
+            }
+        }
+
+        // Try chain conversion through a common unit
+        if (formulas.length > 0) {
+            const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
+
+            for (const commonUnit of commonUnits) {
+                if (commonUnit === from || commonUnit === to) continue;
+
+                // Check if we have from -> commonUnit and commonUnit -> to
+                let formula1 = null;
+                let formula2 = null;
+
+                for (const formula of formulas) {
+                    if (formula.from === from && formula.to === commonUnit) {
+                        formula1 = formula;
+                    }
+                    if (formula.from === commonUnit && formula.to === to) {
+                        formula2 = formula;
+                    }
+                }
+
+                if (formula1 && formula2) {
+                    console.log('Found chain conversion through', commonUnit);
+                    try {
+                        const func1 = new Function('x', 'return ' + formula1.formula);
+                        const func2 = new Function('x', 'return ' + formula2.formula);
+                        const intermediate = func1(value);
+                        const result = func2(intermediate);
+                        return result;
+                    } catch (e) {
+                        console.error('Chain conversion error:', e);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        console.log('No formula found for', from, '->', to);
         return null;
     }
 
@@ -1015,17 +2474,22 @@ function initConverter(data) {
 
     if (urlValue && urlFrom && urlTo) {
         fromInput.value = urlValue;
-        fromUnit.value = urlFrom;
-        toUnit.value = urlTo;
+        if (Array.from(fromUnit.options).some(opt => opt.value === urlFrom)) {
+            fromUnit.value = urlFrom;
+        }
+        if (Array.from(toUnit.options).some(opt => opt.value === urlTo)) {
+            toUnit.value = urlTo;
+        }
     }
 
     // Initial conversion
+    console.log('Performing initial conversion...');
     convert();
 }
 `;
 
 // ==============================
-// SEO & SCHEMA GENERATION - UPDATED
+// SEO & SCHEMA GENERATION
 // ==============================
 
 function generateMetaTags(page) {
@@ -1088,7 +2552,6 @@ function generateSchemaOrg(page) {
         }
     };
 
-    // Add HowTo schema for converter pages
     if (page.type === 'converter') {
         return `
         <script type="application/ld+json">
@@ -1127,56 +2590,8 @@ function generateSchemaOrg(page) {
     return `<script type="application/ld+json">${JSON.stringify(baseSchema, null, 2)}</script>`;
 }
 
-
-
 // ==============================
-// ADVERTISEMENT GENERATION (UNCHANGED)
-// ==============================
-
-function generateAdUnit(position, pageType, pageId = '') {
-    const adsConfig = CONFIG.ads || {};
-
-    // 1. CHECK GLOBAL SITE SETTING FIRST
-    if (!adsConfig.enabled) return '';
-
-    // 2. CHECK FOR PER-CONVERTER OVERRIDE (NEW LOGIC)
-    // Only check for converter pages
-    if (pageType === 'converter' && pageId) {
-        // Find the specific converter in your JSON data
-        const converter = CONVERTERS.converters.find(c => c.id === pageId);
-
-        // If this converter exists AND has its own 'ads' settings...
-        if (converter && converter.ads) {
-            // Check if this specific ad position is set to false
-            // Example: converter.ads.top === false
-            if (converter.ads[position] === false) {
-                return ''; // Don't show this ad unit
-            }
-        }
-    }
-
-    // 3. Original global placement checks (keep these)
-    const placementKey = `${pageType}_${position}`;
-    const placements = adsConfig.placements || {};
-    if (!placements[placementKey]) return '';
-
-    const excludePages = adsConfig.excludePages || [];
-    if (excludePages.includes(pageId)) return '';
-
-    // 4. Return the ad HTML if all checks pass
-    return `
-    <div class="ad-unit ad-${position}">
-        <div class="ad-label">Advertisement</div>
-        <div class="ad-content">
-            <!-- Ad code would be inserted here -->
-            <div>${CONFIG.site.name} - Ad Space</div>
-        </div>
-    </div>
-    `;
-}
-
-// ==============================
-// PAGE GENERATORS - UPDATED
+// PAGE GENERATORS
 // ==============================
 
 function generateHomepage() {
@@ -1322,57 +2737,8 @@ function generateConverterPage(converter) {
         keywords: converter.keywords || converter.title
     };
 
-    // Get related converters
-    const related = getRelatedConverters(converter.id, converter.category);
-    const relatedHtml = related.length > 0 ? `
-    <div class="card">
-        <h2>Related Converters</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
-            ${related.map(r => `
-            <div style="background: var(--background); padding: 1rem; border-radius: 8px; border: 1px solid var(--border);">
-                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">${r.title}</h3>
-                <p style="font-size: 0.9rem; color: var(--text); margin-bottom: 1rem;">${r.description.slice(0, 80)}...</p>
-                <a href="../${r.slug}/" style="display: inline-block; padding: 0.5rem 1rem; background: var(--primary-light); color: var(--primary-dark); text-decoration: none; border-radius: 4px; font-weight: 500;">Use Tool</a>            </div>
-            `).join('')}
-        </div>
-    </div>
-    ` : '';
-
-    // Generate conversion table HTML
-    let conversionTableHTML = '';
-    if (converter.conversionTable && converter.conversionTable.length > 0) {
-        conversionTableHTML = `
-        <div class="table-container">
-            <table class="conversion-table">
-                <thead>
-                    <tr>
-                        <th>From</th>
-                        <th>To</th>
-                        <th>Conversion Factor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${converter.conversionTable.map(row => `
-                    <tr>
-                        <td>1 ${row.from}</td>
-                        <td>${row.to}</td>
-                        <td>${row.factor}</td>
-                    </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        </div>
-        `;
-    }
-
-    // NEW: Add back to converters link
-    const backToConvertersLink = `
-    <div style="margin: 1.5rem 0;">
-        <a href="../" style="color: var(--primary); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem;">
-            ← Back to All Converters
-        </a>
-    </div>
-    `;
+    const showSidebar = CONFIG.ads?.sidebar?.enabled &&
+                       (converter.ads?.sidebar?.enabled !== false);
 
     return `
 <!DOCTYPE html>
@@ -1383,90 +2749,30 @@ function generateConverterPage(converter) {
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${CONFIG.site.logo}</text></svg>">
 </head>
 <body>
-    ${generateNavigation(converter.slug, `converters/${converter.slug}`)}
+    ${generateNavigation(converter.slug, 'converters/' + converter.slug)}
     ${generateBreadcrumbs('converter', converter, 'converters')}
     ${generateBreadcrumbSchema('converter', converter, 'converters')}
 
+    ${generateMobileStickyAd(converter)}
+
     <main class="main-content">
         <div class="container">
-            ${backToConvertersLink}
-
-            <div class="card">
-                <h1 style="color: var(--primary);">${converter.title}</h1>
-                <p style="font-size: 1.1rem; color: var(--text); margin: 1rem 0 2rem;">
-                    ${converter.description}
-                </p>
+            <!-- Back to converters link -->
+            <div class="back-to-converters">
+                <a href="../">← Back to All Converters</a>
             </div>
 
-            ${generateAdUnit('top', 'converter', converter.id)}
-
-                <!-- Converter -->
-                <div class="converter-wrapper">
-                    <div class="converter-ui">
-                        <div class="converter-box">
-                            <input type="number" id="fromValue" class="converter-input" value="${converter.defaults?.value || 1}" step="0.01" aria-label="Value to convert">
-                            <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
-                        </div>
-                        <button class="converter-swap" aria-label="Swap units">⇄</button>
-                        <div class="converter-box">
-                            <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
-                            <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
-                        </div>
-                    </div>
-                    <div class="converter-result" id="converterResult"></div>
-                    <script type="application/json" id="converter-data">
-                    ${JSON.stringify(converter)}
-                    </script>
+            <div class="converter-page-layout">
+                <div class="converter-main-content">
+                    ${generateContentBySequence(converter)}
                 </div>
 
-            ${generateAdUnit('middle', 'converter', converter.id)}
-
-            <!-- Conversion Table -->
-            ${conversionTableHTML}
-
-            <!-- FAQ Section -->
-            ${converter.faqs && converter.faqs.length > 0 ? `
-            <div class="card">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-section">
-                    ${converter.faqs.map(faq => `
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            ${faq.question}
-                            <span>+</span>
-                        </button>
-                        <div class="faq-answer" style="display: none;">
-                            <p>${faq.answer}</p>
-                        </div>
-                    </div>
-                    `).join('')}
-                </div>
+                ${showSidebar ? generateSidebarAds(converter) : ''}
             </div>
-            ` : ''}
-
-            <!-- Content Sections -->
-            ${converter.contentSections ? converter.contentSections.map(section => `
-            <div class="card">
-                <h2>${section.title}</h2>
-                <p>${section.content}</p>
-                ${section.tips ? `
-                <div style="margin-top: 1.5rem;">
-                    <h3 style="color: var(--primary-dark);">Tips:</h3>
-                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                        ${section.tips.map(tip => `<li>${tip}</li>`).join('')}
-                    </ul>
-                </div>
-                ` : ''}
-            </div>
-            `).join('') : ''}
-
-            ${generateAdUnit('bottom', 'converter', converter.id)}
-
-            ${relatedHtml}
         </div>
     </main>
 
-    ${generateFooter(`converters/${converter.slug}`)}
+    ${generateFooter('converters/' + converter.slug)}
 
     <script>${CONVERTER_JS}</script>
 </body>
@@ -1478,7 +2784,7 @@ function generateStaticPage(pageName, content) {
     const page = {
         title: content.title,
         description: content.description,
-        url: `/${pageName}/`,
+        url: '/' + pageName + '/',
         type: 'static'
     };
 
@@ -1535,7 +2841,7 @@ function generateStaticPage(pageName, content) {
 }
 
 // ==============================
-// SITEMAP GENERATOR (UNCHANGED)
+// SITEMAP GENERATOR
 // ==============================
 
 function generateSitemap() {
@@ -1571,7 +2877,7 @@ function generateSitemap() {
             priority: '0.5'
         },
         ...CONVERTERS.converters.map(converter => ({
-            url: `/converters/${converter.slug}/`,
+            url: '/converters/' + converter.slug + '/',
             lastmod: formatDate(),
             changefreq: 'weekly',
             priority: '0.9'
@@ -1614,7 +2920,7 @@ Allow: /
 }
 
 // ==============================
-// DEFAULT JSON CREATION (UNCHANGED)
+// DEFAULT JSON CREATION
 // ==============================
 
 function createDefaultJSON() {
@@ -1655,9 +2961,39 @@ function createDefaultJSON() {
                 "home_bottom": true,
                 "converter_top": true,
                 "converter_middle": true,
-                "converter_bottom": true
+                "converter_bottom": true,
+                "sidebar_right": true,
+                "mobile_sticky": true
             },
-            "excludePages": []
+            "excludePages": [],
+            "sidebar": {
+                "enabled": true,
+                "width": "300px",
+                "gap": "20px",
+                "sticky": true
+            },
+            "mobile": {
+                "stickyAd": {
+                    "enabled": true,
+                    "position": "bottom",
+                    "showAfterScroll": 500,
+                    "hideOnConverter": false
+                }
+            }
+        },
+        "content": {
+            "defaultSequence": [
+                "hero",
+                "converter",
+                "quickReference",
+                "comparisonTable",
+                "tips",
+                "faq",
+                "related"
+            ],
+            "showSectionIcons": true,
+            "enablePrintStyles": true,
+            "enableDarkMode": true
         }
     };
 
@@ -1667,8 +3003,19 @@ function createDefaultJSON() {
                 "id": "cups-to-grams",
                 "slug": "cups-to-grams",
                 "title": "Cups to Grams Converter",
-                "description": "Convert cups to grams for all cooking ingredients",
+                "description": "Convert cups to grams for all cooking ingredients with precision accuracy",
                 "keywords": ["cups to grams", "1 cup in grams", "baking measurement conversion"],
+                "category": "measurement",
+                "featured": true,
+                "contentSequence": [
+                    "hero",
+                    "converter",
+                    "quickReference",
+                    "comparisonTable",
+                    "tips",
+                    "faq",
+                    "related"
+                ],
                 "defaults": {
                     "value": 1,
                     "from": "cup",
@@ -1680,33 +3027,25 @@ function createDefaultJSON() {
                     "gram": { "cup": 0.008, "ounce": 0.035, "tablespoon": 0.067, "teaspoon": 0.2 },
                     "ounce": { "cup": 0.113, "gram": 28.35, "tablespoon": 2, "teaspoon": 6 }
                 },
-                "conversionTable": [
-                    { "from": "cup", "to": "grams", "factor": "125g" },
-                    { "from": "cup", "to": "ounces", "factor": "8.8 oz" },
-                    { "from": "cup", "to": "tablespoons", "factor": "16 tbsp" }
-                ],
+                "contentSections": {
+                    "hero": {
+                        "title": "Cups to Grams Converter",
+                        "subtitle": "Accurate conversions for all baking ingredients"
+                    },
+                    "quickReference": {
+                        "title": "Quick Reference Chart",
+                        "items": [
+                            {"ingredient": "All-purpose flour", "cup": 1, "grams": 125, "icon": "🍞"},
+                            {"ingredient": "Granulated sugar", "cup": 1, "grams": 225, "icon": "🍬"}
+                        ]
+                    }
+                },
                 "faqs": [
                     {
                         "question": "How many grams are in 1 cup of flour?",
                         "answer": "1 cup of all-purpose flour equals approximately 125 grams."
-                    },
-                    {
-                        "question": "Is 1 cup always 240ml?",
-                        "answer": "Yes, in the US measurement system, 1 cup equals 240 milliliters."
                     }
-                ],
-                "contentSections": [
-                    {
-                        "title": "Understanding Cup Measurements",
-                        "content": "Cup measurements vary between countries. In the United States, 1 cup equals 240 milliliters, while in the United Kingdom, 1 cup equals 284 milliliters. Always check which measurement system your recipe uses.",
-                        "tips": [
-                            "Use dry measuring cups for dry ingredients",
-                            "Use liquid measuring cups for liquids",
-                            "Level off dry ingredients with a straight edge"
-                        ]
-                    }
-                ],
-                "featured": true
+                ]
             }
         ]
     };
@@ -1720,7 +3059,7 @@ function createDefaultJSON() {
             "content": [
                 {
                     "title": "Cooking Measurement Conversion",
-                    "content": "Our cooking measurement converters provide accurate conversions for all your cooking and baking needs. Convert between cups, tablespoons, teaspoons, milliliters, ounces, grams, and more."
+                    "content": "Our cooking measurement converters provide accurate conversions for all your cooking and baking needs."
                 }
             ],
             "faqs": [
@@ -1764,11 +3103,11 @@ function createDefaultJSON() {
 }
 
 // ==============================
-// MAIN GENERATION FUNCTION - UPDATED
+// MAIN GENERATION FUNCTION
 // ==============================
 
 async function generateWebsite() {
-    console.log('🚀 Starting website generation...');
+    console.log('🚀 Starting website generation with advanced features...');
     console.log(`📊 Site: ${CONFIG.site.name}`);
     console.log(`📊 Converters: ${CONVERTERS.converters.length}`);
 
@@ -1785,37 +3124,17 @@ async function generateWebsite() {
         ensureDirectory(path.join(outputDir, 'terms'));
 
         // Generate pages
-        console.log('📄 Generating pages...');
-
-        // Homepage
-        console.log('🏠 Generating homepage...');
-        await new Promise((resolve, reject) => {
-            fs.writeFile(
-                path.join(outputDir, 'index.html'),
-                generateHomepage(),
-                'utf8',
-                (err) => {
-                    if (err) reject(err);
-                    else resolve();
-                }
-            );
-        });
+        console.log('📄 Generating homepage...');
+        await writeFile(path.join(outputDir, 'index.html'), generateHomepage());
 
         // Converter pages
         console.log(`⚖️ Generating ${CONVERTERS.converters.length} converter pages...`);
         for (const converter of CONVERTERS.converters) {
             ensureDirectory(path.join(outputDir, 'converters', converter.slug));
-            await new Promise((resolve, reject) => {
-                fs.writeFile(
-                    path.join(outputDir, 'converters', converter.slug, 'index.html'),
-                    generateConverterPage(converter),
-                    'utf8',
-                    (err) => {
-                        if (err) reject(err);
-                        else resolve();
-                    }
-                );
-            });
+            await writeFile(
+                path.join(outputDir, 'converters', converter.slug, 'index.html'),
+                generateConverterPage(converter)
+            );
         }
 
         // Static pages
@@ -1823,47 +3142,13 @@ async function generateWebsite() {
         for (const pageName of staticPages) {
             if (CONTENT[pageName]) {
                 console.log(`📄 Generating ${pageName} page...`);
-                await new Promise((resolve, reject) => {
-                    fs.writeFile(
-                        path.join(outputDir, pageName, 'index.html'),
-                        generateStaticPage(pageName, CONTENT[pageName]),
-                        'utf8',
-                        (err) => {
-                            if (err) reject(err);
-                            else resolve();
-                        }
-                    );
-                });
+                ensureDirectory(path.join(outputDir, pageName));
+                await writeFile(
+                    path.join(outputDir, pageName, 'index.html'),
+                    generateStaticPage(pageName, CONTENT[pageName])
+                );
             }
         }
-
-        // Sitemap
-        console.log('🗺️ Generating sitemap.xml...');
-        await new Promise((resolve, reject) => {
-            fs.writeFile(
-                path.join(outputDir, 'sitemap.xml'),
-                generateSitemap(),
-                'utf8',
-                (err) => {
-                    if (err) reject(err);
-                    else resolve();
-                }
-            );
-        });
-
-        // Robots.txt
-        console.log('🤖 Generating robots.txt...');
-        await new Promise((resolve, reject) => {
-            fs.writeFile(
-                path.join(outputDir, 'robots.txt'),
-                generateRobotsTxt(),
-                'utf8',
-                (err) => {
-                    if (err) reject(err);
-                    else resolve();
-                }
-            );
-        });
 
         // Converters index page
         console.log('📁 Generating converters index...');
@@ -1918,27 +3203,37 @@ async function generateWebsite() {
 </html>
         `;
 
-        await new Promise((resolve, reject) => {
-            fs.writeFile(
-                path.join(outputDir, 'converters', 'index.html'),
-                convertersIndex,
-                'utf8',
-                (err) => {
-                    if (err) reject(err);
-                    else resolve();
-                }
-            );
-        });
+        await writeFile(
+            path.join(outputDir, 'converters', 'index.html'),
+            convertersIndex
+        );
 
-        console.log('\n' + '='.repeat(50));
-        console.log('✅ GENERATION COMPLETE!');
-        console.log('='.repeat(50));
+        // Sitemap
+        console.log('🗺️ Generating sitemap.xml...');
+        await writeFile(
+            path.join(outputDir, 'sitemap.xml'),
+            generateSitemap()
+        );
+
+        // Robots.txt
+        console.log('🤖 Generating robots.txt...');
+        await writeFile(
+            path.join(outputDir, 'robots.txt'),
+            generateRobotsTxt()
+        );
+
+        console.log('\n' + '='.repeat(60));
+        console.log('✅ GENERATION COMPLETE WITH ADVANCED FEATURES!');
+        console.log('='.repeat(60));
         console.log(`📊 Statistics:`);
         console.log(`   Total pages: ${4 + CONVERTERS.converters.length}`);
         console.log(`   Converters: ${CONVERTERS.converters.length}`);
-        console.log(`   Static pages: 4`);
-        console.log(`   SEO Keywords: ${CONFIG.site.keywords.length}`);
-        console.log(`   Ads: ${CONFIG.ads.enabled ? 'Enabled' : 'Disabled'}`);
+        console.log('\n🎯 NEW FEATURES ADDED:');
+        console.log('   • Content sequencing control');
+        console.log('   • 12 new content section types');
+        console.log('   • Sidebar ads with mobile sticky support');
+        console.log('   • Two-column layout for converter pages');
+        console.log('   • Enhanced visual content sections');
         console.log('\n📁 File structure:');
         console.log(`   ${outputDir}/`);
         console.log(`   ├── index.html`);
@@ -1951,21 +3246,26 @@ async function generateWebsite() {
         console.log(`   ├── terms/index.html`);
         console.log(`   ├── sitemap.xml`);
         console.log(`   └── robots.txt`);
-        console.log('\n✅ NEW SEO FEATURES ADDED:');
-        console.log('   • Breadcrumb navigation on all pages');
-        console.log('   • BreadcrumbList structured data schema');
-        console.log('   • Internal linking (back to converters)');
-        console.log('   • Improved page hierarchy');
         console.log('\n🚀 To serve locally:');
         console.log('   cd public && npx serve');
         console.log('\n🔧 To update:');
         console.log('   1. Edit JSON files (config.json, converters.json, content.json)');
         console.log('   2. Run: node generate.js');
-        console.log('='.repeat(50));
+        console.log('='.repeat(60));
 
     } catch (error) {
         console.error('❌ Generation failed:', error);
     }
+}
+
+// Helper function for async file writing
+function writeFile(path, content) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(path, content, 'utf8', (err) => {
+            if (err) reject(err);
+            else resolve();
+        });
+    });
 }
 
 // ==============================

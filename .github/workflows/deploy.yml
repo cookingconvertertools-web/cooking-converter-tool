@@ -1,12 +1,14 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [closed]
+    branches: [main]
 
 jobs:
   deploy:
+    # Run the deployment job only if the PR was successfully merged
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:

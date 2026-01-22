@@ -41,8 +41,8 @@
   "name": "Contact Us",
   "description": "Contact Cooking Converter Pro",
   "url": "https://cookingconverter.pro/contact/",
-  "datePublished": "2026-01-19",
-  "dateModified": "2026-01-19",
+  "datePublished": "2026-01-22",
+  "dateModified": "2026-01-22",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -139,7 +139,7 @@ body {
     background: var(--background);
 }
 
-/* Breadcrumbs - NEW */
+/* Breadcrumbs */
 .breadcrumb-container {
     padding: 1rem 0;
     background: var(--background);
@@ -175,6 +175,28 @@ body {
     margin: 0 0.25rem;
 }
 
+/* Back to converters link */
+.back-to-converters {
+    margin: 0.5rem 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.back-to-converters a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s;
+}
+
+.back-to-converters a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
 /* Main Content */
 .main-content {
     padding: 2rem 0;
@@ -191,7 +213,7 @@ body {
     border: 1px solid var(--border);
 }
 
-/* Converter UI - FIXED LAYOUT */
+/* Converter UI */
 .converter-wrapper {
     background: var(--surface);
     border-radius: 16px;
@@ -411,7 +433,584 @@ body {
     font-size: 0.9rem;
 }
 
-/* Responsive Design - FIXED CONVERTER */
+/* NEW: Content Section Styles */
+.content-section {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: var(--surface);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.section-header {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.section-header h2 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.section-description {
+    color: var(--text);
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 2rem 2rem 1.5rem;
+}
+
+.hero-section h1 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-intro {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+    max-width: 800px;
+    margin: 1.5rem auto 0;
+}
+
+/* Quick Reference */
+.quick-reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.reference-item {
+    background: var(--background);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.reference-item:hover {
+    transform: translateY(-5px);
+}
+
+.reference-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.reference-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark);
+}
+
+.reference-values {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.reference-from {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.reference-arrow {
+    color: var(--primary);
+}
+
+.reference-to {
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Comparison Table */
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.comparison-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Visual Chart */
+.visual-chart-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.visual-item {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.visual-item:hover {
+    transform: translateY(-5px);
+}
+
+.visual-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.visual-weight {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin: 0.5rem 0;
+}
+
+.visual-comparison {
+    color: var(--text);
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Step by Step */
+.steps-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.step-tip, .step-warning, .step-note {
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+.step-tip {
+    background: #e8f5e9;
+    border-left: 4px solid var(--success);
+}
+
+.step-warning {
+    background: #fff3e0;
+    border-left: 4px solid var(--warning);
+}
+
+.step-note {
+    background: #e3f2fd;
+    border-left: 4px solid var(--primary-light);
+}
+
+/* Common Mistakes */
+.mistakes-container {
+    display: grid;
+    gap: 1rem;
+}
+
+.mistake-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #ddd;
+    transition: transform 0.3s;
+}
+
+.mistake-item:hover {
+    transform: translateX(5px);
+}
+
+.mistake-item.high {
+    border-left-color: var(--error);
+}
+
+.mistake-item.medium {
+    border-left-color: var(--warning);
+}
+
+.mistake-item.low {
+    border-left-color: var(--success);
+}
+
+.mistake-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mistake-consequence, .mistake-solution {
+    margin-top: 0.5rem;
+}
+
+/* Equipment Guide */
+.equipment-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.equipment-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.equipment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.equipment-icon {
+    font-size: 1.2rem;
+}
+
+.equipment-header h3 {
+    flex: 1;
+    color: var(--primary-dark);
+}
+
+.equipment-importance {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.equipment-importance.essential {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.equipment-importance.recommended {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.equipment-importance.optional {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.equipment-features h4 {
+    margin: 0.5rem 0;
+    color: var(--primary-dark);
+}
+
+.equipment-features ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.equipment-price, .equipment-brands {
+    margin: 0.5rem 0;
+}
+
+/* Scientific Background */
+.concepts-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.concept {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.concept h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.concept-examples, .concept-impact {
+    margin-top: 1rem;
+}
+
+.concept-examples ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+/* Regional Variations */
+.regions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.region-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.region-header h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.region-cup-size {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+.region-units, .region-system, .region-note {
+    margin: 0.5rem 0;
+}
+
+/* Recipe Examples */
+.recipe-example {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.recipe-example h3 {
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+
+.recipe-comparison {
+    display: flex;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.recipe-original, .recipe-converted {
+    flex: 1;
+    min-width: 250px;
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.recipe-original h4, .recipe-converted h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.recipe-original ul, .recipe-converted ul {
+    margin-left: 1.5rem;
+}
+
+.recipe-arrow {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.recipe-serves, .recipe-tip {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: 6px;
+}
+
+/* Related Converters */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.related-item {
+    background: var(--background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.related-item h3 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.related-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.related-link:hover {
+    background: var(--primary-dark);
+}
+
+/* Tips Section */
+.tips-section ul {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+.tips-section li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.tips-section li:before {
+    content: "✓";
+    color: var(--success);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* FAQ Container */
+.faq-container {
+    margin-top: 1.5rem;
+}
+
+/* Sidebar Ads */
+.sidebar-ad-container {
+    width: 300px;
+    margin-left: 2rem;
+}
+
+.sidebar-ad {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Mobile Sticky Ad */
+.mobile-sticky-ad {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--primary);
+    color: white;
+    padding: 0.75rem 1rem;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-sticky-ad .ad-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Two Column Layout for Converter Pages */
+.converter-page-layout {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.converter-main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .converter-page-layout {
+        flex-direction: column;
+    }
+
+    .sidebar-ad-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .mobile-menu-btn {
         display: block;
@@ -436,7 +1035,7 @@ body {
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     .converter-box {
@@ -449,12 +1048,74 @@ body {
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 52px;
+        height: 44px;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .converter-input {
+        min-width: 80px;
+    }
+
+    .converter-select {
+        font-size: 0.9rem;
+        min-width: 120px;
     }
 
     .converter-swap {
-        margin: 0.5rem auto;
+            width: 44px;
+        height: 44px;
+        font-size: 1rem;
+        margin: 0.25rem auto;
         order: 3;
+    }
+
+    /* NEW: Stacked conversion result for mobile */
+    .converter-result {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+        text-align: left;
+        line-height: 1.4;
+        background: var(--background);
+        border-radius: 8px;
+        margin-top: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .converter-result::before {
+        content: "Result:";
+        font-size: 0.85rem;
+        color: #666;
+        font-weight: normal;
+        margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 480px) {
+        .converter-input,
+        .converter-select {
+            height: 40px;
+            padding: 0.4rem;
+        }
+
+        .converter-input {
+            font-size: 0.95rem;
+        }
+
+        .converter-select {
+            font-size: 0.85rem;
+        }
+
+        .converter-swap {
+            width: 40px;
+            height: 40px;
+        }
+
+        .converter-result {
+            font-size: 1rem;
+            padding: 0.6rem;
+        }
     }
 
     .footer-content {
@@ -478,6 +1139,56 @@ body {
 
     .breadcrumb {
         font-size: 0.85rem;
+    }
+
+    .content-section {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .quick-reference-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .visual-chart-container {
+        flex-direction: column;
+    }
+
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .step-number {
+        margin: 0 auto 1rem;
+    }
+
+    .recipe-comparison {
+        flex-direction: column;
+    }
+
+    .recipe-arrow {
+        transform: rotate(90deg);
+        margin: 1rem 0;
+        justify-content: center;
+    }
+
+    .mobile-sticky-ad {
+        display: flex;
+    }
+
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 
@@ -505,6 +1216,12 @@ body {
     .converter-swap {
         width: 48px;
         height: 48px;
+    }
+
+    .equipment-container,
+    .regions-container,
+    .related-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -564,7 +1281,7 @@ body {
             <div class="card">
                 <h1 style="color: var(--primary);">Contact Us</h1>
                 <div style="margin-top: 1.5rem; line-height: 1.8;">
-                    <h2>Get in Touch</h2><p>We'd love to hear from you! For questions, feedback, or partnership inquiries, please contact us at:</p><p><strong>Email:</strong> contact@cookingconverter.pro</p><h2>Feedback</h2><p>We welcome suggestions for new converters or improvements to existing tools.</p>
+                    <p>Get in touch with us for questions or feedback...</p>
                 </div>
             </div>
 
@@ -589,7 +1306,7 @@ body {
                             
                             <li><a href="../converters/oven-temp-conversion/">Oven Temperature Conversion</a></li>
                             
-                            <li><a href="../converters/baking-grams-to-cups-calculator/">Baking Conversion Calculator: Grams to Cups</a></li>
+                            <li><a href="../converters/tablespoons-to-milliliters/">Tablespoons to Milliliters Converter</a></li>
                             
                         </ul>
                     </div>
@@ -605,7 +1322,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-19</p>
+                    <p>Generated on: 2026-01-22</p>
                 </div>
             </div>
         </footer>
@@ -642,22 +1359,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const answer = this.nextElementSibling;
             const isExpanded = this.getAttribute('aria-expanded') === 'true';
 
-            // Close other FAQs
-            if (!isExpanded) {
-                document.querySelectorAll('.faq-question[aria-expanded="true"]').forEach(otherBtn => {
-                    otherBtn.setAttribute('aria-expanded', 'false');
-                    otherBtn.nextElementSibling.style.display = 'none';
-                });
-            }
-
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
         });
     });
+
+    // Mobile sticky ad close
+    const closeBtn = document.querySelector('.ad-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            this.closest('.mobile-sticky-ad').style.display = 'none';
+        });
+    }
 });
 
 function initConverter(data) {
+    console.log('Initializing converter with data:', data);
+
     const fromInput = document.getElementById('fromValue');
     const fromUnit = document.getElementById('fromUnit');
     const toInput = document.getElementById('toValue');
@@ -665,10 +1384,19 @@ function initConverter(data) {
     const swapBtn = document.querySelector('.converter-swap');
     const resultSpan = document.getElementById('converterResult') || document.querySelector('.converter-result');
 
-    if (!fromInput) return;
+    if (!fromInput) {
+        console.error('Converter input not found!');
+        return;
+    }
+
+    // Clear existing options
+    fromUnit.innerHTML = '';
+    toUnit.innerHTML = '';
 
     // Populate unit options
     if (data.supportedUnits && Array.isArray(data.supportedUnits)) {
+        console.log('Populating units:', data.supportedUnits);
+
         data.supportedUnits.forEach(unit => {
             const option1 = document.createElement('option');
             option1.value = unit;
@@ -683,10 +1411,31 @@ function initConverter(data) {
 
         // Set default values
         if (data.defaults) {
+            console.log('Setting defaults:', data.defaults);
             fromInput.value = data.defaults.value || 1;
-            fromUnit.value = data.defaults.from || data.supportedUnits[0];
-            toUnit.value = data.defaults.to || data.supportedUnits[1];
+
+            // Set from unit
+            if (data.supportedUnits.includes(data.defaults.from)) {
+                fromUnit.value = data.defaults.from;
+            } else {
+                fromUnit.value = data.supportedUnits[0];
+            }
+
+            // Set to unit
+            if (data.supportedUnits.includes(data.defaults.to)) {
+                toUnit.value = data.defaults.to;
+            } else {
+                toUnit.value = data.supportedUnits[1] || data.supportedUnits[0];
+            }
+        } else {
+            // Fallback defaults
+            fromInput.value = 1;
+            fromUnit.value = data.supportedUnits[0];
+            toUnit.value = data.supportedUnits[1] || data.supportedUnits[0];
         }
+    } else {
+        console.error('No supported units defined in converter data');
+        return;
     }
 
     function convert() {
@@ -694,43 +1443,168 @@ function initConverter(data) {
         const from = fromUnit.value;
         const to = toUnit.value;
 
-        // Get conversion from JSON data
+        console.log('Converting:', value, from, 'to', to);
+
+        let result = null;
+
+        // Try direct conversions first
         if (data.conversions && data.conversions[from] && data.conversions[from][to]) {
-            const result = value * data.conversions[from][to];
-            toInput.value = result.toFixed(2);
+            result = value * data.conversions[from][to];
+            console.log('Using direct conversion:', result);
+        }
+        // Try formula-based conversion
+        else if (data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
+            result = applyFormula(value, from, to, data.conversionFormulas);
+            console.log('Using formula conversion:', result);
+        }
+        // Try reciprocal conversion
+        else if (data.conversions && data.conversions[to] && data.conversions[to][from]) {
+            result = value / data.conversions[to][from];
+            console.log('Using reciprocal conversion:', result);
+        }
+
+        if (result !== null && !isNaN(result)) {
+            // Format result based on magnitude
+            let formattedResult;
+            if (Math.abs(result) < 0.0001) {
+                formattedResult = result.toExponential(4);
+            } else if (Math.abs(result) < 0.01) {
+                formattedResult = result.toFixed(6);
+            } else if (Math.abs(result) < 1) {
+                formattedResult = result.toFixed(4);
+            } else if (Math.abs(result) < 1000) {
+                formattedResult = result.toFixed(2);
+            } else {
+                formattedResult = result.toFixed(0);
+            }
+
+            toInput.value = formattedResult;
 
             if (resultSpan) {
-                resultSpan.textContent = `${value} ${from} = ${result.toFixed(2)} ${to}`;
+                // Format display result
+                let displayResult;
+                if (Math.abs(result) < 0.0001) {
+                    displayResult = result.toExponential(4);
+                } else if (Math.abs(result) < 0.01) {
+                    displayResult = result.toFixed(6);
+                } else if (Math.abs(result) < 1) {
+                    displayResult = result.toFixed(4);
+                } else if (Math.abs(result) < 100) {
+                    displayResult = result.toFixed(2);
+                } else {
+                    displayResult = Math.round(result * 100) / 100;
+                }
+
+                resultSpan.textContent = `${value} ${from} = ${displayResult} ${to}`;
+                resultSpan.style.color = 'var(--primary)';
             }
 
             // Update URL for sharing
             updateURL(value, from, to);
-        } else if (data.conversionFormulas) {
-            // Use formula-based conversion
-            const result = applyFormula(value, from, to, data.conversionFormulas);
-            if (result !== null) {
-                toInput.value = result.toFixed(2);
-                if (resultSpan) {
-                    resultSpan.textContent = `${value} ${from} = ${result.toFixed(2)} ${to}`;
-                }
-                updateURL(value, from, to);
+        } else {
+            console.error('Conversion failed for', from, 'to', to);
+            toInput.value = '';
+            if (resultSpan) {
+                resultSpan.textContent = 'Conversion not available';
+                resultSpan.style.color = 'var(--error)';
             }
         }
     }
 
     function applyFormula(value, from, to, formulas) {
+        console.log('Looking for formula:', from, '->', to);
+
+        // Direct formula match
         for (const formula of formulas) {
             if (formula.from === from && formula.to === to) {
+                console.log('Found direct formula:', formula.formula);
                 try {
-                    // Safely create a function where 'x' is the parameter
                     const func = new Function('x', 'return ' + formula.formula);
-                    return func(value);
+                    const result = func(value);
+                    console.log('Formula result:', result);
+                    return result;
                 } catch (e) {
                     console.error('Formula error:', e, 'for', formula);
                     return null;
                 }
             }
         }
+
+        // Try reverse formula
+        for (const formula of formulas) {
+            if (formula.from === to && formula.to === from) {
+                console.log('Found reverse formula, calculating inverse:', formula.formula);
+                try {
+                    // For inverse, we need to solve for x: formula(x) = value
+                    // This is complex, so we'll use numerical approximation
+                    const func = new Function('x', 'return ' + formula.formula);
+
+                    // Simple binary search for inverse
+                    let low = -1e6;
+                    let high = 1e6;
+                    let mid;
+
+                    // If function is monotonic (most conversions are)
+                    for (let i = 0; i < 100; i++) {
+                        mid = (low + high) / 2;
+                        const midVal = func(mid);
+
+                        if (Math.abs(midVal - value) < 0.0001) {
+                            return mid;
+                        }
+
+                        if (midVal < value) {
+                            low = mid;
+                        } else {
+                            high = mid;
+                        }
+                    }
+
+                    return mid; // Approximate inverse
+                } catch (e) {
+                    console.error('Inverse formula error:', e);
+                    return null;
+                }
+            }
+        }
+
+        // Try chain conversion through a common unit
+        if (formulas.length > 0) {
+            const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
+
+            for (const commonUnit of commonUnits) {
+                if (commonUnit === from || commonUnit === to) continue;
+
+                // Check if we have from -> commonUnit and commonUnit -> to
+                let formula1 = null;
+                let formula2 = null;
+
+                for (const formula of formulas) {
+                    if (formula.from === from && formula.to === commonUnit) {
+                        formula1 = formula;
+                    }
+                    if (formula.from === commonUnit && formula.to === to) {
+                        formula2 = formula;
+                    }
+                }
+
+                if (formula1 && formula2) {
+                    console.log('Found chain conversion through', commonUnit);
+                    try {
+                        const func1 = new Function('x', 'return ' + formula1.formula);
+                        const func2 = new Function('x', 'return ' + formula2.formula);
+                        const intermediate = func1(value);
+                        const result = func2(intermediate);
+                        return result;
+                    } catch (e) {
+                        console.error('Chain conversion error:', e);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        console.log('No formula found for', from, '->', to);
         return null;
     }
 
@@ -773,11 +1647,16 @@ function initConverter(data) {
 
     if (urlValue && urlFrom && urlTo) {
         fromInput.value = urlValue;
-        fromUnit.value = urlFrom;
-        toUnit.value = urlTo;
+        if (Array.from(fromUnit.options).some(opt => opt.value === urlFrom)) {
+            fromUnit.value = urlFrom;
+        }
+        if (Array.from(toUnit.options).some(opt => opt.value === urlTo)) {
+            toUnit.value = urlTo;
+        }
     }
 
     // Initial conversion
+    console.log('Performing initial conversion...');
     convert();
 }
 </script>
