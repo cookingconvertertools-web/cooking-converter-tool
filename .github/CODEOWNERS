@@ -1,6 +1,6 @@
 # Contents of `.github/CODEOWNERS`
 # This makes you the owner of the CODEOWNERS file itself.
-/.github/CODEOWNERS @sanghapal123
+/.github/CODEOWNERS @cookingconvertertools-web
 
 # This rule makes you the owner of all other files in the repository.
-* @sanghapal123
+* @cookingconvertertools-web
