@@ -41,8 +41,8 @@
   "name": "Cooking Converter Pro",
   "description": "Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly",
   "url": "https://cookingconverter.pro/",
-  "datePublished": "2026-01-22",
-  "dateModified": "2026-01-22",
+  "datePublished": "2026-01-23",
+  "dateModified": "2026-01-23",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -213,6 +213,140 @@ body {
     border: 1px solid var(--border);
 }
 
+/* NEW: Category and Search Styles */
+.converters-header {
+    margin-bottom: 2.5rem;
+}
+
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+.category-filter {
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.3s;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.search-container {
+    position: relative;
+    margin: 1rem 0 1.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--surface);
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.converter-count {
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0 0.5rem;
+}
+
+.converters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.converter-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.converter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1rem;
+}
+
+.category-tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-style: italic;
+    grid-column: 1 / -1;
+    display: none;
+}
+
+.clear-filters {
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.clear-filters:hover {
+    background: var(--primary);
+    color: white;
+}
+
 /* Converter UI */
 .converter-wrapper {
     background: var(--surface);
@@ -290,6 +424,29 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+}
+
+.ingredient-selector {
+    margin: 1rem auto;
+    text-align: center;
+    max-width: 500px;
+}
+
+.ingredient-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.ingredient-selector select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
 }
 
 /* Tables */
@@ -433,7 +590,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* NEW: Content Section Styles */
+/* Content Section Styles */
 .content-section {
     margin: 2.5rem 0;
     padding: 2rem;
@@ -1070,7 +1227,7 @@ body {
         order: 3;
     }
 
-    /* NEW: Stacked conversion result for mobile */
+    /* Stacked conversion result for mobile */
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
@@ -1090,6 +1247,28 @@ body {
         color: #666;
         font-weight: normal;
         margin-bottom: 0.25rem;
+    }
+
+    /* Category filters mobile */
+    .category-filters {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        margin: 1rem 0;
+    }
+
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .converters-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .clear-filters {
+        margin-left: 0;
+        margin-top: 0.5rem;
     }
 
     @media (max-width: 480px) {
@@ -1223,6 +1402,19 @@ body {
     .related-grid {
         grid-template-columns: 1fr;
     }
+
+    .converter-card {
+        padding: 1.25rem;
+    }
+
+    .category-tags {
+        gap: 0.25rem;
+    }
+
+    .category-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
 }
 </style>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>">
@@ -1259,84 +1451,637 @@ body {
                 <p style="font-size: 1.2rem; color: var(--text); margin-bottom: 2rem;">
                     Convert cups to grams, oven temperatures, American to metric, and all cooking measurements instantly
                 </p>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="searchConverters"
+                           class="search-input"
+                           placeholder="Search converters by name, description, or category..."
+                           aria-label="Search converters">
+                </div>
+
+                <!-- Category Filters -->
+                
+                <div class="category-filters">
+                    <span style="font-weight: 600; margin-right: 0.5rem;">Filter by:</span>
+                    <a href="#" class="category-filter active" data-category="all">All Converters</a>
+                    
+                    <a href="#" class="category-filter" data-category="baking">
+                        Baking
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="cooking">
+                        Cooking
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="imperial">
+                        Imperial
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="ingredient">
+                        Ingredient Specific
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="length">
+                        Length
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="liquid">
+                        Liquid
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="measurement">
+                        Measurement
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="metric">
+                        Metric
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="temperature">
+                        Temperature
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="time">
+                        Time
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="volume">
+                        Volume
+                    </a>
+                    
+                    <a href="#" class="category-filter" data-category="weight">
+                        Weight
+                    </a>
+                    
+                    <button class="clear-filters" style="margin-left: auto;">Clear Filters</button>
+                </div>
+                
+
+                <p style="margin: 1rem 0; color: var(--text);">
+                    Showing <span class="converter-count">15</span> of 15 converters
+                </p>
             </div>
 
             
 
-                <!-- Featured Converter -->
-                
-                <div class="converter-wrapper">
-                    <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-dark);">
-                        Cups to Grams Converter
-                    </h2>
-                    <div class="converter-ui">
-                        <div class="converter-box">
-                            <input type="number" id="fromValue" class="converter-input" value="1" step="0.01" aria-label="Value to convert">
-                            <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
-                        </div>
-                        <button class="converter-swap" aria-label="Swap units">⇄</button>
-                        <div class="converter-box">
-                            <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
-                            <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
-                        </div>
+            <!-- Featured Converter -->
+            
+            <div class="converter-wrapper">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-dark);">
+                    Cups to Grams Converter
+                </h2>
+                <div class="converter-ui">
+                    <div class="converter-box">
+                        <input type="number" id="fromValue" class="converter-input" value="1" step="0.01" aria-label="Value to convert">
+                        <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
                     </div>
-                    <div class="converter-result" id="converterResult"></div>
-                    <script type="application/json" id="converter-data">
-                    {"id":"cups-to-grams","slug":"cups-to-grams","title":"Cups to Grams Converter","description":"Convert cups to grams for all cooking ingredients with precision accuracy","keywords":["cups to grams","1 cup in grams","baking measurement conversion"],"category":"measurement","manualRelatedLinks":["oven-temp-conversion","tbsp-to-ml"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","tips","faq","related"],"defaults":{"value":1,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","ounce","tablespoon","teaspoon"],"conversions":{"cup":{"gram":125,"ounce":8.8,"tablespoon":16,"teaspoon":48},"gram":{"cup":0.008,"ounce":0.035,"tablespoon":0.067,"teaspoon":0.2},"ounce":{"cup":0.113,"gram":28.35,"tablespoon":2,"teaspoon":6}},"faqs":[{"question":"How many grams are in 1 cup of flour?","answer":"1 cup of all-purpose flour equals approximately 125 grams."}],"contentSections":{"hero":{"title":"Master Cup to Gram Conversions","subtitle":"Precision baking starts with accurate measurements"},"quickReference":{"title":"Quick Reference Chart","items":[{"ingredient":"All-purpose flour","cup":1,"grams":125,"icon":"🍞"},{"ingredient":"Granulated sugar","cup":1,"grams":225,"icon":"🍬"}]}}}
-                    </script>
+                    <button class="converter-swap" aria-label="Swap units">⇄</button>
+                    <div class="converter-box">
+                        <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
+                        <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
+                    </div>
                 </div>
-                
+                <div class="converter-result" id="converterResult"></div>
+                <script type="application/json" id="converter-data">
+                {"id":"cups-to-grams","slug":"cups-to-grams","title":"Cups to Grams Converter","description":"Convert cups to grams for all cooking ingredients with precision accuracy","keywords":["cups to grams","1 cup in grams","baking measurement conversion"],"categories":["weight","volume","baking","ingredient"],"manualRelatedLinks":["oven-temp-conversion","tbsp-to-ml"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","tips","faq","related"],"defaults":{"value":1,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","ounce","tablespoon","teaspoon"],"conversions":{"cup":{"gram":125,"ounce":4.409,"tablespoon":16,"teaspoon":48},"gram":{"cup":0.008,"ounce":0.035274,"tablespoon":0.128,"teaspoon":0.384},"ounce":{"cup":0.2268,"gram":28.3495,"tablespoon":3.628,"teaspoon":10.885},"tablespoon":{"cup":0.0625,"gram":7.8125,"ounce":0.2756,"teaspoon":3},"teaspoon":{"cup":0.02083,"gram":2.604,"ounce":0.09186,"tablespoon":0.3333}},"faqs":[{"question":"How many grams are in 1 cup of flour?","answer":"1 cup of all-purpose flour equals approximately 125 grams."}],"contentSections":{"hero":{"title":"Master Cup to Gram Conversions","subtitle":"Precision baking starts with accurate measurements"},"quickReference":{"title":"Quick Reference Chart","items":[{"ingredient":"All-purpose flour","cup":1,"grams":125,"icon":"🍞"},{"ingredient":"Granulated sugar","cup":1,"grams":225,"icon":"🍬"}]}}}
+                </script>
+            </div>
+            
 
             
 
-            <!-- Converter Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <!-- Converters Grid with Category Tags -->
+            <div class="card converters-header">
+                <h2 style="color: var(--primary); margin-bottom: 1rem;">All Cooking Converters</h2>
+                <p style="margin-bottom: 1rem;">Browse our collection of 15 converters</p>
+            </div>
+
+            <div class="converters-grid">
                 
-                <div class="card">
-                    <h3>Cups to Grams Converter</h3>
-                    <p>Convert cups to grams for all cooking ingredients with precision accuracy</p>
+                <div class="converter-card"
+                     data-title="Cups to Grams Converter"
+                     data-description="Convert cups to grams for all cooking ingredients with precision accuracy"
+                     data-categories="weight,volume,baking,ingredient">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Cups to Grams Converter</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert cups to grams for all cooking ingredients with precision accuracy
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Ingredient Specific</span>
+                        
+                    </div>
+                    
+
                     <a href="converters/cups-to-grams/" style="
                         display: inline-block;
                         margin-top: 1rem;
-                        padding: 0.75rem 1.5rem;
+                        padding: 0.5rem 1rem;
                         background: var(--primary);
                         color: white;
                         text-decoration: none;
-                        border-radius: 6px;
+                        border-radius: 4px;
                         font-weight: 500;
+                        transition: background 0.3s;
                     ">Use Converter</a>
                 </div>
                 
-                <div class="card">
-                    <h3>Oven Temperature Conversion</h3>
-                    <p>Convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for accurate cooking and baking.</p>
+                <div class="converter-card"
+                     data-title="One Cup Equal to How Many Grams"
+                     data-description="Convert one cup to grams for all ingredients, US/UK/Australian cups, and learn how volume and weight differences matter in cooking"
+                     data-categories="weight,volume,baking,ingredient">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">One Cup Equal to How Many Grams</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert one cup to grams for all ingredients, US/UK/Australian cups, and learn how volume and weight differences matter in cooking
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Ingredient Specific</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/one-cup-equal-to-how-many-grams/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="How Many Cups is 200 Grams"
+                     data-description="Convert 200 grams of common baking ingredients like flour, sugar, butter into cups for US/UK/AU recipes with human-friendly guide"
+                     data-categories="weight,volume,baking,ingredient">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">How Many Cups is 200 Grams</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert 200 grams of common baking ingredients like flour, sugar, butter into cups for US/UK/AU recipes with human-friendly guide
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Ingredient Specific</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/how-many-cups-is-200-grams/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="0.25 Cup to Grams (¼ Cup to Grams)"
+                     data-description="Convert 0.25 cup (¼ cup) to grams for flour and baking ingredients. Includes fraction table, US/UK/AU cup differences, ounces, and common baking tips."
+                     data-categories="baking,measurement,weight,volume">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">0.25 Cup to Grams (¼ Cup to Grams)</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert 0.25 cup (¼ cup) to grams for flour and baking ingredients. Includes fraction table, US/UK/AU cup differences, ounces, and common baking tips.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Measurement</span>
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/0.25-cup-to-grams/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="0.25 Cup to Ounces (¼ Cup to oz)"
+                     data-description="Convert 0.25 cup (¼ cup) to ounces for all cooking ingredients. Know how quarter cup translates to ounces for liquids, flour, sugar, butter with precise tables."
+                     data-categories="weight,volume,baking,cooking,liquid">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">0.25 Cup to Ounces (¼ Cup to oz)</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert 0.25 cup (¼ cup) to ounces for all cooking ingredients. Know how quarter cup translates to ounces for liquids, flour, sugar, butter with precise tables.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Cooking</span>
+                        
+                        <span class="category-tag">Liquid</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/0.25-cup-to-ounces/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="0.33 Cup to Grams (⅓ Cup to g)"
+                     data-description="Convert 0.33 cup (⅓ cup) to grams for baking and cooking ingredients. See how one-third cup converts to grams for flour, sugar, butter, liquids with accuracy."
+                     data-categories="weight,volume,baking,cooking">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">0.33 Cup to Grams (⅓ Cup to g)</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert 0.33 cup (⅓ cup) to grams for baking and cooking ingredients. See how one-third cup converts to grams for flour, sugar, butter, liquids with accuracy.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Cooking</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/0.33-cup-to-grams/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="0.75 Cup to Grams (¾ Cup to g)"
+                     data-description="Convert 0.75 cup (¾ cup) to grams accurately for baking and cooking. See how three-quarter cup translates to grams for flour, sugar, butter, liquids."
+                     data-categories="weight,volume,baking,cooking">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">0.75 Cup to Grams (¾ Cup to g)</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert 0.75 cup (¾ cup) to grams accurately for baking and cooking. See how three-quarter cup translates to grams for flour, sugar, butter, liquids.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Cooking</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/0.75-cup-to-grams/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="Celsius to Gas Mark Conversion"
+                     data-description="Convert oven temperatures from Celsius to Gas Mark easily for baking and cooking. Understand fan/convection ovens, regional usage, and accurate settings."
+                     data-categories="temperature">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Celsius to Gas Mark Conversion</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert oven temperatures from Celsius to Gas Mark easily for baking and cooking. Understand fan/convection ovens, regional usage, and accurate settings.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Temperature</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/c-to-gas-mark-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="Celsius to Fahrenheit Oven Chart"
+                     data-description="Quickly convert oven temperatures from Celsius to Fahrenheit and understand fan/convection adjustments with easy-to-read charts for accurate baking."
+                     data-categories="temperature">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Celsius to Fahrenheit Oven Chart</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Quickly convert oven temperatures from Celsius to Fahrenheit and understand fan/convection adjustments with easy-to-read charts for accurate baking.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Temperature</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/celsius-to-fahrenheit-oven-chart/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="Centigrade to Fahrenheit Oven Chart"
+                     data-description="Quick lookup to convert oven temperatures from Centigrade (°C) to Fahrenheit, including fan/convection adjustments for better baking results."
+                     data-categories="temperature">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Centigrade to Fahrenheit Oven Chart</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Quick lookup to convert oven temperatures from Centigrade (°C) to Fahrenheit, including fan/convection adjustments for better baking results.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Temperature</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/centigrade-to-fahrenheit-oven-chart/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="Oven Temperature Conversion"
+                     data-description="Convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for accurate cooking and baking."
+                     data-categories="temperature">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Oven Temperature Conversion</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert oven temperatures between Celsius, Fahrenheit, and Gas Mark for accurate cooking and baking.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Temperature</span>
+                        
+                    </div>
+                    
+
                     <a href="converters/oven-temp-conversion/" style="
                         display: inline-block;
                         margin-top: 1rem;
-                        padding: 0.75rem 1.5rem;
+                        padding: 0.5rem 1rem;
                         background: var(--primary);
                         color: white;
                         text-decoration: none;
-                        border-radius: 6px;
+                        border-radius: 4px;
                         font-weight: 500;
+                        transition: background 0.3s;
                     ">Use Converter</a>
                 </div>
                 
-                <div class="card">
-                    <h3>Tablespoons to Milliliters Converter</h3>
-                    <p>Convert between tablespoons and milliliters for precise liquid measurements</p>
+                <div class="converter-card"
+                     data-title="Tablespoons to Milliliters Converter"
+                     data-description="Convert between tablespoons and milliliters for precise liquid measurements"
+                     data-categories="weight,volume,baking,ingredient">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">Tablespoons to Milliliters Converter</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Convert between tablespoons and milliliters for precise liquid measurements
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Weight</span>
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                        <span class="category-tag">Baking</span>
+                        
+                        <span class="category-tag">Ingredient Specific</span>
+                        
+                    </div>
+                    
+
                     <a href="converters/tablespoons-to-milliliters/" style="
                         display: inline-block;
                         margin-top: 1rem;
-                        padding: 0.75rem 1.5rem;
+                        padding: 0.5rem 1rem;
                         background: var(--primary);
                         color: white;
                         text-decoration: none;
-                        border-radius: 6px;
+                        border-radius: 4px;
                         font-weight: 500;
+                        transition: background 0.3s;
                     ">Use Converter</a>
                 </div>
                 
+                <div class="converter-card"
+                     data-title="1000ml to Ounce Conversion"
+                     data-description="Quickly convert 1000ml to ounces and learn US fluid, Imperial units, and other volume measures for cooking, baking, and drinks."
+                     data-categories="measurement">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">1000ml to Ounce Conversion</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Quickly convert 1000ml to ounces and learn US fluid, Imperial units, and other volume measures for cooking, baking, and drinks.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Measurement</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/ml-to-ounce-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="120ml to Ounce Conversion"
+                     data-description="Quickly convert 120ml to ounces and understand US fluid, Imperial units, and other small volume measures for cooking, drinks, and recipes."
+                     data-categories="volume">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">120ml to Ounce Conversion</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Quickly convert 120ml to ounces and understand US fluid, Imperial units, and other small volume measures for cooking, drinks, and recipes.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/120ml-to-ounce-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+                <div class="converter-card"
+                     data-title="15 Ounce to Milliliter Conversion"
+                     data-description="Quickly convert 15 ounces to milliliters, including US fluid and Imperial units, and related volume measures."
+                     data-categories="volume">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">15 Ounce to Milliliter Conversion</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        Quickly convert 15 ounces to milliliters, including US fluid and Imperial units, and related volume measures.
+                    </p>
+
+                    <!-- Category Tags -->
+                    
+                    <div class="category-tags">
+                        
+                        <span class="category-tag">Volume</span>
+                        
+                    </div>
+                    
+
+                    <a href="converters/15oz-to-ml-conversion/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                
+
+                <!-- No Results Message -->
+                <div class="no-results">
+                    <p>No converters found matching your criteria.</p>
+                    <p>Try a different search term or category.</p>
+                </div>
             </div>
 
             
@@ -1347,7 +2092,17 @@ body {
                 
                 <div style="margin: 1.5rem 0;">
                     <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Cooking Measurement Conversion</h3>
-                    <p>Our cooking measurement converters provide accurate conversions for all your cooking and baking needs.</p>
+                    <p>Cooking and baking should feel simple, not confusing. But when recipes use different units like cups, tablespoons, grams, or milliliters, it’s easy to get stuck doing mental math instead of enjoying the process. That’s exactly why we built these converters — to make everyday cooking easier, faster, and stress-free. Whether you're trying to figure out how many tablespoons are in a quarter cup, how much one cup weighs in grams, or how to convert between metric and US measurements, everything is available in one place. No guesswork, no complicated charts, just clear answers you can trust while you're in the kitchen.</p>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Cups, Tablespoons, and Everyday Kitchen Questions</h3>
+                    <p>Many cooking questions come up again and again while following recipes, especially when switching between cups and tablespoons. How many tablespoons are in half a cup? Is 3/4 cup the same as 12 tablespoons? What does 1/8 cup look like in spoons? These are small details, but they matter a lot when cooking or baking. Our converters are designed to answer these everyday kitchen questions instantly, so you can keep cooking without stopping to search or double-check measurements.</p>
+                </div>
+                
+                <div style="margin: 1.5rem 0;">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">From Cups to Grams, Made Practical</h3>
+                    <p>Converting cups to grams can be confusing because not all ingredients weigh the same. A cup of flour, sugar, or butter will each give you a different weight in grams. Instead of guessing or using rough charts, our tools help you convert measurements more accurately based on common cooking ingredients. This is especially useful for baking, where even small differences can change the final result. The goal is simple: give you practical, reliable conversions that work in real kitchens, not just on paper.</p>
                 </div>
                 
             </div>
@@ -1360,11 +2115,101 @@ body {
                     
                     <div class="faq-item">
                         <button class="faq-question" aria-expanded="false">
-                            How accurate are your converters?
+                            How many tablespoons are in 1/4 cup?
                             <span>+</span>
                         </button>
                         <div class="faq-answer" style="display: none;">
-                            <p>Our converters use standard conversion factors and are accurate for most cooking and baking applications.</p>
+                            <p>There are 4 tablespoons in 1/4 cup when using standard US measurements. This is one of the most common cooking conversions and is especially useful when scaling recipes up or down.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How many cups is 12 tablespoons?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>12 tablespoons equals 3/4 cup in US measurements. This conversion is commonly used in baking recipes that switch between spoon and cup measurements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How many grams are in one cup?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>The number of grams in one cup depends on both the ingredient and the type of cup being used. A cup of flour, sugar, or butter will all weigh differently, which is why ingredient-based grams-to-cups conversions are more accurate.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How many tablespoons are in one cup?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>In US measurements, one cup contains 16 tablespoons. This is a standard conversion used in most American recipes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How many tablespoons are in 1/3 cup or 1/8 cup?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Using US measurements, 1/3 cup equals about 5 tablespoons plus 1 teaspoon, while 1/8 cup equals 2 tablespoons. These smaller measurements are very common in baking and dessert recipes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How many cups is 2 tablespoons or 3 tablespoons?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>2 tablespoons is equal to 1/8 cup, and 3 tablespoons is just under 1/4 cup when using US cup measurements. These conversions help when recipes mix spoons and cups.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What is the difference between a US cup and a UK cup?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>A US cup is slightly smaller than a traditional UK cup. US recipes usually follow the US customary cup, while UK recipes often rely more on metric measurements like milliliters and grams rather than cups.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Is an Australian cup the same as a US cup?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>No, an Australian cup is larger than a US cup. An Australian cup is 250 ml, while a US cup is about 240 ml. This difference can affect baking results, so it’s important to know which measurement system your recipe uses.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How do cups compare to metric measurements?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Metric measurements use milliliters and grams instead of cups. While cups are common in US and Australian recipes, metric measurements are more precise and widely used in UK and international cooking.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Can I trust these conversions for baking?
+                            <span>+</span>
+                        </button>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Yes. The converters use standard US, UK, Australian, and metric measurement references along with ingredient-based weight values, making them reliable for everyday cooking and baking.</p>
                         </div>
                     </div>
                     
@@ -1388,9 +2233,9 @@ body {
                             
                             <li><a href="converters/cups-to-grams/">Cups to Grams Converter</a></li>
                             
-                            <li><a href="converters/oven-temp-conversion/">Oven Temperature Conversion</a></li>
+                            <li><a href="converters/one-cup-equal-to-how-many-grams/">One Cup Equal to How Many Grams</a></li>
                             
-                            <li><a href="converters/tablespoons-to-milliliters/">Tablespoons to Milliliters Converter</a></li>
+                            <li><a href="converters/how-many-cups-is-200-grams/">How Many Cups is 200 Grams</a></li>
                             
                         </ul>
                     </div>
@@ -1406,7 +2251,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-22</p>
+                    <p>Generated on: 2026-01-23</p>
                 </div>
             </div>
         </footer>
@@ -1435,6 +2280,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const converterData = document.getElementById('converter-data');
     if (converterData) {
         initConverter(JSON.parse(converterData.textContent));
+    }
+
+    // Initialize category filter on any page with converters
+    if (document.querySelector('.converters-grid')) {
+        initCategoryFilter();
     }
 
     // FAQ toggle functionality
@@ -1467,6 +2317,7 @@ function initConverter(data) {
     const toUnit = document.getElementById('toUnit');
     const swapBtn = document.querySelector('.converter-swap');
     const resultSpan = document.getElementById('converterResult') || document.querySelector('.converter-result');
+    const ingredientSelect = document.getElementById('ingredientSelect');
 
     if (!fromInput) {
         console.error('Converter input not found!');
@@ -1522,6 +2373,12 @@ function initConverter(data) {
         return;
     }
 
+    // Add event listener for ingredient dropdown
+    if (ingredientSelect) {
+        ingredientSelect.addEventListener('change', convert);
+        console.log('Added ingredient dropdown event listener');
+    }
+
     function convert() {
         const value = parseFloat(fromInput.value) || 0;
         const from = fromUnit.value;
@@ -1529,20 +2386,45 @@ function initConverter(data) {
 
         console.log('Converting:', value, from, 'to', to);
 
+        // Get selected ingredient
+        const ingredient = ingredientSelect ? ingredientSelect.value : null;
+        if (ingredient) {
+            console.log('Using ingredient:', ingredient);
+        }
+
         let result = null;
 
-        // Try direct conversions first
-        if (data.conversions && data.conversions[from] && data.conversions[from][to]) {
+        // PRIORITY 1: Ingredient-specific formula
+        if (ingredient && data.ingredientFormulas && Array.isArray(data.ingredientFormulas)) {
+            // Find exact ingredient formula
+            const formula = data.ingredientFormulas.find(f =>
+                f.from === from && f.to === to && f.ingredient === ingredient
+            );
+
+            if (formula) {
+                console.log('Using ingredient formula:', formula.formula, 'for', ingredient);
+                try {
+                    const func = new Function('x', 'return ' + formula.formula);
+                    result = func(value);
+                    console.log('Ingredient formula result:', result);
+                } catch (e) {
+                    console.error('Ingredient formula error:', e);
+                }
+            }
+        }
+
+        // PRIORITY 2: Direct conversions
+        if (result === null && data.conversions && data.conversions[from] && data.conversions[from][to]) {
             result = value * data.conversions[from][to];
             console.log('Using direct conversion:', result);
         }
-        // Try formula-based conversion
-        else if (data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
+        // PRIORITY 3: Formula-based conversion
+        else if (result === null && data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
             result = applyFormula(value, from, to, data.conversionFormulas);
             console.log('Using formula conversion:', result);
         }
-        // Try reciprocal conversion
-        else if (data.conversions && data.conversions[to] && data.conversions[to][from]) {
+        // PRIORITY 4: Reciprocal conversion
+        else if (result === null && data.conversions && data.conversions[to] && data.conversions[to][from]) {
             result = value / data.conversions[to][from];
             console.log('Using reciprocal conversion:', result);
         }
@@ -1579,12 +2461,17 @@ function initConverter(data) {
                     displayResult = Math.round(result * 100) / 100;
                 }
 
-                resultSpan.textContent = `${value} ${from} = ${displayResult} ${to}`;
+                // Add ingredient to display if used
+                if (ingredient) {
+                    resultSpan.textContent = value + ' ' + from + ' of ' + ingredient + ' = ' + displayResult + ' ' + to;
+                } else {
+                    resultSpan.textContent = value + ' ' + from + ' = ' + displayResult + ' ' + to;
+                }
                 resultSpan.style.color = 'var(--primary)';
             }
 
             // Update URL for sharing
-            updateURL(value, from, to);
+            updateURL(value, from, to, ingredient);
         } else {
             console.error('Conversion failed for', from, 'to', to);
             toInput.value = '';
@@ -1596,107 +2483,108 @@ function initConverter(data) {
     }
 
     function applyFormula(value, from, to, formulas) {
-        console.log('Looking for formula:', from, '->', to);
+            console.log('Looking for formula:', from, '->', to);
 
-        // Direct formula match
-        for (const formula of formulas) {
-            if (formula.from === from && formula.to === to) {
-                console.log('Found direct formula:', formula.formula);
-                try {
-                    const func = new Function('x', 'return ' + formula.formula);
-                    const result = func(value);
-                    console.log('Formula result:', result);
-                    return result;
-                } catch (e) {
-                    console.error('Formula error:', e, 'for', formula);
-                    return null;
-                }
-            }
-        }
-
-        // Try reverse formula
-        for (const formula of formulas) {
-            if (formula.from === to && formula.to === from) {
-                console.log('Found reverse formula, calculating inverse:', formula.formula);
-                try {
-                    // For inverse, we need to solve for x: formula(x) = value
-                    // This is complex, so we'll use numerical approximation
-                    const func = new Function('x', 'return ' + formula.formula);
-
-                    // Simple binary search for inverse
-                    let low = -1e6;
-                    let high = 1e6;
-                    let mid;
-
-                    // If function is monotonic (most conversions are)
-                    for (let i = 0; i < 100; i++) {
-                        mid = (low + high) / 2;
-                        const midVal = func(mid);
-
-                        if (Math.abs(midVal - value) < 0.0001) {
-                            return mid;
-                        }
-
-                        if (midVal < value) {
-                            low = mid;
-                        } else {
-                            high = mid;
-                        }
-                    }
-
-                    return mid; // Approximate inverse
-                } catch (e) {
-                    console.error('Inverse formula error:', e);
-                    return null;
-                }
-            }
-        }
-
-        // Try chain conversion through a common unit
-        if (formulas.length > 0) {
-            const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
-
-            for (const commonUnit of commonUnits) {
-                if (commonUnit === from || commonUnit === to) continue;
-
-                // Check if we have from -> commonUnit and commonUnit -> to
-                let formula1 = null;
-                let formula2 = null;
-
-                for (const formula of formulas) {
-                    if (formula.from === from && formula.to === commonUnit) {
-                        formula1 = formula;
-                    }
-                    if (formula.from === commonUnit && formula.to === to) {
-                        formula2 = formula;
-                    }
-                }
-
-                if (formula1 && formula2) {
-                    console.log('Found chain conversion through', commonUnit);
+            // Direct formula match
+            for (const formula of formulas) {
+                if (formula.from === from && formula.to === to) {
+                    console.log('Found direct formula:', formula.formula);
                     try {
-                        const func1 = new Function('x', 'return ' + formula1.formula);
-                        const func2 = new Function('x', 'return ' + formula2.formula);
-                        const intermediate = func1(value);
-                        const result = func2(intermediate);
+                        const func = new Function('x', 'return ' + formula.formula);
+                        const result = func(value);
+                        console.log('Formula result:', result);
                         return result;
                     } catch (e) {
-                        console.error('Chain conversion error:', e);
+                        console.error('Formula error:', e, 'for', formula);
                         return null;
                     }
                 }
             }
+
+            // Try reverse formula
+            for (const formula of formulas) {
+                if (formula.from === to && formula.to === from) {
+                    console.log('Found reverse formula, calculating inverse:', formula.formula);
+                    try {
+                        // For inverse, we need to solve for x: formula(x) = value
+                        // This is complex, so we'll use numerical approximation
+                        const func = new Function('x', 'return ' + formula.formula);
+
+                        // Simple binary search for inverse
+                        let low = -1e6;
+                        let high = 1e6;
+                        let mid;
+
+                        // If function is monotonic (most conversions are)
+                        for (let i = 0; i < 100; i++) {
+                            mid = (low + high) / 2;
+                            const midVal = func(mid);
+
+                            if (Math.abs(midVal - value) < 0.0001) {
+                                return mid;
+                            }
+
+                            if (midVal < value) {
+                                low = mid;
+                            } else {
+                                high = mid;
+                            }
+                        }
+
+                        return mid; // Approximate inverse
+                    } catch (e) {
+                        console.error('Inverse formula error:', e);
+                        return null;
+                    }
+                }
+            }
+
+            // Try chain conversion through a common unit
+            if (formulas.length > 0) {
+                const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
+
+                for (const commonUnit of commonUnits) {
+                    if (commonUnit === from || commonUnit === to) continue;
+
+                    // Check if we have from -> commonUnit and commonUnit -> to
+                    let formula1 = null;
+                    let formula2 = null;
+
+                    for (const formula of formulas) {
+                        if (formula.from === from && formula.to === commonUnit) {
+                            formula1 = formula;
+                        }
+                        if (formula.from === commonUnit && formula.to === to) {
+                            formula2 = formula;
+                        }
+                    }
+
+                    if (formula1 && formula2) {
+                        console.log('Found chain conversion through', commonUnit);
+                        try {
+                            const func1 = new Function('x', 'return ' + formula1.formula);
+                            const func2 = new Function('x', 'return ' + formula2.formula);
+                            const intermediate = func1(value);
+                            const result = func2(intermediate);
+                            return result;
+                        } catch (e) {
+                            console.error('Chain conversion error:', e);
+                            return null;
+                        }
+                    }
+                }
+            }
+
+            console.log('No formula found for', from, '->', to);
+            return null;
         }
 
-        console.log('No formula found for', from, '->', to);
-        return null;
-    }
-
-    function updateURL(value, from, to) {
+    function updateURL(value, from, to, ingredient = null) {
         const params = new URLSearchParams();
         params.set('value', value);
         params.set('from', from);
         params.set('to', to);
+        if (ingredient) params.set('ingredient', ingredient);
 
         const newURL = window.location.pathname + '?' + params.toString();
         window.history.replaceState({}, '', newURL);
@@ -1728,6 +2616,7 @@ function initConverter(data) {
     const urlValue = params.get('value');
     const urlFrom = params.get('from');
     const urlTo = params.get('to');
+    const urlIngredient = params.get('ingredient');
 
     if (urlValue && urlFrom && urlTo) {
         fromInput.value = urlValue;
@@ -1737,11 +2626,105 @@ function initConverter(data) {
         if (Array.from(toUnit.options).some(opt => opt.value === urlTo)) {
             toUnit.value = urlTo;
         }
+        if (urlIngredient && ingredientSelect) {
+            ingredientSelect.value = urlIngredient;
+        }
     }
 
     // Initial conversion
     console.log('Performing initial conversion...');
     convert();
+}
+
+function initCategoryFilter() {
+    const searchInput = document.getElementById('searchConverters');
+    const categoryFilters = document.querySelectorAll('.category-filter');
+    const clearBtn = document.querySelector('.clear-filters');
+    const converterCards = document.querySelectorAll('.converter-card');
+
+    if (!searchInput && !categoryFilters.length) return;
+
+    function filterConverters() {
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const activeCategory = document.querySelector('.category-filter.active')?.dataset.category || 'all';
+
+        let visibleCount = 0;
+
+        converterCards.forEach(card => {
+            const title = card.dataset.title.toLowerCase();
+            const desc = card.dataset.description.toLowerCase();
+            const categories = card.dataset.categories ? card.dataset.categories.toLowerCase().split(',') : [];
+
+            const matchesSearch = !searchTerm ||
+                title.includes(searchTerm) ||
+                desc.includes(searchTerm) ||
+                categories.some(cat => cat.includes(searchTerm));
+
+            const matchesCategory = activeCategory === 'all' ||
+                categories.includes(activeCategory.toLowerCase());
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Update count
+        const countElement = document.querySelector('.converter-count');
+        if (countElement) {
+            countElement.textContent = visibleCount;
+        }
+
+        // Show/hide no results message
+        const noResults = document.querySelector('.no-results');
+        if (noResults) {
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    // Event listeners
+    if (searchInput) {
+        searchInput.addEventListener('input', filterConverters);
+        // Add debouncing for better performance
+        let debounceTimer;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(filterConverters, 300);
+        });
+    }
+
+    categoryFilters.forEach(filter => {
+        filter.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all
+            categoryFilters.forEach(f => f.classList.remove('active'));
+
+            // Add active to clicked
+            filter.classList.add('active');
+
+            filterConverters();
+        });
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            // Clear search
+            if (searchInput) searchInput.value = '';
+
+            // Reset category to "All"
+            categoryFilters.forEach(f => f.classList.remove('active'));
+            const allFilter = document.querySelector('.category-filter[data-category="all"]');
+            if (allFilter) allFilter.classList.add('active');
+
+            filterConverters();
+        });
+    }
+
+    // Initial filter
+    filterConverters();
 }
 </script>
 </body>

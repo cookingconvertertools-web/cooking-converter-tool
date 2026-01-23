@@ -70,8 +70,8 @@
   "name": "Tablespoons to Milliliters Converter",
   "description": "Convert between tablespoons and milliliters for precise liquid measurements",
   "url": "https://cookingconverter.pro/converters/tablespoons-to-milliliters/",
-  "datePublished": "2026-01-22",
-  "dateModified": "2026-01-22",
+  "datePublished": "2026-01-23",
+  "dateModified": "2026-01-23",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -244,6 +244,140 @@ body {
     border: 1px solid var(--border);
 }
 
+/* NEW: Category and Search Styles */
+.converters-header {
+    margin-bottom: 2.5rem;
+}
+
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+.category-filter {
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.3s;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.search-container {
+    position: relative;
+    margin: 1rem 0 1.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--surface);
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.converter-count {
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0 0.5rem;
+}
+
+.converters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.converter-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.converter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1rem;
+}
+
+.category-tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-style: italic;
+    grid-column: 1 / -1;
+    display: none;
+}
+
+.clear-filters {
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.clear-filters:hover {
+    background: var(--primary);
+    color: white;
+}
+
 /* Converter UI */
 .converter-wrapper {
     background: var(--surface);
@@ -321,6 +455,29 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+}
+
+.ingredient-selector {
+    margin: 1rem auto;
+    text-align: center;
+    max-width: 500px;
+}
+
+.ingredient-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.ingredient-selector select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
 }
 
 /* Tables */
@@ -464,7 +621,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* NEW: Content Section Styles */
+/* Content Section Styles */
 .content-section {
     margin: 2.5rem 0;
     padding: 2rem;
@@ -1101,7 +1258,7 @@ body {
         order: 3;
     }
 
-    /* NEW: Stacked conversion result for mobile */
+    /* Stacked conversion result for mobile */
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
@@ -1121,6 +1278,28 @@ body {
         color: #666;
         font-weight: normal;
         margin-bottom: 0.25rem;
+    }
+
+    /* Category filters mobile */
+    .category-filters {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        margin: 1rem 0;
+    }
+
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .converters-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .clear-filters {
+        margin-left: 0;
+        margin-top: 0.5rem;
     }
 
     @media (max-width: 480px) {
@@ -1254,6 +1433,19 @@ body {
     .related-grid {
         grid-template-columns: 1fr;
     }
+
+    .converter-card {
+        padding: 1.25rem;
+    }
+
+    .category-tags {
+        gap: 0.25rem;
+    }
+
+    .category-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
 }
 </style>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍳</text></svg>">
@@ -1344,9 +1536,12 @@ body {
                     <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
                 </div>
             </div>
+            
+            
+            
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"tbsp-to-ml","slug":"tablespoons-to-milliliters","title":"Tablespoons to Milliliters Converter","description":"Convert between tablespoons and milliliters for precise liquid measurements","category":"measurement","subcategory":"volume","contentSequence":["hero","converter","quickReference","visualChart","commonMistakes","scientificBackground","faq"],"ads":{"top":true,"middle":true,"bottom":true,"sidebar":{"enabled":false,"positions":[],"mobile":{"sticky":false}}},"defaults":{"value":1,"from":"tablespoon","to":"milliliter"},"supportedUnits":["tablespoon","teaspoon","milliliter","fluid ounce","cup"],"conversions":{"tablespoon":{"milliliter":15,"teaspoon":3,"fluid ounce":0.5,"cup":0.0625},"teaspoon":{"milliliter":5,"tablespoon":0.3333,"fluid ounce":0.1667,"cup":0.0208},"milliliter":{"tablespoon":0.0667,"teaspoon":0.2,"fluid ounce":0.0338,"cup":0.0042},"fluid ounce":{"milliliter":29.5735,"tablespoon":2,"teaspoon":6,"cup":0.125},"cup":{"milliliter":240,"tablespoon":16,"teaspoon":48,"fluid ounce":8}},"conversionFormulas":[{"from":"tablespoon","to":"milliliter","formula":"x * 15"},{"from":"milliliter","to":"tablespoon","formula":"x / 15"},{"from":"tablespoon","to":"teaspoon","formula":"x * 3"},{"from":"teaspoon","to":"tablespoon","formula":"x / 3"},{"from":"cup","to":"milliliter","formula":"x * 240"},{"from":"milliliter","to":"cup","formula":"x / 240"},{"from":"fluid ounce","to":"milliliter","formula":"x * 29.5735"},{"from":"milliliter","to":"fluid ounce","formula":"x / 29.5735"}],"conversionTable":[{"from":"1 tablespoon","to":"milliliters","factor":"15 ml"},{"from":"1 teaspoon","to":"milliliters","factor":"5 ml"},{"from":"1 fluid ounce","to":"milliliters","factor":"29.57 ml"},{"from":"1 cup","to":"milliliters","factor":"240 ml"}],"faqs":[{"question":"How many milliliters are in 1 tablespoon?","answer":"1 tablespoon equals 15 milliliters in the US measurement system."},{"question":"Is a tablespoon the same worldwide?","answer":"No, a US tablespoon is 15ml, while a UK tablespoon is 17.7ml. Our converter uses US measurements."}],"contentSections":{"hero":{"title":"Tablespoons to Milliliters Converter","subtitle":"Accurate liquid measurement conversions for cooking and baking","intro":"Convert between tablespoons, teaspoons, milliliters, fluid ounces, and cups with precision."},"quickReference":{"title":"Common Liquid Conversions","items":[{"ingredient":"1 Tablespoon","cup":1,"grams":15,"icon":"🥄"},{"ingredient":"1 Teaspoon","cup":1,"grams":5,"icon":"🥄"},{"ingredient":"1 Fluid Ounce","cup":1,"grams":30,"icon":"💧"},{"ingredient":"1 Cup","cup":1,"grams":240,"icon":"🥤"}]},"visualChart":{"title":"Liquid Measurement Visual Guide","items":[{"name":"1 Tablespoon","equivalent":"3 teaspoons","weight":"15ml","comparison":"≈ Half a shot glass","visual":"🥄"},{"name":"1/4 Cup","equivalent":"4 tablespoons","weight":"60ml","comparison":"≈ Standard espresso cup","visual":"☕"}]},"commonMistakes":{"title":"Common Liquid Measurement Mistakes","mistakes":[{"mistake":"Using dry measuring cups for liquids","consequence":"Inaccurate volume measurements","solution":"Always use liquid measuring cups with spouts","severity":"high"}]},"scientificBackground":{"title":"Precision in Liquid Measurement","concepts":[{"concept":"Meniscus Reading","explanation":"Liquids form a curved surface (meniscus) in measuring tools. Always read at the bottom of the curve for accuracy.","impact":"±2ml error if read incorrectly"}]}}}
+            {"id":"tbsp-to-ml","slug":"tablespoons-to-milliliters","title":"Tablespoons to Milliliters Converter","description":"Convert between tablespoons and milliliters for precise liquid measurements","categories":["weight","volume","baking","ingredient"],"subcategory":"volume","contentSequence":["hero","converter","quickReference","visualChart","commonMistakes","scientificBackground","faq"],"ads":{"top":true,"middle":true,"bottom":true,"sidebar":{"enabled":false,"positions":[],"mobile":{"sticky":false}}},"defaults":{"value":1,"from":"tablespoon","to":"milliliter"},"supportedUnits":["tablespoon","teaspoon","milliliter","fluid ounce","cup"],"conversions":{"tablespoon":{"milliliter":15,"teaspoon":3,"fluid ounce":0.5,"cup":0.0625},"teaspoon":{"milliliter":5,"tablespoon":0.3333,"fluid ounce":0.1667,"cup":0.0208},"milliliter":{"tablespoon":0.0667,"teaspoon":0.2,"fluid ounce":0.0338,"cup":0.0042},"fluid ounce":{"milliliter":29.5735,"tablespoon":2,"teaspoon":6,"cup":0.125},"cup":{"milliliter":240,"tablespoon":16,"teaspoon":48,"fluid ounce":8}},"conversionFormulas":[{"from":"tablespoon","to":"milliliter","formula":"x * 15"},{"from":"milliliter","to":"tablespoon","formula":"x / 15"},{"from":"tablespoon","to":"teaspoon","formula":"x * 3"},{"from":"teaspoon","to":"tablespoon","formula":"x / 3"},{"from":"cup","to":"milliliter","formula":"x * 240"},{"from":"milliliter","to":"cup","formula":"x / 240"},{"from":"fluid ounce","to":"milliliter","formula":"x * 29.5735"},{"from":"milliliter","to":"fluid ounce","formula":"x / 29.5735"}],"conversionTable":[{"from":"1 tablespoon","to":"milliliters","factor":"15 ml"},{"from":"1 teaspoon","to":"milliliters","factor":"5 ml"},{"from":"1 fluid ounce","to":"milliliters","factor":"29.57 ml"},{"from":"1 cup","to":"milliliters","factor":"240 ml"}],"faqs":[{"question":"How many milliliters are in 1 tablespoon?","answer":"1 tablespoon equals 15 milliliters in the US measurement system."},{"question":"Is a tablespoon the same worldwide?","answer":"No, a US tablespoon is 15ml, while a UK tablespoon is 17.7ml. Our converter uses US measurements."}],"contentSections":{"hero":{"title":"Tablespoons to Milliliters Converter","subtitle":"Accurate liquid measurement conversions for cooking and baking","intro":"Convert between tablespoons, teaspoons, milliliters, fluid ounces, and cups with precision."},"quickReference":{"title":"Common Liquid Conversions","items":[{"ingredient":"1 Tablespoon","cup":1,"grams":15,"icon":"🥄"},{"ingredient":"1 Teaspoon","cup":1,"grams":5,"icon":"🥄"},{"ingredient":"1 Fluid Ounce","cup":1,"grams":30,"icon":"💧"},{"ingredient":"1 Cup","cup":1,"grams":240,"icon":"🥤"}]},"visualChart":{"title":"Liquid Measurement Visual Guide","items":[{"name":"1 Tablespoon","equivalent":"3 teaspoons","weight":"15ml","comparison":"≈ Half a shot glass","visual":"🥄"},{"name":"1/4 Cup","equivalent":"4 tablespoons","weight":"60ml","comparison":"≈ Standard espresso cup","visual":"☕"}]},"commonMistakes":{"title":"Common Liquid Measurement Mistakes","mistakes":[{"mistake":"Using dry measuring cups for liquids","consequence":"Inaccurate volume measurements","solution":"Always use liquid measuring cups with spouts","severity":"high"}]},"scientificBackground":{"title":"Precision in Liquid Measurement","concepts":[{"concept":"Meniscus Reading","explanation":"Liquids form a curved surface (meniscus) in measuring tools. Always read at the bottom of the curve for accuracy.","impact":"±2ml error if read incorrectly"}]}}}
             </script>
         </div>
     </section>
@@ -1358,54 +1553,58 @@ body {
         </div>
         <div class="quick-reference-grid">
             
-            <div class="reference-item">
-                <div class="reference-icon">🥄</div>
-                <div class="reference-content">
-                    <h3>1 Tablespoon</h3>
-                    <div class="reference-values">
-                        <span class="reference-from">1 cup</span>
-                        <span class="reference-arrow">→</span>
-                        <span class="reference-to">15g</span>
+                    <div class="reference-item">
+                        <div class="reference-icon">🥄</div>
+                        <div class="reference-content">
+                            <h3>1 Tablespoon</h3>
+                            <div class="reference-values">
+                                <span class="reference-from">1 cup</span>
+                                <span class="reference-arrow">→</span>
+                                <span class="reference-to">15g</span>
+                            </div>
+                            
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="reference-item">
-                <div class="reference-icon">🥄</div>
-                <div class="reference-content">
-                    <h3>1 Teaspoon</h3>
-                    <div class="reference-values">
-                        <span class="reference-from">1 cup</span>
-                        <span class="reference-arrow">→</span>
-                        <span class="reference-to">5g</span>
+                    
+                    <div class="reference-item">
+                        <div class="reference-icon">🥄</div>
+                        <div class="reference-content">
+                            <h3>1 Teaspoon</h3>
+                            <div class="reference-values">
+                                <span class="reference-from">1 cup</span>
+                                <span class="reference-arrow">→</span>
+                                <span class="reference-to">5g</span>
+                            </div>
+                            
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="reference-item">
-                <div class="reference-icon">💧</div>
-                <div class="reference-content">
-                    <h3>1 Fluid Ounce</h3>
-                    <div class="reference-values">
-                        <span class="reference-from">1 cup</span>
-                        <span class="reference-arrow">→</span>
-                        <span class="reference-to">30g</span>
+                    
+                    <div class="reference-item">
+                        <div class="reference-icon">💧</div>
+                        <div class="reference-content">
+                            <h3>1 Fluid Ounce</h3>
+                            <div class="reference-values">
+                                <span class="reference-from">1 cup</span>
+                                <span class="reference-arrow">→</span>
+                                <span class="reference-to">30g</span>
+                            </div>
+                            
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="reference-item">
-                <div class="reference-icon">🥤</div>
-                <div class="reference-content">
-                    <h3>1 Cup</h3>
-                    <div class="reference-values">
-                        <span class="reference-from">1 cup</span>
-                        <span class="reference-arrow">→</span>
-                        <span class="reference-to">240g</span>
+                    
+                    <div class="reference-item">
+                        <div class="reference-icon">🥤</div>
+                        <div class="reference-content">
+                            <h3>1 Cup</h3>
+                            <div class="reference-values">
+                                <span class="reference-from">1 cup</span>
+                                <span class="reference-arrow">→</span>
+                                <span class="reference-to">240g</span>
+                            </div>
+                            
+                        </div>
                     </div>
-                </div>
-            </div>
-            
+                    
         </div>
     </section>
     
@@ -1521,9 +1720,9 @@ body {
                             
                             <li><a href="../cups-to-grams/">Cups to Grams Converter</a></li>
                             
-                            <li><a href="../oven-temp-conversion/">Oven Temperature Conversion</a></li>
+                            <li><a href="../one-cup-equal-to-how-many-grams/">One Cup Equal to How Many Grams</a></li>
                             
-                            <li><a href="../tablespoons-to-milliliters/">Tablespoons to Milliliters Converter</a></li>
+                            <li><a href="../how-many-cups-is-200-grams/">How Many Cups is 200 Grams</a></li>
                             
                         </ul>
                     </div>
@@ -1539,7 +1738,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-22</p>
+                    <p>Generated on: 2026-01-23</p>
                 </div>
             </div>
         </footer>
@@ -1568,6 +1767,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const converterData = document.getElementById('converter-data');
     if (converterData) {
         initConverter(JSON.parse(converterData.textContent));
+    }
+
+    // Initialize category filter on any page with converters
+    if (document.querySelector('.converters-grid')) {
+        initCategoryFilter();
     }
 
     // FAQ toggle functionality
@@ -1600,6 +1804,7 @@ function initConverter(data) {
     const toUnit = document.getElementById('toUnit');
     const swapBtn = document.querySelector('.converter-swap');
     const resultSpan = document.getElementById('converterResult') || document.querySelector('.converter-result');
+    const ingredientSelect = document.getElementById('ingredientSelect');
 
     if (!fromInput) {
         console.error('Converter input not found!');
@@ -1655,6 +1860,12 @@ function initConverter(data) {
         return;
     }
 
+    // Add event listener for ingredient dropdown
+    if (ingredientSelect) {
+        ingredientSelect.addEventListener('change', convert);
+        console.log('Added ingredient dropdown event listener');
+    }
+
     function convert() {
         const value = parseFloat(fromInput.value) || 0;
         const from = fromUnit.value;
@@ -1662,20 +1873,45 @@ function initConverter(data) {
 
         console.log('Converting:', value, from, 'to', to);
 
+        // Get selected ingredient
+        const ingredient = ingredientSelect ? ingredientSelect.value : null;
+        if (ingredient) {
+            console.log('Using ingredient:', ingredient);
+        }
+
         let result = null;
 
-        // Try direct conversions first
-        if (data.conversions && data.conversions[from] && data.conversions[from][to]) {
+        // PRIORITY 1: Ingredient-specific formula
+        if (ingredient && data.ingredientFormulas && Array.isArray(data.ingredientFormulas)) {
+            // Find exact ingredient formula
+            const formula = data.ingredientFormulas.find(f =>
+                f.from === from && f.to === to && f.ingredient === ingredient
+            );
+
+            if (formula) {
+                console.log('Using ingredient formula:', formula.formula, 'for', ingredient);
+                try {
+                    const func = new Function('x', 'return ' + formula.formula);
+                    result = func(value);
+                    console.log('Ingredient formula result:', result);
+                } catch (e) {
+                    console.error('Ingredient formula error:', e);
+                }
+            }
+        }
+
+        // PRIORITY 2: Direct conversions
+        if (result === null && data.conversions && data.conversions[from] && data.conversions[from][to]) {
             result = value * data.conversions[from][to];
             console.log('Using direct conversion:', result);
         }
-        // Try formula-based conversion
-        else if (data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
+        // PRIORITY 3: Formula-based conversion
+        else if (result === null && data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
             result = applyFormula(value, from, to, data.conversionFormulas);
             console.log('Using formula conversion:', result);
         }
-        // Try reciprocal conversion
-        else if (data.conversions && data.conversions[to] && data.conversions[to][from]) {
+        // PRIORITY 4: Reciprocal conversion
+        else if (result === null && data.conversions && data.conversions[to] && data.conversions[to][from]) {
             result = value / data.conversions[to][from];
             console.log('Using reciprocal conversion:', result);
         }
@@ -1712,12 +1948,17 @@ function initConverter(data) {
                     displayResult = Math.round(result * 100) / 100;
                 }
 
-                resultSpan.textContent = `${value} ${from} = ${displayResult} ${to}`;
+                // Add ingredient to display if used
+                if (ingredient) {
+                    resultSpan.textContent = value + ' ' + from + ' of ' + ingredient + ' = ' + displayResult + ' ' + to;
+                } else {
+                    resultSpan.textContent = value + ' ' + from + ' = ' + displayResult + ' ' + to;
+                }
                 resultSpan.style.color = 'var(--primary)';
             }
 
             // Update URL for sharing
-            updateURL(value, from, to);
+            updateURL(value, from, to, ingredient);
         } else {
             console.error('Conversion failed for', from, 'to', to);
             toInput.value = '';
@@ -1729,107 +1970,108 @@ function initConverter(data) {
     }
 
     function applyFormula(value, from, to, formulas) {
-        console.log('Looking for formula:', from, '->', to);
+            console.log('Looking for formula:', from, '->', to);
 
-        // Direct formula match
-        for (const formula of formulas) {
-            if (formula.from === from && formula.to === to) {
-                console.log('Found direct formula:', formula.formula);
-                try {
-                    const func = new Function('x', 'return ' + formula.formula);
-                    const result = func(value);
-                    console.log('Formula result:', result);
-                    return result;
-                } catch (e) {
-                    console.error('Formula error:', e, 'for', formula);
-                    return null;
-                }
-            }
-        }
-
-        // Try reverse formula
-        for (const formula of formulas) {
-            if (formula.from === to && formula.to === from) {
-                console.log('Found reverse formula, calculating inverse:', formula.formula);
-                try {
-                    // For inverse, we need to solve for x: formula(x) = value
-                    // This is complex, so we'll use numerical approximation
-                    const func = new Function('x', 'return ' + formula.formula);
-
-                    // Simple binary search for inverse
-                    let low = -1e6;
-                    let high = 1e6;
-                    let mid;
-
-                    // If function is monotonic (most conversions are)
-                    for (let i = 0; i < 100; i++) {
-                        mid = (low + high) / 2;
-                        const midVal = func(mid);
-
-                        if (Math.abs(midVal - value) < 0.0001) {
-                            return mid;
-                        }
-
-                        if (midVal < value) {
-                            low = mid;
-                        } else {
-                            high = mid;
-                        }
-                    }
-
-                    return mid; // Approximate inverse
-                } catch (e) {
-                    console.error('Inverse formula error:', e);
-                    return null;
-                }
-            }
-        }
-
-        // Try chain conversion through a common unit
-        if (formulas.length > 0) {
-            const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
-
-            for (const commonUnit of commonUnits) {
-                if (commonUnit === from || commonUnit === to) continue;
-
-                // Check if we have from -> commonUnit and commonUnit -> to
-                let formula1 = null;
-                let formula2 = null;
-
-                for (const formula of formulas) {
-                    if (formula.from === from && formula.to === commonUnit) {
-                        formula1 = formula;
-                    }
-                    if (formula.from === commonUnit && formula.to === to) {
-                        formula2 = formula;
-                    }
-                }
-
-                if (formula1 && formula2) {
-                    console.log('Found chain conversion through', commonUnit);
+            // Direct formula match
+            for (const formula of formulas) {
+                if (formula.from === from && formula.to === to) {
+                    console.log('Found direct formula:', formula.formula);
                     try {
-                        const func1 = new Function('x', 'return ' + formula1.formula);
-                        const func2 = new Function('x', 'return ' + formula2.formula);
-                        const intermediate = func1(value);
-                        const result = func2(intermediate);
+                        const func = new Function('x', 'return ' + formula.formula);
+                        const result = func(value);
+                        console.log('Formula result:', result);
                         return result;
                     } catch (e) {
-                        console.error('Chain conversion error:', e);
+                        console.error('Formula error:', e, 'for', formula);
                         return null;
                     }
                 }
             }
+
+            // Try reverse formula
+            for (const formula of formulas) {
+                if (formula.from === to && formula.to === from) {
+                    console.log('Found reverse formula, calculating inverse:', formula.formula);
+                    try {
+                        // For inverse, we need to solve for x: formula(x) = value
+                        // This is complex, so we'll use numerical approximation
+                        const func = new Function('x', 'return ' + formula.formula);
+
+                        // Simple binary search for inverse
+                        let low = -1e6;
+                        let high = 1e6;
+                        let mid;
+
+                        // If function is monotonic (most conversions are)
+                        for (let i = 0; i < 100; i++) {
+                            mid = (low + high) / 2;
+                            const midVal = func(mid);
+
+                            if (Math.abs(midVal - value) < 0.0001) {
+                                return mid;
+                            }
+
+                            if (midVal < value) {
+                                low = mid;
+                            } else {
+                                high = mid;
+                            }
+                        }
+
+                        return mid; // Approximate inverse
+                    } catch (e) {
+                        console.error('Inverse formula error:', e);
+                        return null;
+                    }
+                }
+            }
+
+            // Try chain conversion through a common unit
+            if (formulas.length > 0) {
+                const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
+
+                for (const commonUnit of commonUnits) {
+                    if (commonUnit === from || commonUnit === to) continue;
+
+                    // Check if we have from -> commonUnit and commonUnit -> to
+                    let formula1 = null;
+                    let formula2 = null;
+
+                    for (const formula of formulas) {
+                        if (formula.from === from && formula.to === commonUnit) {
+                            formula1 = formula;
+                        }
+                        if (formula.from === commonUnit && formula.to === to) {
+                            formula2 = formula;
+                        }
+                    }
+
+                    if (formula1 && formula2) {
+                        console.log('Found chain conversion through', commonUnit);
+                        try {
+                            const func1 = new Function('x', 'return ' + formula1.formula);
+                            const func2 = new Function('x', 'return ' + formula2.formula);
+                            const intermediate = func1(value);
+                            const result = func2(intermediate);
+                            return result;
+                        } catch (e) {
+                            console.error('Chain conversion error:', e);
+                            return null;
+                        }
+                    }
+                }
+            }
+
+            console.log('No formula found for', from, '->', to);
+            return null;
         }
 
-        console.log('No formula found for', from, '->', to);
-        return null;
-    }
-
-    function updateURL(value, from, to) {
+    function updateURL(value, from, to, ingredient = null) {
         const params = new URLSearchParams();
         params.set('value', value);
         params.set('from', from);
         params.set('to', to);
+        if (ingredient) params.set('ingredient', ingredient);
 
         const newURL = window.location.pathname + '?' + params.toString();
         window.history.replaceState({}, '', newURL);
@@ -1861,6 +2103,7 @@ function initConverter(data) {
     const urlValue = params.get('value');
     const urlFrom = params.get('from');
     const urlTo = params.get('to');
+    const urlIngredient = params.get('ingredient');
 
     if (urlValue && urlFrom && urlTo) {
         fromInput.value = urlValue;
@@ -1870,11 +2113,105 @@ function initConverter(data) {
         if (Array.from(toUnit.options).some(opt => opt.value === urlTo)) {
             toUnit.value = urlTo;
         }
+        if (urlIngredient && ingredientSelect) {
+            ingredientSelect.value = urlIngredient;
+        }
     }
 
     // Initial conversion
     console.log('Performing initial conversion...');
     convert();
+}
+
+function initCategoryFilter() {
+    const searchInput = document.getElementById('searchConverters');
+    const categoryFilters = document.querySelectorAll('.category-filter');
+    const clearBtn = document.querySelector('.clear-filters');
+    const converterCards = document.querySelectorAll('.converter-card');
+
+    if (!searchInput && !categoryFilters.length) return;
+
+    function filterConverters() {
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const activeCategory = document.querySelector('.category-filter.active')?.dataset.category || 'all';
+
+        let visibleCount = 0;
+
+        converterCards.forEach(card => {
+            const title = card.dataset.title.toLowerCase();
+            const desc = card.dataset.description.toLowerCase();
+            const categories = card.dataset.categories ? card.dataset.categories.toLowerCase().split(',') : [];
+
+            const matchesSearch = !searchTerm ||
+                title.includes(searchTerm) ||
+                desc.includes(searchTerm) ||
+                categories.some(cat => cat.includes(searchTerm));
+
+            const matchesCategory = activeCategory === 'all' ||
+                categories.includes(activeCategory.toLowerCase());
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Update count
+        const countElement = document.querySelector('.converter-count');
+        if (countElement) {
+            countElement.textContent = visibleCount;
+        }
+
+        // Show/hide no results message
+        const noResults = document.querySelector('.no-results');
+        if (noResults) {
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    // Event listeners
+    if (searchInput) {
+        searchInput.addEventListener('input', filterConverters);
+        // Add debouncing for better performance
+        let debounceTimer;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(filterConverters, 300);
+        });
+    }
+
+    categoryFilters.forEach(filter => {
+        filter.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all
+            categoryFilters.forEach(f => f.classList.remove('active'));
+
+            // Add active to clicked
+            filter.classList.add('active');
+
+            filterConverters();
+        });
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            // Clear search
+            if (searchInput) searchInput.value = '';
+
+            // Reset category to "All"
+            categoryFilters.forEach(f => f.classList.remove('active'));
+            const allFilter = document.querySelector('.category-filter[data-category="all"]');
+            if (allFilter) allFilter.classList.add('active');
+
+            filterConverters();
+        });
+    }
+
+    // Initial filter
+    filterConverters();
 }
 </script>
 </body>
