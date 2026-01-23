@@ -19,6 +19,30 @@
       "convection oven conversion calculator"
     ]
   },
+  "categories": [
+    "weight",
+    "volume",
+    "temperature",
+    "length",
+    "time",
+    "baking",
+    "cooking",
+    "ingredient",
+    "metric",
+    "imperial"
+  ],
+  "categoryDisplayNames": {
+    "weight": "Weight",
+    "volume": "Volume",
+    "temperature": "Temperature",
+    "length": "Length",
+    "time": "Time",
+    "baking": "Baking",
+    "cooking": "Cooking",
+    "ingredient": "Ingredient Specific",
+    "metric": "Metric",
+    "imperial": "Imperial"
+  },
   "theme": {
     "primary": "#2e7d32",
     "dark": "#1b5e20",

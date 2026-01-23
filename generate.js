@@ -382,27 +382,16 @@ function generateHeroSection(converter) {
 }
 
 function generateConverterUI(converter) {
-    return `
-    <section class="content-section converter-ui-section">
-        <div class="converter-wrapper">
-            <div class="converter-ui">
-                <div class="converter-box">
-                    <input type="number" id="fromValue" class="converter-input" value="${converter.defaults?.value || 1}" step="0.01" aria-label="Value to convert">
-                    <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
-                </div>
-                <button class="converter-swap" aria-label="Swap units">⇄</button>
-                <div class="converter-box">
-                    <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
-                    <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
-                </div>
-            </div>
-            <div class="converter-result" id="converterResult"></div>
-            <script type="application/json" id="converter-data">
-            ${JSON.stringify(converter)}
-            </script>
-        </div>
-    </section>
-    `;
+    const hasIngredients = converter.ingredientFormulas && Array.isArray(converter.ingredientFormulas);
+
+    // Extract unique ingredients
+    let ingredientOptions = '';
+    if (hasIngredients) {
+        const ingredients = [...new Set(converter.ingredientFormulas.map(f => f.ingredient))];
+        ingredientOptions = ingredients.map(ing => '<option value="' + ing + '">' + ing + '</option>').join('');
+    }
+
+    return '\n    <section class="content-section converter-ui-section">\n        <div class="converter-wrapper">\n            <div class="converter-ui">\n                <div class="converter-box">\n                    <input type="number" id="fromValue" class="converter-input" value="' + (converter.defaults?.value || 1) + '" step="0.01" aria-label="Value to convert">\n                    <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>\n                </div>\n                <button class="converter-swap" aria-label="Swap units">⇄</button>\n                <div class="converter-box">\n                    <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">\n                    <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>\n                </div>\n            </div>\n            \n            ' + (hasIngredients ? '\n            <div class="ingredient-selector">\n                <label for="ingredientSelect">Ingredient (optional):</label>\n                <select id="ingredientSelect" class="converter-select" aria-label="Select ingredient">\n                    <option value="">-- Generic conversion --</option>\n                    ' + ingredientOptions + '\n                </select>\n            </div>\n            ' : '') + '\n            \n            <div class="converter-result" id="converterResult"></div>\n            <script type="application/json" id="converter-data">\n            ' + JSON.stringify(converter) + '\n            </script>\n        </div>\n    </section>\n    ';
 }
 
 function generateQuickReferenceSection(converter) {
@@ -419,19 +408,97 @@ function generateQuickReferenceSection(converter) {
             ${section.description ? `<p class="section-description">${section.description}</p>` : ''}
         </div>
         <div class="quick-reference-grid">
-            ${items.map(item => `
-            <div class="reference-item">
-                ${item.icon ? `<div class="reference-icon">${item.icon}</div>` : ''}
-                <div class="reference-content">
-                    <h3>${item.ingredient}</h3>
-                    <div class="reference-values">
-                        <span class="reference-from">${item.cup} cup${item.cup !== 1 ? 's' : ''}</span>
-                        <span class="reference-arrow">→</span>
-                        <span class="reference-to">${item.grams}g</span>
+            ${items.map(item => {
+                // Check if it's the ingredient format (has 'ingredient' property)
+                if (item.ingredient) {
+                    const cupValue = item.cup;
+                    const isCupValueString = typeof cupValue === 'string';
+                    const cupNumber = parseFloat(cupValue) || 1;
+
+                    // Determine what to display in the "to" section
+                    let toValue = '';
+                    if (item.grams) {
+                        toValue = `${item.grams}g`;
+                    } else if (item.ml) {
+                        toValue = `${item.ml}ml`;
+                    } else if (item.ounce) {
+                        toValue = `${item.ounce} oz`;
+                    } else if (item.tablespoon) {
+                        toValue = `${item.tablespoon} tbsp`;
+                    } else if (item.teaspoon) {
+                        toValue = `${item.teaspoon} tsp`;
+                    } else if (item.fahrenheit) {
+                        toValue = `${item.fahrenheit}°F`;
+                    } else if (item.celsius) {
+                        toValue = `${item.celsius}°C`;
+                    } else if (item.kelvin) {
+                        toValue = `${item.kelvin}K`;
+                    } else if (item.liter) {
+                        toValue = `${item.liter}L`;
+                    } else if (item.pound) {
+                        toValue = `${item.pound} lb`;
+                    }
+                    // Add more unit types as needed
+
+                    return `
+                    <div class="reference-item">
+                        ${item.icon ? `<div class="reference-icon">${item.icon}</div>` : ''}
+                        <div class="reference-content">
+                            <h3>${item.ingredient}</h3>
+                            <div class="reference-values">
+                                <span class="reference-from">${isCupValueString ? cupValue : cupNumber} cup${cupNumber !== 1 ? 's' : ''}</span>
+                                <span class="reference-arrow">→</span>
+                                <span class="reference-to">${toValue}</span>
+                            </div>
+                            ${item.tip ? `<div class="reference-tip" style="font-size:0.85rem;color:#666;margin-top:0.5rem;">${item.tip}</div>` : ''}
+                        </div>
                     </div>
-                </div>
-            </div>
-            `).join('')}
+                    `;
+                }
+                // Otherwise it's the cup fraction format (has 'cup' and other units but no 'ingredient')
+                else {
+                    // Try to find any unit in the item
+                    const cupValue = item.cup || '';
+                    const isCupValueString = typeof cupValue === 'string';
+                    const cupNumber = parseFloat(cupValue) || 0.25;
+
+                    // Determine what to display
+                    let fromValue = `${isCupValueString ? cupValue : cupNumber} cup${cupNumber !== 1 ? 's' : ''}`;
+                    let toValue = '';
+
+                    // Check for all possible unit types
+                    if (item.grams) {
+                        toValue = `${item.grams}g`;
+                    } else if (item.ml) {
+                        toValue = `${item.ml}ml`;
+                    } else if (item.ounce) {
+                        toValue = `${item.ounce} oz`;
+                    } else if (item.tablespoon) {
+                        toValue = `${item.tablespoon} tbsp`;
+                    } else if (item.teaspoon) {
+                        toValue = `${item.teaspoon} tsp`;
+                    } else if (item.fahrenheit) {
+                        toValue = `${item.fahrenheit}°F`;
+                    } else if (item.celsius) {
+                        toValue = `${item.celsius}°C`;
+                    } else if (item.kelvin) {
+                        toValue = `${item.kelvin}K`;
+                    }
+
+                    return `
+                    <div class="reference-item">
+                        <div class="reference-content">
+                            <h3>${isCupValueString ? cupValue : cupNumber + ' cup'}${cupNumber !== 1 ? 's' : ''}</h3>
+                            <div class="reference-values">
+                                <span class="reference-from">${fromValue}</span>
+                                ${toValue ? `<span class="reference-arrow">→</span><span class="reference-to">${toValue}</span>` : ''}
+                            </div>
+                            ${item.note ? `<div class="reference-note" style="font-size:0.85rem;color:#666;margin-top:0.5rem;">${item.note}</div>` : ''}
+                        </div>
+                    </div>
+                    `;
+                }
+            }).join('')}
         </div>
     </section>
     `;
@@ -894,7 +961,7 @@ function generateContentBySequence(converter) {
 }
 
 // ==============================
-// UPDATED: AD GENERATION WITH SIDEBAR
+// AD GENERATION WITH SIDEBAR
 // ==============================
 
 function generateAdUnit(position, pageType, pageId = '') {
@@ -969,7 +1036,33 @@ function generateMobileStickyAd(converter) {
 }
 
 // ==============================
-// CSS STYLES (Green Growth Theme) - UPDATED
+// CATEGORY FUNCTIONS
+// ==============================
+
+function getAllCategories() {
+    // Get categories from config first, then from converters
+    const configCategories = CONFIG.categories || [];
+    const converterCategories = new Set();
+
+    CONVERTERS.converters.forEach(converter => {
+        if (converter.categories && Array.isArray(converter.categories)) {
+            converter.categories.forEach(cat => converterCategories.add(cat));
+        }
+    });
+
+    // Combine config categories with found converter categories
+    const allCategories = [...new Set([...configCategories, ...Array.from(converterCategories)])];
+
+    return allCategories.sort();
+}
+
+function getCategoryDisplayName(category) {
+    const categoryConfig = CONFIG.categoryDisplayNames || {};
+    return categoryConfig[category] || category.charAt(0).toUpperCase() + category.slice(1);
+}
+
+// ==============================
+// CSS STYLES (Green Growth Theme) - UPDATED WITH CATEGORY FILTERS
 // ==============================
 
 const STYLES = `
@@ -1135,6 +1228,140 @@ body {
     border: 1px solid var(--border);
 }
 
+/* NEW: Category and Search Styles */
+.converters-header {
+    margin-bottom: 2.5rem;
+}
+
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+    align-items: center;
+}
+
+.category-filter {
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 2px solid var(--border);
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: all 0.3s;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.category-filter:hover,
+.category-filter.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.search-container {
+    position: relative;
+    margin: 1rem 0 1.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--surface);
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.converter-count {
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0 0.5rem;
+}
+
+.converters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.converter-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.converter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.category-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1rem;
+}
+
+.category-tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-style: italic;
+    grid-column: 1 / -1;
+    display: none;
+}
+
+.clear-filters {
+    padding: 0.5rem 1rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.clear-filters:hover {
+    background: var(--primary);
+    color: white;
+}
+
 /* Converter UI */
 .converter-wrapper {
     background: var(--surface);
@@ -1212,6 +1439,29 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+}
+
+.ingredient-selector {
+    margin: 1rem auto;
+    text-align: center;
+    max-width: 500px;
+}
+
+.ingredient-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.ingredient-selector select {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.75rem;
+    border: 2px solid var(--primary-light);
+    border-radius: 8px;
+    background: white;
+    font-size: 1rem;
 }
 
 /* Tables */
@@ -1355,7 +1605,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* NEW: Content Section Styles */
+/* Content Section Styles */
 .content-section {
     margin: 2.5rem 0;
     padding: 2rem;
@@ -1992,7 +2242,7 @@ body {
         order: 3;
     }
 
-    /* NEW: Stacked conversion result for mobile */
+    /* Stacked conversion result for mobile */
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
@@ -2012,6 +2262,28 @@ body {
         color: #666;
         font-weight: normal;
         margin-bottom: 0.25rem;
+    }
+
+    /* Category filters mobile */
+    .category-filters {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        margin: 1rem 0;
+    }
+
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .converters-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .clear-filters {
+        margin-left: 0;
+        margin-top: 0.5rem;
     }
 
     @media (max-width: 480px) {
@@ -2145,14 +2417,24 @@ body {
     .related-grid {
         grid-template-columns: 1fr;
     }
+
+    .converter-card {
+        padding: 1.25rem;
+    }
+
+    .category-tags {
+        gap: 0.25rem;
+    }
+
+    .category-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.6rem;
+    }
 }
 `;
 
 // ==============================
-// CONVERTER JAVASCRIPT LOGIC
-// ==============================
-// ==============================
-// CONVERTER JAVASCRIPT LOGIC - FIXED WITH FORMULA SUPPORT
+// CONVERTER JAVASCRIPT LOGIC - WITH CATEGORY FILTERING
 // ==============================
 
 const CONVERTER_JS = `
@@ -2178,6 +2460,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const converterData = document.getElementById('converter-data');
     if (converterData) {
         initConverter(JSON.parse(converterData.textContent));
+    }
+
+    // Initialize category filter on any page with converters
+    if (document.querySelector('.converters-grid')) {
+        initCategoryFilter();
     }
 
     // FAQ toggle functionality
@@ -2210,6 +2497,7 @@ function initConverter(data) {
     const toUnit = document.getElementById('toUnit');
     const swapBtn = document.querySelector('.converter-swap');
     const resultSpan = document.getElementById('converterResult') || document.querySelector('.converter-result');
+    const ingredientSelect = document.getElementById('ingredientSelect');
 
     if (!fromInput) {
         console.error('Converter input not found!');
@@ -2265,6 +2553,12 @@ function initConverter(data) {
         return;
     }
 
+    // Add event listener for ingredient dropdown
+    if (ingredientSelect) {
+        ingredientSelect.addEventListener('change', convert);
+        console.log('Added ingredient dropdown event listener');
+    }
+
     function convert() {
         const value = parseFloat(fromInput.value) || 0;
         const from = fromUnit.value;
@@ -2272,20 +2566,45 @@ function initConverter(data) {
 
         console.log('Converting:', value, from, 'to', to);
 
+        // Get selected ingredient
+        const ingredient = ingredientSelect ? ingredientSelect.value : null;
+        if (ingredient) {
+            console.log('Using ingredient:', ingredient);
+        }
+
         let result = null;
 
-        // Try direct conversions first
-        if (data.conversions && data.conversions[from] && data.conversions[from][to]) {
+        // PRIORITY 1: Ingredient-specific formula
+        if (ingredient && data.ingredientFormulas && Array.isArray(data.ingredientFormulas)) {
+            // Find exact ingredient formula
+            const formula = data.ingredientFormulas.find(f =>
+                f.from === from && f.to === to && f.ingredient === ingredient
+            );
+
+            if (formula) {
+                console.log('Using ingredient formula:', formula.formula, 'for', ingredient);
+                try {
+                    const func = new Function('x', 'return ' + formula.formula);
+                    result = func(value);
+                    console.log('Ingredient formula result:', result);
+                } catch (e) {
+                    console.error('Ingredient formula error:', e);
+                }
+            }
+        }
+
+        // PRIORITY 2: Direct conversions
+        if (result === null && data.conversions && data.conversions[from] && data.conversions[from][to]) {
             result = value * data.conversions[from][to];
             console.log('Using direct conversion:', result);
         }
-        // Try formula-based conversion
-        else if (data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
+        // PRIORITY 3: Formula-based conversion
+        else if (result === null && data.conversionFormulas && Array.isArray(data.conversionFormulas)) {
             result = applyFormula(value, from, to, data.conversionFormulas);
             console.log('Using formula conversion:', result);
         }
-        // Try reciprocal conversion
-        else if (data.conversions && data.conversions[to] && data.conversions[to][from]) {
+        // PRIORITY 4: Reciprocal conversion
+        else if (result === null && data.conversions && data.conversions[to] && data.conversions[to][from]) {
             result = value / data.conversions[to][from];
             console.log('Using reciprocal conversion:', result);
         }
@@ -2322,12 +2641,17 @@ function initConverter(data) {
                     displayResult = Math.round(result * 100) / 100;
                 }
 
-                resultSpan.textContent = \`\${value} \${from} = \${displayResult} \${to}\`;
+                // Add ingredient to display if used
+                if (ingredient) {
+                    resultSpan.textContent = value + ' ' + from + ' of ' + ingredient + ' = ' + displayResult + ' ' + to;
+                } else {
+                    resultSpan.textContent = value + ' ' + from + ' = ' + displayResult + ' ' + to;
+                }
                 resultSpan.style.color = 'var(--primary)';
             }
 
             // Update URL for sharing
-            updateURL(value, from, to);
+            updateURL(value, from, to, ingredient);
         } else {
             console.error('Conversion failed for', from, 'to', to);
             toInput.value = '';
@@ -2339,107 +2663,108 @@ function initConverter(data) {
     }
 
     function applyFormula(value, from, to, formulas) {
-        console.log('Looking for formula:', from, '->', to);
+            console.log('Looking for formula:', from, '->', to);
 
-        // Direct formula match
-        for (const formula of formulas) {
-            if (formula.from === from && formula.to === to) {
-                console.log('Found direct formula:', formula.formula);
-                try {
-                    const func = new Function('x', 'return ' + formula.formula);
-                    const result = func(value);
-                    console.log('Formula result:', result);
-                    return result;
-                } catch (e) {
-                    console.error('Formula error:', e, 'for', formula);
-                    return null;
-                }
-            }
-        }
-
-        // Try reverse formula
-        for (const formula of formulas) {
-            if (formula.from === to && formula.to === from) {
-                console.log('Found reverse formula, calculating inverse:', formula.formula);
-                try {
-                    // For inverse, we need to solve for x: formula(x) = value
-                    // This is complex, so we'll use numerical approximation
-                    const func = new Function('x', 'return ' + formula.formula);
-
-                    // Simple binary search for inverse
-                    let low = -1e6;
-                    let high = 1e6;
-                    let mid;
-
-                    // If function is monotonic (most conversions are)
-                    for (let i = 0; i < 100; i++) {
-                        mid = (low + high) / 2;
-                        const midVal = func(mid);
-
-                        if (Math.abs(midVal - value) < 0.0001) {
-                            return mid;
-                        }
-
-                        if (midVal < value) {
-                            low = mid;
-                        } else {
-                            high = mid;
-                        }
-                    }
-
-                    return mid; // Approximate inverse
-                } catch (e) {
-                    console.error('Inverse formula error:', e);
-                    return null;
-                }
-            }
-        }
-
-        // Try chain conversion through a common unit
-        if (formulas.length > 0) {
-            const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
-
-            for (const commonUnit of commonUnits) {
-                if (commonUnit === from || commonUnit === to) continue;
-
-                // Check if we have from -> commonUnit and commonUnit -> to
-                let formula1 = null;
-                let formula2 = null;
-
-                for (const formula of formulas) {
-                    if (formula.from === from && formula.to === commonUnit) {
-                        formula1 = formula;
-                    }
-                    if (formula.from === commonUnit && formula.to === to) {
-                        formula2 = formula;
-                    }
-                }
-
-                if (formula1 && formula2) {
-                    console.log('Found chain conversion through', commonUnit);
+            // Direct formula match
+            for (const formula of formulas) {
+                if (formula.from === from && formula.to === to) {
+                    console.log('Found direct formula:', formula.formula);
                     try {
-                        const func1 = new Function('x', 'return ' + formula1.formula);
-                        const func2 = new Function('x', 'return ' + formula2.formula);
-                        const intermediate = func1(value);
-                        const result = func2(intermediate);
+                        const func = new Function('x', 'return ' + formula.formula);
+                        const result = func(value);
+                        console.log('Formula result:', result);
                         return result;
                     } catch (e) {
-                        console.error('Chain conversion error:', e);
+                        console.error('Formula error:', e, 'for', formula);
                         return null;
                     }
                 }
             }
+
+            // Try reverse formula
+            for (const formula of formulas) {
+                if (formula.from === to && formula.to === from) {
+                    console.log('Found reverse formula, calculating inverse:', formula.formula);
+                    try {
+                        // For inverse, we need to solve for x: formula(x) = value
+                        // This is complex, so we'll use numerical approximation
+                        const func = new Function('x', 'return ' + formula.formula);
+
+                        // Simple binary search for inverse
+                        let low = -1e6;
+                        let high = 1e6;
+                        let mid;
+
+                        // If function is monotonic (most conversions are)
+                        for (let i = 0; i < 100; i++) {
+                            mid = (low + high) / 2;
+                            const midVal = func(mid);
+
+                            if (Math.abs(midVal - value) < 0.0001) {
+                                return mid;
+                            }
+
+                            if (midVal < value) {
+                                low = mid;
+                            } else {
+                                high = mid;
+                            }
+                        }
+
+                        return mid; // Approximate inverse
+                    } catch (e) {
+                        console.error('Inverse formula error:', e);
+                        return null;
+                    }
+                }
+            }
+
+            // Try chain conversion through a common unit
+            if (formulas.length > 0) {
+                const commonUnits = ['celsius', 'fahrenheit', 'gram', 'ounce', 'cup', 'milliliter'];
+
+                for (const commonUnit of commonUnits) {
+                    if (commonUnit === from || commonUnit === to) continue;
+
+                    // Check if we have from -> commonUnit and commonUnit -> to
+                    let formula1 = null;
+                    let formula2 = null;
+
+                    for (const formula of formulas) {
+                        if (formula.from === from && formula.to === commonUnit) {
+                            formula1 = formula;
+                        }
+                        if (formula.from === commonUnit && formula.to === to) {
+                            formula2 = formula;
+                        }
+                    }
+
+                    if (formula1 && formula2) {
+                        console.log('Found chain conversion through', commonUnit);
+                        try {
+                            const func1 = new Function('x', 'return ' + formula1.formula);
+                            const func2 = new Function('x', 'return ' + formula2.formula);
+                            const intermediate = func1(value);
+                            const result = func2(intermediate);
+                            return result;
+                        } catch (e) {
+                            console.error('Chain conversion error:', e);
+                            return null;
+                        }
+                    }
+                }
+            }
+
+            console.log('No formula found for', from, '->', to);
+            return null;
         }
 
-        console.log('No formula found for', from, '->', to);
-        return null;
-    }
-
-    function updateURL(value, from, to) {
+    function updateURL(value, from, to, ingredient = null) {
         const params = new URLSearchParams();
         params.set('value', value);
         params.set('from', from);
         params.set('to', to);
+        if (ingredient) params.set('ingredient', ingredient);
 
         const newURL = window.location.pathname + '?' + params.toString();
         window.history.replaceState({}, '', newURL);
@@ -2471,6 +2796,7 @@ function initConverter(data) {
     const urlValue = params.get('value');
     const urlFrom = params.get('from');
     const urlTo = params.get('to');
+    const urlIngredient = params.get('ingredient');
 
     if (urlValue && urlFrom && urlTo) {
         fromInput.value = urlValue;
@@ -2480,11 +2806,105 @@ function initConverter(data) {
         if (Array.from(toUnit.options).some(opt => opt.value === urlTo)) {
             toUnit.value = urlTo;
         }
+        if (urlIngredient && ingredientSelect) {
+            ingredientSelect.value = urlIngredient;
+        }
     }
 
     // Initial conversion
     console.log('Performing initial conversion...');
     convert();
+}
+
+function initCategoryFilter() {
+    const searchInput = document.getElementById('searchConverters');
+    const categoryFilters = document.querySelectorAll('.category-filter');
+    const clearBtn = document.querySelector('.clear-filters');
+    const converterCards = document.querySelectorAll('.converter-card');
+
+    if (!searchInput && !categoryFilters.length) return;
+
+    function filterConverters() {
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        const activeCategory = document.querySelector('.category-filter.active')?.dataset.category || 'all';
+
+        let visibleCount = 0;
+
+        converterCards.forEach(card => {
+            const title = card.dataset.title.toLowerCase();
+            const desc = card.dataset.description.toLowerCase();
+            const categories = card.dataset.categories ? card.dataset.categories.toLowerCase().split(',') : [];
+
+            const matchesSearch = !searchTerm ||
+                title.includes(searchTerm) ||
+                desc.includes(searchTerm) ||
+                categories.some(cat => cat.includes(searchTerm));
+
+            const matchesCategory = activeCategory === 'all' ||
+                categories.includes(activeCategory.toLowerCase());
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Update count
+        const countElement = document.querySelector('.converter-count');
+        if (countElement) {
+            countElement.textContent = visibleCount;
+        }
+
+        // Show/hide no results message
+        const noResults = document.querySelector('.no-results');
+        if (noResults) {
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    // Event listeners
+    if (searchInput) {
+        searchInput.addEventListener('input', filterConverters);
+        // Add debouncing for better performance
+        let debounceTimer;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(filterConverters, 300);
+        });
+    }
+
+    categoryFilters.forEach(filter => {
+        filter.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all
+            categoryFilters.forEach(f => f.classList.remove('active'));
+
+            // Add active to clicked
+            filter.classList.add('active');
+
+            filterConverters();
+        });
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            // Clear search
+            if (searchInput) searchInput.value = '';
+
+            // Reset category to "All"
+            categoryFilters.forEach(f => f.classList.remove('active'));
+            const allFilter = document.querySelector('.category-filter[data-category="all"]');
+            if (allFilter) allFilter.classList.add('active');
+
+            filterConverters();
+        });
+    }
+
+    // Initial filter
+    filterConverters();
 }
 `;
 
@@ -2607,6 +3027,9 @@ function generateHomepage() {
         keywords: CONFIG.site.keywords
     };
 
+    // Get all categories
+    const allCategories = getAllCategories();
+
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -2630,54 +3053,109 @@ function generateHomepage() {
                 <p style="font-size: 1.2rem; color: var(--text); margin-bottom: 2rem;">
                     ${CONTENT.homepage?.hero?.subtitle || CONFIG.site.tagline}
                 </p>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="searchConverters"
+                           class="search-input"
+                           placeholder="Search converters by name, description, or category..."
+                           aria-label="Search converters">
+                </div>
+
+                <!-- Category Filters -->
+                ${allCategories.length > 0 ? `
+                <div class="category-filters">
+                    <span style="font-weight: 600; margin-right: 0.5rem;">Filter by:</span>
+                    <a href="#" class="category-filter active" data-category="all">All Converters</a>
+                    ${allCategories.map(cat => `
+                    <a href="#" class="category-filter" data-category="${cat}">
+                        ${getCategoryDisplayName(cat)}
+                    </a>
+                    `).join('')}
+                    <button class="clear-filters" style="margin-left: auto;">Clear Filters</button>
+                </div>
+                ` : ''}
+
+                <p style="margin: 1rem 0; color: var(--text);">
+                    Showing <span class="converter-count">${CONVERTERS.converters.length}</span> of ${CONVERTERS.converters.length} converters
+                </p>
             </div>
 
             ${generateAdUnit('top', 'home')}
 
-                <!-- Featured Converter -->
-                ${featuredConverters.length > 0 ? `
-                <div class="converter-wrapper">
-                    <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-dark);">
-                        ${featuredConverters[0].title}
-                    </h2>
-                    <div class="converter-ui">
-                        <div class="converter-box">
-                            <input type="number" id="fromValue" class="converter-input" value="1" step="0.01" aria-label="Value to convert">
-                            <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
-                        </div>
-                        <button class="converter-swap" aria-label="Swap units">⇄</button>
-                        <div class="converter-box">
-                            <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
-                            <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
-                        </div>
+            <!-- Featured Converter -->
+            ${featuredConverters.length > 0 ? `
+            <div class="converter-wrapper">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-dark);">
+                    ${featuredConverters[0].title}
+                </h2>
+                <div class="converter-ui">
+                    <div class="converter-box">
+                        <input type="number" id="fromValue" class="converter-input" value="1" step="0.01" aria-label="Value to convert">
+                        <select id="fromUnit" class="converter-select" aria-label="Convert from unit"></select>
                     </div>
-                    <div class="converter-result" id="converterResult"></div>
-                    <script type="application/json" id="converter-data">
-                    ${JSON.stringify(featuredConverters[0])}
-                    </script>
+                    <button class="converter-swap" aria-label="Swap units">⇄</button>
+                    <div class="converter-box">
+                        <input type="number" id="toValue" class="converter-input" readonly aria-label="Converted value">
+                        <select id="toUnit" class="converter-select" aria-label="Convert to unit"></select>
+                    </div>
                 </div>
-                ` : ''}
+                <div class="converter-result" id="converterResult"></div>
+                <script type="application/json" id="converter-data">
+                ${JSON.stringify(featuredConverters[0])}
+                </script>
+            </div>
+            ` : ''}
 
             ${generateAdUnit('middle', 'home')}
 
-            <!-- Converter Grid -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <!-- Converters Grid with Category Tags -->
+            <div class="card converters-header">
+                <h2 style="color: var(--primary); margin-bottom: 1rem;">All Cooking Converters</h2>
+                <p style="margin-bottom: 1rem;">Browse our collection of ${CONVERTERS.converters.length} converters</p>
+            </div>
+
+            <div class="converters-grid">
                 ${CONVERTERS.converters.map(converter => `
-                <div class="card">
-                    <h3>${converter.title}</h3>
-                    <p>${converter.description}</p>
+                <div class="converter-card"
+                     data-title="${converter.title}"
+                     data-description="${converter.description}"
+                     data-categories="${converter.categories ? converter.categories.join(',') : ''}">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">${converter.title}</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        ${converter.description}
+                    </p>
+
+                    <!-- Category Tags -->
+                    ${converter.categories && Array.isArray(converter.categories) ? `
+                    <div class="category-tags">
+                        ${converter.categories.map(cat => `
+                        <span class="category-tag">${getCategoryDisplayName(cat)}</span>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+
                     <a href="converters/${converter.slug}/" style="
                         display: inline-block;
                         margin-top: 1rem;
-                        padding: 0.75rem 1.5rem;
+                        padding: 0.5rem 1rem;
                         background: var(--primary);
                         color: white;
                         text-decoration: none;
-                        border-radius: 6px;
+                        border-radius: 4px;
                         font-weight: 500;
+                        transition: background 0.3s;
                     ">Use Converter</a>
                 </div>
                 `).join('')}
+
+                <!-- No Results Message -->
+                <div class="no-results">
+                    <p>No converters found matching your criteria.</p>
+                    <p>Try a different search term or category.</p>
+                </div>
             </div>
 
             ${generateAdUnit('bottom', 'home')}
@@ -2945,6 +3423,30 @@ function createDefaultJSON() {
                 "convection oven conversion calculator"
             ]
         },
+        "categories": [
+            "weight",
+            "volume",
+            "temperature",
+            "length",
+            "time",
+            "baking",
+            "cooking",
+            "ingredient",
+            "metric",
+            "imperial"
+        ],
+        "categoryDisplayNames": {
+            "weight": "Weight",
+            "volume": "Volume",
+            "temperature": "Temperature",
+            "length": "Length",
+            "time": "Time",
+            "baking": "Baking",
+            "cooking": "Cooking",
+            "ingredient": "Ingredient Specific",
+            "metric": "Metric",
+            "imperial": "Imperial"
+        },
         "theme": {
             "primary": "#2e7d32",
             "dark": "#1b5e20",
@@ -3005,7 +3507,7 @@ function createDefaultJSON() {
                 "title": "Cups to Grams Converter",
                 "description": "Convert cups to grams for all cooking ingredients with precision accuracy",
                 "keywords": ["cups to grams", "1 cup in grams", "baking measurement conversion"],
-                "category": "measurement",
+                "categories": ["weight", "volume", "baking", "ingredient"],
                 "featured": true,
                 "contentSequence": [
                     "hero",
@@ -3046,6 +3548,25 @@ function createDefaultJSON() {
                         "answer": "1 cup of all-purpose flour equals approximately 125 grams."
                     }
                 ]
+            },
+            {
+                "id": "oven-temp-converter",
+                "slug": "oven-temperature-converter",
+                "title": "Oven Temperature Converter",
+                "description": "Convert between Celsius, Fahrenheit, and Gas Mark for perfect baking results",
+                "keywords": ["oven temperature", "celsius to fahrenheit", "gas mark conversion"],
+                "categories": ["temperature", "baking", "cooking"],
+                "featured": true,
+                "defaults": {
+                    "value": 180,
+                    "from": "celsius",
+                    "to": "fahrenheit"
+                },
+                "supportedUnits": ["celsius", "fahrenheit", "gas mark"],
+                "conversions": {
+                    "celsius": { "fahrenheit": "x * 9/5 + 32", "gas mark": "x / 14 + 1" },
+                    "fahrenheit": { "celsius": "(x - 32) * 5/9", "gas mark": "(x - 32) * 5/9 / 14 + 1" }
+                }
             }
         ]
     };
@@ -3096,7 +3617,7 @@ function createDefaultJSON() {
     fs.writeFileSync('./content.json', JSON.stringify(defaultContent, null, 2));
 
     console.log('✅ Created default JSON files:');
-    console.log('   - config.json');
+    console.log('   - config.json (with categories)');
     console.log('   - converters.json');
     console.log('   - content.json');
     console.log('\n📝 Edit these files and run: node generate.js');
@@ -3107,9 +3628,13 @@ function createDefaultJSON() {
 // ==============================
 
 async function generateWebsite() {
-    console.log('🚀 Starting website generation with advanced features...');
+    console.log('🚀 Starting website generation with category filtering...');
     console.log(`📊 Site: ${CONFIG.site.name}`);
     console.log(`📊 Converters: ${CONVERTERS.converters.length}`);
+
+    // Get categories info
+    const allCategories = getAllCategories();
+    console.log(`📊 Categories: ${allCategories.length}`);
 
     const outputDir = './public';
 
@@ -3124,7 +3649,7 @@ async function generateWebsite() {
         ensureDirectory(path.join(outputDir, 'terms'));
 
         // Generate pages
-        console.log('📄 Generating homepage...');
+        console.log('📄 Generating homepage with category filtering...');
         await writeFile(path.join(outputDir, 'index.html'), generateHomepage());
 
         // Converter pages
@@ -3150,49 +3675,100 @@ async function generateWebsite() {
             }
         }
 
-        // Converters index page
-        console.log('📁 Generating converters index...');
+        // Converters index page WITH CATEGORY FILTERING
+        console.log('📁 Generating converters index with category filtering...');
+
         const convertersIndex = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
     ${generateMetaTags({
-        title: 'All Converters',
-        description: 'Browse all cooking measurement converters',
+        title: 'All Converters | ' + CONFIG.site.name,
+        description: 'Browse all cooking measurement converters by category. Filter and search through our collection.',
         url: '/converters/',
         type: 'collection'
     })}
     <style>${STYLES}</style>
 </head>
-<body>
+<body class="converters-page">
     ${generateNavigation('converters', 'converters')}
     ${generateBreadcrumbs('collection', {title: 'Converters'}, 'converters')}
     ${generateBreadcrumbSchema('collection', {title: 'Converters'}, 'converters')}
 
     <main class="main-content">
         <div class="container">
-            <div class="card">
-                <h1 style="color: var(--primary);">All Cooking Converters</h1>
-                <p style="margin: 1rem 0 2rem;">Browse all ${CONVERTERS.converters.length} converters</p>
+            <div class="card converters-header">
+                <h1 style="color: var(--primary); margin-bottom: 0.5rem;">All Cooking Converters</h1>
+                <p style="margin-bottom: 1rem;">Find the perfect converter for your needs. Filter by category or search.</p>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                    ${CONVERTERS.converters.map(converter => `
-                    <div style="background: var(--surface); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border);">
-                        <h3>${converter.title}</h3>
-                        <p style="margin: 0.5rem 0 1rem; font-size: 0.95rem; color: var(--text);">
-                            ${converter.description}
-                        </p>
-                        <a href="${converter.slug}/" style="
-                            display: inline-block;
-                            padding: 0.5rem 1rem;
-                            background: var(--primary);
-                            color: white;
-                            text-decoration: none;
-                            border-radius: 4px;
-                            font-weight: 500;
-                        ">Use Converter</a>
-                    </div>
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <span class="search-icon">🔍</span>
+                    <input type="text"
+                           id="searchConverters"
+                           class="search-input"
+                           placeholder="Search converters by name, description, or category..."
+                           aria-label="Search converters">
+                </div>
+
+                <!-- Category Filters -->
+                ${allCategories.length > 0 ? `
+                <div class="category-filters">
+                    <span style="font-weight: 600; margin-right: 0.5rem;">Categories:</span>
+                    <a href="#" class="category-filter active" data-category="all">All</a>
+                    ${allCategories.map(cat => `
+                    <a href="#" class="category-filter" data-category="${cat}">
+                        ${getCategoryDisplayName(cat)}
+                    </a>
                     `).join('')}
+                    <button class="clear-filters" style="margin-left: auto;">Clear Filters</button>
+                </div>
+                ` : ''}
+
+                <p style="margin: 1rem 0; color: var(--text);">
+                    Showing <span class="converter-count">${CONVERTERS.converters.length}</span> of ${CONVERTERS.converters.length} converters
+                </p>
+            </div>
+
+            <!-- Converters Grid -->
+            <div class="converters-grid">
+                ${CONVERTERS.converters.map(converter => `
+                <div class="converter-card"
+                     data-title="${converter.title}"
+                     data-description="${converter.description}"
+                     data-categories="${converter.categories ? converter.categories.join(',') : ''}">
+                    <h3 style="color: var(--primary-dark); margin-bottom: 0.5rem;">${converter.title}</h3>
+                    <p style="margin-bottom: 0.75rem; font-size: 0.95rem; color: var(--text);">
+                        ${converter.description}
+                    </p>
+
+                    <!-- Category Tags -->
+                    ${converter.categories && Array.isArray(converter.categories) ? `
+                    <div class="category-tags">
+                        ${converter.categories.map(cat => `
+                        <span class="category-tag">${getCategoryDisplayName(cat)}</span>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+
+                    <a href="${converter.slug}/" style="
+                        display: inline-block;
+                        margin-top: 1rem;
+                        padding: 0.5rem 1rem;
+                        background: var(--primary);
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 4px;
+                        font-weight: 500;
+                        transition: background 0.3s;
+                    ">Use Converter</a>
+                </div>
+                `).join('')}
+
+                <!-- No Results Message -->
+                <div class="no-results">
+                    <p>No converters found matching your criteria.</p>
+                    <p>Try a different search term or category.</p>
                 </div>
             </div>
         </div>
@@ -3223,22 +3799,25 @@ async function generateWebsite() {
         );
 
         console.log('\n' + '='.repeat(60));
-        console.log('✅ GENERATION COMPLETE WITH ADVANCED FEATURES!');
+        console.log('✅ GENERATION COMPLETE WITH CATEGORY FILTERING!');
         console.log('='.repeat(60));
         console.log(`📊 Statistics:`);
         console.log(`   Total pages: ${4 + CONVERTERS.converters.length}`);
         console.log(`   Converters: ${CONVERTERS.converters.length}`);
-        console.log('\n🎯 NEW FEATURES ADDED:');
-        console.log('   • Content sequencing control');
-        console.log('   • 12 new content section types');
-        console.log('   • Sidebar ads with mobile sticky support');
-        console.log('   • Two-column layout for converter pages');
-        console.log('   • Enhanced visual content sections');
+        console.log(`   Categories: ${allCategories.length}`);
+        console.log('\n🎯 FEATURES ADDED:');
+        console.log('   • Category filtering on BOTH homepage and converters page');
+        console.log('   • Search functionality');
+        console.log('   • Category tags on converter cards');
+        console.log('   • Clear filters button');
+        console.log('   • Configurable categories in config.json');
+        console.log('   • Category display names customization');
+        console.log('   • Responsive mobile design');
         console.log('\n📁 File structure:');
         console.log(`   ${outputDir}/`);
-        console.log(`   ├── index.html`);
+        console.log(`   ├── index.html (with filters)`);
         console.log(`   ├── converters/`);
-        console.log(`   │   ├── index.html`);
+        console.log(`   │   ├── index.html (with filters)`);
         console.log(`   │   └── [slug]/index.html`);
         console.log(`   ├── about/index.html`);
         console.log(`   ├── contact/index.html`);
@@ -3248,8 +3827,10 @@ async function generateWebsite() {
         console.log(`   └── robots.txt`);
         console.log('\n🚀 To serve locally:');
         console.log('   cd public && npx serve');
-        console.log('\n🔧 To update:');
-        console.log('   1. Edit JSON files (config.json, converters.json, content.json)');
+        console.log('\n🔧 To update config.json:');
+        console.log('   Add "categories" array and "categoryDisplayNames" object');
+        console.log('\n🔧 To update converters:');
+        console.log('   1. Edit converters.json - add "categories": ["cat1", "cat2"]');
         console.log('   2. Run: node generate.js');
         console.log('='.repeat(60));
 
