@@ -409,95 +409,78 @@ function generateQuickReferenceSection(converter) {
         </div>
         <div class="quick-reference-grid">
             ${items.map(item => {
-                // Check if it's the ingredient format (has 'ingredient' property)
-                if (item.ingredient) {
-                    const cupValue = item.cup;
-                    const isCupValueString = typeof cupValue === 'string';
-                    const cupNumber = parseFloat(cupValue) || 1;
+                // Determine what type of conversion this is based on the data
+                let fromValue = '';
+                let toValue = '';
+                let title = item.ingredient || 'Reference';
 
-                    // Determine what to display in the "to" section
-                    let toValue = '';
-                    if (item.grams) {
-                        toValue = `${item.grams}g`;
-                    } else if (item.ml) {
-                        toValue = `${item.ml}ml`;
-                    } else if (item.ounce) {
-                        toValue = `${item.ounce} oz`;
-                    } else if (item.tablespoon) {
-                        toValue = `${item.tablespoon} tbsp`;
-                    } else if (item.teaspoon) {
-                        toValue = `${item.teaspoon} tsp`;
-                    } else if (item.fahrenheit) {
+                // ----- TEMPERATURE CONVERSION LOGIC -----
+                // If item has Celsius, it's likely a temperature conversion
+                if (item.celsius !== undefined || (item.ingredient && item.ingredient.includes('°C'))) {
+                    // Use the ingredient as the "from" value (e.g., "180°C")
+                    fromValue = item.ingredient || `${item.celsius}°C`;
+
+                    // Check for Fahrenheit conversion
+                    if (item.fahrenheit !== undefined) {
                         toValue = `${item.fahrenheit}°F`;
-                    } else if (item.celsius) {
-                        toValue = `${item.celsius}°C`;
-                    } else if (item.kelvin) {
-                        toValue = `${item.kelvin}K`;
-                    } else if (item.liter) {
-                        toValue = `${item.liter}L`;
-                    } else if (item.pound) {
-                        toValue = `${item.pound} lb`;
                     }
-                    // Add more unit types as needed
-
-                    return `
-                    <div class="reference-item">
-                        ${item.icon ? `<div class="reference-icon">${item.icon}</div>` : ''}
-                        <div class="reference-content">
-                            <h3>${item.ingredient}</h3>
-                            <div class="reference-values">
-                                <span class="reference-from">${isCupValueString ? cupValue : cupNumber} cup${cupNumber !== 1 ? 's' : ''}</span>
-                                <span class="reference-arrow">→</span>
-                                <span class="reference-to">${toValue}</span>
-                            </div>
-                            ${item.tip ? `<div class="reference-tip" style="font-size:0.85rem;color:#666;margin-top:0.5rem;">${item.tip}</div>` : ''}
-                        </div>
-                    </div>
-                    `;
+                    // Check for Gas Mark conversion
+                    else if (item.gasMark !== undefined) {
+                        toValue = `Gas Mark ${item.gasMark}`;
+                    }
+                    // Check for Fan Celsius
+                    else if (item.fanC !== undefined) {
+                        toValue = `${item.fanC}°C (fan)`;
+                    }
                 }
-                // Otherwise it's the cup fraction format (has 'cup' and other units but no 'ingredient')
+                // ----- VOLUME/WEIGHT CONVERSION LOGIC -----
+                // If item has a 'cup' property, it's a volume/weight conversion
+                else if (item.cup !== undefined) {
+                    const cupNum = parseFloat(item.cup) || 1;
+                    const cupText = typeof item.cup === 'string' ? item.cup : cupNum;
+                    fromValue = `${cupText} cup${cupNum !== 1 ? 's' : ''}`;
+
+                    // Find the "to" unit
+                    if (item.grams !== undefined) {
+                        toValue = `${item.grams}g`;
+                    } else if (item.ml !== undefined) {
+                        toValue = `${item.ml}ml`;
+                    } else if (item.ounce !== undefined) {
+                        toValue = `${item.ounce} oz`;
+                    }
+                    // Add more volume/weight units as needed
+                }
+                // ----- GENERIC FALLBACK -----
+                // If neither temperature nor cup, try to display whatever data exists
                 else {
-                    // Try to find any unit in the item
-                    const cupValue = item.cup || '';
-                    const isCupValueString = typeof cupValue === 'string';
-                    const cupNumber = parseFloat(cupValue) || 0.25;
-
-                    // Determine what to display
-                    let fromValue = `${isCupValueString ? cupValue : cupNumber} cup${cupNumber !== 1 ? 's' : ''}`;
-                    let toValue = '';
-
-                    // Check for all possible unit types
-                    if (item.grams) {
-                        toValue = `${item.grams}g`;
-                    } else if (item.ml) {
-                        toValue = `${item.ml}ml`;
-                    } else if (item.ounce) {
-                        toValue = `${item.ounce} oz`;
-                    } else if (item.tablespoon) {
-                        toValue = `${item.tablespoon} tbsp`;
-                    } else if (item.teaspoon) {
-                        toValue = `${item.teaspoon} tsp`;
-                    } else if (item.fahrenheit) {
-                        toValue = `${item.fahrenheit}°F`;
-                    } else if (item.celsius) {
-                        toValue = `${item.celsius}°C`;
-                    } else if (item.kelvin) {
-                        toValue = `${item.kelvin}K`;
+                    // Try to find the first property that looks like a "from" value
+                    const props = Object.keys(item);
+                    for (const prop of props) {
+                        if (prop !== 'icon' && prop !== 'tip' && prop !== 'ingredient') {
+                            const val = item[prop];
+                            if (!fromValue) {
+                                fromValue = `${val} ${prop}`;
+                            } else if (!toValue) {
+                                toValue = `${val} ${prop}`;
+                            }
+                        }
                     }
-
-                    return `
-                    <div class="reference-item">
-                        <div class="reference-content">
-                            <h3>${isCupValueString ? cupValue : cupNumber + ' cup'}${cupNumber !== 1 ? 's' : ''}</h3>
-                            <div class="reference-values">
-                                <span class="reference-from">${fromValue}</span>
-                                ${toValue ? `<span class="reference-arrow">→</span><span class="reference-to">${toValue}</span>` : ''}
-                            </div>
-                            ${item.note ? `<div class="reference-note" style="font-size:0.85rem;color:#666;margin-top:0.5rem;">${item.note}</div>` : ''}
-                        </div>
-                    </div>
-                    `;
                 }
+
+                // Generate the HTML for this item
+                return `
+                <div class="reference-item">
+                    ${item.icon ? `<div class="reference-icon">${item.icon}</div>` : ''}
+                    <div class="reference-content">
+                        <h3>${title}</h3>
+                        <div class="reference-values">
+                            <span class="reference-from">${fromValue}</span>
+                            ${toValue ? `<span class="reference-arrow">→</span><span class="reference-to">${toValue}</span>` : ''}
+                        </div>
+                        ${item.tip ? `<div class="reference-tip">${item.tip}</div>` : ''}
+                    </div>
+                </div>
+                `;
             }).join('')}
         </div>
     </section>
