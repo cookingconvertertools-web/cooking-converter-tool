@@ -1101,26 +1101,21 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
-    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    width: 100%;
-    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header - FIXED FOR MOBILE */
+/* Header */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
-    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -1128,8 +1123,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
-    width: 100%;
-    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -1140,10 +1133,6 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -1153,9 +1142,6 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
-    min-width: 44px; /* Better touch target */
-    min-height: 44px;
-    padding: 0.5rem;
 }
 
 .nav-links {
@@ -1171,7 +1157,6 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
-    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -1184,25 +1169,20 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
-    width: 100%;
-    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
-    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
+    flex-wrap: wrap;
     gap: 0.5rem;
-    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
-    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -1213,13 +1193,11 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
-    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
-    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -1227,8 +1205,6 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
-    width: 100%;
-    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -1239,7 +1215,6 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
-    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -1251,8 +1226,6 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -1263,15 +1236,11 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
-    width: 100%;
-    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
-    width: 100%;
-    overflow-x: hidden;
 }
 
 .category-filters {
@@ -1280,10 +1249,6 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
-    width: 100%;
-    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -1298,7 +1263,6 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
-    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -1311,7 +1275,6 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
-    width: 100%;
 }
 
 .search-input {
@@ -1322,7 +1285,6 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
-    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -1343,7 +1305,6 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
-    white-space: nowrap;
 }
 
 .converters-grid {
@@ -1351,7 +1312,6 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
-    width: 100%;
 }
 
 .converter-card {
@@ -1361,8 +1321,6 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
-    width: 100%;
-    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -1375,7 +1333,6 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
-    width: 100%;
 }
 
 .category-tag {
@@ -1386,9 +1343,6 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -1398,7 +1352,6 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
-    width: 100%;
 }
 
 .clear-filters {
@@ -1412,7 +1365,6 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
-    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -1427,8 +1379,6 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    width: 100%;
-    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -1437,8 +1387,7 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: wrap; /* Allow wrapping on mobile */
-    width: 100%;
+    flex-wrap: nowrap;
 }
 
 .converter-box {
@@ -1449,7 +1398,6 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
-    width: 100%;
 }
 
 .converter-input {
@@ -1459,11 +1407,8 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 120px; /* Reduced for mobile */
+    min-width: 140px;
     height: 56px;
-    width: 100%;
-    max-width: 100%;
-    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -1473,12 +1418,8 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 140px; /* Reduced for mobile */
+    min-width: 160px;
     height: 56px;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -1492,8 +1433,6 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
-    min-width: 44px; /* Better touch target */
-    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -1510,16 +1449,12 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
-    width: 100%;
-    overflow: hidden;
-    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
-    width: 100%;
 }
 
 .ingredient-selector label {
@@ -1527,9 +1462,6 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -1540,26 +1472,20 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-/* Tables - FIXED FOR MOBILE */
+/* Tables */
 .table-container {
-    overflow-x: auto; /* Allow horizontal scroll for tables */
+    overflow-x: auto;
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
-    width: 100%;
-    -webkit-overflow-scrolling: touch;
-    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px; /* Minimum width for table */
-    table-layout: auto;
+    min-width: 600px;
 }
 
 .conversion-table th {
@@ -1568,13 +1494,11 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
-    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
-    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -1585,19 +1509,6 @@ body {
     background-color: var(--background);
 }
 
-/* Comparison Table */
-.comparison-table {
-    width: 100%;
-    min-width: 600px; /* Minimum width */
-    table-layout: auto;
-}
-
-.comparison-table th,
-.comparison-table td {
-    white-space: normal; /* Allow wrapping */
-    word-break: break-word;
-}
-
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -1606,8 +1517,6 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
-    width: 100%;
-    overflow: hidden;
 }
 
 .ad-label {
@@ -1616,7 +1525,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
-    white-space: nowrap;
 }
 
 .ad-content {
@@ -1627,21 +1535,16 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
-    width: 100%;
-    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
-    width: 100%;
-    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
-    width: 100%;
 }
 
 .faq-question {
@@ -1657,26 +1560,20 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    white-space: normal; /* Allow question to wrap */
-    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
-    width: 100%;
-    word-break: break-word;
 }
 
-/* Footer - FIXED FOR MOBILE */
+/* Footer */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
-    width: 100%;
-    overflow-x: hidden;
 }
 
 .footer-content {
@@ -1684,35 +1581,26 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
-    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
-    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
-    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
-    display: inline-block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -1725,8 +1613,6 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
-    width: 100%;
-    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -1736,21 +1622,17 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    width: 100%;
-    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
-    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
-    word-break: break-word;
 }
 
 .section-description {
@@ -1758,21 +1640,18 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
-    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
-    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
-    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -1782,7 +1661,6 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    word-break: break-word;
 }
 
 .hero-intro {
@@ -1791,7 +1669,6 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
-    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -1800,7 +1677,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
-    width: 100%;
 }
 
 .reference-item {
@@ -1810,8 +1686,6 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
-    width: 100%;
-    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -1827,7 +1701,6 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
-    word-break: break-word;
 }
 
 .reference-values {
@@ -1836,32 +1709,27 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
-    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
-    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
-    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
-    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -1870,13 +1738,11 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
-    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
-    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -1885,7 +1751,6 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
-    width: 100%;
 }
 
 .visual-item {
@@ -1898,8 +1763,6 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
-    width: 100%;
-    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -1916,21 +1779,18 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
-    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
-    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
-    width: 100%;
 }
 
 .step {
@@ -1938,7 +1798,6 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
-    width: 100%;
 }
 
 .step-number {
@@ -1952,27 +1811,21 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
-    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
-    min-width: 0; /* Allow content to shrink */
-    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
-    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
-    width: 100%;
-    word-break: break-word;
 }
 
 .step-tip {
@@ -1994,7 +1847,6 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
-    width: 100%;
 }
 
 .mistake-item {
@@ -2003,8 +1855,6 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
-    width: 100%;
-    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -2030,7 +1880,6 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
-    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -2038,7 +1887,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    width: 100%;
 }
 
 .equipment-item {
@@ -2046,8 +1894,6 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
-    width: 100%;
-    overflow: hidden;
 }
 
 .equipment-header {
@@ -2056,21 +1902,15 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
-    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
-    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
-    min-width: 0; /* Allow text to shrink */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -2078,8 +1918,6 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
-    white-space: nowrap;
-    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -2109,39 +1947,32 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
-    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
-    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
-    width: 100%;
-    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
-    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
-    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
-    width: 100%;
 }
 
 /* Regional Variations */
@@ -2149,7 +1980,6 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    width: 100%;
 }
 
 .region-item {
@@ -2157,14 +1987,11 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
-    width: 100%;
-    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
-    word-break: break-word;
 }
 
 .region-cup-size {
@@ -2175,12 +2002,10 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
-    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
-    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -2189,14 +2014,11 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
-    width: 100%;
-    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
-    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -2205,7 +2027,6 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
-    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -2214,19 +2035,15 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
-    width: 100%;
-    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
-    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
-    width: 100%;
 }
 
 .recipe-arrow {
@@ -2234,7 +2051,6 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
-    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -2242,8 +2058,6 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
-    width: 100%;
-    word-break: break-word;
 }
 
 /* Related Converters */
@@ -2252,7 +2066,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
-    width: 100%;
 }
 
 .related-item {
@@ -2260,14 +2073,11 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
-    width: 100%;
-    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
-    word-break: break-word;
 }
 
 .related-link {
@@ -2280,7 +2090,6 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
-    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -2291,14 +2100,12 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
-    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
-    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -2312,7 +2119,6 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
-    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -2328,7 +2134,6 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
-    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -2345,8 +2150,6 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    width: 100%;
-    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -2360,9 +2163,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    min-width: 44px;
-    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -2370,14 +2170,11 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
-    width: 100%;
-    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0; /* Allow content to shrink */
-    overflow-x: hidden;
+    min-width: 0;
 }
 
 /* Responsive Design */
@@ -2411,27 +2208,16 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        z-index: 1000;
-        width: 100%;
-        overflow-y: auto;
-        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
-    .nav-links a {
-        padding: 1rem;
-        width: 100%;
-        text-align: center;
-    }
-
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
-        width: 100%;
+        gap: 0.75rem;
     }
 
     .converter-box {
@@ -2439,16 +2225,14 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
-        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 48px;
-        padding: 0.75rem;
+        height: 44px;
+        padding: 0.5rem;
         font-size: 1rem;
-        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -2456,15 +2240,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        min-width: 100px;
+        font-size: 0.9rem;
+        min-width: 120px;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+            width: 44px;
+        height: 44px;
         font-size: 1rem;
-        margin: 0.5rem auto;
+        margin: 0.25rem auto;
         order: 3;
     }
 
@@ -2472,7 +2256,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: center;
+        text-align: left;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -2480,7 +2264,6 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-        width: 100%;
     }
 
     .converter-result::before {
@@ -2497,7 +2280,6 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
-        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -2514,14 +2296,42 @@ body {
         margin-top: 0.5rem;
     }
 
-    /* Fix tables for mobile */
-    .table-container {
-        margin: 1rem -1rem;
-        width: calc(100% + 2rem); /* Full width with negative margin */
+    @media (max-width: 480px) {
+        .converter-input,
+        .converter-select {
+            height: 40px;
+            padding: 0.4rem;
+        }
+
+        .converter-input {
+            font-size: 0.95rem;
+        }
+
+        .converter-select {
+            font-size: 0.85rem;
+        }
+
+        .converter-swap {
+            width: 40px;
+            height: 40px;
+        }
+
+        .converter-result {
+            font-size: 1rem;
+            padding: 0.6rem;
+        }
     }
 
-    .conversion-table,
-    .comparison-table {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .table-container {
+        margin: 1rem -1rem;
+    }
+
+    .conversion-table {
         min-width: 100%;
     }
 
@@ -2529,25 +2339,15 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
-        white-space: normal;
     }
 
-    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
-        flex-wrap: nowrap;
     }
 
-    .breadcrumb-container {
-        padding: 0.75rem 0;
-    }
-
-    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem 1rem;
-        margin: 1.5rem -0.5rem;
-        width: calc(100% + 1rem);
-        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
     }
 
     .quick-reference-grid {
@@ -2561,7 +2361,6 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
-        gap: 1rem;
     }
 
     .step-number {
@@ -2583,83 +2382,44 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
+}
 
-    .converter-wrapper {
-        padding: 1.5rem 1rem;
-        margin: 1.5rem -0.5rem;
-        width: calc(100% + 1rem);
-    }
-
-    /* Fix header logo for mobile */
-    .logo {
-        font-size: 1.2rem;
-        max-width: 60%;
-    }
-
-    /* Fix footer for mobile */
-    .footer {
-        padding: 2rem 0 1.5rem;
-        margin-top: 2rem;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        text-align: center;
-    }
-
-    .footer-section h3 {
-        font-size: 1.1rem;
-    }
-
-    .footer-links a {
-        text-align: center;
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
-        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.25rem 1rem;
-        margin: 1rem -0.5rem;
-        width: calc(100% + 1rem);
+        padding: 1.5rem;
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem 0.5rem;
-        height: 44px;
-        min-width: 70px;
-        width: 45%;
+        padding: 0.75rem;
+        height: 48px;
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        padding: 0.75rem 0.5rem;
-        height: 44px;
-        min-width: 90px;
-        width: 55%;
+        font-size: 0.95rem;
+        padding: 0.75rem;
+        height: 48px;
     }
 
     .converter-swap {
-        width: 44px;
-        height: 44px;
-        font-size: 0.9rem;
-    }
-
-    .converter-result {
-        font-size: 1rem;
-        padding: 0.6rem;
+        width: 48px;
+        height: 48px;
     }
 
     .equipment-container,
@@ -2669,9 +2429,7 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem 1rem;
-        margin: 0 -0.5rem;
-        width: calc(100% + 1rem);
+        padding: 1.25rem;
     }
 
     .category-tags {
@@ -2681,34 +2439,6 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
-    }
-
-    /* Fix very small screens */
-    @media (max-width: 320px) {
-        .converter-input,
-        .converter-select {
-            width: 100%;
-            min-width: 100%;
-        }
-
-        .converter-box {
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .logo {
-            font-size: 1rem;
-        }
-
-        .container {
-            padding: 0 10px;
-        }
-    }
-}
-
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
     }
 }
 `;
@@ -2724,25 +2454,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
+        mobileMenuBtn.addEventListener('click', function() {
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (navLinks.classList.contains('active') &&
-                !mobileMenuBtn.contains(event.target) &&
-                !navLinks.contains(event.target)) {
+            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
-        });
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-            });
         });
     }
 
@@ -2766,12 +2486,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
-
-            // Update icon
-            const icon = this.querySelector('span');
-            if (icon) {
-                icon.textContent = isExpanded ? '+' : '−';
-            }
         });
     });
 
@@ -3921,6 +3635,10 @@ function createDefaultJSON() {
 }
 
 // ==============================
+// MAIN GENERATION FUNCTION
+// ==============================
+
+// ==============================
 // MAIN GENERATION FUNCTION - UPDATED WITH ERROR HANDLING
 // ==============================
 
@@ -4158,7 +3876,6 @@ async function generateWebsite() {
         console.log('   • Configurable categories in config.json');
         console.log('   • Category display names customization');
         console.log('   • Responsive mobile design');
-        console.log('   • FIXED: Mobile header/footer display with wide tables');
         console.log('\n📁 File structure:');
         console.log(`   ${outputDir}/`);
         console.log(`   ├── index.html (with filters)`);
