@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Metric Cup to ML Converter | Cooking Converter Pro</title>
     <meta name="description" content="Convert metric cups to milliliters (ml) accurately for cooking and baking. This guide explains how metric cup measurements work, why they differ from US and imperial cups, and how to avoid common kitchen measurement mistakes using verified conversion values.">
-    <meta name="keywords" content="Metric Cup to ML Converter">
+    <meta name="keywords" content="metric cup to ml,metric cup conversion,cup to ml">
     <meta name="author" content="Cooking Converter Pro">
 
     <!-- Open Graph / Facebook -->
@@ -70,8 +70,8 @@
   "name": "Metric Cup to ML Converter",
   "description": "Convert metric cups to milliliters (ml) accurately for cooking and baking. This guide explains how metric cup measurements work, why they differ from US and imperial cups, and how to avoid common kitchen measurement mistakes using verified conversion values.",
   "url": "https://bakingmath.org/converters/metric-cup-to-ml/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"metric-cup-to-ml","slug":"metric-cup-to-ml","title":"Metric Cup to ML Converter","description":"Convert metric cups to milliliters (ml) accurately for cooking and baking. This guide explains how metric cup measurements work, why they differ from US and imperial cups, and how to avoid common kitchen measurement mistakes using verified conversion values.","categories":["volume","cooking","baking","metric"],"subcategory":"measurement","featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq"],"defaults":{"value":1,"from":"metric cup","to":"ml"},"supportedUnits":["metric cup","ml","liter","us cup","imperial cup","tablespoon"],"conversions":{"metric cup":{"ml":250,"liter":0.25,"us cup":1.06,"imperial cup":0.88,"tablespoon":16.67},"ml":{"metric cup":0.004,"liter":0.001,"us cup":0.0042,"imperial cup":0.0035,"tablespoon":0.0667},"liter":{"metric cup":4,"ml":1000,"us cup":4.23,"imperial cup":3.52,"tablespoon":66.67},"us cup":{"metric cup":0.94,"ml":236.59,"liter":0.2366,"imperial cup":0.833,"tablespoon":16},"imperial cup":{"metric cup":1.14,"ml":284.13,"liter":0.2841,"us cup":1.2,"tablespoon":19.2},"tablespoon":{"metric cup":0.06,"ml":15,"liter":0.015,"us cup":0.0625,"imperial cup":0.0521}},"conversionFormulas":[{"from":"metric cup","to":"ml","formula":"x * 250"},{"from":"metric cup","to":"liter","formula":"x * 0.25"},{"from":"metric cup","to":"us cup","formula":"x * 1.06"},{"from":"metric cup","to":"imperial cup","formula":"x * 0.88"},{"from":"metric cup","to":"tablespoon","formula":"x * 16.67"},{"from":"metric cup","to":"metric cup","formula":"x"},{"from":"ml","to":"metric cup","formula":"x / 250"},{"from":"ml","to":"liter","formula":"x / 1000"},{"from":"ml","to":"us cup","formula":"x / 236.59"},{"from":"ml","to":"imperial cup","formula":"x / 284.13"},{"from":"ml","to":"tablespoon","formula":"x / 15"},{"from":"ml","to":"ml","formula":"x"},{"from":"liter","to":"metric cup","formula":"x * 4"},{"from":"liter","to":"ml","formula":"x * 1000"},{"from":"liter","to":"us cup","formula":"x * 4.23"},{"from":"liter","to":"imperial cup","formula":"x * 3.52"},{"from":"liter","to":"tablespoon","formula":"x * 66.67"},{"from":"liter","to":"liter","formula":"x"},{"from":"us cup","to":"metric cup","formula":"x / 1.06"},{"from":"us cup","to":"ml","formula":"x * 236.59"},{"from":"us cup","to":"liter","formula":"x * 0.2366"},{"from":"us cup","to":"imperial cup","formula":"x * 0.833"},{"from":"us cup","to":"tablespoon","formula":"x * 16"},{"from":"us cup","to":"us cup","formula":"x"},{"from":"imperial cup","to":"metric cup","formula":"x / 0.88"},{"from":"imperial cup","to":"ml","formula":"x * 284.13"},{"from":"imperial cup","to":"liter","formula":"x * 0.2841"},{"from":"imperial cup","to":"us cup","formula":"x * 1.2"},{"from":"imperial cup","to":"tablespoon","formula":"x * 19.2"},{"from":"imperial cup","to":"imperial cup","formula":"x"},{"from":"tablespoon","to":"metric cup","formula":"x / 16.67"},{"from":"tablespoon","to":"ml","formula":"x * 15"},{"from":"tablespoon","to":"liter","formula":"x * 0.015"},{"from":"tablespoon","to":"us cup","formula":"x / 16"},{"from":"tablespoon","to":"imperial cup","formula":"x / 19.2"},{"from":"tablespoon","to":"tablespoon","formula":"x"}],"contentSections":{"hero":{"title":"Metric Cup to ML Converter","subtitle":"Clear and accurate metric cup conversions for everyday cooking","intro":"Cooking looks simple until measurements enter the picture. A metric cup is defined as exactly 250 milliliters, and this standard is used in many parts of the world including Australia, New Zealand, and several European regions. Understanding this conversion is important because not all cups are the same. A small difference of even 10–15 milliliters can change texture, moisture, and final taste in baking. This guide explains what a metric cup is, how it compares with other cup systems, and how to convert it to milliliters correctly every time."},"converter":{},"quickReference":{"title":"Quick Reference: Metric Cup to ML","items":[{"ingredient":"1 Metric Cup","value":"250 ml","icon":"🥛"},{"ingredient":"1/2 Metric Cup","value":"125 ml","icon":"🥛"},{"ingredient":"1/4 Metric Cup","value":"62.5 ml","icon":"🥛"},{"ingredient":"2 Metric Cups","value":"500 ml","icon":"🥛"},{"ingredient":"3 Metric Cups","value":"750 ml","icon":"🥛"},{"ingredient":"4 Metric Cups","value":"1000 ml (1 liter)","icon":"🥛"},{"ingredient":"Metric vs US Cup","value":"Metric cup = 250 ml, US cup ≈ 237 ml","icon":"🌍"},{"ingredient":"Where Metric Cup Used","value":"Australia, New Zealand, parts of Europe","icon":"📍"}]},"comparisonTable":{"title":"Metric Cup Conversion Table","columns":["Metric Cups","Milliliters (ml)","US Cups","Liters"],"rows":[{"Metric Cups":"1/4","Milliliters":"62.5 ml","US Cups":"0.26","Liters":"0.0625"},{"Metric Cups":"1/3","Milliliters":"83.3 ml","US Cups":"0.35","Liters":"0.0833"},{"Metric Cups":"1/2","Milliliters":"125 ml","US Cups":"0.53","Liters":"0.125"},{"Metric Cups":"2/3","Milliliters":"166.7 ml","US Cups":"0.70","Liters":"0.1667"},{"Metric Cups":"3/4","Milliliters":"187.5 ml","US Cups":"0.79","Liters":"0.1875"},{"Metric Cups":"1","Milliliters":"250 ml","US Cups":"1.06","Liters":"0.25"},{"Metric Cups":"1.5","Milliliters":"375 ml","US Cups":"1.59","Liters":"0.375"},{"Metric Cups":"2","Milliliters":"500 ml","US Cups":"2.11","Liters":"0.5"},{"Metric Cups":"3","Milliliters":"750 ml","US Cups":"3.17","Liters":"0.75"},{"Metric Cups":"4","Milliliters":"1000 ml","US Cups":"4.23","Liters":"1.0"}]},"scientificBackground":{"title":"Why Metric Cup to ML Conversion Can Be Confusing","description":"Although a metric cup seems simple, confusion arises because multiple cup standards exist worldwide. Understanding metric history, regional cup sizes, and their real cooking impact helps avoid measurement errors.","concepts":[{"concept":"Metric Cup Definition","explanation":"A metric cup is officially defined as exactly 250 milliliters. This comes from the metric system, where one liter is divided into four equal parts. Unlike informal cup measurements, the metric cup has a fixed, internationally recognized volume. It is widely used in Australia, New Zealand, and in modern metric-based cookbooks. Confusion happens because many people assume all cups are the same size, but that assumption breaks when recipes cross borders.","examples":["1 metric cup = 250 ml","4 metric cups = 1000 ml (1 liter)"],"impact":"Understanding the exact definition prevents under- or over-measuring liquids and dry ingredients."},{"concept":"Metric Cup vs US Cup","explanation":"The US customary cup is smaller than the metric cup. A US cup equals approximately 236.588 milliliters, which is about 13 ml less than a metric cup. While this difference may seem minor, it becomes significant in baking, where precise ratios of liquid to dry ingredients affect structure and texture. When a US cup is used instead of a metric cup, recipes may turn out drier, denser, or less flavorful.","examples":["1 US cup ≈ 237 ml","1 metric cup = 1.06 US cups"],"impact":"Using a US cup for a metric recipe can subtly but consistently alter results."},{"concept":"Metric Cup vs Imperial Cup","explanation":"The imperial cup, traditionally used in the UK and some Commonwealth countries, is larger than both the metric and US cups. An imperial cup holds about 284 milliliters. Older recipes or legacy cookbooks may still reference imperial cups, leading to oversized measurements when interpreted as metric cups. This is especially problematic for liquids like milk or water, where volume directly affects consistency.","examples":["1 imperial cup ≈ 284 ml","1 metric cup ≈ 0.88 imperial cups"],"impact":"Mistaking imperial cups for metric cups can result in overly wet batters or diluted flavors."},{"concept":"Why Cup Sizes Vary Globally","explanation":"Cup measurements developed long before international standardization. Different regions created household-based units that suited local needs. When the metric system was introduced, some countries adopted precise metric cups, while others retained traditional measures. As recipes spread online, these systems overlap. Without clear labeling, a simple word like 'cup' can mean different volumes depending on the author’s location.","examples":["Australia recipes usually assume metric cups","US recipes usually assume US cups"],"impact":"Checking recipe origin avoids silent measurement errors."},{"concept":"Metric Cups in Baking Science","explanation":"Baking is a chemical process where ratios matter more than individual quantities. A 5–6% difference in liquid volume can affect gluten development, starch gelatinization, and moisture retention. Using a metric cup ensures predictable hydration levels, especially for doughs, cakes, and custards. This is why professional bakers often convert cups to milliliters or grams before starting.","examples":["250 ml water hydrates flour differently than 237 ml","Repeated small errors compound in large batches"],"impact":"Precision leads to consistent texture and structure."},{"concept":"Liquids vs Dry Ingredients","explanation":"While metric cup to ml conversion is exact for liquids, dry ingredients introduce variability. Flour, sugar, and grains pack differently depending on handling. A metric cup of water is always 250 ml, but a metric cup of flour can vary in weight. This distinction explains why many modern recipes list milliliters for liquids and grams for dry ingredients.","examples":["1 metric cup water = 250 ml","1 metric cup flour ≠ fixed weight"],"impact":"Understanding this difference improves accuracy and repeatability."},{"concept":"Why 250 ml Became the Standard","explanation":"The 250 ml metric cup aligns neatly with the liter-based metric system. It simplifies scaling recipes up or down and integrates cleanly with metric measuring jugs. Four cups equal one liter, making mental math easier in both home and professional kitchens. This logical structure is one reason metric recipes are often preferred internationally.","examples":["2 metric cups = 500 ml","8 metric cups = 2 liters"],"impact":"Standardization reduces cognitive load and mistakes."},{"concept":"Practical Kitchen Implications","explanation":"In real kitchens, people often mix measuring tools unknowingly. A metric recipe measured with US cups introduces consistent under-measuring. Over time, this leads to frustration and inconsistent results. Using a clear metric measuring jug or converting everything to milliliters eliminates ambiguity and improves confidence while cooking.","examples":["Soup too thick due to less liquid","Cake batter too dense from under-measured milk"],"impact":"Correct measurement ensures intended taste, texture, and yield."}]},"commonMistakes":{"title":"Common Mistakes with Metric Cups","mistakes":[{"mistake":"Mixing metric cup with US cup","problem":"Recipes become slightly off, especially in baking where precision matters","solution":"Confirm recipe origin before measuring"},{"mistake":"Using random household cups","problem":"House cups vary widely in size and shape","solution":"Always use standardized measuring cups"},{"mistake":"Incorrect flour handling","problem":"Scooping compresses flour and increases weight","solution":"Spoon flour gently into cup and level"},{"mistake":"Ignoring ingredient type","problem":"Liquid and dry ingredients behave differently","solution":"Use proper tools or weigh ingredients"}]},"tips":{"title":"Tips for Accurate Measurement","tips":["Metric cup is defined as exactly 250 ml","Liquids should be measured in clear measuring jugs","Dry ingredients are best measured by weight","US cups are smaller than metric cups","Imperial cups are larger than metric cups","Digital scales remove guesswork completely","Small errors multiply in large recipes","Professional bakers prefer grams over cups"]}},"faqs":[{"question":"How many ml are in a metric cup?","answer":"One metric cup equals exactly 250 milliliters. This value is fixed and used as a standard in metric-based countries."},{"question":"Is metric cup the same as US cup?","answer":"No. A metric cup holds 250 ml, while a US cup holds about 237 ml. The difference seems small but can affect baking results."},{"question":"Why does cup size vary by country?","answer":"Cup sizes developed before global standardization. Different regions kept their own systems even after metric units became common."},{"question":"Which countries use metric cups?","answer":"Metric cups are commonly used in Australia, New Zealand, and in some European recipe standards."},{"question":"Can I substitute US cup for metric cup?","answer":"Yes, but you should increase the amount slightly. One metric cup is about 1.06 US cups."},{"question":"Why do bakers prefer milliliters or grams?","answer":"Because weight and exact volume remove variability caused by packing, humidity, and ingredient texture."},{"question":"Is metric cup officially defined?","answer":"Yes. In the metric system, one cup is defined as one quarter of a liter, which equals 250 ml."},{"question":"What is the safest way to follow international recipes?","answer":"Convert everything to grams or milliliters using reliable conversion values before cooking."}]}
+            {"id":"metric-cup-to-ml","slug":"metric-cup-to-ml","title":"Metric Cup to ML Converter","keywords":["metric cup to ml","metric cup conversion","cup to ml"],"description":"Convert metric cups to milliliters (ml) accurately for cooking and baking. This guide explains how metric cup measurements work, why they differ from US and imperial cups, and how to avoid common kitchen measurement mistakes using verified conversion values.","categories":["volume","cooking","baking","metric"],"subcategory":"measurement","featured":true,"manualRelatedLinks":[],"contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq"],"defaults":{"value":1,"from":"metric cup","to":"ml"},"supportedUnits":["metric cup","ml","liter","us cup","imperial cup","tablespoon"],"conversions":{"metric cup":{"metric cup":1,"ml":250,"liter":0.25,"us cup":1.06,"imperial cup":0.88,"tablespoon":16.67},"ml":{"metric cup":0.004,"ml":1,"liter":0.001,"us cup":0.0042,"imperial cup":0.0035,"tablespoon":0.0667},"liter":{"metric cup":4,"ml":1000,"liter":1,"us cup":4.23,"imperial cup":3.52,"tablespoon":66.67},"us cup":{"metric cup":0.94,"ml":236.59,"liter":0.2366,"us cup":1,"imperial cup":0.833,"tablespoon":16},"imperial cup":{"metric cup":1.14,"ml":284.13,"liter":0.2841,"us cup":1.2,"imperial cup":1,"tablespoon":19.2},"tablespoon":{"metric cup":0.06,"ml":15,"liter":0.015,"us cup":0.0625,"imperial cup":0.0521,"tablespoon":1}},"contentSections":{"hero":{"title":"Metric Cup to ML Converter","subtitle":"Clear and accurate metric cup conversions for everyday cooking","intro":"Cooking looks simple until measurements enter the picture. A metric cup is defined as exactly 250 milliliters, and this standard is used in many parts of the world including Australia, New Zealand, and several European regions. Understanding this conversion is important because not all cups are the same. A small difference of even 10–15 milliliters can change texture, moisture, and final taste in baking. This guide explains what a metric cup is, how it compares with other cup systems, and how to convert it to milliliters correctly every time."},"converter":{},"quickReference":{"title":"Quick Reference: Metric Cup to ML","items":[{"ingredient":"1 Metric Cup","value":"250 ml","icon":"🥛"},{"ingredient":"1/2 Metric Cup","value":"125 ml","icon":"🥛"},{"ingredient":"1/4 Metric Cup","value":"62.5 ml","icon":"🥛"},{"ingredient":"2 Metric Cups","value":"500 ml","icon":"🥛"},{"ingredient":"3 Metric Cups","value":"750 ml","icon":"🥛"},{"ingredient":"4 Metric Cups","value":"1000 ml (1 liter)","icon":"🥛"},{"ingredient":"Metric vs US Cup","value":"Metric cup = 250 ml, US cup ≈ 237 ml","icon":"🌍"},{"ingredient":"Where Metric Cup Used","value":"Australia, New Zealand, parts of Europe","icon":"📍"}]},"comparisonTable":{"title":"Metric Cup Conversion Table","columns":["Metric Cups","Milliliters (ml)","US Cups","Liters"],"rows":[{"Metric Cups":"1/4","Milliliters":"62.5 ml","US Cups":"0.26","Liters":"0.0625"},{"Metric Cups":"1/3","Milliliters":"83.3 ml","US Cups":"0.35","Liters":"0.0833"},{"Metric Cups":"1/2","Milliliters":"125 ml","US Cups":"0.53","Liters":"0.125"},{"Metric Cups":"2/3","Milliliters":"166.7 ml","US Cups":"0.70","Liters":"0.1667"},{"Metric Cups":"3/4","Milliliters":"187.5 ml","US Cups":"0.79","Liters":"0.1875"},{"Metric Cups":"1","Milliliters":"250 ml","US Cups":"1.06","Liters":"0.25"},{"Metric Cups":"1.5","Milliliters":"375 ml","US Cups":"1.59","Liters":"0.375"},{"Metric Cups":"2","Milliliters":"500 ml","US Cups":"2.11","Liters":"0.5"},{"Metric Cups":"3","Milliliters":"750 ml","US Cups":"3.17","Liters":"0.75"},{"Metric Cups":"4","Milliliters":"1000 ml","US Cups":"4.23","Liters":"1.0"}]},"scientificBackground":{"title":"Why Metric Cup to ML Conversion Can Be Confusing","description":"Although a metric cup seems simple, confusion arises because multiple cup standards exist worldwide. Understanding metric history, regional cup sizes, and their real cooking impact helps avoid measurement errors.","concepts":[{"concept":"Metric Cup Definition","explanation":"A metric cup is officially defined as exactly 250 milliliters. This comes from the metric system, where one liter is divided into four equal parts. Unlike informal cup measurements, the metric cup has a fixed, internationally recognized volume. It is widely used in Australia, New Zealand, and in modern metric-based cookbooks. Confusion happens because many people assume all cups are the same size, but that assumption breaks when recipes cross borders.","examples":["1 metric cup = 250 ml","4 metric cups = 1000 ml (1 liter)"],"impact":"Understanding the exact definition prevents under- or over-measuring liquids and dry ingredients."},{"concept":"Metric Cup vs US Cup","explanation":"The US customary cup is smaller than the metric cup. A US cup equals approximately 236.588 milliliters, which is about 13 ml less than a metric cup. While this difference may seem minor, it becomes significant in baking, where precise ratios of liquid to dry ingredients affect structure and texture. When a US cup is used instead of a metric cup, recipes may turn out drier, denser, or less flavorful.","examples":["1 US cup ≈ 237 ml","1 metric cup = 1.06 US cups"],"impact":"Using a US cup for a metric recipe can subtly but consistently alter results."},{"concept":"Metric Cup vs Imperial Cup","explanation":"The imperial cup, traditionally used in the UK and some Commonwealth countries, is larger than both the metric and US cups. An imperial cup holds about 284 milliliters. Older recipes or legacy cookbooks may still reference imperial cups, leading to oversized measurements when interpreted as metric cups. This is especially problematic for liquids like milk or water, where volume directly affects consistency.","examples":["1 imperial cup ≈ 284 ml","1 metric cup ≈ 0.88 imperial cups"],"impact":"Mistaking imperial cups for metric cups can result in overly wet batters or diluted flavors."},{"concept":"Why Cup Sizes Vary Globally","explanation":"Cup measurements developed long before international standardization. Different regions created household-based units that suited local needs. When the metric system was introduced, some countries adopted precise metric cups, while others retained traditional measures. As recipes spread online, these systems overlap. Without clear labeling, a simple word like 'cup' can mean different volumes depending on the author's location.","examples":["Australia recipes usually assume metric cups","US recipes usually assume US cups"],"impact":"Checking recipe origin avoids silent measurement errors."},{"concept":"Metric Cups in Baking Science","explanation":"Baking is a chemical process where ratios matter more than individual quantities. A 5–6% difference in liquid volume can affect gluten development, starch gelatinization, and moisture retention. Using a metric cup ensures predictable hydration levels, especially for doughs, cakes, and custards. This is why professional bakers often convert cups to milliliters or grams before starting.","examples":["250 ml water hydrates flour differently than 237 ml","Repeated small errors compound in large batches"],"impact":"Precision leads to consistent texture and structure."},{"concept":"Liquids vs Dry Ingredients","explanation":"While metric cup to ml conversion is exact for liquids, dry ingredients introduce variability. Flour, sugar, and grains pack differently depending on handling. A metric cup of water is always 250 ml, but a metric cup of flour can vary in weight. This distinction explains why many modern recipes list milliliters for liquids and grams for dry ingredients.","examples":["1 metric cup water = 250 ml","1 metric cup flour ≠ fixed weight"],"impact":"Understanding this difference improves accuracy and repeatability."},{"concept":"Why 250 ml Became the Standard","explanation":"The 250 ml metric cup aligns neatly with the liter-based metric system. It simplifies scaling recipes up or down and integrates cleanly with metric measuring jugs. Four cups equal one liter, making mental math easier in both home and professional kitchens. This logical structure is one reason metric recipes are often preferred internationally.","examples":["2 metric cups = 500 ml","8 metric cups = 2 liters"],"impact":"Standardization reduces cognitive load and mistakes."},{"concept":"Practical Kitchen Implications","explanation":"In real kitchens, people often mix measuring tools unknowingly. A metric recipe measured with US cups introduces consistent under-measuring. Over time, this leads to frustration and inconsistent results. Using a clear metric measuring jug or converting everything to milliliters eliminates ambiguity and improves confidence while cooking.","examples":["Soup too thick due to less liquid","Cake batter too dense from under-measured milk"],"impact":"Correct measurement ensures intended taste, texture, and yield."}]},"commonMistakes":{"title":"Common Mistakes with Metric Cups","mistakes":[{"mistake":"Mixing metric cup with US cup","consequence":"Metric cup and US cup are not the same size. Mixing them causes small measurement errors that can affect taste and texture, especially in baking recipes.","solution":"Confirm recipe origin before measuring"},{"mistake":"Using random household cups","consequence":"Household cups are not meant for measuring and size can vary a lot. This makes quantities unreliable and recipe results become inconsistent.","solution":"Always use standardized measuring cups"},{"mistake":"Incorrect flour handling","consequence":"Scooping flour directly packs it tightly into the cup. This adds extra flour and can make baked items dense or dry.","solution":"Spoon flour gently into cup and level"},{"mistake":"Ignoring ingredient type","consequence":"Liquid and dry ingredients do not measure the same by volume. Using wrong method can cause inaccurate amounts and affect final outcome.","solution":"Use proper tools or weigh ingredients"},{"mistake":"Not leveling the measuring cup","consequence":"Unleveled cups usually contain more ingredient than required. Even small excess can change balance of the recipe.","solution":"Level ingredients with a flat edge"},{"mistake":"Assuming all metric cups are identical","consequence":"Some regions use slightly different metric cup standards. Assuming all are same may lead to small but noticeable differences.","solution":"Check cup volume marking before use"},{"mistake":"Measuring liquids in dry cups","consequence":"Dry cups are harder to fill accurately with liquids. Spillage or overfilling can change liquid quantity.","solution":"Use liquid measuring cups for liquids"},{"mistake":"Relying only on volume for precision recipes","consequence":"Volume measurement can vary based on handling and ingredient density. This reduces accuracy for precise cooking or baking.","solution":"Use a kitchen scale for better accuracy"}]},"tips":{"title":"Tips for Accurate Measurement","tips":["Metric cup is defined as exactly 250 ml","Liquids should be measured in clear measuring jugs","Dry ingredients are best measured by weight","US cups are smaller than metric cups","Imperial cups are larger than metric cups","Digital scales remove guesswork completely","Small errors multiply in large recipes","Professional bakers prefer grams over cups"]}},"faqs":[{"question":"How many ml are in a metric cup?","answer":"One metric cup equals exactly 250 milliliters. This value is fixed and used as a standard in metric-based countries."},{"question":"Is metric cup the same as US cup?","answer":"No. A metric cup holds 250 ml, while a US cup holds about 237 ml. The difference seems small but can affect baking results."},{"question":"Why does cup size vary by country?","answer":"Cup sizes developed before global standardization. Different regions kept their own systems even after metric units became common."},{"question":"Which countries use metric cups?","answer":"Metric cups are commonly used in Australia, New Zealand, and in some European recipe standards."},{"question":"Can I substitute US cup for metric cup?","answer":"Yes, but you should increase the amount slightly. One metric cup is about 1.06 US cups."},{"question":"Why do bakers prefer milliliters or grams?","answer":"Because weight and exact volume remove variability caused by packing, humidity, and ingredient texture."},{"question":"Is metric cup officially defined?","answer":"Yes. In the metric system, one cup is defined as one quarter of a liter, which equals 250 ml."},{"question":"What is the safest way to follow international recipes?","answer":"Convert everything to grams or milliliters using reliable conversion values before cooking."}]}
             </script>
         </div>
     </section>
@@ -1762,7 +2032,7 @@ body {
             
             <div class="concept">
                 <h3>Why Cup Sizes Vary Globally</h3>
-                <p>Cup measurements developed long before international standardization. Different regions created household-based units that suited local needs. When the metric system was introduced, some countries adopted precise metric cups, while others retained traditional measures. As recipes spread online, these systems overlap. Without clear labeling, a simple word like 'cup' can mean different volumes depending on the author’s location.</p>
+                <p>Cup measurements developed long before international standardization. Different regions created household-based units that suited local needs. When the metric system was introduced, some countries adopted precise metric cups, while others retained traditional measures. As recipes spread online, these systems overlap. Without clear labeling, a simple word like 'cup' can mean different volumes depending on the author's location.</p>
                 
                 <div class="concept-examples">
                     <strong>Examples:</strong>
@@ -1844,7 +2114,7 @@ body {
                 
                 <div class="mistake-content">
                     <h3>Mixing metric cup with US cup</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
+                    <div class="mistake-consequence"><strong>Result:</strong> Metric cup and US cup are not the same size. Mixing them causes small measurement errors that can affect taste and texture, especially in baking recipes.</div>
                     <div class="mistake-solution"><strong>Solution:</strong> Confirm recipe origin before measuring</div>
                 </div>
             </div>
@@ -1853,7 +2123,7 @@ body {
                 
                 <div class="mistake-content">
                     <h3>Using random household cups</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
+                    <div class="mistake-consequence"><strong>Result:</strong> Household cups are not meant for measuring and size can vary a lot. This makes quantities unreliable and recipe results become inconsistent.</div>
                     <div class="mistake-solution"><strong>Solution:</strong> Always use standardized measuring cups</div>
                 </div>
             </div>
@@ -1862,7 +2132,7 @@ body {
                 
                 <div class="mistake-content">
                     <h3>Incorrect flour handling</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
+                    <div class="mistake-consequence"><strong>Result:</strong> Scooping flour directly packs it tightly into the cup. This adds extra flour and can make baked items dense or dry.</div>
                     <div class="mistake-solution"><strong>Solution:</strong> Spoon flour gently into cup and level</div>
                 </div>
             </div>
@@ -1871,8 +2141,44 @@ body {
                 
                 <div class="mistake-content">
                     <h3>Ignoring ingredient type</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
+                    <div class="mistake-consequence"><strong>Result:</strong> Liquid and dry ingredients do not measure the same by volume. Using wrong method can cause inaccurate amounts and affect final outcome.</div>
                     <div class="mistake-solution"><strong>Solution:</strong> Use proper tools or weigh ingredients</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Not leveling the measuring cup</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Unleveled cups usually contain more ingredient than required. Even small excess can change balance of the recipe.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Level ingredients with a flat edge</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Assuming all metric cups are identical</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Some regions use slightly different metric cup standards. Assuming all are same may lead to small but noticeable differences.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Check cup volume marking before use</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Measuring liquids in dry cups</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Dry cups are harder to fill accurately with liquids. Spillage or overfilling can change liquid quantity.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Use liquid measuring cups for liquids</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Relying only on volume for precision recipes</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Volume measurement can vary based on handling and ingredient density. This reduces accuracy for precise cooking or baking.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Use a kitchen scale for better accuracy</div>
                 </div>
             </div>
             
@@ -2012,7 +2318,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -2025,15 +2331,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2057,6 +2373,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

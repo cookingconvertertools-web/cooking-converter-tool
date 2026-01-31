@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>What Is 180 C in an Oven? | Cooking Converter Pro</title>
     <meta name="description" content="Understand what 180 C means in an oven for baking, roasting, fan oven adjustments, gas mark and Fahrenheit equivalents. Tips and common mistakes included.">
-    <meta name="keywords" content="What Is 180 C in an Oven?">
+    <meta name="keywords" content="what gas mark is 180c,180c gas mark,180c oven gas mark,gas mark for 180 degrees,180c fan oven gas mark">
     <meta name="author" content="Cooking Converter Pro">
 
     <!-- Open Graph / Facebook -->
@@ -70,8 +70,8 @@
   "name": "What Is 180 C in an Oven?",
   "description": "Understand what 180 C means in an oven for baking, roasting, fan oven adjustments, gas mark and Fahrenheit equivalents. Tips and common mistakes included.",
   "url": "https://bakingmath.org/converters/what-is-180-c-in-an-oven/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"what-is-180-c-in-an-oven","slug":"what-is-180-c-in-an-oven","title":"What Is 180 C in an Oven?","description":"Understand what 180 C means in an oven for baking, roasting, fan oven adjustments, gas mark and Fahrenheit equivalents. Tips and common mistakes included.","categories":["temperature"],"subcategory":"oven","featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq"],"defaults":{"value":180,"from":"celsius","to":"gas mark"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"contentSections":{"hero":{"title":"What Is 180 C in an Oven?","subtitle":"Learn 180 C baking and cooking meaning for home ovens","intro":"180 C is very common baking temp. Used for cakes, cookies, roasting. Learn what it means in gas mark, Fahrenheit, fan oven, and avoid mistakes."},"quickReference":{"title":"Quick Reference for 180 C","items":[{"ingredient":"180 C","gasMark":4,"fanCelsius":160,"fahrenheit":350,"icon":"🔥"},{"ingredient":"160 C","gasMark":3,"fanCelsius":140,"fahrenheit":320,"icon":"🔥"},{"ingredient":"190 C","gasMark":5,"fanCelsius":170,"fahrenheit":374,"icon":"🔥"},{"ingredient":"200 C","gasMark":6,"fanCelsius":180,"fahrenheit":392,"icon":"🔥"},{"ingredient":"220 C","gasMark":7,"fanCelsius":200,"fahrenheit":428,"icon":"🔥"},{"ingredient":"230 C","gasMark":8,"fanCelsius":210,"fahrenheit":446,"icon":"🔥"},{"ingredient":"240 C","gasMark":9,"fanCelsius":220,"fahrenheit":464,"icon":"🔥"},{"ingredient":"250 C","gasMark":10,"fanCelsius":230,"fahrenheit":482,"icon":"🔥"},{"ingredient":"170 C","gasMark":3.5,"fanCelsius":150,"fahrenheit":338,"icon":"🔥"},{"ingredient":"210 C","gasMark":6.5,"fanCelsius":190,"fahrenheit":410,"icon":"🔥"}]},"comparisonTable":{"title":"Gas Mark vs Celsius and Fahrenheit","columns":["Gas Mark","°C","Fan °C","°F"],"rows":[{"Gas Mark":1,"°C":140,"Fan °C":120,"°F":275},{"Gas Mark":1.5,"°C":145,"Fan °C":125,"°F":293},{"Gas Mark":2,"°C":150,"Fan °C":130,"°F":300},{"Gas Mark":3,"°C":165,"Fan °C":145,"°F":330},{"Gas Mark":4,"°C":180,"Fan °C":160,"°F":350},{"Gas Mark":5,"°C":190,"Fan °C":170,"°F":374},{"Gas Mark":6,"°C":200,"Fan °C":180,"°F":392},{"Gas Mark":7,"°C":220,"Fan °C":200,"°F":428},{"Gas Mark":8,"°C":230,"Fan °C":210,"°F":446},{"Gas Mark":9,"°C":240,"Fan °C":220,"°F":464}]},"scientificBackground":{"title":"Why 180 C is Important in Oven","concepts":[{"concept":"Medium Heat Cooking","explanation":"180 C is medium heat. Not too hot, not too low. Many home recipes prefer it. Cake, cookies, roast, lasagna — all works. Oven cooks food inside without burning outside. If heat too high, outside burns. Too low, inside raw. People sometimes confuse fan oven, forget lower temp."},{"concept":"Fan Oven Adjustment","explanation":"Fan ovens blow hot air. 180 C in conventional oven becomes too hot in fan oven. Best is 160 C. Otherwise food burns or dries. Recipes rarely tell fan oven adjustment, so people make mistake."},{"concept":"Gas Mark Conversion","explanation":"Gas ovens use gas mark. Gas mark 4 equals 180 C. Old UK cookbooks often use gas mark, modern recipes use Celsius. People forget difference, set wrong oven. Cakes get burnt bottom, cookies too dark."},{"concept":"Fahrenheit Equivalent","explanation":"350 F equals 180 C. US recipes mostly Fahrenheit. People confuse F with C, oven set too hot or too low. Always check number system. 180 C recipes fail if oven in F set 180."},{"concept":"Heat Penetration","explanation":"180 C heat penetrates food slow enough inside cooks fully, outside browns good. Too high, outside cooks faster than inside. Too low, inside raw, outside not brown. Baking bread or cake depends on this."},{"concept":"Rack Position","explanation":"Middle rack best for 180 C. Top rack close to heat, may burn top. Bottom rack, bottom cooks faster, top not done. Many home bakers forget rack, bake uneven food."},{"concept":"Pan Material","explanation":"Dark metal pans absorb more heat. 180 C on dark pan cooks faster. Glass or light pans slower. People use same temp for all, end with burnt cake or slow bake."},{"concept":"Food Thickness","explanation":"Thick loaf or roast takes longer to cook at 180 C. Thin cookies finish fast. Important to check cooking time, not only temp. Home cooks ignore thickness, cake inside raw."},{"concept":"Oven Accuracy","explanation":"Many ovens inaccurate ±5–10 C. Setting 180 C may be 185 C real. Thermometer helpful. People bake by dial only, food burns sometimes."},{"concept":"Cumulative Heat Effect","explanation":"When oven has multiple trays, heat inside may drop when door open. 180 C can become lower temporarily. People check recipes time only, forget temp effect, bake uneven."}]},"commonMistakes":{"title":"Common Mistakes","mistakes":[{"mistake":"Using 180 C same for fan oven","problem":"Food burns faster","solution":"Reduce to 160 C"},{"mistake":"Confusing Fahrenheit and Celsius","problem":"Wrong oven temp, recipe fails","solution":"Check unit carefully"},{"mistake":"Not preheating oven","problem":"Uneven cooking, bottom raw","solution":"Preheat fully"},{"mistake":"Wrong rack position","problem":"Top burns, bottom raw","solution":"Use middle rack"},{"mistake":"Ignoring pan type","problem":"Dark pan burns, light pan slow","solution":"Adjust time if needed"},{"mistake":"Overcrowding oven","problem":"Air cannot circulate, uneven bake","solution":"Leave space between trays"},{"mistake":"Not checking food thickness","problem":"Inside raw, outside cooked","solution":"Adjust time for thick food"}]},"tips":{"title":"Useful Tips","tips":["Always preheat oven to full 180 C","Use oven thermometer for accuracy","Reduce temp by 20 C for fan oven","Check food 5–10 minutes early","Rotate trays for even bake","Use middle rack for balanced cooking","Adjust time for dark or light pans","Adjust time for thick or thin food","Do not open door too much while baking","Follow recipe oven type carefully"]}},"faqs":[{"question":"What is 180 C in an oven?","answer":"180 C is medium oven heat. Used for cakes, cookies, roasting food."},{"question":"Is 180 C hot or medium?","answer":"It is medium heat. Not very hot, not low."},{"question":"What is 180 C in fan oven?","answer":"In fan oven, reduce to 160 C to avoid burning."},{"question":"What is 180 C in gas oven?","answer":"It equals gas mark 4."},{"question":"What is 180 C in Fahrenheit?","answer":"180 C equals 350 F."},{"question":"Can I bake cake at 180 C?","answer":"Yes, most cakes bake perfectly at 180 C."},{"question":"Does every oven cook same at 180 C?","answer":"No, ovens vary. Always check food and adjust time."},{"question":"Why recipes use 180 C so much?","answer":"Because it is safe and balanced heat for many foods."}]}
+            {"id":"what-is-180-c-in-an-oven","slug":"what-is-180-c-in-an-oven","title":"What Is 180 C in an Oven?","description":"Understand what 180 C means in an oven for baking, roasting, fan oven adjustments, gas mark and Fahrenheit equivalents. Tips and common mistakes included.","categories":["temperature"],"subcategory":"oven","keywords":["what gas mark is 180c","180c gas mark","180c oven gas mark","gas mark for 180 degrees","180c fan oven gas mark"],"manualRelatedLinks":["celsius-to-fahrenheit-oven-chart","tbsp-to-gram","grams-to-cups"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","visualChart","stepByStep","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":180,"from":"celsius","to":"gas mark"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"contentSections":{"hero":{"title":"What Is 180 C in an Oven?","subtitle":"Learn 180 C baking and cooking meaning for home ovens","intro":"180 C is very common baking temp. Used for cakes, cookies, roasting. Learn what it means in gas mark, Fahrenheit, fan oven, and avoid mistakes."},"quickReference":{"title":"Quick Reference for 180 C","items":[{"ingredient":"180 C","gasMark":4,"fanCelsius":160,"fahrenheit":350,"icon":"🔥"},{"ingredient":"160 C","gasMark":3,"fanCelsius":140,"fahrenheit":320,"icon":"🔥"},{"ingredient":"190 C","gasMark":5,"fanCelsius":170,"fahrenheit":374,"icon":"🔥"},{"ingredient":"200 C","gasMark":6,"fanCelsius":180,"fahrenheit":392,"icon":"🔥"},{"ingredient":"220 C","gasMark":7,"fanCelsius":200,"fahrenheit":428,"icon":"🔥"},{"ingredient":"230 C","gasMark":8,"fanCelsius":210,"fahrenheit":446,"icon":"🔥"},{"ingredient":"240 C","gasMark":9,"fanCelsius":220,"fahrenheit":464,"icon":"🔥"},{"ingredient":"250 C","gasMark":10,"fanCelsius":230,"fahrenheit":482,"icon":"🔥"},{"ingredient":"170 C","gasMark":3.5,"fanCelsius":150,"fahrenheit":338,"icon":"🔥"},{"ingredient":"210 C","gasMark":6.5,"fanCelsius":190,"fahrenheit":410,"icon":"🔥"}]},"comparisonTable":{"title":"Gas Mark vs Celsius and Fahrenheit","columns":["Gas Mark","°C","Fan °C","°F"],"rows":[{"Gas Mark":1,"°C":140,"Fan °C":120,"°F":275},{"Gas Mark":1.5,"°C":145,"Fan °C":125,"°F":293},{"Gas Mark":2,"°C":150,"Fan °C":130,"°F":300},{"Gas Mark":3,"°C":165,"Fan °C":145,"°F":330},{"Gas Mark":4,"°C":180,"Fan °C":160,"°F":350},{"Gas Mark":5,"°C":190,"Fan °C":170,"°F":374},{"Gas Mark":6,"°C":200,"Fan °C":180,"°F":392},{"Gas Mark":7,"°C":220,"Fan °C":200,"°F":428},{"Gas Mark":8,"°C":230,"Fan °C":210,"°F":446},{"Gas Mark":9,"°C":240,"Fan °C":220,"°F":464}]},"visualChart":{"title":"Visual Guide to Understanding 180 Centigrade Oven Temperatures for Baking and Roasting","items":[{"name":"Low Temperature Baking","weight":"140–160 Centigrade corresponds to gentle heat for delicate baking like meringues or sponge cakes","comparison":"These lower temperatures are ideal for items that require slow cooking and even browning without risk of burning the exterior","visual":"🧁","color":"#ffe5b4"},{"name":"Medium Temperature Baking","weight":"165–190 Centigrade corresponds to 330–374 Fahrenheit, which includes the common 180 Centigrade range used in many home recipes","comparison":"Perfect for standard cakes, cookies, muffins, lasagna, or roasting vegetables; ensures the inside cooks fully while the outside develops a golden-brown crust","visual":"🍪","color":"#ffd699"},{"name":"High Temperature Roasting","weight":"200–230 Centigrade corresponds to 392–446 Fahrenheit, suitable for bread, meat, or crisping vegetables","comparison":"Higher heat produces caramelization and browning, but the internal temperature of thick foods must be monitored to prevent undercooked centers","visual":"🍖","color":"#ffb84d"},{"name":"Very High Temperature Cooking","weight":"240–250 Centigrade corresponds to 464–482 Fahrenheit, mainly used for professional ovens or quick-searing pizza","comparison":"Extreme temperatures allow rapid crust formation and high heat roasting; delicate baked goods may burn, so careful monitoring is required","visual":"🍕","color":"#ff9900"}]},"stepByStep":{"title":"Step-by-Step Guide to Baking or Cooking at 180 Centigrade in an Oven","steps":[{"number":1,"title":"Identify the Recipe Temperature in Centigrade","content":"The first step is always to carefully read your recipe and confirm that the temperature is provided in Centigrade. Many recipes list temperatures in Fahrenheit or Gas Mark, so ensuring that 180 Centigrade is the intended value is essential to avoid undercooked or burnt food."},{"number":2,"title":"Preheat the Oven Fully to 180 Centigrade","content":"Before placing any ingredients inside, allow the oven to reach a full 180 Centigrade, using either the oven’s indicator light or a reliable oven thermometer. Preheating ensures that the heat penetrates the food evenly and that baking times are accurate."},{"number":3,"title":"Adjust for Fan or Convection Oven if Necessary","content":"If your oven uses a fan or convection mode, reduce the temperature by approximately 20 Centigrade from the conventional 180 Centigrade. This adjustment prevents the exterior from cooking too quickly while allowing the inside to cook thoroughly."},{"number":4,"title":"Choose the Correct Rack Position","content":"Place baking trays on the middle rack for the most even heat distribution. Using the top rack can burn the tops of baked goods, while the bottom rack may cook the bottom too quickly and leave the top undercooked."},{"number":5,"title":"Monitor Food and Adjust Time for Pan Type and Thickness","content":"Consider whether you are using dark, metal, or glass pans and whether your food is thick or thin. Dark pans absorb more heat and may cook food faster, while thicker items require longer baking times at 180 Centigrade. Adjust timing as necessary and check with a skewer, thermometer, or visual inspection."},{"number":6,"title":"Rotate Trays for Even Baking","content":"Halfway through the cooking process, rotate trays front to back to compensate for uneven heating within the oven. This step is especially important when baking multiple trays or larger items at 180 Centigrade."},{"number":7,"title":"Use Oven Thermometer to Ensure Accuracy","content":"Even when the oven is set to 180 Centigrade, actual temperatures can vary by ±5–10 Centigrade. An oven thermometer provides precise feedback, ensuring that your food cooks at the correct temperature and achieves the intended texture and doneness."}]},"scientificBackground":{"title":"Why 180 C is Important in Oven","concepts":[{"concept":"Medium Heat Cooking","explanation":"180 C is medium heat. Not too hot, not too low. Many home recipes prefer it. Cake, cookies, roast, lasagna — all works. Oven cooks food inside without burning outside. If heat too high, outside burns. Too low, inside raw. People sometimes confuse fan oven, forget lower temp."},{"concept":"Fan Oven Adjustment","explanation":"Fan ovens blow hot air. 180 C in conventional oven becomes too hot in fan oven. Best is 160 C. Otherwise food burns or dries. Recipes rarely tell fan oven adjustment, so people make mistake."},{"concept":"Gas Mark Conversion","explanation":"Gas ovens use gas mark. Gas mark 4 equals 180 C. Old UK cookbooks often use gas mark, modern recipes use Celsius. People forget difference, set wrong oven. Cakes get burnt bottom, cookies too dark."},{"concept":"Fahrenheit Equivalent","explanation":"350 F equals 180 C. US recipes mostly Fahrenheit. People confuse F with C, oven set too hot or too low. Always check number system. 180 C recipes fail if oven in F set 180."},{"concept":"Heat Penetration","explanation":"180 C heat penetrates food slow enough inside cooks fully, outside browns good. Too high, outside cooks faster than inside. Too low, inside raw, outside not brown. Baking bread or cake depends on this."},{"concept":"Rack Position","explanation":"Middle rack best for 180 C. Top rack close to heat, may burn top. Bottom rack, bottom cooks faster, top not done. Many home bakers forget rack, bake uneven food."},{"concept":"Pan Material","explanation":"Dark metal pans absorb more heat. 180 C on dark pan cooks faster. Glass or light pans slower. People use same temp for all, end with burnt cake or slow bake."},{"concept":"Food Thickness","explanation":"Thick loaf or roast takes longer to cook at 180 C. Thin cookies finish fast. Important to check cooking time, not only temp. Home cooks ignore thickness, cake inside raw."},{"concept":"Oven Accuracy","explanation":"Many ovens inaccurate ±5–10 C. Setting 180 C may be 185 C real. Thermometer helpful. People bake by dial only, food burns sometimes."},{"concept":"Cumulative Heat Effect","explanation":"When oven has multiple trays, heat inside may drop when door open. 180 C can become lower temporarily. People check recipes time only, forget temp effect, bake uneven."}]},"commonMistakes":{"title":"Common Mistakes When Baking or Cooking at 180 Centigrade in an Oven","mistakes":[{"mistake":"Using 180 Centigrade without adjusting for fan or convection oven","consequence":"Many home bakers set their oven to 180 Centigrade for recipes designed for conventional ovens, forgetting that fan ovens circulate hot air more efficiently, which can lead to food burning on the outside while the inside cooks unevenly.","solution":"Always reduce the oven temperature by approximately 20 Centigrade when using a fan oven, and monitor the cooking progress carefully with a thermometer to ensure proper heat penetration throughout your food."},{"mistake":"Confusing Fahrenheit and Centigrade when setting the oven","consequence":"A common error is assuming 180 Centigrade is the same as 180 Fahrenheit. This mistake causes the oven to be far too cool or excessively hot, resulting in baked goods with burnt edges, undercooked centers, or uneven texture.","solution":"Check the recipe carefully for the unit used, convert accurately using a Centigrade to Fahrenheit conversion chart if necessary, and always confirm with an oven thermometer."},{"mistake":"Not preheating the oven to the full 180 Centigrade","consequence":"Placing food in an oven that has not fully reached 180 Centigrade leads to uneven cooking and can affect rising in cakes or browning in roasted vegetables.","solution":"Preheat the oven fully to 180 Centigrade before putting in your ingredients and wait for the indicator or thermometer to confirm the set temperature is reached."},{"mistake":"Using incorrect rack positions when baking at 180 Centigrade","consequence":"Placing baking trays too close to the top heat source can burn the tops of cakes or cookies, while placing them on the bottom rack can result in undercooked tops and uneven browning.","solution":"Use the middle rack for most baking at 180 Centigrade, and rotate trays halfway through cooking to ensure even heat exposure."},{"mistake":"Ignoring the impact of pan type and color at 180 Centigrade","consequence":"Dark or metal pans absorb more heat, cooking food faster, whereas glass or light-colored pans cook slower. Using 180 Centigrade indiscriminately can lead to burnt edges or undercooked interiors.","solution":"Adjust baking times or slightly lower the temperature for darker pans and monitor cooking closely."},{"mistake":"Overcrowding the oven when baking at 180 Centigrade","consequence":"Placing too many trays or items at once reduces airflow and heat circulation, resulting in uneven cooking and inconsistent browning across the oven.","solution":"Leave space between trays and bake in batches if necessary to maintain proper temperature and airflow at 180 Centigrade."},{"mistake":"Not considering food thickness or density when baking at 180 Centigrade","consequence":"Thicker cakes, loaves, or roasts require longer baking times at 180 Centigrade, while thin cookies or pastries finish quickly. Ignoring thickness causes undercooked centers or overbrowned exteriors.","solution":"Adjust baking time according to the food's size and thickness, checking internal temperature where possible for optimal results."}]},"tips":{"title":"Practical and Detailed Tips for Baking or Cooking at 180 Centigrade in an Oven","items":["Always preheat your oven fully to 180 Centigrade before placing any food inside, because starting in a cold oven can lead to uneven cooking and prevent baked goods from rising properly, which is especially critical for delicate cakes, soufflés, and pastries.","Use a reliable oven thermometer to check the actual temperature inside your oven, since many ovens can vary by ±5–10 Centigrade; this ensures that 180 Centigrade is truly reached and maintained throughout the entire cooking process.","When using a fan or convection oven, reduce the temperature by approximately 20 Centigrade from 180 Centigrade to account for faster heat circulation, preventing the outer layers of cakes, cookies, or roasted vegetables from burning before the interior is fully cooked.","Always place baking trays on the middle rack for even heat distribution; top racks can over-brown tops, bottom racks may undercook tops, and rotating trays halfway through baking ensures consistent cooking at 180 Centigrade.","Consider the type and color of baking pans when cooking at 180 Centigrade: dark or metal pans absorb more heat and cook faster, while glass or light-colored pans cook slower, so adjust baking times accordingly to avoid burning or undercooking.","Do not overcrowd the oven when baking at 180 Centigrade, because leaving adequate space between trays allows hot air to circulate efficiently, resulting in even cooking and proper browning across all items.","For thick or dense foods like loaves, roasts, or layered cakes, add extra cooking time at 180 Centigrade, while thinner or smaller items like cookies or cupcakes require less time; always check for doneness using a skewer or thermometer.","Rotate trays or pans halfway through baking at 180 Centigrade to compensate for any hot spots in the oven and ensure consistent browning and thorough cooking of all items.","Avoid opening the oven door frequently while baking at 180 Centigrade, as this causes heat loss and temporarily lowers the temperature, which can result in unevenly baked goods or undercooked centers.","Always verify the recipe origin and intended oven type; if a recipe specifies Fahrenheit or Gas Mark, use accurate conversions to Centigrade to ensure that the 180 Centigrade setting achieves correct cooking and baking results."]},"related":{"title":"Related Converters","links":["c-to-gas-mark-conversion","what-gas-mark-is-180c","grams-to-cups"]}},"faqs":[{"question":"What does 180 Centigrade mean in a conventional oven?","answer":"180 Centigrade is considered medium heat in most conventional home ovens, ideal for baking cakes, cookies, pastries, and roasting vegetables evenly without burning the exterior. This temperature allows food to cook through while achieving proper browning and texture."},{"question":"How should I adjust 180 Centigrade for a fan or convection oven?","answer":"In a fan or convection oven, 180 Centigrade should be reduced to approximately 160 Centigrade to compensate for faster heat circulation. Failing to adjust can result in overcooked or burnt exteriors while the interior remains undercooked, especially for baked goods that require precise timing."},{"question":"What Gas Mark corresponds to 180 Centigrade?","answer":"180 Centigrade corresponds to Gas Mark 4 in most UK ovens. It is important to note that older cookbooks or recipes may rely solely on Gas Mark numbers, and using an oven thermometer or conversion chart ensures the correct temperature is reached and maintained."},{"question":"What is 180 Centigrade in Fahrenheit?","answer":"180 Centigrade is equivalent to 350 Fahrenheit. This is useful for following US recipes or converting older recipes from Fahrenheit to Centigrade for accuracy in baking or roasting."},{"question":"Is 180 Centigrade suitable for all types of baking?","answer":"180 Centigrade is suitable for a wide range of baking including cakes, cookies, muffins, lasagna, and roasting vegetables. However, adjustments may be needed for fan ovens, dark baking trays, very thick or very thin foods, and when using multiple racks to ensure even heat distribution."},{"question":"How can I ensure even cooking at 180 Centigrade?","answer":"To ensure even cooking at 180 Centigrade, preheat the oven fully, use the middle rack, rotate trays halfway through baking, and consider the pan type and food thickness. Using an oven thermometer provides additional precision, ensuring the temperature remains consistent throughout the cooking process."},{"question":"Why do some recipes fail at 180 Centigrade?","answer":"Recipes can fail at 180 Centigrade if the oven type is not considered (fan vs conventional), the oven is not properly preheated, food is too thick or too thin for the recommended time, or incorrect pan types are used. Always follow detailed tips and monitor the food carefully to avoid undercooked centers or overbrowned edges."},{"question":"Can I bake delicate pastries at 180 Centigrade?","answer":"Yes, delicate pastries can be baked at 180 Centigrade, but special attention must be paid to fan ovens, oven preheating, and proper tray placement to avoid burning or uneven cooking. Using lower racks or protective baking sheets may also help achieve the best results."},{"question":"How long should I typically bake at 180 Centigrade?","answer":"Baking times at 180 Centigrade vary depending on the type, size, and thickness of the food. Cakes and cookies may take 20–40 minutes, while thicker loaves or roasted meats can require 50–90 minutes. Always check for doneness with a skewer, thermometer, or visual cues."},{"question":"What are the most common errors when using 180 Centigrade?","answer":"The most common errors include confusing Centigrade with Fahrenheit, not preheating the oven to the full 180 Centigrade, failing to reduce for fan ovens, improper rack placement, ignoring pan color or type, overcrowding the oven, and not considering food thickness. These mistakes can result in uneven cooking, burnt edges, or undercooked interiors."}]}
             </script>
         </div>
     </section>
@@ -1735,6 +2005,139 @@ body {
         </div>
     </section>
     
+    <section class="content-section visual-chart">
+        <div class="section-header">
+            <h2>Visual Guide to Understanding 180 Centigrade Oven Temperatures for Baking and Roasting</h2>
+            
+        </div>
+        <div class="visual-chart-container">
+            
+            <div class="visual-item" style="border-color: #ffe5b4;">
+                <div class="visual-icon">🧁</div>
+                <div class="visual-content">
+                    <h3>Low Temperature Baking</h3>
+                    <div class="visual-weight">140–160 Centigrade corresponds to gentle heat for delicate baking like meringues or sponge cakes</div>
+                    <div class="visual-comparison">These lower temperatures are ideal for items that require slow cooking and even browning without risk of burning the exterior</div>
+                </div>
+            </div>
+            
+            <div class="visual-item" style="border-color: #ffd699;">
+                <div class="visual-icon">🍪</div>
+                <div class="visual-content">
+                    <h3>Medium Temperature Baking</h3>
+                    <div class="visual-weight">165–190 Centigrade corresponds to 330–374 Fahrenheit, which includes the common 180 Centigrade range used in many home recipes</div>
+                    <div class="visual-comparison">Perfect for standard cakes, cookies, muffins, lasagna, or roasting vegetables; ensures the inside cooks fully while the outside develops a golden-brown crust</div>
+                </div>
+            </div>
+            
+            <div class="visual-item" style="border-color: #ffb84d;">
+                <div class="visual-icon">🍖</div>
+                <div class="visual-content">
+                    <h3>High Temperature Roasting</h3>
+                    <div class="visual-weight">200–230 Centigrade corresponds to 392–446 Fahrenheit, suitable for bread, meat, or crisping vegetables</div>
+                    <div class="visual-comparison">Higher heat produces caramelization and browning, but the internal temperature of thick foods must be monitored to prevent undercooked centers</div>
+                </div>
+            </div>
+            
+            <div class="visual-item" style="border-color: #ff9900;">
+                <div class="visual-icon">🍕</div>
+                <div class="visual-content">
+                    <h3>Very High Temperature Cooking</h3>
+                    <div class="visual-weight">240–250 Centigrade corresponds to 464–482 Fahrenheit, mainly used for professional ovens or quick-searing pizza</div>
+                    <div class="visual-comparison">Extreme temperatures allow rapid crust formation and high heat roasting; delicate baked goods may burn, so careful monitoring is required</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <section class="content-section step-by-step">
+        <div class="section-header">
+            <h2>Step-by-Step Guide to Baking or Cooking at 180 Centigrade in an Oven</h2>
+            
+        </div>
+        <div class="steps-container">
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Identify the Recipe Temperature in Centigrade</h3>
+                    <p>The first step is always to carefully read your recipe and confirm that the temperature is provided in Centigrade. Many recipes list temperatures in Fahrenheit or Gas Mark, so ensuring that 180 Centigrade is the intended value is essential to avoid undercooked or burnt food.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Preheat the Oven Fully to 180 Centigrade</h3>
+                    <p>Before placing any ingredients inside, allow the oven to reach a full 180 Centigrade, using either the oven’s indicator light or a reliable oven thermometer. Preheating ensures that the heat penetrates the food evenly and that baking times are accurate.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Adjust for Fan or Convection Oven if Necessary</h3>
+                    <p>If your oven uses a fan or convection mode, reduce the temperature by approximately 20 Centigrade from the conventional 180 Centigrade. This adjustment prevents the exterior from cooking too quickly while allowing the inside to cook thoroughly.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Choose the Correct Rack Position</h3>
+                    <p>Place baking trays on the middle rack for the most even heat distribution. Using the top rack can burn the tops of baked goods, while the bottom rack may cook the bottom too quickly and leave the top undercooked.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Monitor Food and Adjust Time for Pan Type and Thickness</h3>
+                    <p>Consider whether you are using dark, metal, or glass pans and whether your food is thick or thin. Dark pans absorb more heat and may cook food faster, while thicker items require longer baking times at 180 Centigrade. Adjust timing as necessary and check with a skewer, thermometer, or visual inspection.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>Rotate Trays for Even Baking</h3>
+                    <p>Halfway through the cooking process, rotate trays front to back to compensate for uneven heating within the oven. This step is especially important when baking multiple trays or larger items at 180 Centigrade.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <h3>Use Oven Thermometer to Ensure Accuracy</h3>
+                    <p>Even when the oven is set to 180 Centigrade, actual temperatures can vary by ±5–10 Centigrade. An oven thermometer provides precise feedback, ensuring that your food cooks at the correct temperature and achieves the intended texture and doneness.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
     <section class="content-section scientific-background">
         <div class="section-header">
             <h2>Why 180 C is Important in Oven</h2>
@@ -1817,7 +2220,7 @@ body {
     
     <section class="content-section common-mistakes">
         <div class="section-header">
-            <h2>Common Mistakes</h2>
+            <h2>Common Mistakes When Baking or Cooking at 180 Centigrade in an Oven</h2>
             
         </div>
         <div class="mistakes-container">
@@ -1825,158 +2228,184 @@ body {
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Using 180 C same for fan oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Reduce to 160 C</div>
+                    <h3>Using 180 Centigrade without adjusting for fan or convection oven</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Many home bakers set their oven to 180 Centigrade for recipes designed for conventional ovens, forgetting that fan ovens circulate hot air more efficiently, which can lead to food burning on the outside while the inside cooks unevenly.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Always reduce the oven temperature by approximately 20 Centigrade when using a fan oven, and monitor the cooking progress carefully with a thermometer to ensure proper heat penetration throughout your food.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Confusing Fahrenheit and Celsius</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Check unit carefully</div>
+                    <h3>Confusing Fahrenheit and Centigrade when setting the oven</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> A common error is assuming 180 Centigrade is the same as 180 Fahrenheit. This mistake causes the oven to be far too cool or excessively hot, resulting in baked goods with burnt edges, undercooked centers, or uneven texture.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Check the recipe carefully for the unit used, convert accurately using a Centigrade to Fahrenheit conversion chart if necessary, and always confirm with an oven thermometer.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Not preheating oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Preheat fully</div>
+                    <h3>Not preheating the oven to the full 180 Centigrade</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Placing food in an oven that has not fully reached 180 Centigrade leads to uneven cooking and can affect rising in cakes or browning in roasted vegetables.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Preheat the oven fully to 180 Centigrade before putting in your ingredients and wait for the indicator or thermometer to confirm the set temperature is reached.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Wrong rack position</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Use middle rack</div>
+                    <h3>Using incorrect rack positions when baking at 180 Centigrade</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Placing baking trays too close to the top heat source can burn the tops of cakes or cookies, while placing them on the bottom rack can result in undercooked tops and uneven browning.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Use the middle rack for most baking at 180 Centigrade, and rotate trays halfway through cooking to ensure even heat exposure.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Ignoring pan type</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Adjust time if needed</div>
+                    <h3>Ignoring the impact of pan type and color at 180 Centigrade</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Dark or metal pans absorb more heat, cooking food faster, whereas glass or light-colored pans cook slower. Using 180 Centigrade indiscriminately can lead to burnt edges or undercooked interiors.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Adjust baking times or slightly lower the temperature for darker pans and monitor cooking closely.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Overcrowding oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Leave space between trays</div>
+                    <h3>Overcrowding the oven when baking at 180 Centigrade</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Placing too many trays or items at once reduces airflow and heat circulation, resulting in uneven cooking and inconsistent browning across the oven.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Leave space between trays and bake in batches if necessary to maintain proper temperature and airflow at 180 Centigrade.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Not checking food thickness</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Adjust time for thick food</div>
+                    <h3>Not considering food thickness or density when baking at 180 Centigrade</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Thicker cakes, loaves, or roasts require longer baking times at 180 Centigrade, while thin cookies or pastries finish quickly. Ignoring thickness causes undercooked centers or overbrowned exteriors.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Adjust baking time according to the food's size and thickness, checking internal temperature where possible for optimal results.</div>
                 </div>
             </div>
             
         </div>
     </section>
     
-        <section class="content-section tips-section">
-            <h2>Useful Tips</h2>
-            <ul class="tips-list">
-                <li>Always preheat oven to full 180 C</li><li>Use oven thermometer for accuracy</li><li>Reduce temp by 20 C for fan oven</li><li>Check food 5–10 minutes early</li><li>Rotate trays for even bake</li><li>Use middle rack for balanced cooking</li><li>Adjust time for dark or light pans</li><li>Adjust time for thick or thin food</li><li>Do not open door too much while baking</li><li>Follow recipe oven type carefully</li>
-            </ul>
-        </section>
-        
     <section class="content-section faq-section">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-container">
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    What is 180 C in an oven?
+                    What does 180 Centigrade mean in a conventional oven?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>180 C is medium oven heat. Used for cakes, cookies, roasting food.</p>
+                    <p>180 Centigrade is considered medium heat in most conventional home ovens, ideal for baking cakes, cookies, pastries, and roasting vegetables evenly without burning the exterior. This temperature allows food to cook through while achieving proper browning and texture.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Is 180 C hot or medium?
+                    How should I adjust 180 Centigrade for a fan or convection oven?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>It is medium heat. Not very hot, not low.</p>
+                    <p>In a fan or convection oven, 180 Centigrade should be reduced to approximately 160 Centigrade to compensate for faster heat circulation. Failing to adjust can result in overcooked or burnt exteriors while the interior remains undercooked, especially for baked goods that require precise timing.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    What is 180 C in fan oven?
+                    What Gas Mark corresponds to 180 Centigrade?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>In fan oven, reduce to 160 C to avoid burning.</p>
+                    <p>180 Centigrade corresponds to Gas Mark 4 in most UK ovens. It is important to note that older cookbooks or recipes may rely solely on Gas Mark numbers, and using an oven thermometer or conversion chart ensures the correct temperature is reached and maintained.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    What is 180 C in gas oven?
+                    What is 180 Centigrade in Fahrenheit?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>It equals gas mark 4.</p>
+                    <p>180 Centigrade is equivalent to 350 Fahrenheit. This is useful for following US recipes or converting older recipes from Fahrenheit to Centigrade for accuracy in baking or roasting.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    What is 180 C in Fahrenheit?
+                    Is 180 Centigrade suitable for all types of baking?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>180 C equals 350 F.</p>
+                    <p>180 Centigrade is suitable for a wide range of baking including cakes, cookies, muffins, lasagna, and roasting vegetables. However, adjustments may be needed for fan ovens, dark baking trays, very thick or very thin foods, and when using multiple racks to ensure even heat distribution.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Can I bake cake at 180 C?
+                    How can I ensure even cooking at 180 Centigrade?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Yes, most cakes bake perfectly at 180 C.</p>
+                    <p>To ensure even cooking at 180 Centigrade, preheat the oven fully, use the middle rack, rotate trays halfway through baking, and consider the pan type and food thickness. Using an oven thermometer provides additional precision, ensuring the temperature remains consistent throughout the cooking process.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Does every oven cook same at 180 C?
+                    Why do some recipes fail at 180 Centigrade?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>No, ovens vary. Always check food and adjust time.</p>
+                    <p>Recipes can fail at 180 Centigrade if the oven type is not considered (fan vs conventional), the oven is not properly preheated, food is too thick or too thin for the recommended time, or incorrect pan types are used. Always follow detailed tips and monitor the food carefully to avoid undercooked centers or overbrowned edges.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Why recipes use 180 C so much?
+                    Can I bake delicate pastries at 180 Centigrade?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Because it is safe and balanced heat for many foods.</p>
+                    <p>Yes, delicate pastries can be baked at 180 Centigrade, but special attention must be paid to fan ovens, oven preheating, and proper tray placement to avoid burning or uneven cooking. Using lower racks or protective baking sheets may also help achieve the best results.</p>
                 </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    How long should I typically bake at 180 Centigrade?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Baking times at 180 Centigrade vary depending on the type, size, and thickness of the food. Cakes and cookies may take 20–40 minutes, while thicker loaves or roasted meats can require 50–90 minutes. Always check for doneness with a skewer, thermometer, or visual cues.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    What are the most common errors when using 180 Centigrade?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>The most common errors include confusing Centigrade with Fahrenheit, not preheating the oven to the full 180 Centigrade, failing to reduce for fan ovens, improper rack placement, ignoring pan color or type, overcrowding the oven, and not considering food thickness. These mistakes can result in uneven cooking, burnt edges, or undercooked interiors.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <section class="content-section related-converters">
+        <h2>Related Converters</h2>
+        <div class="related-grid">
+            
+            <div class="related-item">
+                <h3>Celsius to Fahrenheit Oven Chart</h3>
+                <p>Quickly convert oven temperatures from Celsius to Fahrenheit and understand fan/...</p>
+                <a href="../celsius-to-fahrenheit-oven-chart/" class="related-link">Use Tool</a>
             </div>
             
         </div>
@@ -2021,7 +2450,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -2034,15 +2463,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2066,6 +2505,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

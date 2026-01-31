@@ -70,8 +70,8 @@
   "name": "0.25 Cup to Ounces (¼ Cup to oz)",
   "description": "Convert 0.25 cup (¼ cup) to ounces for all cooking ingredients. Know how quarter cup translates to ounces for liquids, flour, sugar, butter with precise tables.",
   "url": "https://bakingmath.org/converters/0.25-cup-to-ounces/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"0.25-cup-to-ounces","slug":"0.25-cup-to-ounces","title":"0.25 Cup to Ounces (¼ Cup to oz)","description":"Convert 0.25 cup (¼ cup) to ounces for all cooking ingredients. Know how quarter cup translates to ounces for liquids, flour, sugar, butter with precise tables.","keywords":["0.25 cup to ounces","1/4 cup in ounces","quarter cup oz","cup to ounce conversion","liquid cup to oz","dry cup to ounces"],"categories":["weight","volume","baking","cooking","liquid"],"manualRelatedLinks":["0.25-cup-to-grams","tbsp-to-ounce","ml-to-ounce"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","regionalVariations","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":0.25,"from":"cup","to":"ounce"},"supportedUnits":["cup","ounce","tablespoon","teaspoon","ml"],"conversions":{"cup":{"ounce":8,"tablespoon":16,"teaspoon":48,"ml":236.588},"ounce":{"cup":0.125,"tablespoon":2,"teaspoon":6,"ml":29.5735},"tablespoon":{"cup":0.0625,"ounce":0.5,"teaspoon":3,"ml":14.7868},"teaspoon":{"cup":0.0208333,"ounce":0.166667,"tablespoon":0.333333,"ml":4.92892},"ml":{"cup":0.00422675,"ounce":0.033814,"tablespoon":0.067628,"teaspoon":0.202884}},"contentSections":{"hero":{"title":"0.25 Cup to Ounces","subtitle":"Learn how quarter cup converts to ounces for liquid, flour, sugar, butter — know the real ounce weight behind ¼ cup"},"quickReference":{"title":"Quick Reference: 0.25 Cup to Ounces by Ingredient","description":"¼ cup weight in ounces changes drastically between ingredients. This table shows you real ounce values.","items":[{"ingredient":"Water","cup":0.25,"ounce":2,"ml":59.15,"icon":"💧"},{"ingredient":"All-purpose flour","cup":0.25,"ounce":1.06,"grams":30,"icon":"🌾"},{"ingredient":"Granulated sugar","cup":0.25,"ounce":1.76,"grams":50,"icon":"🍬"},{"ingredient":"Brown sugar (packed)","cup":0.25,"ounce":2,"grams":57,"icon":"🍯"},{"ingredient":"Butter","cup":0.25,"ounce":2,"grams":57,"icon":"🧈"},{"ingredient":"Vegetable oil","cup":0.25,"ounce":1.9,"ml":56,"icon":"🫒"},{"ingredient":"Milk","cup":0.25,"ounce":2.1,"ml":62,"icon":"🥛"},{"ingredient":"Honey","cup":0.25,"ounce":3,"grams":85,"icon":"🍯"},{"ingredient":"Table salt","cup":0.25,"ounce":2.4,"grams":68,"icon":"🧂"},{"ingredient":"Oats (uncooked)","cup":0.25,"ounce":0.7,"grams":20,"icon":"🥣"}]},"comparisonTable":{"title":"¼ Cup to Ounces for Liquid vs Dry Ingredients","description":"Liquid ounces (volume) are different from dry ounces (weight). This table explains why same quarter cup gives different ounce values.","columns":["Type","Ingredient","0.25 Cup in Ounces","Note"],"rows":[{"Type":"Liquid (Volume)","Ingredient":"Water","0.25 Cup in Ounces":"2 fluid oz","Note":"Fluid ounces measure volume, not weight"},{"Type":"Dry (Weight)","Ingredient":"Flour","0.25 Cup in Ounces":"1.06 oz","Note":"Weight ounces, depends on density"},{"Type":"Dry (Weight)","Ingredient":"Sugar","0.25 Cup in Ounces":"1.76 oz","Note":"Sugar is denser than flour"},{"Type":"Liquid/Dry","Ingredient":"Butter","0.25 Cup in Ounces":"2 oz","Note":"Acts as both volume and weight"},{"Type":"Liquid","Ingredient":"Oil","0.25 Cup in Ounces":"1.9 fl oz","Note":"Slightly lighter than water"},{"Type":"Dry","Ingredient":"Salt","0.25 Cup in Ounces":"2.4 oz","Note":"Very dense, heavy for volume"}]},"regionalVariations":{"title":"Fluid Ounce vs Weight Ounce Confusion","description":"In US, ounce has two meanings: fluid ounce for liquids and ounce for weight. Quarter cup conversion changes based on which ounce you mean.","regions":[{"region":"US System","cupSize":"8 fluid oz","quarterCupIn":"2 fluid ounces","commonUnits":["fluid ounces","cups","tablespoons"],"note":"For liquids, 0.25 cup = 2 fl oz. For dry ingredients, ounce means weight."},{"region":"UK System","cupSize":"10 imperial fl oz","quarterCupIn":"2.5 imperial fl oz","commonUnits":["imperial fl oz","ml","grams"],"note":"UK fluid ounce is larger than US. Quarter cup equals 2.5 imperial fl oz."},{"region":"Metric Preference","cupSize":"250ml","quarterCupIn":"62.5ml","commonUnits":["ml","liters","grams"],"note":"Most countries avoid ounce confusion by using milliliters for liquids and grams for solids."}]},"scientificBackground":{"title":"Why Quarter Cup to Ounce Conversion Causes Endless Confusion","description":"The core problem is that 'ounce' means two completely different things in cooking, and quarter cup sits at the intersection of this confusion. Understanding this distinction is crucial for accurate conversions.","concepts":[{"concept":"The Duality of Ounces: Fluid vs Avoirdupois","explanation":"In American cooking, 'ounce' has a split personality. Fluid ounces measure volume - how much space something takes up. Avoirdupois ounces measure weight - how heavy something is. When you ask '0.25 cup to ounces', you must specify which ounce you mean. Water is the only substance where they align perfectly: 1 fluid ounce of water weighs 1 avoirdupois ounce. For everything else, they diverge. Flour takes up more space for its weight, so 0.25 cup (2 fluid ounces) weighs only 1.06 avoirdupois ounces. Sugar is denser, so 0.25 cup weighs 1.76 avoirdupois ounces. This dual meaning causes most conversion errors in American recipes.","examples":["0.25 cup water = 2 fluid oz = 2 weight oz (rare alignment)","0.25 cup flour = 2 fluid oz volume = 1.06 weight oz (46% difference)","0.25 cup honey = 2 fluid oz volume = 3 weight oz (50% heavier)"],"impact":"Never assume 'ounce' means the same for different ingredients. Always check if recipe refers to fluid ounces (volume) or ounces (weight)."},{"concept":"Density Gradient: Why Same Quarter Cup Yields Different Ounces","explanation":"Density explains why 0.25 cup of salt weighs 2.4 ounces while 0.25 cup of oats weighs only 0.7 ounces despite occupying identical space. Density is mass per unit volume. Ingredients with tightly packed molecules (salt, sugar) have high density - many molecules crammed into the quarter cup space. Ingredients with air gaps or fluffy structure (flour, oats) have low density - fewer molecules in same space. The quarter cup merely defines the container size; what fills it determines the ounce weight. This density gradient means conversion tables must be ingredient-specific. No single '0.25 cup to ounces' conversion exists because density varies across ingredients by factors up to 3.5x.","examples":["High density: Salt (2.4 oz per 0.25 cup) - tightly packed crystals","Medium density: Sugar (1.76 oz) - granular but dense","Low density: Flour (1.06 oz) - airy structure","Very low density: Oats (0.7 oz) - hollow, flaky grains"],"impact":"You need different conversion factors for each ingredient type. Generic 'cup to ounce' converters fail because they ignore density variations."},{"concept":"Historical Roots: How Imperial System Created This Mess","explanation":"The ounce confusion stems from pre-metric measurement systems. Fluid ounces originated from wine and ale measurements in medieval England, based on volume. Avoirdupois ounces came from trade weights for grains and precious metals. These systems evolved separately for centuries before colliding in American kitchens. The quarter cup measurement (2 fluid ounces) comes from the US customary system adopted from British wine measures. The problem emerges when modern recipes mix these historical systems without clarification. British recipes often specify 'fl oz' for liquids and 'oz' for solids, but American recipes frequently use 'oz' ambiguously. This historical baggage means 0.25 cup conversions require decoding which historical ounce system the recipe author intended.","examples":["Pre-1824: British wine gallon defined fluid ounce (now US fluid ounce)","1959: International agreement standardized avoirdupois ounce","Current: US maintains both systems while most countries use metric","Result: 0.25 cup means 2 US fl oz OR varying weight oz depending on ingredient"],"impact":"Historical context explains why quarter cup conversions are inconsistent. Modern metric system (ml for liquids, grams for solids) eliminates this confusion entirely."}]},"commonMistakes":{"title":"Common Mistakes with Quarter Cup to Ounce Conversion","description":"Avoid these errors when converting 0.25 cup measurements to ounces","mistakes":[{"mistake":"Assuming all ounces are equal","consequence":"Recipe becomes 50-100% off in measurements","solution":"Always clarify: fluid ounce (volume) or ounce (weight)","severity":"high"},{"mistake":"Using liquid conversion for dry ingredients","consequence":"Baked goods turn out dense or dry","solution":"Use dry measuring cups for solids, liquid cups for liquids","severity":"high"},{"mistake":"Not accounting for ingredient density","consequence":"Incorrect ratios in recipes","solution":"Use ingredient-specific conversion tables","severity":"medium"},{"mistake":"Mixing US and UK fluid ounces","consequence":"10-20% measurement error","solution":"Identify recipe origin and use corresponding system","severity":"medium"}]},"tips":{"title":"Tips for Accurate 0.25 Cup to Ounce Conversions","description":"Practical advice for converting quarter cup measurements correctly","tips":["For liquids: 0.25 cup always equals 2 fluid ounces in US system","For dry ingredients: Use weight ounces and check ingredient density","When in doubt, convert to metric: 0.25 cup = 60ml for liquids, check grams for solids","Invest in both liquid and dry measuring cups - they're designed differently","For baking: Convert everything to grams for perfect results every time","Remember: Water is the exception where fluid ounces equal weight ounces","Check recipe country: US vs UK fluid ounces differ by 4%","Use our converter above with ingredient selection for precise results"]}},"faqs":[{"question":"Is 0.25 cup equal to 2 ounces?","answer":"For liquids in US measurements, yes: 0.25 cup = 2 fluid ounces. For dry ingredients, no: weight varies by density (flour = 1.06 oz, sugar = 1.76 oz, etc.)."},{"question":"Why does 1/4 cup flour weigh less than 1/4 cup water in ounces?","answer":"Flour contains air and is less dense than water. 0.25 cup water weighs 2 ounces, but same volume of flour weighs only 1.06 ounces because it's lighter material."},{"question":"Should I use fluid ounces or weight ounces for 0.25 cup conversion?","answer":"Use fluid ounces for liquids (milk, oil, water). Use weight ounces for dry ingredients (flour, sugar, spices). Our converter handles both automatically."},{"question":"How many ounces is 0.25 cup of butter?","answer":"0.25 cup of butter equals 2 ounces (4 tablespoons or half a stick). Butter is unique because its density makes fluid and weight ounces align."},{"question":"Does 0.25 cup equal same ounces in UK recipes?","answer":"No. UK cup is 250ml vs US 240ml, and UK fluid ounce is larger. 0.25 UK cup = 2.5 imperial fluid ounces for liquids."},{"question":"Can I use same 0.25 cup to ounce conversion for all ingredients?","answer":"Absolutely not. Density variations mean conversion differs for every ingredient. Use our ingredient-specific tables above."},{"question":"Why professional chefs avoid cup to ounce conversions?","answer":"They use grams and milliliters for precision. Ounce confusion (fluid vs weight) causes too many recipe failures."}]}
+            {"id":"0.25-cup-to-ounces","slug":"0.25-cup-to-ounces","title":"0.25 Cup to Ounces (¼ Cup to oz)","description":"Convert 0.25 cup (¼ cup) to ounces for all cooking ingredients. Know how quarter cup translates to ounces for liquids, flour, sugar, butter with precise tables.","keywords":["0.25 cup to ounces","1/4 cup in ounces","quarter cup oz","cup to ounce conversion","liquid cup to oz","dry cup to ounces"],"categories":["weight","volume","baking","cooking","liquid"],"manualRelatedLinks":["0.25-cup-to-grams","tbsp-to-ounce","ml-to-ounce"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","regionalVariations","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":0.25,"from":"cup","to":"ounce"},"supportedUnits":["cup","ounce","tablespoon","teaspoon","ml"],"conversions":{"cup":{"cup":1,"ounce":8,"tablespoon":16,"teaspoon":48,"ml":236.588},"ounce":{"ounce":1,"cup":0.125,"tablespoon":2,"teaspoon":6,"ml":29.5735},"tablespoon":{"tablespoon":1,"cup":0.0625,"ounce":0.5,"teaspoon":3,"ml":14.7868},"teaspoon":{"teaspoon":1,"cup":0.0208333,"ounce":0.166667,"tablespoon":0.333333,"ml":4.92892},"ml":{"ml":1,"cup":0.00422675,"ounce":0.033814,"tablespoon":0.067628,"teaspoon":0.202884}},"contentSections":{"hero":{"title":"0.25 Cup to Ounces","subtitle":"Learn how quarter cup converts to ounces for liquid, flour, sugar, butter — know the real ounce weight behind ¼ cup"},"quickReference":{"title":"Quick Reference: 0.25 Cup to Ounces by Ingredient","description":"¼ cup weight in ounces changes drastically between ingredients. This table shows you real ounce values.","items":[{"ingredient":"Water","cup":0.25,"ounce":2,"ml":59.15,"icon":"💧"},{"ingredient":"All-purpose flour","cup":0.25,"ounce":1.06,"grams":30,"icon":"🌾"},{"ingredient":"Granulated sugar","cup":0.25,"ounce":1.76,"grams":50,"icon":"🍬"},{"ingredient":"Brown sugar (packed)","cup":0.25,"ounce":2,"grams":57,"icon":"🍯"},{"ingredient":"Butter","cup":0.25,"ounce":2,"grams":57,"icon":"🧈"},{"ingredient":"Vegetable oil","cup":0.25,"ounce":1.9,"ml":56,"icon":"🫒"},{"ingredient":"Milk","cup":0.25,"ounce":2.1,"ml":62,"icon":"🥛"},{"ingredient":"Honey","cup":0.25,"ounce":3,"grams":85,"icon":"🍯"},{"ingredient":"Table salt","cup":0.25,"ounce":2.4,"grams":68,"icon":"🧂"},{"ingredient":"Oats (uncooked)","cup":0.25,"ounce":0.7,"grams":20,"icon":"🥣"}]},"comparisonTable":{"title":"¼ Cup to Ounces for Liquid vs Dry Ingredients","description":"Liquid ounces (volume) are different from dry ounces (weight). This table explains why same quarter cup gives different ounce values.","columns":["Type","Ingredient","0.25 Cup in Ounces","Note"],"rows":[{"Type":"Liquid (Volume)","Ingredient":"Water","0.25 Cup in Ounces":"2 fluid oz","Note":"Fluid ounces measure volume"},{"Type":"Dry (Weight)","Ingredient":"All-purpose flour","0.25 Cup in Ounces":"1.06 oz","Note":"Low density, airy texture"},{"Type":"Dry (Weight)","Ingredient":"Granulated sugar","0.25 Cup in Ounces":"1.76 oz","Note":"Denser than flour"},{"Type":"Liquid/Dry","Ingredient":"Butter","0.25 Cup in Ounces":"2 oz","Note":"Volume and weight align"},{"Type":"Liquid","Ingredient":"Vegetable oil","0.25 Cup in Ounces":"1.9 fl oz","Note":"Lighter than water"},{"Type":"Dry","Ingredient":"Table salt","0.25 Cup in Ounces":"2.4 oz","Note":"Very dense ingredient"},{"Type":"Dry","Ingredient":"Brown sugar (packed)","0.25 Cup in Ounces":"2 oz","Note":"Packing increases weight"},{"Type":"Dry","Ingredient":"Oats (uncooked)","0.25 Cup in Ounces":"0.7 oz","Note":"Light and flaky grains"}]},"regionalVariations":{"title":"Fluid Ounce vs Weight Ounce Confusion","description":"In US, ounce has two meanings: fluid ounce for liquids and ounce for weight. Quarter cup conversion changes based on which ounce you mean.","regions":[{"region":"US System","cupSize":"8 fluid oz","quarterCupIn":"2 fluid ounces","commonUnits":["fluid ounces","cups","tablespoons"],"note":"For liquids, 0.25 cup = 2 fl oz. For dry ingredients, ounce means weight."},{"region":"UK System","cupSize":"10 imperial fl oz","quarterCupIn":"2.5 imperial fl oz","commonUnits":["imperial fl oz","ml","grams"],"note":"UK fluid ounce is larger than US. Quarter cup equals 2.5 imperial fl oz."},{"region":"Metric Preference","cupSize":"250ml","quarterCupIn":"62.5ml","commonUnits":["ml","liters","grams"],"note":"Most countries avoid ounce confusion by using milliliters for liquids and grams for solids."}]},"scientificBackground":{"title":"Why Quarter Cup to Ounce Conversion Causes Endless Confusion","description":"The core problem is that 'ounce' means two completely different things in cooking, and quarter cup sits at the intersection of this confusion. Understanding this distinction is crucial for accurate conversions.","concepts":[{"concept":"The Duality of Ounces: Fluid vs Avoirdupois","explanation":"In American cooking, 'ounce' has a split personality. Fluid ounces measure volume - how much space something takes up. Avoirdupois ounces measure weight - how heavy something is. When you ask '0.25 cup to ounces', you must specify which ounce you mean. Water is the only substance where they align perfectly: 1 fluid ounce of water weighs 1 avoirdupois ounce. For everything else, they diverge. Flour takes up more space for its weight, so 0.25 cup (2 fluid ounces) weighs only 1.06 avoirdupois ounces. Sugar is denser, so 0.25 cup weighs 1.76 avoirdupois ounces. This dual meaning causes most conversion errors in American recipes.","examples":["0.25 cup water = 2 fluid oz = 2 weight oz (rare alignment)","0.25 cup flour = 2 fluid oz volume = 1.06 weight oz (46% difference)","0.25 cup honey = 2 fluid oz volume = 3 weight oz (50% heavier)"],"impact":"Never assume 'ounce' means the same for different ingredients. Always check if recipe refers to fluid ounces (volume) or ounces (weight)."},{"concept":"Density Gradient: Why Same Quarter Cup Yields Different Ounces","explanation":"Density explains why 0.25 cup of salt weighs 2.4 ounces while 0.25 cup of oats weighs only 0.7 ounces despite occupying identical space. Density is mass per unit volume. Ingredients with tightly packed molecules (salt, sugar) have high density - many molecules crammed into the quarter cup space. Ingredients with air gaps or fluffy structure (flour, oats) have low density - fewer molecules in same space. The quarter cup merely defines the container size; what fills it determines the ounce weight. This density gradient means conversion tables must be ingredient-specific. No single '0.25 cup to ounces' conversion exists because density varies across ingredients by factors up to 3.5x.","examples":["High density: Salt (2.4 oz per 0.25 cup) - tightly packed crystals","Medium density: Sugar (1.76 oz) - granular but dense","Low density: Flour (1.06 oz) - airy structure","Very low density: Oats (0.7 oz) - hollow, flaky grains"],"impact":"You need different conversion factors for each ingredient type. Generic 'cup to ounce' converters fail because they ignore density variations."},{"concept":"Historical Roots: How Imperial System Created This Mess","explanation":"The ounce confusion stems from pre-metric measurement systems. Fluid ounces originated from wine and ale measurements in medieval England, based on volume. Avoirdupois ounces came from trade weights for grains and precious metals. These systems evolved separately for centuries before colliding in American kitchens. The quarter cup measurement (2 fluid ounces) comes from the US customary system adopted from British wine measures. The problem emerges when modern recipes mix these historical systems without clarification. British recipes often specify 'fl oz' for liquids and 'oz' for solids, but American recipes frequently use 'oz' ambiguously. This historical baggage means 0.25 cup conversions require decoding which historical ounce system the recipe author intended.","examples":["Pre-1824: British wine gallon defined fluid ounce (now US fluid ounce)","1959: International agreement standardized avoirdupois ounce","Current: US maintains both systems while most countries use metric","Result: 0.25 cup means 2 US fl oz OR varying weight oz depending on ingredient"],"impact":"Historical context explains why quarter cup conversions are inconsistent. Modern metric system (ml for liquids, grams for solids) eliminates this confusion entirely."}]},"commonMistakes":{"title":"Common Mistakes with Quarter Cup to Ounce Conversion","description":"Avoid these errors when converting 0.25 cup measurements to ounces","mistakes":[{"mistake":"Assuming all ounces are equal","consequence":"Recipe becomes 50-100% off in measurements","solution":"Always clarify: fluid ounce (volume) or ounce (weight)","severity":"high"},{"mistake":"Using liquid conversion for dry ingredients","consequence":"Baked goods turn out dense or dry","solution":"Use dry measuring cups for solids, liquid cups for liquids","severity":"high"},{"mistake":"Not accounting for ingredient density","consequence":"Incorrect ratios in recipes","solution":"Use ingredient-specific conversion tables","severity":"medium"},{"mistake":"Mixing US and UK fluid ounces","consequence":"10-20% measurement error","solution":"Identify recipe origin and use corresponding system","severity":"medium"}]},"tips":{"title":"Tips for Accurate 0.25 Cup to Ounce Conversions","description":"Practical advice for converting quarter cup measurements correctly","tips":["For liquids: 0.25 cup always equals 2 fluid ounces in US system","For dry ingredients: Use weight ounces and check ingredient density","When in doubt, convert to metric: 0.25 cup = 60ml for liquids, check grams for solids","Invest in both liquid and dry measuring cups - they're designed differently","For baking: Convert everything to grams for perfect results every time","Remember: Water is the exception where fluid ounces equal weight ounces","Check recipe country: US vs UK fluid ounces differ by 4%","Use our converter above with ingredient selection for precise results"]},"related":{"title":"Related Converters","description":"More helpful cup and ounce conversion guides","links":["0.25-cup-to-grams","cups-to-ounces","tablespoon-to-ounce"],"items":["cups-to-grams","how-many-cups-is-200-grams"]}},"faqs":[{"question":"Is 0.25 cup equal to 2 ounces?","answer":"For liquids in US measurements, yes: 0.25 cup = 2 fluid ounces. For dry ingredients, no: weight varies by density (flour = 1.06 oz, sugar = 1.76 oz, etc.)."},{"question":"Why does 1/4 cup flour weigh less than 1/4 cup water in ounces?","answer":"Flour contains air and is less dense than water. 0.25 cup water weighs 2 ounces, but same volume of flour weighs only 1.06 ounces because it's lighter material."},{"question":"Should I use fluid ounces or weight ounces for 0.25 cup conversion?","answer":"Use fluid ounces for liquids (milk, oil, water). Use weight ounces for dry ingredients (flour, sugar, spices). Our converter handles both automatically."},{"question":"How many ounces is 0.25 cup of butter?","answer":"0.25 cup of butter equals 2 ounces (4 tablespoons or half a stick). Butter is unique because its density makes fluid and weight ounces align."},{"question":"Does 0.25 cup equal same ounces in UK recipes?","answer":"No. UK cup is 250ml vs US 240ml, and UK fluid ounce is larger. 0.25 UK cup = 2.5 imperial fluid ounces for liquids."},{"question":"Can I use same 0.25 cup to ounce conversion for all ingredients?","answer":"Absolutely not. Density variations mean conversion differs for every ingredient. Use our ingredient-specific tables above."},{"question":"Why professional chefs avoid cup to ounce conversions?","answer":"They use grams and milliliters for precision. Ounce confusion (fluid vs weight) causes too many recipe failures."}]}
             </script>
         </div>
     </section>
@@ -1691,27 +1961,35 @@ body {
                 <tbody>
                     
                     <tr>
-                        <td>Liquid (Volume)</td><td>Water</td><td>2 fluid oz</td><td>Fluid ounces measure volume, not weight</td>
+                        <td>Liquid (Volume)</td><td>Water</td><td>2 fluid oz</td><td>Fluid ounces measure volume</td>
                     </tr>
                     
                     <tr>
-                        <td>Dry (Weight)</td><td>Flour</td><td>1.06 oz</td><td>Weight ounces, depends on density</td>
+                        <td>Dry (Weight)</td><td>All-purpose flour</td><td>1.06 oz</td><td>Low density, airy texture</td>
                     </tr>
                     
                     <tr>
-                        <td>Dry (Weight)</td><td>Sugar</td><td>1.76 oz</td><td>Sugar is denser than flour</td>
+                        <td>Dry (Weight)</td><td>Granulated sugar</td><td>1.76 oz</td><td>Denser than flour</td>
                     </tr>
                     
                     <tr>
-                        <td>Liquid/Dry</td><td>Butter</td><td>2 oz</td><td>Acts as both volume and weight</td>
+                        <td>Liquid/Dry</td><td>Butter</td><td>2 oz</td><td>Volume and weight align</td>
                     </tr>
                     
                     <tr>
-                        <td>Liquid</td><td>Oil</td><td>1.9 fl oz</td><td>Slightly lighter than water</td>
+                        <td>Liquid</td><td>Vegetable oil</td><td>1.9 fl oz</td><td>Lighter than water</td>
                     </tr>
                     
                     <tr>
-                        <td>Dry</td><td>Salt</td><td>2.4 oz</td><td>Very dense, heavy for volume</td>
+                        <td>Dry</td><td>Table salt</td><td>2.4 oz</td><td>Very dense ingredient</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Dry</td><td>Brown sugar (packed)</td><td>2 oz</td><td>Packing increases weight</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Dry</td><td>Oats (uncooked)</td><td>0.7 oz</td><td>Light and flaky grains</td>
                     </tr>
                     
                 </tbody>
@@ -1965,7 +2243,7 @@ body {
             
             <div class="related-item">
                 <h3>0.25 Cup to Grams (¼ Cup to Grams)</h3>
-                <p>Convert 0.25 cup (¼ cup) to grams for flour and baking ingredients. Includes fra...</p>
+                <p>The 0.25 cup to grams conversion often causes confusion because a quarter cup do...</p>
                 <a href="../0.25-cup-to-grams/" class="related-link">Use Tool</a>
             </div>
             
@@ -2011,7 +2289,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -2024,15 +2302,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2056,6 +2344,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

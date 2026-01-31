@@ -70,8 +70,8 @@
   "name": "0.75 Cup to Grams (¾ Cup to g)",
   "description": "Convert 0.75 cup (¾ cup) to grams accurately for baking and cooking. See how three-quarter cup translates to grams for flour, sugar, butter, liquids.",
   "url": "https://bakingmath.org/converters/0.75-cup-to-grams/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1519,7 +1789,7 @@ body {
                     
     <section class="content-section hero-section">
         <h1>0.75 Cup to Grams</h1>
-        <p class="hero-subtitle">Three-quarter cup weight explained clearly for baking accuracy</p>
+        <p class="hero-subtitle">Three-quarter cup weight explained clearly for baking and cooking accuracy</p>
         
     </section>
     
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"0.75-cup-to-grams","slug":"0.75-cup-to-grams","title":"0.75 Cup to Grams (¾ Cup to g)","description":"Convert 0.75 cup (¾ cup) to grams accurately for baking and cooking. See how three-quarter cup translates to grams for flour, sugar, butter, liquids.","keywords":["0.75 cup to grams","3/4 cup in grams","three quarter cup grams","cup to gram baking conversion"],"categories":["weight","volume","baking","cooking"],"manualRelatedLinks":["0.5-cup-to-grams","1-cup-to-grams","ml-to-grams"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","regionalVariations","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":0.75,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","tablespoon","teaspoon","ml","ounce"],"conversions":{"cup":{"gram":120,"tablespoon":16,"teaspoon":48,"ml":240,"ounce":4.23},"gram":{"cup":0.00833,"tablespoon":0.133,"teaspoon":0.4,"ounce":0.035274},"tablespoon":{"cup":0.0625,"gram":7.5,"teaspoon":3,"ounce":0.264},"teaspoon":{"cup":0.0208333,"gram":2.5,"tablespoon":0.333333,"ounce":0.088},"ml":{"cup":0.00422675,"gram":1,"ounce":0.033814},"ounce":{"gram":28.3495,"cup":0.125}},"contentSections":{"hero":{"title":"0.75 Cup to Grams","subtitle":"Three-quarter cup weight explained clearly for baking accuracy"},"quickReference":{"title":"Quick Reference: 0.75 Cup to Grams","description":"¾ cup is common baking size. Grams change by ingredient.","items":[{"ingredient":"Water","cup":0.75,"grams":180,"ml":180,"icon":"💧"},{"ingredient":"All-purpose flour","cup":0.75,"grams":90,"icon":"🌾"},{"ingredient":"Granulated sugar","cup":0.75,"grams":150,"icon":"🍬"},{"ingredient":"Brown sugar","cup":0.75,"grams":165,"icon":"🍯"},{"ingredient":"Butter","cup":0.75,"grams":170,"icon":"🧈"},{"ingredient":"Milk","cup":0.75,"grams":185,"icon":"🥛"}]},"comparisonTable":{"title":"¾ Cup to Grams Comparison","description":"Same volume, different weight.","columns":["Ingredient","0.75 Cup in Grams","Density Note"],"rows":[{"Ingredient":"Flour","0.75 Cup in Grams":"90g","Density Note":"Light"},{"Ingredient":"Sugar","0.75 Cup in Grams":"150g","Density Note":"Dense"},{"Ingredient":"Butter","0.75 Cup in Grams":"170g","Density Note":"Fat heavy"},{"Ingredient":"Honey","0.75 Cup in Grams":"255g","Density Note":"Very heavy"}]},"regionalVariations":{"title":"¾ Cup Grams by Region","description":"Cup size difference affect 0.75 cup weight.","regions":[{"region":"US","cupSize":"240ml","threeQuarterCupFlour":"90g"},{"region":"UK","cupSize":"284ml","threeQuarterCupFlour":"105g"},{"region":"Australia","cupSize":"250ml","threeQuarterCupFlour":"94g"}]},"scientificBackground":{"title":"Why 0.75 Cup to Grams Conversion Changes by Ingredient, Method, and Region","description":"Three-quarter cup may look simple, but grams vary widely depending on ingredient type, how you measure, and where you are. Understanding this is crucial for precise baking and cooking.","concepts":[{"concept":"Volume vs Weight Problem","explanation":"0.75 cup is a measure of space, volume, not weight. Grams measure mass. When someone asks '0.75 cup to grams', you must know ingredient. Flour is light, airy, and traps air, sugar is dense, butter is fatty, honey is sticky and heavy. Even oats or rice have different density. So same 0.75 cup can give very different grams depending on ingredient. Many people assume a fixed value, wrong! Small mistake in 0.75 cup measurement can ruin cake, bread, or pastry.","examples":["0.75 cup flour ≈ 90g","0.75 cup sugar ≈ 150g","0.75 cup butter ≈ 170g","0.75 cup honey ≈ 340g"],"impact":"Ignoring ingredient difference causes failed recipes, wrong texture, or overly sweet/dry outcomes."},{"concept":"Air Gaps and Scooping Effect Amplified","explanation":"Air trapped in flour or oats changes weight significantly. When you scoop directly from bag, air compress, grams increase. Spoon gently and level, more air stays, grams reduce. Sifted flour is even lighter. Sugar, salt, cocoa, or honey are denser, trap less air, so weight stays stable. With 0.75 cup, errors magnify because volume is larger than 0.25 cup. Tiny difference in technique can shift weight by 10–15%.","examples":["Scooped flour: 0.75 cup ≈ 100g","Spoon & level flour: 0.75 cup ≈ 90g","Sifted flour: 0.75 cup ≈ 85g"],"impact":"Large errors in 0.75 cup flour can dry out cake, make muffins dense, or ruin pastry layers."},{"concept":"Regional Cup Differences Matter More at 0.75 Cup","explanation":"US, UK, AU cups differ. US ≈ 240ml, UK ≈ 284ml, AU ≈ 250ml. Quarter cup difference seems small, but 0.75 cup = 3/4 cup, multiplies effect. 0.75 cup flour in US ≈ 90g, in UK ≈ 106g, AU ≈ 95g. Denser ingredients like sugar or honey exaggerate differences. Online converters may show different results because they assume different cup size.","examples":["US 0.75 cup flour ≈ 90g","UK 0.75 cup flour ≈ 106g","AU 0.75 cup flour ≈ 95g"],"impact":"Check recipe origin. Using wrong cup size ruins ratios and final texture."},{"concept":"Ingredient Density and 0.75 Cup Weight","explanation":"Density = mass/volume. High density = more grams in same 0.75 cup (salt, sugar, honey). Low density = fewer grams (flour, oats, puffed rice). Moisture, brand, and particle size affect density. For 0.75 cup, small density differences are magnified. Conversion tables must be ingredient-specific. Generic '0.75 cup to grams' fails because density varies 2–4x among ingredients.","examples":["High density: Honey 0.75 cup ≈ 340g","Medium density: Sugar 0.75 cup ≈ 150g","Low density: Flour 0.75 cup ≈ 90g","Very low density: Oats 0.75 cup ≈ 60g"],"impact":"Always use ingredient-specific tables or scale for large fractions like 0.75 cup. Otherwise ratio ruined."},{"concept":"Historical and Practical Confusion","explanation":"Ounce, cup, gram come from different systems. US uses cups/ounces, metric uses grams/ml, UK uses imperial. 0.75 cup has same volume but weight differs depending on ingredient and system. Chefs avoid cups because errors increase with fractions like 0.75. Metric (grams/ml) gives precision. For example, 0.75 cup flour US = 90g, UK = 106g. Honey 0.75 cup US = 340g, UK ≈ 392g. Without ingredient and country info, conversions fail.","examples":["0.75 cup flour US ≈ 90g vs UK ≈ 106g","0.75 cup sugar US ≈ 150g vs UK ≈ 170g","0.75 cup honey US ≈ 340g vs UK ≈ 392g"],"impact":"Historical variation explains why casual cup measurement fails for 0.75 cup. Always use grams for accuracy."}]},"commonMistakes":{"title":"Mistakes with ¾ Cup Conversion","mistakes":[{"mistake":"Packing flour","consequence":"Too much flour","solution":"Spoon and level","severity":"high"}]},"tips":{"title":"Tips for 0.75 Cup Accuracy","tips":["Use scale for baking","Avoid packed cups","Check ingredient density","Verify recipe region"]}},"faqs":[{"question":"How many grams is 0.75 cup flour?","answer":"About 90 grams using US cup."},{"question":"Is ¾ cup sugar heavier than flour?","answer":"Yes. Sugar is denser, around 150 grams."},{"question":"Why chefs avoid ¾ cup?","answer":"Grams give repeatable accuracy."}]}
+            {"id":"0.75-cup-to-grams","slug":"0.75-cup-to-grams","title":"0.75 Cup to Grams (¾ Cup to g)","description":"Convert 0.75 cup (¾ cup) to grams accurately for baking and cooking. See how three-quarter cup translates to grams for flour, sugar, butter, liquids.","keywords":["0.75 cup to grams","3/4 cup in grams","three quarter cup grams","cup to gram baking conversion"],"categories":["weight","volume","baking","cooking"],"manualRelatedLinks":["0.5-cup-to-grams","1-cup-to-grams","ml-to-grams"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","regionalVariations","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":0.75,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","tablespoon","teaspoon","ml","ounce"],"conversions":{"cup":{"cup":1,"gram":120,"tablespoon":16,"teaspoon":48,"ml":240,"ounce":8.47},"gram":{"gram":1,"cup":0.00833,"tablespoon":0.133,"teaspoon":0.4,"ml":1,"ounce":0.035274},"tablespoon":{"tablespoon":1,"cup":0.0625,"gram":7.5,"teaspoon":3,"ml":15,"ounce":0.264},"teaspoon":{"teaspoon":1,"cup":0.0208333,"gram":2.5,"tablespoon":0.3333,"ml":5,"ounce":0.088},"ml":{"ml":1,"cup":0.0041667,"gram":1,"tablespoon":0.0676,"teaspoon":0.2029,"ounce":0.033814},"ounce":{"ounce":1,"cup":0.125,"gram":28.3495,"tablespoon":2,"teaspoon":6,"ml":29.5735}},"contentSections":{"hero":{"title":"0.75 Cup to Grams","subtitle":"Three-quarter cup weight explained clearly for baking and cooking accuracy","description":"The 0.75-cup-to-grams conversion is essential for anyone who wants precision in baking or cooking. Many recipes call for 0.75 cup of ingredients like flour, sugar, butter, milk, honey, or oats, but the weight in grams can vary depending on the ingredient's density, how you measure it, and even the regional cup standard. For example, using a US cup, 0.75 cup of all-purpose flour is roughly 90 grams, while the same 0.75 cup in a UK recipe can weigh around 106 grams. Understanding the 0.75-cup-to-grams relationship ensures accurate measurements, consistent baking outcomes, and avoids errors that could affect texture or flavor. This hero section of 0.75-cup-to-grams introduces the importance of converting three-quarter cup measurements correctly for reliable results in all types of cooking and baking applications."},"quickReference":{"title":"Quick Reference: 0.75 Cup to Grams","description":"The 0.75-cup-to-grams conversion is a handy tool for bakers and cooks who want precise measurements for common ingredients. In this quick reference chart for 0.75-cup-to-grams, we provide weights for a variety of ingredients, helping you quickly see how much 0.75 cup weighs in grams without needing to guess or rely on approximate volume measurements. Since the 0.75-cup-to-grams value changes depending on ingredient density, this chart includes seven essential baking and cooking items, ensuring that your 0.75-cup-to-grams conversions are accurate every time.","items":[{"ingredient":"All-purpose flour","cup":0.75,"grams":90,"ml":180,"icon":"🌾","note":"Using the 0.75-cup-to-grams standard, this flour measurement ensures consistency in cakes and pastries."},{"ingredient":"Granulated sugar","cup":0.75,"grams":150,"ml":180,"icon":"🍬","note":"Sugar is denser than flour, so the 0.75-cup-to-grams value is significantly higher than for flour."},{"ingredient":"Brown sugar","cup":0.75,"grams":165,"ml":180,"icon":"🍯","note":"Packed or loose, brown sugar’s 0.75-cup-to-grams conversion ensures the right sweetness and moisture."},{"ingredient":"Butter","cup":0.75,"grams":170,"ml":180,"icon":"🧈","note":"The 0.75-cup-to-grams measurement for butter guarantees proper fat content for baking."},{"ingredient":"Milk","cup":0.75,"grams":185,"ml":185,"icon":"🥛","note":"Since liquids differ in density, the 0.75-cup-to-grams conversion is slightly heavier than solids."},{"ingredient":"Honey","cup":0.75,"grams":255,"ml":180,"icon":"🍯","note":"Honey is very dense, and the 0.75-cup-to-grams conversion is critical to maintain sweetness and moisture balance."},{"ingredient":"Oats (uncooked)","cup":0.75,"grams":65,"ml":180,"icon":"🥄","note":"Oats are light and airy, so the 0.75-cup-to-grams conversion shows a lower value compared to sugar or butter."},{"ingredient":"Cocoa powder","cup":0.75,"grams":75,"ml":180,"icon":"🍫","note":"Cocoa is fine and low-density; using the 0.75-cup-to-grams conversion ensures correct chocolate flavor intensity."}]},"comparisonTable":{"title":"0.75-Cup-to-Grams Comparison Table","description":"This 0.75-cup-to-grams comparison table helps you understand how the same 0.75 cup volume translates to very different weights depending on ingredient type and density. By using the 0.75-cup-to-grams values for common baking and cooking ingredients, you can avoid errors in recipes and ensure accurate results every time you bake, cook, or prepare drinks.","columns":["Ingredient","0.75 Cup in Grams","Density Note","Notes for 0.75-cup-to-grams"],"rows":[{"Ingredient":"All-purpose flour","0.75 Cup in Grams":"90g","Density Note":"Light","Notes for 0.75-cup-to-grams":"0.75-cup-to-grams conversion ensures correct structure in cakes and cookies."},{"Ingredient":"Granulated sugar","0.75 Cup in Grams":"150g","Density Note":"Dense","Notes for 0.75-cup-to-grams":"Sugar’s 0.75-cup-to-grams value is much higher than flour due to density difference."},{"Ingredient":"Brown sugar","0.75 Cup in Grams":"165g","Density Note":"Packed","Notes for 0.75-cup-to-grams":"Use 0.75-cup-to-grams measurement to get consistent sweetness and moisture in baked goods."},{"Ingredient":"Butter","0.75 Cup in Grams":"170g","Density Note":"Fat heavy","Notes for 0.75-cup-to-grams":"Butter’s 0.75-cup-to-grams conversion helps maintain the proper fat ratio in recipes."},{"Ingredient":"Honey","0.75 Cup in Grams":"255g","Density Note":"Very dense","Notes for 0.75-cup-to-grams":"Honey is sticky and heavy; using the 0.75-cup-to-grams conversion prevents overly sweet results."},{"Ingredient":"Milk","0.75 Cup in Grams":"185g","Density Note":"Liquid","Notes for 0.75-cup-to-grams":"Liquid 0.75-cup-to-grams ensures hydration in batters and doughs is correct."},{"Ingredient":"Oats (uncooked)","0.75 Cup in Grams":"65g","Density Note":"Light","Notes for 0.75-cup-to-grams":"Oats are airy, so 0.75-cup-to-grams weight is lower than sugar or butter."},{"Ingredient":"Cocoa powder","0.75 Cup in Grams":"75g","Density Note":"Fine, low density","Notes for 0.75-cup-to-grams":"Accurate 0.75-cup-to-grams conversion ensures proper chocolate flavor and texture."},{"Ingredient":"Cornstarch","0.75 Cup in Grams":"90g","Density Note":"Light and powdery","Notes for 0.75-cup-to-grams":"Cornstarch 0.75-cup-to-grams helps prevent clumping in sauces and fillings."},{"Ingredient":"Powdered sugar (icing sugar)","0.75 Cup in Grams":"90g","Density Note":"Very light","Notes for 0.75-cup-to-grams":"Use 0.75-cup-to-grams to get smooth icing without lumps."},{"Ingredient":"Salt","0.75 Cup in Grams":"180g","Density Note":"Very dense","Notes for 0.75-cup-to-grams":"Salt’s 0.75-cup-to-grams value is critical for seasoning and brine accuracy."}]},"regionalVariations":{"title":"¾ Cup Grams by Region","description":"Cup size difference affect 0.75 cup weight.","regions":[{"region":"US","cupSize":"240ml","threeQuarterCupFlour":"90g"},{"region":"UK","cupSize":"284ml","threeQuarterCupFlour":"105g"},{"region":"Australia","cupSize":"250ml","threeQuarterCupFlour":"94g"}]},"scientificBackground":{"title":"Why 0.75 Cup to Grams Conversion Changes by Ingredient, Method, and Region","description":"Three-quarter cup may look simple, but grams vary widely depending on ingredient type, how you measure, and where you are. Understanding this is crucial for precise baking and cooking.","concepts":[{"concept":"Volume vs Weight Problem","explanation":"0.75 cup is a measure of space, volume, not weight. Grams measure mass. When someone asks '0.75 cup to grams', you must know ingredient. Flour is light, airy, and traps air, sugar is dense, butter is fatty, honey is sticky and heavy. Even oats or rice have different density. So same 0.75 cup can give very different grams depending on ingredient. Many people assume a fixed value, wrong! Small mistake in 0.75 cup measurement can ruin cake, bread, or pastry.","examples":["0.75 cup flour ≈ 90g","0.75 cup sugar ≈ 150g","0.75 cup butter ≈ 170g","0.75 cup honey ≈ 340g"],"impact":"Ignoring ingredient difference causes failed recipes, wrong texture, or overly sweet/dry outcomes."},{"concept":"Air Gaps and Scooping Effect Amplified","explanation":"Air trapped in flour or oats changes weight significantly. When you scoop directly from bag, air compress, grams increase. Spoon gently and level, more air stays, grams reduce. Sifted flour is even lighter. Sugar, salt, cocoa, or honey are denser, trap less air, so weight stays stable. With 0.75 cup, errors magnify because volume is larger than 0.25 cup. Tiny difference in technique can shift weight by 10–15%.","examples":["Scooped flour: 0.75 cup ≈ 100g","Spoon & level flour: 0.75 cup ≈ 90g","Sifted flour: 0.75 cup ≈ 85g"],"impact":"Large errors in 0.75 cup flour can dry out cake, make muffins dense, or ruin pastry layers."},{"concept":"Regional Cup Differences Matter More at 0.75 Cup","explanation":"US, UK, AU cups differ. US ≈ 240ml, UK ≈ 284ml, AU ≈ 250ml. Quarter cup difference seems small, but 0.75 cup = 3/4 cup, multiplies effect. 0.75 cup flour in US ≈ 90g, in UK ≈ 106g, AU ≈ 95g. Denser ingredients like sugar or honey exaggerate differences. Online converters may show different results because they assume different cup size.","examples":["US 0.75 cup flour ≈ 90g","UK 0.75 cup flour ≈ 106g","AU 0.75 cup flour ≈ 95g"],"impact":"Check recipe origin. Using wrong cup size ruins ratios and final texture."},{"concept":"Ingredient Density and 0.75 Cup Weight","explanation":"Density = mass/volume. High density = more grams in same 0.75 cup (salt, sugar, honey). Low density = fewer grams (flour, oats, puffed rice). Moisture, brand, and particle size affect density. For 0.75 cup, small density differences are magnified. Conversion tables must be ingredient-specific. Generic '0.75 cup to grams' fails because density varies 2–4x among ingredients.","examples":["High density: Honey 0.75 cup ≈ 340g","Medium density: Sugar 0.75 cup ≈ 150g","Low density: Flour 0.75 cup ≈ 90g","Very low density: Oats 0.75 cup ≈ 60g"],"impact":"Always use ingredient-specific tables or scale for large fractions like 0.75 cup. Otherwise ratio ruined."},{"concept":"Historical and Practical Confusion","explanation":"Ounce, cup, gram come from different systems. US uses cups/ounces, metric uses grams/ml, UK uses imperial. 0.75 cup has same volume but weight differs depending on ingredient and system. Chefs avoid cups because errors increase with fractions like 0.75. Metric (grams/ml) gives precision. For example, 0.75 cup flour US = 90g, UK = 106g. Honey 0.75 cup US = 340g, UK ≈ 392g. Without ingredient and country info, conversions fail.","examples":["0.75 cup flour US ≈ 90g vs UK ≈ 106g","0.75 cup sugar US ≈ 150g vs UK ≈ 170g","0.75 cup honey US ≈ 340g vs UK ≈ 392g"],"impact":"Historical variation explains why casual cup measurement fails for 0.75 cup. Always use grams for accuracy."}]},"commonMistakes":{"title":"Mistakes with ¾ Cup Conversion","mistakes":[{"mistake":"Packing flour","consequence":"Too much flour","solution":"Spoon and level","severity":"high"}]},"tips":{"title":"Tips for 0.75 Cup Accuracy","tips":["Use scale for baking","Avoid packed cups","Check ingredient density","Verify recipe region"]},"related":{"title":"Related Conversions for 0.75 Cup to Grams","description":"If you are using the 0.75-cup-to-grams guide, you may also find these related conversions helpful for other common baking and cooking measurements. Understanding how 0.75 cup translates to grams for various ingredients is only part of accurate measurement, so these additional resources can help you convert other cup fractions, tablespoons, teaspoons, and even milliliters to grams easily.","links":["0.25-cup-to-grams","0.5-cup-to-grams","ml-to-grams"],"items":["cups-to-grams","0.33-cup-to-grams"]}},"faqs":[{"question":"How many grams is 0.75 cup of all-purpose flour?","answer":"When following the 0.75-cup-to-grams guide, it is important to understand that 0.75 cup of all-purpose flour typically weighs around 90 grams if measured using a standard US cup. This measurement can vary slightly depending on whether the flour is sifted, spooned, or scooped directly from the bag. The title '0.75 Cup to Grams (¾ Cup to g)' emphasizes the importance of precise measurement in baking, where even a few grams difference can affect the texture of cakes, muffins, or pastry layers."},{"question":"Is 0.75 cup of sugar heavier than flour?","answer":"Yes, according to the 0.75-cup-to-grams conversion, sugar is denser than flour, so 0.75 cup of granulated sugar weighs approximately 150 grams. While 0.75 cup flour is around 90 grams, sugar’s density nearly doubles this weight, highlighting why the 0.75-cup-to-grams guide is essential for understanding ingredient differences. Using the title in your searches ensures you find consistent reference points for common baking conversions."},{"question":"Does 0.75 cup of butter weigh the same as flour or sugar?","answer":"No, butter is a fat-rich ingredient, so 0.75 cup of butter according to the 0.75-cup-to-grams guide weighs about 170 grams. This is heavier than flour and slightly heavier than sugar due to its fat content. Following the 0.75-cup-to-grams guide ensures that recipes using butter maintain the correct fat-to-dry ratio, which is crucial for cookie crispness, cake moisture, or pastry flakiness."},{"question":"Why do 0.75 cup conversions vary between US, UK, and Australia?","answer":"The 0.75-cup-to-grams guide highlights that regional differences in cup sizes affect the final weight. For example, a US cup is 240 ml, a UK cup is 284 ml, and an Australian cup is 250 ml. This means 0.75 cup of flour in the UK weighs roughly 106 grams, compared to 90 grams in the US, and 95 grams in Australia. Always consider the recipe origin and consult the 0.75-cup-to-grams guide to avoid miscalculations that can change baking results significantly."},{"question":"Can I use 0.75-cup-to-grams for liquids as well?","answer":"Yes, the 0.75-cup-to-grams guide includes liquid conversions such as water, milk, or honey. For instance, 0.75 cup of water or milk equals approximately 180–185 grams, depending on temperature and measurement accuracy. Using the 0.75-cup-to-grams guide ensures that both dry and liquid ingredients are scaled correctly, maintaining recipe balance and consistency, which is especially important for batters and doughs where liquid-to-flour ratio defines texture."},{"question":"Why should I rely on grams instead of cups for baking?","answer":"The 0.75-cup-to-grams guide strongly recommends weighing ingredients because cups measure volume, not weight, and densities differ among ingredients. A small error in measuring 0.75 cup flour by volume can result in 5–10 grams difference, affecting the structure of bread, muffins, or pastry. Following the 0.75-cup-to-grams guide allows for consistent results, recipe scaling, and eliminates the guesswork that comes with using volume-only measurements."},{"question":"Does using 0.75-cup-to-grams affect recipe scaling?","answer":"Absolutely. The 0.75-cup-to-grams guide provides a precise weight for each ingredient, allowing bakers and cooks to scale recipes up or down accurately. For example, doubling a cake recipe requires 0.75 cup flour to become 1.5 cups, or using 180 grams as per the guide. The 0.75-cup-to-grams conversion ensures that each ingredient maintains proper ratios, so cakes rise evenly, cookies retain texture, and sauces thicken correctly."}]}
             </script>
         </div>
     </section>
@@ -1549,22 +1819,10 @@ body {
     <section class="content-section quick-reference">
         <div class="section-header">
             <h2>Quick Reference: 0.75 Cup to Grams</h2>
-            <p class="section-description">¾ cup is common baking size. Grams change by ingredient.</p>
+            <p class="section-description">The 0.75-cup-to-grams conversion is a handy tool for bakers and cooks who want precise measurements for common ingredients. In this quick reference chart for 0.75-cup-to-grams, we provide weights for a variety of ingredients, helping you quickly see how much 0.75 cup weighs in grams without needing to guess or rely on approximate volume measurements. Since the 0.75-cup-to-grams value changes depending on ingredient density, this chart includes seven essential baking and cooking items, ensuring that your 0.75-cup-to-grams conversions are accurate every time.</p>
         </div>
         <div class="quick-reference-grid">
             
-                <div class="reference-item">
-                    <div class="reference-icon">💧</div>
-                    <div class="reference-content">
-                        <h3>Water</h3>
-                        <div class="reference-values">
-                            <span class="reference-from">0.75 cups</span>
-                            <span class="reference-arrow">→</span><span class="reference-to">180g</span>
-                        </div>
-                        
-                    </div>
-                </div>
-                
                 <div class="reference-item">
                     <div class="reference-icon">🌾</div>
                     <div class="reference-content">
@@ -1625,37 +1883,101 @@ body {
                     </div>
                 </div>
                 
+                <div class="reference-item">
+                    <div class="reference-icon">🍯</div>
+                    <div class="reference-content">
+                        <h3>Honey</h3>
+                        <div class="reference-values">
+                            <span class="reference-from">0.75 cups</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">255g</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="reference-item">
+                    <div class="reference-icon">🥄</div>
+                    <div class="reference-content">
+                        <h3>Oats (uncooked)</h3>
+                        <div class="reference-values">
+                            <span class="reference-from">0.75 cups</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">65g</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="reference-item">
+                    <div class="reference-icon">🍫</div>
+                    <div class="reference-content">
+                        <h3>Cocoa powder</h3>
+                        <div class="reference-values">
+                            <span class="reference-from">0.75 cups</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">75g</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
         </div>
     </section>
     
     <section class="content-section comparison-table">
         <div class="section-header">
-            <h2>¾ Cup to Grams Comparison</h2>
-            <p class="section-description">Same volume, different weight.</p>
+            <h2>0.75-Cup-to-Grams Comparison Table</h2>
+            <p class="section-description">This 0.75-cup-to-grams comparison table helps you understand how the same 0.75 cup volume translates to very different weights depending on ingredient type and density. By using the 0.75-cup-to-grams values for common baking and cooking ingredients, you can avoid errors in recipes and ensure accurate results every time you bake, cook, or prepare drinks.</p>
         </div>
         <div class="table-container">
             <table class="comparison-table">
                 <thead>
                     <tr>
-                        <th>Ingredient</th><th>0.75 Cup in Grams</th><th>Density Note</th>
+                        <th>Ingredient</th><th>0.75 Cup in Grams</th><th>Density Note</th><th>Notes for 0.75-cup-to-grams</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <tr>
-                        <td>Flour</td><td>90g</td><td>Light</td>
+                        <td>All-purpose flour</td><td>90g</td><td>Light</td><td>0.75-cup-to-grams conversion ensures correct structure in cakes and cookies.</td>
                     </tr>
                     
                     <tr>
-                        <td>Sugar</td><td>150g</td><td>Dense</td>
+                        <td>Granulated sugar</td><td>150g</td><td>Dense</td><td>Sugar’s 0.75-cup-to-grams value is much higher than flour due to density difference.</td>
                     </tr>
                     
                     <tr>
-                        <td>Butter</td><td>170g</td><td>Fat heavy</td>
+                        <td>Brown sugar</td><td>165g</td><td>Packed</td><td>Use 0.75-cup-to-grams measurement to get consistent sweetness and moisture in baked goods.</td>
                     </tr>
                     
                     <tr>
-                        <td>Honey</td><td>255g</td><td>Very heavy</td>
+                        <td>Butter</td><td>170g</td><td>Fat heavy</td><td>Butter’s 0.75-cup-to-grams conversion helps maintain the proper fat ratio in recipes.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Honey</td><td>255g</td><td>Very dense</td><td>Honey is sticky and heavy; using the 0.75-cup-to-grams conversion prevents overly sweet results.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Milk</td><td>185g</td><td>Liquid</td><td>Liquid 0.75-cup-to-grams ensures hydration in batters and doughs is correct.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Oats (uncooked)</td><td>65g</td><td>Light</td><td>Oats are airy, so 0.75-cup-to-grams weight is lower than sugar or butter.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Cocoa powder</td><td>75g</td><td>Fine, low density</td><td>Accurate 0.75-cup-to-grams conversion ensures proper chocolate flavor and texture.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Cornstarch</td><td>90g</td><td>Light and powdery</td><td>Cornstarch 0.75-cup-to-grams helps prevent clumping in sauces and fillings.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Powdered sugar (icing sugar)</td><td>90g</td><td>Very light</td><td>Use 0.75-cup-to-grams to get smooth icing without lumps.</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Salt</td><td>180g</td><td>Very dense</td><td>Salt’s 0.75-cup-to-grams value is critical for seasoning and brine accuracy.</td>
                     </tr>
                     
                 </tbody>
@@ -1821,31 +2143,71 @@ body {
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    How many grams is 0.75 cup flour?
+                    How many grams is 0.75 cup of all-purpose flour?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>About 90 grams using US cup.</p>
+                    <p>When following the 0.75-cup-to-grams guide, it is important to understand that 0.75 cup of all-purpose flour typically weighs around 90 grams if measured using a standard US cup. This measurement can vary slightly depending on whether the flour is sifted, spooned, or scooped directly from the bag. The title '0.75 Cup to Grams (¾ Cup to g)' emphasizes the importance of precise measurement in baking, where even a few grams difference can affect the texture of cakes, muffins, or pastry layers.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Is ¾ cup sugar heavier than flour?
+                    Is 0.75 cup of sugar heavier than flour?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Yes. Sugar is denser, around 150 grams.</p>
+                    <p>Yes, according to the 0.75-cup-to-grams conversion, sugar is denser than flour, so 0.75 cup of granulated sugar weighs approximately 150 grams. While 0.75 cup flour is around 90 grams, sugar’s density nearly doubles this weight, highlighting why the 0.75-cup-to-grams guide is essential for understanding ingredient differences. Using the title in your searches ensures you find consistent reference points for common baking conversions.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Why chefs avoid ¾ cup?
+                    Does 0.75 cup of butter weigh the same as flour or sugar?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Grams give repeatable accuracy.</p>
+                    <p>No, butter is a fat-rich ingredient, so 0.75 cup of butter according to the 0.75-cup-to-grams guide weighs about 170 grams. This is heavier than flour and slightly heavier than sugar due to its fat content. Following the 0.75-cup-to-grams guide ensures that recipes using butter maintain the correct fat-to-dry ratio, which is crucial for cookie crispness, cake moisture, or pastry flakiness.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Why do 0.75 cup conversions vary between US, UK, and Australia?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>The 0.75-cup-to-grams guide highlights that regional differences in cup sizes affect the final weight. For example, a US cup is 240 ml, a UK cup is 284 ml, and an Australian cup is 250 ml. This means 0.75 cup of flour in the UK weighs roughly 106 grams, compared to 90 grams in the US, and 95 grams in Australia. Always consider the recipe origin and consult the 0.75-cup-to-grams guide to avoid miscalculations that can change baking results significantly.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Can I use 0.75-cup-to-grams for liquids as well?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Yes, the 0.75-cup-to-grams guide includes liquid conversions such as water, milk, or honey. For instance, 0.75 cup of water or milk equals approximately 180–185 grams, depending on temperature and measurement accuracy. Using the 0.75-cup-to-grams guide ensures that both dry and liquid ingredients are scaled correctly, maintaining recipe balance and consistency, which is especially important for batters and doughs where liquid-to-flour ratio defines texture.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Why should I rely on grams instead of cups for baking?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>The 0.75-cup-to-grams guide strongly recommends weighing ingredients because cups measure volume, not weight, and densities differ among ingredients. A small error in measuring 0.75 cup flour by volume can result in 5–10 grams difference, affecting the structure of bread, muffins, or pastry. Following the 0.75-cup-to-grams guide allows for consistent results, recipe scaling, and eliminates the guesswork that comes with using volume-only measurements.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Does using 0.75-cup-to-grams affect recipe scaling?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Absolutely. The 0.75-cup-to-grams guide provides a precise weight for each ingredient, allowing bakers and cooks to scale recipes up or down accurately. For example, doubling a cake recipe requires 0.75 cup flour to become 1.5 cups, or using 180 grams as per the guide. The 0.75-cup-to-grams conversion ensures that each ingredient maintains proper ratios, so cakes rise evenly, cookies retain texture, and sauces thicken correctly.</p>
                 </div>
             </div>
             
@@ -1891,7 +2253,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -1904,15 +2266,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -1936,6 +2308,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

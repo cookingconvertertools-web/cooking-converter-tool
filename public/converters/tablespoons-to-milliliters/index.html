@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Tablespoons to Milliliters Converter | Cooking Converter Pro</title>
     <meta name="description" content="Convert tablespoons into milliliters easily for correct liquid measurement">
-    <meta name="keywords" content="Tablespoons to Milliliters Converter">
+    <meta name="keywords" content="Is 1 tablespoon 5 mL,Is 1 tablespoon 30 mL,Does 2 tablespoons equal 20 mL,Is a tablespoon 15 or 20 mL,tbsp to ml,tablespoons to milliliters,tablespoon conversion">
     <meta name="author" content="Cooking Converter Pro">
 
     <!-- Open Graph / Facebook -->
@@ -70,8 +70,8 @@
   "name": "Tablespoons to Milliliters Converter",
   "description": "Convert tablespoons into milliliters easily for correct liquid measurement",
   "url": "https://bakingmath.org/converters/tablespoons-to-milliliters/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1519,8 +1789,8 @@ body {
                     
     <section class="content-section hero-section">
         <h1>Tablespoons to Milliliters Converter</h1>
-        <p class="hero-subtitle">Easy and correct liquid conversion for cooking and baking</p>
-        <p class="hero-intro">Convert tablespoon, teaspoon, milliliter, fluid ounce, and cup without confusion.</p>
+        <p class="hero-subtitle">Easy and accurate conversion for all your cooking and baking needs</p>
+        <p class="hero-intro">Wondering if 1 tablespoon equals 5 mL, 15 mL, or 20 mL? This page 'Tablespoons to Milliliters Converter' helps you convert tablespoons to milliliters accurately, avoid mistakes in baking and cooking, and understand differences between US, UK, and Australian tablespoons. Learn which tablespoon size your recipe requires and measure liquids confidently.</p>
     </section>
     
     <section class="content-section converter-ui-section">
@@ -1541,14 +1811,73 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"tbsp-to-ml","slug":"tablespoons-to-milliliters","title":"Tablespoons to Milliliters Converter","description":"Convert tablespoons into milliliters easily for correct liquid measurement","categories":["weight","volume","baking","ingredient"],"subcategory":"volume","contentSequence":["hero","converter","comparisonTable","quickReference","visualChart","comparisonTable","commonMistakes","scientificBackground","tips","faq"],"ads":{"top":true,"middle":true,"bottom":true,"sidebar":{"enabled":false,"positions":[],"mobile":{"sticky":false}}},"defaults":{"value":1,"from":"tablespoon","to":"milliliter"},"supportedUnits":["tablespoon","teaspoon","milliliter","fluid ounce","cup"],"conversions":{"tablespoon":{"milliliter":15,"teaspoon":3,"fluid ounce":0.5,"cup":0.0625},"teaspoon":{"milliliter":5,"tablespoon":0.3333,"fluid ounce":0.1667,"cup":0.0208},"milliliter":{"tablespoon":0.0667,"teaspoon":0.2,"fluid ounce":0.0338,"cup":0.0042},"fluid ounce":{"milliliter":29.5735,"tablespoon":2,"teaspoon":6,"cup":0.125},"cup":{"milliliter":240,"tablespoon":16,"teaspoon":48,"fluid ounce":8}},"conversionFormulas":[{"from":"tablespoon","to":"milliliter","formula":"x * 15"},{"from":"milliliter","to":"tablespoon","formula":"x / 15"},{"from":"tablespoon","to":"teaspoon","formula":"x * 3"},{"from":"teaspoon","to":"tablespoon","formula":"x / 3"},{"from":"cup","to":"milliliter","formula":"x * 240"},{"from":"milliliter","to":"cup","formula":"x / 240"},{"from":"fluid ounce","to":"milliliter","formula":"x * 29.5735"},{"from":"milliliter","to":"fluid ounce","formula":"x / 29.5735"}],"conversionTable":[{"Region":"US","Unit":"1 tablespoon","Milliliters":14.7868,"Notes":"US tablespoon common in recipes and nutrition labels"},{"Region":"UK","Unit":"1 imperial tablespoon","Milliliters":17.758,"Notes":"UK tablespoon is bigger than US"},{"Region":"Australia","Unit":"1 tablespoon","Milliliters":20,"Notes":"Australia tablespoon is largest, used in AU cooking"},{"Region":"US","Unit":"2 tablespoons","Milliliters":29.5736,"Notes":"Equal to 1 US fluid ounce"},{"Region":"UK","Unit":"2 imperial tablespoons","Milliliters":35.516,"Notes":"Close to 1.25 UK fluid ounce"},{"Region":"Australia","Unit":"2 tablespoons","Milliliters":40,"Notes":"Very common in baking measures"},{"Region":"US","Unit":"3 tablespoons","Milliliters":44.3604,"Notes":"Used in medicine syrup dosing sometimes"},{"Region":"UK","Unit":"3 imperial tablespoons","Milliliters":53.274,"Notes":"Bigger volume due to imperial system"},{"Region":"Australia","Unit":"3 tablespoons","Milliliters":60,"Notes":"Exact multiple in metric style cooking"},{"Region":"Global","Unit":"1 tablespoon (average)","Milliliters":15,"Notes":"Rounded value used in most online calculators"}],"faqs":[{"question":"How many milliliters are in 1 tablespoon?","answer":"One tablespoon is equal to 15 milliliters in US measurement."},{"question":"Is tablespoon same in every country?","answer":"No. US tablespoon is 15ml, but UK tablespoon is bigger around 17.7ml. This converter follows US system."},{"question":"Why tablespoon to milliliter conversion is important in baking?","answer":"Baking needs exact liquid amount. Even small extra or less liquid can change cake texture or softness."},{"question":"Can I use this conversion for all liquids?","answer":"Yes, because tablespoon and milliliter both measure volume. But converting to grams is different for each liquid."},{"question":"Is rounding milliliter value okay?","answer":"Small rounding is okay for cooking, but many rounding in one recipe can spoil final result."},{"question":"Which is more accurate, tablespoon or milliliter?","answer":"Milliliter is more accurate because it is metric system and easier to measure using scale or marked cups."},{"question":"What measuring tool should I trust?","answer":"For small amount, measuring spoon is fine. For bigger amount, liquid measuring cup with ml marking is better."}],"contentSections":{"hero":{"title":"Tablespoons to Milliliters Converter","subtitle":"Easy and correct liquid conversion for cooking and baking","intro":"Convert tablespoon, teaspoon, milliliter, fluid ounce, and cup without confusion."},"quickReference":{"title":"Common Liquid Conversions","items":[{"ingredient":"1 Tablespoon","cup":1,"grams":15,"icon":"🥄"},{"ingredient":"1 Teaspoon","cup":1,"grams":5,"icon":"🥄"},{"ingredient":"1 Fluid Ounce","cup":1,"grams":30,"icon":"💧"},{"ingredient":"1 Cup","cup":1,"grams":240,"icon":"🥤"}]},"visualChart":{"title":"Liquid Measurement Visual Guide","items":[{"name":"1 Tablespoon","equivalent":"3 teaspoons","weight":"15ml","comparison":"Almost half shot glass","visual":"🥄"},{"name":"1/4 Cup","equivalent":"4 tablespoons","weight":"60ml","comparison":"Like small coffee cup","visual":"☕"}]},"commonMistakes":{"title":"Common Liquid Measurement Mistakes","mistakes":[{"mistake":"Using dry cup for liquid","consequence":"Liquid amount becomes wrong","solution":"Use liquid measuring cup with spout","severity":"high"}]},"scientificBackground":{"title":"The Science Behind Tablespoon to Milliliter Conversion","concepts":[{"concept":"What a Tablespoon Really Means","explanation":"A tablespoon is a unit of volume, not weight. In the modern US measurement system, one tablespoon is officially defined as exactly 15 milliliters. This standardization is relatively recent. Historically, tablespoons varied in size because they were literal spoons used at home. Different households, regions, and cultures used spoons of different sizes, which caused inconsistency in recipes. Standardization solved this problem by fixing the tablespoon to a precise volume so that cooking, nutrition labeling, and medicine dosing could be consistent.","impact":"A fixed tablespoon definition ensures recipes work the same way everywhere when the same system is used."},{"concept":"Why Milliliters Are More Precise","explanation":"Milliliters belong to the metric system, which is based on powers of ten. This makes calculations simpler and measurements more precise. One milliliter equals one cubic centimeter, giving it a clear physical definition. Measuring milliliters using a graduated container or digital scale reduces ambiguity compared to spoons, which can be filled differently depending on angle, shape, or user technique.","impact":"Milliliters reduce human error and are preferred in professional kitchens and food manufacturing."},{"concept":"Regional Differences in Tablespoons","explanation":"Not all tablespoons are the same worldwide. A US tablespoon equals 14.7868 ml in older definitions but is rounded to 15 ml in modern cooking. A UK (imperial) tablespoon is approximately 17.758 ml, while an Australian tablespoon is exactly 20 ml. These differences exist because each system evolved independently. When recipes travel globally through the internet, people often unknowingly apply the wrong tablespoon size.","impact":"Using the wrong regional tablespoon can significantly alter liquid quantities."},{"concept":"Why Small Differences Matter","explanation":"A difference of 2–5 milliliters may seem insignificant, but in food science it can be meaningful. Many cooking processes depend on precise ratios. Sauces rely on emulsification, batters depend on hydration, and dough relies on water-to-flour balance. Even small changes in liquid volume can affect viscosity, texture, rise, and final taste.","impact":"Precision in small measurements improves consistency and quality."},{"concept":"Volume Is Not the Same as Weight","explanation":"Tablespoons and milliliters measure volume, not mass. Different liquids have different densities. For example, 15 ml of water weighs about 15 grams, but 15 ml of oil weighs less, and 15 ml of honey weighs more. Confusing volume with weight is a common mistake, especially when people assume all liquids behave like water.","impact":"Correct understanding prevents incorrect ingredient substitution."},{"concept":"The Meniscus Effect","explanation":"Liquids form a curved surface when placed in a container due to surface tension. This curve is called a meniscus. For accurate measurement, liquid volume should be read at the bottom of the meniscus at eye level. Reading from the top of the curve adds extra volume, leading to inaccurate measurements.","impact":"Proper reading technique improves measurement accuracy."},{"concept":"Measurement Error Compounding","explanation":"When a recipe requires multiple spoonfuls, even small errors in each tablespoon accumulate. For example, being off by 1 ml per tablespoon across 10 tablespoons results in a 10 ml error. This cumulative effect can noticeably change the final result, especially in soups, syrups, and batters.","impact":"Repeated accuracy matters more than single measurements."},{"concept":"Why Professionals Avoid Spoon Measurements","explanation":"Professional kitchens, laboratories, and food factories rarely rely on spoons for liquid measurement. Instead, they use graduated cylinders, measuring jugs, or digital scales. These tools provide repeatable accuracy and remove human variability. Spoon measurements remain popular at home due to convenience, not precision.","impact":"Professional methods produce predictable outcomes."},{"concept":"Medicine and Safety Implications","explanation":"Tablespoon to milliliter conversion is not only important in cooking but also in medicine. Many liquid medications specify doses in milliliters, yet people still use household spoons. A household tablespoon may hold more or less than 15 ml, leading to underdosing or overdosing. This is why medical professionals recommend using syringes or measuring cups marked in milliliters.","impact":"Accurate conversion protects health and safety."},{"concept":"Why 15 ml Became the Global Reference","explanation":"Despite regional differences, 15 ml is widely used as a rounded, practical average. It balances ease of calculation with acceptable accuracy for everyday cooking. Most online converters, nutrition labels, and international recipes adopt 15 ml as the default tablespoon value to avoid confusion.","impact":"Using 15 ml simplifies global recipe sharing."},{"concept":"Best Scientific Practice for Conversion","explanation":"The most reliable approach is to identify the measurement system used in the recipe, convert tablespoons to milliliters using the correct standard, and measure using proper tools. When precision matters, converting everything to milliliters removes ambiguity and ensures consistency.","impact":"Scientific thinking leads to better cooking results."}]},"tips":{"title":"Tips for Accurate Tablespoon to Milliliter Measurement","tips":["Always confirm whether the recipe follows US, UK, or Australian measurement standards.","Use 1 tablespoon = 15 ml as a safe default unless the recipe specifies otherwise.","Avoid using household spoons; use proper measuring spoons or a measuring cup with ml markings.","For liquids, measure at eye level and read from the bottom of the meniscus.","When accuracy matters, convert tablespoons to milliliters and measure using a graduated cup or digital scale.","Do not assume volume equals weight; liquids have different densities.","Reduce rounding when measuring multiple tablespoons to prevent cumulative error.","For medicine or supplements, never use kitchen spoons—always measure in milliliters."]}}}
+            {"id":"tbsp-to-ml","slug":"tablespoons-to-milliliters","title":"Tablespoons to Milliliters Converter","description":"Convert tablespoons into milliliters easily for correct liquid measurement","categories":["weight","volume","baking","ingredient"],"subcategory":"volume","keywords":["Is 1 tablespoon 5 mL","Is 1 tablespoon 30 mL","Does 2 tablespoons equal 20 mL","Is a tablespoon 15 or 20 mL","tbsp to ml","tablespoons to milliliters","tablespoon conversion"],"manualRelatedLinks":["tbsp-to-gram","tablespoon-to-teaspoon","milliliters-to-cups"],"featured":true,"contentSequence":["hero","converter","comparisonTable","quickReference","visualChart","comparisonTable","commonMistakes","scientificBackground","tips","faq"],"ads":{"top":true,"middle":true,"bottom":true,"sidebar":{"enabled":false,"positions":[],"mobile":{"sticky":false}}},"defaults":{"value":1,"from":"tablespoon","to":"milliliter"},"supportedUnits":["tablespoon","teaspoon","milliliter","fluid ounce","cup"],"conversions":{"tablespoon":{"tablespoon":1,"milliliter":15,"teaspoon":3,"fluid ounce":0.5,"cup":0.0625},"teaspoon":{"teaspoon":1,"milliliter":5,"tablespoon":0.333333,"fluid ounce":0.166667,"cup":0.020833},"milliliter":{"milliliter":1,"tablespoon":0.066667,"teaspoon":0.2,"fluid ounce":0.033814,"cup":0.004167},"fluid ounce":{"fluid ounce":1,"milliliter":29.5735,"tablespoon":2,"teaspoon":6,"cup":0.125},"cup":{"cup":1,"milliliter":240,"tablespoon":16,"teaspoon":48,"fluid ounce":8}},"conversionFormulas":[{"from":"tablespoon","to":"milliliter","formula":"x * 15"},{"from":"milliliter","to":"tablespoon","formula":"x / 15"},{"from":"tablespoon","to":"teaspoon","formula":"x * 3"},{"from":"teaspoon","to":"tablespoon","formula":"x / 3"},{"from":"cup","to":"milliliter","formula":"x * 240"},{"from":"milliliter","to":"cup","formula":"x / 240"},{"from":"fluid ounce","to":"milliliter","formula":"x * 29.5735"},{"from":"milliliter","to":"fluid ounce","formula":"x / 29.5735"}],"conversionTable":[{"Region":"US","Unit":"1 tablespoon","Milliliters":14.7868,"Notes":"US tablespoon common in recipes and nutrition labels"},{"Region":"UK","Unit":"1 imperial tablespoon","Milliliters":17.758,"Notes":"UK tablespoon is bigger than US"},{"Region":"Australia","Unit":"1 tablespoon","Milliliters":20,"Notes":"Australia tablespoon is largest, used in AU cooking"},{"Region":"US","Unit":"2 tablespoons","Milliliters":29.5736,"Notes":"Equal to 1 US fluid ounce"},{"Region":"UK","Unit":"2 imperial tablespoons","Milliliters":35.516,"Notes":"Close to 1.25 UK fluid ounce"},{"Region":"Australia","Unit":"2 tablespoons","Milliliters":40,"Notes":"Very common in baking measures"},{"Region":"US","Unit":"3 tablespoons","Milliliters":44.3604,"Notes":"Used in medicine syrup dosing sometimes"},{"Region":"UK","Unit":"3 imperial tablespoons","Milliliters":53.274,"Notes":"Bigger volume due to imperial system"},{"Region":"Australia","Unit":"3 tablespoons","Milliliters":60,"Notes":"Exact multiple in metric style cooking"},{"Region":"Global","Unit":"1 tablespoon (average)","Milliliters":15,"Notes":"Rounded value used in most online calculators"}],"faqs":[{"question":"Is 1 tablespoon 5 mL?","answer":"No, 1 tablespoon is not 5 milliliters. In the US measurement system, 1 tablespoon equals exactly 15 milliliters, while 5 mL corresponds to 1 teaspoon. Confusing this can lead to incorrect measurements in recipes, especially in baking where precision matters."},{"question":"Is 1 tablespoon 30 mL?","answer":"No, 1 tablespoon is not 30 milliliters. In standard US cooking, 1 tablespoon is 15 mL. Therefore, 30 mL is equal to 2 US tablespoons. Using the wrong conversion can cause baked goods to be too wet or too dry."},{"question":"Does 2 tablespoons equal 20 mL?","answer":"No, 2 US tablespoons equal 30 milliliters, not 20 mL. This mistake is common when people confuse teaspoons and tablespoons, and it can significantly alter the consistency of sauces, batters, and other recipes."},{"question":"Is a tablespoon 15 or 20 mL?","answer":"It depends on the country. In the US, 1 tablespoon equals 15 mL. In Australia, a tablespoon is 20 mL, while in the UK an imperial tablespoon is about 17.758 mL. Using the wrong standard can affect the outcome of a recipe, so always check the measurement system your recipe uses."},{"question":"How many milliliters are in 1 tablespoon in the Philippines?","answer":"In the Philippines, most recipes follow the US standard, so 1 tablespoon equals 15 milliliters. This is useful when converting tablespoons to milliliters for Filipino cooking, especially for sauces, drinks, and small-batch baking."},{"question":"How many milliliters are in 15 tablespoons?","answer":"15 US tablespoons equal 225 milliliters because 1 tablespoon is 15 mL. This conversion is often needed in baking or cooking when scaling recipes, such as for making large batches of batter, sauces, or marinades."},{"question":"Is 5 mL equal to 1 tablespoon?","answer":"No, 5 mL is not equal to a tablespoon. In fact, 5 mL corresponds to exactly 1 teaspoon, while 1 tablespoon equals 15 mL. Understanding this distinction is crucial for accurate measurements, especially in medicine dosing or baking."},{"question":"Is 5 mL 1 teaspoon?","answer":"Yes, 5 milliliters is equivalent to 1 teaspoon. Teaspoons are smaller than tablespoons, and this conversion is standard across most countries using the US system. Measuring accurately ensures that recipes turn out as intended."},{"question":"How do I measure 5 mL accurately?","answer":"To measure 5 milliliters accurately, you can use a small measuring spoon marked as 1 teaspoon or a syringe or graduated cup with milliliter markings. Avoid using household spoons, as their volume can vary and lead to inconsistent results in cooking or medicine dosing."},{"question":"5 mL to tbsp for water, flour, and oil – is it the same?","answer":"Yes, 5 milliliters equals 1 teaspoon for all liquids and powders, including water, oil, and flour. However, remember that tablespoons measure volume, not weight, so 5 mL of flour does not weigh the same as 5 mL of water. Accurate volume measurement is key for recipe consistency."},{"question":"10 mL to tablespoons – how much is it?","answer":"10 milliliters is equal to 2 teaspoons or approximately 0.6667 tablespoons. This is important to know when doubling or halving recipes or converting liquid medicine dosages accurately."},{"question":"Why is converting tablespoons to milliliters important in baking and cooking?","answer":"Converting tablespoons to milliliters is essential because even small differences in liquid measurement can drastically affect the outcome of a recipe. Precise conversion ensures consistent texture, flavor, and rise in baked goods, while also being critical in medicine or syrup dosing where accuracy affects safety."}],"contentSections":{"hero":{"title":"Tablespoons to Milliliters Converter","subtitle":"Easy and accurate conversion for all your cooking and baking needs","intro":"Wondering if 1 tablespoon equals 5 mL, 15 mL, or 20 mL? This page 'Tablespoons to Milliliters Converter' helps you convert tablespoons to milliliters accurately, avoid mistakes in baking and cooking, and understand differences between US, UK, and Australian tablespoons. Learn which tablespoon size your recipe requires and measure liquids confidently."},"quickReference":{"title":"Common Tablespoon to Milliliter Conversions","items":[{"ingredient":"1 Tablespoon","milliliters":15,"note":"US tablespoon standard; answers the question: 'Is a tablespoon 15 or 20 mL?'","icon":"🥄"},{"ingredient":"1 Teaspoon","milliliters":5,"note":"Useful for small measurements; see if 1 tablespoon = 5 mL (it's 3 teaspoons)","icon":"🥄"},{"ingredient":"2 Tablespoons","milliliters":30,"note":"Helps clarify: 'Does 2 tablespoons equal 20 mL?' — the correct US value is 30 mL","icon":"🥄"},{"ingredient":"1 Fluid Ounce","milliliters":29.5735,"note":"Nearly equals 2 US tablespoons","icon":"💧"},{"ingredient":"1 Cup","milliliters":240,"note":"Used in US recipes, multiples of tablespoons","icon":"🥤"}]},"comparisonTable":{"title":"Tablespoon to Milliliters Comparison Table","columns":["Region","Unit","Milliliters","Notes"],"rows":[{"Region":"US","Unit":"1 tablespoon","Milliliters":14.7868,"Notes":"US tablespoon common in recipes and nutrition labels, used in 1 tablespoon to ml conversions"},{"Region":"UK","Unit":"1 imperial tablespoon","Milliliters":17.758,"Notes":"UK tablespoon is bigger than US, referenced in UK teaspoon to ml measurements"},{"Region":"Australia","Unit":"1 tablespoon","Milliliters":20,"Notes":"Australian tablespoon is largest, used in AU cooking, useful for 1 tablespoon to ml Philippines queries"},{"Region":"US","Unit":"2 tablespoons","Milliliters":29.5736,"Notes":"Equals 1 US fluid ounce, used in 2 tablespoons to ml conversion"},{"Region":"UK","Unit":"2 imperial tablespoons","Milliliters":35.516,"Notes":"Close to 1.25 UK fluid ounce, referenced in 1 2 tablespoons to ml conversions"},{"Region":"Australia","Unit":"2 tablespoons","Milliliters":40,"Notes":"Very common in baking measures, often used in 15 tablespoons to ml calculation"},{"Region":"Global","Unit":"1 tablespoon (average)","Milliliters":15,"Notes":"Rounded value used in most online calculators, for general tablespoons to milliliters converter calculator"},{"Region":"Philippines","Unit":"1 tablespoon","Milliliters":15,"Notes":"Commonly used in Filipino recipes, matches 1 tablespoon to ml Philippines search"},{"Region":"India","Unit":"1 tablespoon","Milliliters":15,"Notes":"Standard conversion for Indian recipes, referenced in 1 tablespoon in ml in India queries"},{"Region":"Global","Unit":"1 teaspoon","Milliliters":5,"Notes":"Useful for 5 ml to tbsp conversions, rounded to nearest ml"}]},"visualChart":{"title":"Liquid Measurement Visual Guide","items":[{"name":"1 Tablespoon","equivalent":"3 teaspoons","weight":"15ml","comparison":"Almost half shot glass","visual":"🥄"},{"name":"1/4 Cup","equivalent":"4 tablespoons","weight":"60ml","comparison":"Like small coffee cup","visual":"☕"}]},"commonMistakes":{"title":"Common Mistakes When Measuring Tablespoons","mistakes":[{"mistake":"Assuming 1 tablespoon is always 5 mL or 30 mL","consequence":"Many recipes go wrong because 1 tablespoon can be 15 mL (US), 17.7 mL (UK), or 20 mL (Australia). Confusion leads to cakes too wet or dry.","solution":"Always check the recipe system. Use this converter to confirm 1 tablespoon = 15 mL in US measurements."},{"mistake":"Thinking 2 tablespoons equal 20 mL","consequence":"This is incorrect in US cooking; 2 tablespoons equal 30 mL. Using 20 mL will under-measure liquid, altering recipe results.","solution":"Refer to the US standard or convert carefully using our 'Tablespoons to Milliliters Converter'."},{"mistake":"Using household spoons instead of standard measuring spoons","consequence":"Different spoons vary widely; 1 tablespoon may differ by 5 mL or more.","solution":"Use proper tablespoon and teaspoon measuring tools, or measure in milliliters for precision."},{"mistake":"Ignoring regional differences in tablespoons","consequence":"Using a UK or Australian tablespoon in a US recipe can cause over- or under-measuring liquids.","solution":"Know which tablespoon standard your recipe requires; this converter helps you adjust accurately."}]},"scientificBackground":{"title":"The Science Behind Tablespoon to Milliliter Conversion","concepts":[{"concept":"What a Tablespoon Really Means","explanation":"A tablespoon is a unit of volume, not weight. In the modern US measurement system, one tablespoon is officially defined as exactly 15 milliliters. This standardization is relatively recent. Historically, tablespoons varied in size because they were literal spoons used at home. Different households, regions, and cultures used spoons of different sizes, which caused inconsistency in recipes. Standardization solved this problem by fixing the tablespoon to a precise volume so that cooking, nutrition labeling, and medicine dosing could be consistent.","impact":"A fixed tablespoon definition ensures recipes work the same way everywhere when the same system is used."},{"concept":"Why Milliliters Are More Precise","explanation":"Milliliters belong to the metric system, which is based on powers of ten. This makes calculations simpler and measurements more precise. One milliliter equals one cubic centimeter, giving it a clear physical definition. Measuring milliliters using a graduated container or digital scale reduces ambiguity compared to spoons, which can be filled differently depending on angle, shape, or user technique.","impact":"Milliliters reduce human error and are preferred in professional kitchens and food manufacturing."},{"concept":"Regional Differences in Tablespoons","explanation":"Not all tablespoons are the same worldwide. A US tablespoon equals 14.7868 ml in older definitions but is rounded to 15 ml in modern cooking. A UK (imperial) tablespoon is approximately 17.758 ml, while an Australian tablespoon is exactly 20 ml. These differences exist because each system evolved independently. When recipes travel globally through the internet, people often unknowingly apply the wrong tablespoon size.","impact":"Using the wrong regional tablespoon can significantly alter liquid quantities."},{"concept":"Why Small Differences Matter","explanation":"A difference of 2–5 milliliters may seem insignificant, but in food science it can be meaningful. Many cooking processes depend on precise ratios. Sauces rely on emulsification, batters depend on hydration, and dough relies on water-to-flour balance. Even small changes in liquid volume can affect viscosity, texture, rise, and final taste.","impact":"Precision in small measurements improves consistency and quality."},{"concept":"Volume Is Not the Same as Weight","explanation":"Tablespoons and milliliters measure volume, not mass. Different liquids have different densities. For example, 15 ml of water weighs about 15 grams, but 15 ml of oil weighs less, and 15 ml of honey weighs more. Confusing volume with weight is a common mistake, especially when people assume all liquids behave like water.","impact":"Correct understanding prevents incorrect ingredient substitution."},{"concept":"The Meniscus Effect","explanation":"Liquids form a curved surface when placed in a container due to surface tension. This curve is called a meniscus. For accurate measurement, liquid volume should be read at the bottom of the meniscus at eye level. Reading from the top of the curve adds extra volume, leading to inaccurate measurements.","impact":"Proper reading technique improves measurement accuracy."},{"concept":"Measurement Error Compounding","explanation":"When a recipe requires multiple spoonfuls, even small errors in each tablespoon accumulate. For example, being off by 1 ml per tablespoon across 10 tablespoons results in a 10 ml error. This cumulative effect can noticeably change the final result, especially in soups, syrups, and batters.","impact":"Repeated accuracy matters more than single measurements."},{"concept":"Why Professionals Avoid Spoon Measurements","explanation":"Professional kitchens, laboratories, and food factories rarely rely on spoons for liquid measurement. Instead, they use graduated cylinders, measuring jugs, or digital scales. These tools provide repeatable accuracy and remove human variability. Spoon measurements remain popular at home due to convenience, not precision.","impact":"Professional methods produce predictable outcomes."},{"concept":"Medicine and Safety Implications","explanation":"Tablespoon to milliliter conversion is not only important in cooking but also in medicine. Many liquid medications specify doses in milliliters, yet people still use household spoons. A household tablespoon may hold more or less than 15 ml, leading to underdosing or overdosing. This is why medical professionals recommend using syringes or measuring cups marked in milliliters.","impact":"Accurate conversion protects health and safety."},{"concept":"Why 15 ml Became the Global Reference","explanation":"Despite regional differences, 15 ml is widely used as a rounded, practical average. It balances ease of calculation with acceptable accuracy for everyday cooking. Most online converters, nutrition labels, and international recipes adopt 15 ml as the default tablespoon value to avoid confusion.","impact":"Using 15 ml simplifies global recipe sharing."},{"concept":"Best Scientific Practice for Conversion","explanation":"The most reliable approach is to identify the measurement system used in the recipe, convert tablespoons to milliliters using the correct standard, and measure using proper tools. When precision matters, converting everything to milliliters removes ambiguity and ensures consistency.","impact":"Scientific thinking leads to better cooking results."}]},"tips":{"title":"Tips for Accurate Tablespoon to Milliliter Conversion","tips":["Always check the recipe origin: US, UK, or Australia.","Use 1 tablespoon = 15 mL as default for US recipes, unless stated otherwise.","Avoid using household spoons; use measuring spoons or cups marked in milliliters.","Read liquid at eye level and at the bottom of the meniscus for accuracy.","When measuring multiple tablespoons, use milliliters to avoid cumulative error.","Remember 2 tablespoons in US cooking equal 30 mL, not 20 mL.","For international recipes, confirm whether a tablespoon is 15, 17.7, or 20 mL.","Milliliters are more precise than tablespoons; prefer metric measurements in professional cooking."]}}}
             </script>
+        </div>
+    </section>
+    
+    <section class="content-section comparison-table">
+        <div class="section-header">
+            <h2>Tablespoon to Milliliters Comparison Table</h2>
+            
+        </div>
+        <div class="table-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Region</th><th>Unit</th><th>Milliliters</th><th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>US</td><td>1 tablespoon</td><td>14.7868</td><td>US tablespoon common in recipes and nutrition labels, used in 1 tablespoon to ml conversions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>UK</td><td>1 imperial tablespoon</td><td>17.758</td><td>UK tablespoon is bigger than US, referenced in UK teaspoon to ml measurements</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Australia</td><td>1 tablespoon</td><td>20</td><td>Australian tablespoon is largest, used in AU cooking, useful for 1 tablespoon to ml Philippines queries</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>US</td><td>2 tablespoons</td><td>29.5736</td><td>Equals 1 US fluid ounce, used in 2 tablespoons to ml conversion</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>UK</td><td>2 imperial tablespoons</td><td>35.516</td><td>Close to 1.25 UK fluid ounce, referenced in 1 2 tablespoons to ml conversions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Australia</td><td>2 tablespoons</td><td>40</td><td>Very common in baking measures, often used in 15 tablespoons to ml calculation</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Global</td><td>1 tablespoon (average)</td><td>15</td><td>Rounded value used in most online calculators, for general tablespoons to milliliters converter calculator</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Philippines</td><td>1 tablespoon</td><td>15</td><td>Commonly used in Filipino recipes, matches 1 tablespoon to ml Philippines search</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>India</td><td>1 tablespoon</td><td>15</td><td>Standard conversion for Indian recipes, referenced in 1 tablespoon in ml in India queries</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Global</td><td>1 teaspoon</td><td>5</td><td>Useful for 5 ml to tbsp conversions, rounded to nearest ml</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
         </div>
     </section>
     
     <section class="content-section quick-reference">
         <div class="section-header">
-            <h2>Common Liquid Conversions</h2>
+            <h2>Common Tablespoon to Milliliter Conversions</h2>
             
         </div>
         <div class="quick-reference-grid">
@@ -1558,8 +1887,8 @@ body {
                     <div class="reference-content">
                         <h3>1 Tablespoon</h3>
                         <div class="reference-values">
-                            <span class="reference-from">1 cup</span>
-                            <span class="reference-arrow">→</span><span class="reference-to">15g</span>
+                            <span class="reference-from">15 milliliters</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">US tablespoon standard; answers the question: 'Is a tablespoon 15 or 20 mL?' note</span>
                         </div>
                         
                     </div>
@@ -1570,8 +1899,20 @@ body {
                     <div class="reference-content">
                         <h3>1 Teaspoon</h3>
                         <div class="reference-values">
-                            <span class="reference-from">1 cup</span>
-                            <span class="reference-arrow">→</span><span class="reference-to">5g</span>
+                            <span class="reference-from">5 milliliters</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">Useful for small measurements; see if 1 tablespoon = 5 mL (it's 3 teaspoons) note</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="reference-item">
+                    <div class="reference-icon">🥄</div>
+                    <div class="reference-content">
+                        <h3>2 Tablespoons</h3>
+                        <div class="reference-values">
+                            <span class="reference-from">30 milliliters</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">Helps clarify: 'Does 2 tablespoons equal 20 mL?' — the correct US value is 30 mL note</span>
                         </div>
                         
                     </div>
@@ -1582,8 +1923,8 @@ body {
                     <div class="reference-content">
                         <h3>1 Fluid Ounce</h3>
                         <div class="reference-values">
-                            <span class="reference-from">1 cup</span>
-                            <span class="reference-arrow">→</span><span class="reference-to">30g</span>
+                            <span class="reference-from">29.5735 milliliters</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">Nearly equals 2 US tablespoons note</span>
                         </div>
                         
                     </div>
@@ -1594,8 +1935,8 @@ body {
                     <div class="reference-content">
                         <h3>1 Cup</h3>
                         <div class="reference-values">
-                            <span class="reference-from">1 cup</span>
-                            <span class="reference-arrow">→</span><span class="reference-to">240g</span>
+                            <span class="reference-from">240 milliliters</span>
+                            <span class="reference-arrow">→</span><span class="reference-to">Used in US recipes, multiples of tablespoons note</span>
                         </div>
                         
                     </div>
@@ -1632,19 +1973,105 @@ body {
         </div>
     </section>
     
+    <section class="content-section comparison-table">
+        <div class="section-header">
+            <h2>Tablespoon to Milliliters Comparison Table</h2>
+            
+        </div>
+        <div class="table-container">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Region</th><th>Unit</th><th>Milliliters</th><th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td>US</td><td>1 tablespoon</td><td>14.7868</td><td>US tablespoon common in recipes and nutrition labels, used in 1 tablespoon to ml conversions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>UK</td><td>1 imperial tablespoon</td><td>17.758</td><td>UK tablespoon is bigger than US, referenced in UK teaspoon to ml measurements</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Australia</td><td>1 tablespoon</td><td>20</td><td>Australian tablespoon is largest, used in AU cooking, useful for 1 tablespoon to ml Philippines queries</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>US</td><td>2 tablespoons</td><td>29.5736</td><td>Equals 1 US fluid ounce, used in 2 tablespoons to ml conversion</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>UK</td><td>2 imperial tablespoons</td><td>35.516</td><td>Close to 1.25 UK fluid ounce, referenced in 1 2 tablespoons to ml conversions</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Australia</td><td>2 tablespoons</td><td>40</td><td>Very common in baking measures, often used in 15 tablespoons to ml calculation</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Global</td><td>1 tablespoon (average)</td><td>15</td><td>Rounded value used in most online calculators, for general tablespoons to milliliters converter calculator</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Philippines</td><td>1 tablespoon</td><td>15</td><td>Commonly used in Filipino recipes, matches 1 tablespoon to ml Philippines search</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>India</td><td>1 tablespoon</td><td>15</td><td>Standard conversion for Indian recipes, referenced in 1 tablespoon in ml in India queries</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Global</td><td>1 teaspoon</td><td>5</td><td>Useful for 5 ml to tbsp conversions, rounded to nearest ml</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
     <section class="content-section common-mistakes">
         <div class="section-header">
-            <h2>Common Liquid Measurement Mistakes</h2>
+            <h2>Common Mistakes When Measuring Tablespoons</h2>
             
         </div>
         <div class="mistakes-container">
             
-            <div class="mistake-item high">
+            <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Using dry cup for liquid</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Liquid amount becomes wrong</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Use liquid measuring cup with spout</div>
+                    <h3>Assuming 1 tablespoon is always 5 mL or 30 mL</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Many recipes go wrong because 1 tablespoon can be 15 mL (US), 17.7 mL (UK), or 20 mL (Australia). Confusion leads to cakes too wet or dry.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Always check the recipe system. Use this converter to confirm 1 tablespoon = 15 mL in US measurements.</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Thinking 2 tablespoons equal 20 mL</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> This is incorrect in US cooking; 2 tablespoons equal 30 mL. Using 20 mL will under-measure liquid, altering recipe results.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Refer to the US standard or convert carefully using our 'Tablespoons to Milliliters Converter'.</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Using household spoons instead of standard measuring spoons</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Different spoons vary widely; 1 tablespoon may differ by 5 mL or more.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Use proper tablespoon and teaspoon measuring tools, or measure in milliliters for precision.</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Ignoring regional differences in tablespoons</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Using a UK or Australian tablespoon in a US recipe can cause over- or under-measuring liquids.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Know which tablespoon standard your recipe requires; this converter helps you adjust accurately.</div>
                 </div>
             </div>
             
@@ -1739,9 +2166,9 @@ body {
     </section>
     
         <section class="content-section tips-section">
-            <h2>Tips for Accurate Tablespoon to Milliliter Measurement</h2>
+            <h2>Tips for Accurate Tablespoon to Milliliter Conversion</h2>
             <ul class="tips-list">
-                <li>Always confirm whether the recipe follows US, UK, or Australian measurement standards.</li><li>Use 1 tablespoon = 15 ml as a safe default unless the recipe specifies otherwise.</li><li>Avoid using household spoons; use proper measuring spoons or a measuring cup with ml markings.</li><li>For liquids, measure at eye level and read from the bottom of the meniscus.</li><li>When accuracy matters, convert tablespoons to milliliters and measure using a graduated cup or digital scale.</li><li>Do not assume volume equals weight; liquids have different densities.</li><li>Reduce rounding when measuring multiple tablespoons to prevent cumulative error.</li><li>For medicine or supplements, never use kitchen spoons—always measure in milliliters.</li>
+                <li>Always check the recipe origin: US, UK, or Australia.</li><li>Use 1 tablespoon = 15 mL as default for US recipes, unless stated otherwise.</li><li>Avoid using household spoons; use measuring spoons or cups marked in milliliters.</li><li>Read liquid at eye level and at the bottom of the meniscus for accuracy.</li><li>When measuring multiple tablespoons, use milliliters to avoid cumulative error.</li><li>Remember 2 tablespoons in US cooking equal 30 mL, not 20 mL.</li><li>For international recipes, confirm whether a tablespoon is 15, 17.7, or 20 mL.</li><li>Milliliters are more precise than tablespoons; prefer metric measurements in professional cooking.</li>
             </ul>
         </section>
         
@@ -1751,71 +2178,121 @@ body {
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    How many milliliters are in 1 tablespoon?
+                    Is 1 tablespoon 5 mL?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>One tablespoon is equal to 15 milliliters in US measurement.</p>
+                    <p>No, 1 tablespoon is not 5 milliliters. In the US measurement system, 1 tablespoon equals exactly 15 milliliters, while 5 mL corresponds to 1 teaspoon. Confusing this can lead to incorrect measurements in recipes, especially in baking where precision matters.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Is tablespoon same in every country?
+                    Is 1 tablespoon 30 mL?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>No. US tablespoon is 15ml, but UK tablespoon is bigger around 17.7ml. This converter follows US system.</p>
+                    <p>No, 1 tablespoon is not 30 milliliters. In standard US cooking, 1 tablespoon is 15 mL. Therefore, 30 mL is equal to 2 US tablespoons. Using the wrong conversion can cause baked goods to be too wet or too dry.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Why tablespoon to milliliter conversion is important in baking?
+                    Does 2 tablespoons equal 20 mL?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Baking needs exact liquid amount. Even small extra or less liquid can change cake texture or softness.</p>
+                    <p>No, 2 US tablespoons equal 30 milliliters, not 20 mL. This mistake is common when people confuse teaspoons and tablespoons, and it can significantly alter the consistency of sauces, batters, and other recipes.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Can I use this conversion for all liquids?
+                    Is a tablespoon 15 or 20 mL?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Yes, because tablespoon and milliliter both measure volume. But converting to grams is different for each liquid.</p>
+                    <p>It depends on the country. In the US, 1 tablespoon equals 15 mL. In Australia, a tablespoon is 20 mL, while in the UK an imperial tablespoon is about 17.758 mL. Using the wrong standard can affect the outcome of a recipe, so always check the measurement system your recipe uses.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Is rounding milliliter value okay?
+                    How many milliliters are in 1 tablespoon in the Philippines?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Small rounding is okay for cooking, but many rounding in one recipe can spoil final result.</p>
+                    <p>In the Philippines, most recipes follow the US standard, so 1 tablespoon equals 15 milliliters. This is useful when converting tablespoons to milliliters for Filipino cooking, especially for sauces, drinks, and small-batch baking.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Which is more accurate, tablespoon or milliliter?
+                    How many milliliters are in 15 tablespoons?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Milliliter is more accurate because it is metric system and easier to measure using scale or marked cups.</p>
+                    <p>15 US tablespoons equal 225 milliliters because 1 tablespoon is 15 mL. This conversion is often needed in baking or cooking when scaling recipes, such as for making large batches of batter, sauces, or marinades.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    What measuring tool should I trust?
+                    Is 5 mL equal to 1 tablespoon?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>For small amount, measuring spoon is fine. For bigger amount, liquid measuring cup with ml marking is better.</p>
+                    <p>No, 5 mL is not equal to a tablespoon. In fact, 5 mL corresponds to exactly 1 teaspoon, while 1 tablespoon equals 15 mL. Understanding this distinction is crucial for accurate measurements, especially in medicine dosing or baking.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Is 5 mL 1 teaspoon?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Yes, 5 milliliters is equivalent to 1 teaspoon. Teaspoons are smaller than tablespoons, and this conversion is standard across most countries using the US system. Measuring accurately ensures that recipes turn out as intended.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    How do I measure 5 mL accurately?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>To measure 5 milliliters accurately, you can use a small measuring spoon marked as 1 teaspoon or a syringe or graduated cup with milliliter markings. Avoid using household spoons, as their volume can vary and lead to inconsistent results in cooking or medicine dosing.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    5 mL to tbsp for water, flour, and oil – is it the same?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Yes, 5 milliliters equals 1 teaspoon for all liquids and powders, including water, oil, and flour. However, remember that tablespoons measure volume, not weight, so 5 mL of flour does not weigh the same as 5 mL of water. Accurate volume measurement is key for recipe consistency.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    10 mL to tablespoons – how much is it?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>10 milliliters is equal to 2 teaspoons or approximately 0.6667 tablespoons. This is important to know when doubling or halving recipes or converting liquid medicine dosages accurately.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    Why is converting tablespoons to milliliters important in baking and cooking?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer" style="display: none;">
+                    <p>Converting tablespoons to milliliters is essential because even small differences in liquid measurement can drastically affect the outcome of a recipe. Precise conversion ensures consistent texture, flavor, and rise in baked goods, while also being critical in medicine or syrup dosing where accuracy affects safety.</p>
                 </div>
             </div>
             
@@ -1861,7 +2338,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -1874,15 +2351,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -1906,6 +2393,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

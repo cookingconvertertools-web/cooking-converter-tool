@@ -70,8 +70,8 @@
   "name": "One Cup Equal to How Many Grams",
   "description": "Convert one cup to grams for all ingredients, US/UK/Australian cups, and learn how volume and weight differences matter in cooking",
   "url": "https://bakingmath.org/converters/one-cup-equal-to-how-many-grams/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1519,7 +1789,7 @@ body {
                     
     <section class="content-section hero-section">
         <h1>One Cup Equal to How Many Grams</h1>
-        <p class="hero-subtitle">Quick and simple conversions for US, UK, AU cups — know grams instantly</p>
+        <p class="hero-subtitle">Understand exactly how many grams are in one cup for different ingredients and cup standards</p>
         
     </section>
     
@@ -1541,15 +1811,15 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"one-cup-equal-to-how-many-grams","slug":"one-cup-equal-to-how-many-grams","title":"One Cup Equal to How Many Grams","description":"Convert one cup to grams for all ingredients, US/UK/Australian cups, and learn how volume and weight differences matter in cooking","keywords":["one cup in grams","cups to grams","grams to cups","cup measurements","baking conversions"],"categories":["weight","volume","baking","ingredient"],"manualRelatedLinks":["cups-to-ml","tbsp-to-gram","oven-temp-conversion"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","visualChart","stepByStep","commonMistakes","equipmentGuide","scientificBackground","regionalVariations","recipeExamples","tips","faq","related"],"defaults":{"value":1,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","ounce","tablespoon","teaspoon"],"conversions":{"cup":{"gram":125,"ounce":4.409,"tablespoon":16,"teaspoon":48},"gram":{"cup":0.008,"ounce":0.035274,"tablespoon":0.128,"teaspoon":0.384},"ounce":{"cup":0.2268,"gram":28.3495,"tablespoon":3.628,"teaspoon":10.885},"tablespoon":{"cup":0.0625,"gram":7.8125,"ounce":0.2756,"teaspoon":3},"teaspoon":{"cup":0.02083,"gram":2.604,"ounce":0.09186,"tablespoon":0.3333}},"faqs":[{"question":"How many grams are in 1 cup of flour?","answer":"1 cup of all-purpose flour equals approx 125 grams in US measurement. UK and AU cups vary slightly."},{"question":"How many grams in 3/4 cup sugar?","answer":"3/4 cup granulated sugar equals about 150 grams (US), 170 grams (UK), 165 grams (AU)."},{"question":"1 cup equal to how many grams?","answer":"Depends on ingredient. Flour 125g, sugar 200g, butter 227g. Always check ingredient type."},{"question":"Cups to grams and ml conversion?","answer":"1 US cup = 240ml, 1 UK cup = 284ml, 1 AU cup = 250ml. Grams vary by ingredient, ml is volume only."},{"question":"How many cups is 200 grams sugar?","answer":"200 grams sugar is approx 1 cup (US), slightly less than 1 cup UK/AU."},{"question":"Grams to cups and tablespoons?","answer":"1 cup sugar = 200g = 16 tablespoons. 1 cup flour = 125g = 16 tablespoons."},{"question":"1/8 cup how many tablespoons?","answer":"1/8 cup equals 2 tablespoons in US standard."},{"question":"350 milliliters to cups?","answer":"350ml equals 1.46 US cups, 1.23 UK cups, 1.4 AU cups approximately."},{"question":"Is it okay to add 25% extra in cup measurement?","answer":"Depends on ingredient and recipe. For flour, small variations are okay, but sugar and butter changes can affect baking. Best to measure in grams for precise baking."}],"contentSections":{"hero":{"title":"One Cup Equal to How Many Grams","subtitle":"Quick and simple conversions for US, UK, AU cups — know grams instantly"},"quickReference":{"title":"Quick Reference Table","description":"Below table gives fast glance for common ingredients. Each ingredient same cup looks different weight, so better to know grams. Helps when you cooking fast or checking recipe.","items":[{"ingredient":"All-purpose flour","cup":1,"grams":125,"tablespoon":16,"icon":"🍞"},{"ingredient":"Granulated sugar","cup":1,"grams":200,"tablespoon":16,"icon":"🍬"},{"ingredient":"Brown sugar","cup":1,"grams":220,"tablespoon":16,"icon":"🍯"},{"ingredient":"Butter","cup":1,"grams":227,"tablespoon":16,"icon":"🧈"},{"ingredient":"Rice (uncooked)","cup":1,"grams":195,"tablespoon":16,"icon":"🍚"},{"ingredient":"Oats","cup":1,"grams":90,"tablespoon":16,"icon":"🥣"}]},"comparisonTable":{"title":"US, UK, and Australian Cups Comparison","description":"Different countries use different cup sizes. US 240ml, UK 284ml, AU 250ml. Same cup but grams of flour/sugar change. Know these to avoid recipe mistakes. Look below for quick idea.","columns":["Cup Type","Milliliters (ml)","Flour (grams)","Sugar (grams)"],"rows":[{"cupType":"US Cup","milliliters":240,"gramsFlour":125,"gramsSugar":200},{"cupType":"UK Cup","milliliters":284,"gramsFlour":150,"gramsSugar":225},{"cupType":"Australian Cup","milliliters":250,"gramsFlour":140,"gramsSugar":220}]},"visualChart":{"title":"Volume vs Weight Visual","items":[{"name":"All-purpose Flour","weight":"125g per cup","comparison":"Light and airy","visual":"🍞","color":"#f5e5c8"},{"name":"Granulated Sugar","weight":"200g per cup","comparison":"Denser than flour","visual":"🍬","color":"#fff4e6"},{"name":"Butter","weight":"227g per cup","comparison":"Most dense common ingredient","visual":"🧈","color":"#fff9c4"}]},"stepByStep":{"title":"Step-by-Step Usage Guide","steps":[{"number":1,"title":"Select Your Ingredient","content":"Even if converter mostly uses units, think what ingredient is. Flour, sugar, butter all weigh differently. Helps you imagine exact grams."},{"number":2,"title":"Choose Source Unit","content":"Select unit you starting from, usually cup. Could be tablespoon, gram — all works."},{"number":3,"title":"Enter Amount","content":"Type number of cups or fraction, e.g., 1, 3/4, 1/8. Works fine for precise baking."},{"number":4,"title":"Select Target Unit","content":"Pick what you convert to: gram, cup, tablespoon. Instant results."},{"number":5,"title":"View Results","content":"Hit convert. See grams, tablespoons. No guesswork, just quick easy cooking."}]},"commonMistakes":{"title":"Common Mistakes to Avoid","mistakes":[{"mistake":"Using US cups when recipe is UK or Australian","consequence":"Can be heavier or lighter result.","solution":"Check recipe origin and use correct cup.","severity":"high"},{"mistake":"Assuming all ingredients weigh same","consequence":"Flour and sugar same cup looks same but grams differ.","solution":"Use ingredient-specific conversion.","severity":"medium"},{"mistake":"Measuring packed or loose wrongly","consequence":"Brown sugar packed vs loose changes weight.","solution":"Follow recipe instructions.","severity":"medium"},{"mistake":"Rounding too much","consequence":"Small changes ruin delicate baking.","solution":"Measure closer to gram.","severity":"low"}]},"equipmentGuide":{"title":"Recommended Measuring Tools","tools":[{"name":"Measuring Cups Set","importance":"Essential","icon":"🥄","features":["US/UK/AU standards","Nested for storage","Easy-to-read markings"],"priceRange":"$10-$25"},{"name":"Kitchen Scale","importance":"Essential","icon":"⚖️","features":["Gram/ounce precision","Tare function","Battery operated"],"priceRange":"$15-$40","recommendedBrands":["OXO","Escali","Amazon Basics"]},{"name":"Tablespoon & Teaspoon Set","importance":"Recommended","icon":"🥄","features":["Stainless steel","Leveling edge","Dishwasher safe"],"priceRange":"$8-$15"},{"name":"Liquid Measuring Cups","importance":"Recommended","icon":"🥤","features":["Spout for pouring","ML and cup markings","Microwave safe"],"priceRange":"$8-$20"}]},"scientificBackground":{"title":"Why Volume and Weight Differ","concepts":[{"concept":"Density Differences","explanation":"Cup measures space, grams measure mass. Flour lighter than sugar. Baking needs precision so weight more reliable.","examples":["Flour: 125g/cup","Sugar: 200g/cup","Butter: 227g/cup"],"impact":"Better baking result using grams than cups."}]},"regionalVariations":{"title":"Global Differences in Cups","regions":[{"region":"United States","cupSize":"240ml","commonUnits":["cups","tablespoons","teaspoons"],"system":"US Customary","note":"Most American recipes use this cup."},{"region":"United Kingdom","cupSize":"284ml","commonUnits":["metric cups","ml","grams"],"system":"Imperial","note":"Slightly bigger than US cup."},{"region":"Australia","cupSize":"250ml","commonUnits":["metric cups","ml","grams"],"system":"Metric","note":"Use metric for all measurements."}]},"recipeExamples":{"title":"Recipe Applications","examples":[{"recipe":"Pancakes","original":["1 cup flour","2 tbsp sugar","1 cup milk"],"converted":["125g flour","25g sugar","240ml milk"],"serves":"4","tip":"Mix dry first then add wet."},{"recipe":"Cookies","original":["3/4 cup sugar","1/2 cup butter","2 cups flour"],"converted":["170g sugar","113.5g butter","250g flour"],"serves":"12","tip":"Chill dough before baking."},{"recipe":"Brownies","original":["1/2 cup butter","1 cup sugar","3/4 cup flour"],"converted":["113.5g butter","200g sugar","95g flour"],"serves":"9","tip":"Don’t overmix."}]},"tips":{"title":"Tips & Best Practices","tips":["Spoon flour into cup, don’t scoop.","Level ingredients for accuracy.","Kitchen scale better for precise grams.","Remember US, UK, AU cup differences.","Sticky ingredients: pack lightly or check grams."]},"related":{"title":"Related Converters","links":["cups-to-ml","tbsp-to-gram","oven-temp-conversion","grams-to-cups"]}}}
+            {"id":"one-cup-equal-to-how-many-grams","slug":"one-cup-equal-to-how-many-grams","title":"One Cup Equal to How Many Grams","description":"Convert one cup to grams for all ingredients, US/UK/Australian cups, and learn how volume and weight differences matter in cooking","keywords":["one cup in grams","cups to grams","grams to cups","cup measurements","baking conversions"],"categories":["weight","volume","baking","ingredient"],"manualRelatedLinks":["cups-to-ml","tbsp-to-gram","oven-temp-conversion"],"featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","visualChart","stepByStep","commonMistakes","equipmentGuide","scientificBackground","regionalVariations","recipeExamples","tips","faq","related"],"defaults":{"value":1,"from":"cup","to":"gram"},"supportedUnits":["cup","gram","ounce","tablespoon","teaspoon"],"conversions":{"cup":{"cup":1,"gram":125,"ounce":4.409,"tablespoon":16,"teaspoon":48},"gram":{"gram":1,"cup":0.008,"ounce":0.035274,"tablespoon":0.128,"teaspoon":0.384},"ounce":{"ounce":1,"cup":0.2268,"gram":28.3495,"tablespoon":3.628,"teaspoon":10.885},"tablespoon":{"tablespoon":1,"cup":0.0625,"gram":7.8125,"ounce":0.2756,"teaspoon":3},"teaspoon":{"teaspoon":1,"cup":0.02083,"gram":2.604,"ounce":0.09186,"tablespoon":0.3333}},"faqs":[{"question":"How many grams are in 1 cup of flour?","answer":"1 cup of all-purpose flour equals approx 125 grams in US measurement. UK and AU cups vary slightly."},{"question":"How many grams in 3/4 cup sugar?","answer":"3/4 cup granulated sugar equals about 150 grams (US), 170 grams (UK), 165 grams (AU)."},{"question":"1 cup equal to how many grams?","answer":"Depends on ingredient. Flour 125g, sugar 200g, butter 227g. Always check ingredient type."},{"question":"Cups to grams and ml conversion?","answer":"1 US cup = 240ml, 1 UK cup = 284ml, 1 AU cup = 250ml. Grams vary by ingredient, ml is volume only."},{"question":"How many cups is 200 grams sugar?","answer":"200 grams sugar is approx 1 cup (US), slightly less than 1 cup UK/AU."},{"question":"Grams to cups and tablespoons?","answer":"1 cup sugar = 200g = 16 tablespoons. 1 cup flour = 125g = 16 tablespoons."},{"question":"1/8 cup how many tablespoons?","answer":"1/8 cup equals 2 tablespoons in US standard."},{"question":"350 milliliters to cups?","answer":"350ml equals 1.46 US cups, 1.23 UK cups, 1.4 AU cups approximately."},{"question":"Is it okay to add 25% extra in cup measurement?","answer":"Depends on ingredient and recipe. For flour, small variations are okay, but sugar and butter changes can affect baking. Best to measure in grams for precise baking."}],"contentSections":{"hero":{"title":"One Cup Equal to How Many Grams","subtitle":"Understand exactly how many grams are in one cup for different ingredients and cup standards","description":"If you’ve ever asked one cup equal to how many grams, the answer depends on the ingredient and the cup type used. A cup of flour does not weigh the same as a cup of sugar or butter. This guide explains 1 cup in grams using US, UK, and Australian cup measurements so you can cook and bake with confidence."},"quickReference":{"title":"Quick Reference for One Cup in Grams","description":"This quick reference answers the everyday question one cup equal to how many grams for common kitchen ingredients. Although the cup size stays the same, the gram value changes based on ingredient density. Flour is light and airy, sugar is heavier, and butter is dense. Use this table when you need a fast cup to gram conversion while cooking or baking without stopping to calculate each time.","items":[{"ingredient":"All-purpose flour","cup":1,"grams":125,"tablespoon":16,"icon":"🍞"},{"ingredient":"Granulated sugar","cup":1,"grams":200,"tablespoon":16,"icon":"🍬"},{"ingredient":"Brown sugar","cup":1,"grams":220,"tablespoon":16,"icon":"🍯"},{"ingredient":"Butter","cup":1,"grams":227,"tablespoon":16,"icon":"🧈"},{"ingredient":"Rice (uncooked)","cup":1,"grams":195,"tablespoon":16,"icon":"🍚"},{"ingredient":"Oats","cup":1,"grams":90,"tablespoon":16,"icon":"🥣"}]},"comparisonTable":{"title":"Cup to Gram Comparison","intro":"The comparison below shows how one cup converts to grams for popular ingredients. This makes it easier to understand why asking one cup equal to how many grams has different answers depending on what you are measuring.","columns":[{"key":"ingredient","label":"Ingredient"},{"key":"cups","label":"Cups"},{"key":"grams","label":"Grams"}],"rows":[{"ingredient":"All-purpose flour","cups":1,"grams":125},{"ingredient":"Granulated sugar","cups":1,"grams":225},{"ingredient":"Butter","cups":1,"grams":227},{"ingredient":"Milk","cups":1,"grams":240},{"ingredient":"Vegetable oil","cups":1,"grams":218},{"ingredient":"Honey","cups":1,"grams":340},{"ingredient":"White rice","cups":1,"grams":200},{"ingredient":"Cocoa powder","cups":1,"grams":100},{"ingredient":"Brown sugar","cups":1,"grams":220},{"ingredient":"Yogurt","cups":1,"grams":245}]},"visualChart":{"title":"Volume vs Weight Visual","items":[{"name":"All-purpose Flour","weight":"125g per cup","comparison":"Light and airy","visual":"🍞","color":"#f5e5c8"},{"name":"Granulated Sugar","weight":"200g per cup","comparison":"Denser than flour","visual":"🍬","color":"#fff4e6"},{"name":"Butter","weight":"227g per cup","comparison":"Most dense common ingredient","visual":"🧈","color":"#fff9c4"}]},"stepByStep":{"title":"How to Convert One Cup to Grams Correctly","steps":[{"number":1,"title":"Identify the Ingredient","content":"When asking one cup equal to how many grams, the first step is always identifying the ingredient. A cup of flour weighs far less than a cup of sugar or butter. Ignoring this step is the most common cause of wrong results in baking."},{"number":2,"title":"Confirm the Cup Standard","content":"Check whether the recipe uses US, UK, or Australian cups. One cup is not the same worldwide, and this difference directly affects how many grams one cup equals."},{"number":3,"title":"Enter the Cup Amount","content":"Enter the exact cup value such as 1, 3/4, or 1/2. Fractions matter because even small changes can affect baking texture and consistency."},{"number":4,"title":"Convert to Grams","content":"Select grams as the target unit. The result shows how much one cup equals in grams for the selected ingredient."},{"number":5,"title":"Measure Accurately","content":"For best results, use a kitchen scale to measure grams. This removes guesswork and gives more consistent outcomes than using cups alone."}]},"commonMistakes":{"title":"Common Mistakes When Converting One Cup to Grams","mistakes":[{"mistake":"Assuming one cup always equals the same grams","consequence":"Recipes turn out too dry or too dense because ingredient weights differ.","solution":"Always check ingredient-specific gram values.","severity":"high"},{"mistake":"Ignoring regional cup differences","consequence":"Using a UK or AU cup instead of a US cup changes the final gram amount.","solution":"Confirm the recipe’s country before converting.","severity":"high"},{"mistake":"Scooping flour directly with the cup","consequence":"Adds extra grams without realizing it.","solution":"Spoon flour into the cup and level it.","severity":"medium"},{"mistake":"Over-rounding gram values","consequence":"Small rounding errors add up in baking.","solution":"Measure as close as possible to the exact grams.","severity":"low"}]},"equipmentGuide":{"title":"Recommended Measuring Tools","tools":[{"name":"Measuring Cups Set","importance":"Essential","icon":"🥄","features":["US/UK/AU standards","Nested for storage","Easy-to-read markings"],"priceRange":"$10-$25"},{"name":"Kitchen Scale","importance":"Essential","icon":"⚖️","features":["Gram/ounce precision","Tare function","Battery operated"],"priceRange":"$15-$40","recommendedBrands":["OXO","Escali","Amazon Basics"]},{"name":"Tablespoon & Teaspoon Set","importance":"Recommended","icon":"🥄","features":["Stainless steel","Leveling edge","Dishwasher safe"],"priceRange":"$8-$15"},{"name":"Liquid Measuring Cups","importance":"Recommended","icon":"🥤","features":["Spout for pouring","ML and cup markings","Microwave safe"],"priceRange":"$8-$20"}]},"scientificBackground":{"title":"Why One Cup Does Not Equal the Same Grams","concepts":[{"concept":"Volume vs Weight","explanation":"A cup measures volume, while grams measure weight. This is the main reason the question one cup equal to how many grams does not have a single fixed answer. A cup only tells how much space an ingredient occupies, not how heavy it is.","examples":["Flour: about 125 grams per cup","Sugar: about 200 grams per cup","Butter: about 227 grams per cup"],"impact":"Relying only on cups can cause variation in recipes, while grams give more control and consistency."},{"concept":"Ingredient Density","explanation":"Different ingredients have different densities. Ingredients with more air, like flour or cocoa powder, weigh less in one cup. Dense ingredients like sugar, honey, or butter pack more mass into the same cup volume.","examples":["Oats: around 90 grams per cup","Honey: around 340 grams per cup","Cocoa powder: around 100 grams per cup"],"impact":"Understanding density helps explain why one cup does not convert to the same grams across ingredients."},{"concept":"Packing and Measuring Method","explanation":"How an ingredient is placed into the cup also changes the gram value. Scooped flour is heavier than spooned and leveled flour. Brown sugar packed tightly weighs more than loosely filled sugar in the same cup.","examples":["Scooped flour weighs more than spooned flour","Packed brown sugar weighs more than loose brown sugar","Sifted flour weighs less per cup"],"impact":"Using a scale in grams removes errors caused by different packing and measuring methods."}]},"regionalVariations":{"title":"Global Differences in Cups","regions":[{"region":"United States","cupSize":"240ml","commonUnits":["cups","tablespoons","teaspoons"],"system":"US Customary","note":"Most American recipes use this cup."},{"region":"United Kingdom","cupSize":"284ml","commonUnits":["metric cups","ml","grams"],"system":"Imperial","note":"Slightly bigger than US cup."},{"region":"Australia","cupSize":"250ml","commonUnits":["metric cups","ml","grams"],"system":"Metric","note":"Use metric for all measurements."}]},"recipeExamples":{"title":"Recipe Applications","examples":[{"recipe":"Pancakes","original":["1 cup flour","2 tbsp sugar","1 cup milk"],"converted":["125g flour","25g sugar","240ml milk"],"serves":"4","tip":"Mix dry first then add wet."},{"recipe":"Cookies","original":["3/4 cup sugar","1/2 cup butter","2 cups flour"],"converted":["170g sugar","113.5g butter","250g flour"],"serves":"12","tip":"Chill dough before baking."},{"recipe":"Brownies","original":["1/2 cup butter","1 cup sugar","3/4 cup flour"],"converted":["113.5g butter","200g sugar","95g flour"],"serves":"9","tip":"Don’t overmix."}]},"tips":{"title":"Practical Tips for One Cup to Gram Accuracy","tips":["If precision matters, always convert one cup to grams instead of estimating.","For baking, measuring 1 cup in grams gives more consistent texture and rise.","Liquids are closer to cup volume, but dry ingredients vary widely in weight.","When a recipe fails, incorrect cup to gram conversion is often the reason.","A digital kitchen scale removes most conversion errors."]},"related":{"title":"Related Converters","links":["cups-to-ml","tbsp-to-gram","oven-temp-conversion","grams-to-cups"]}}}
             </script>
         </div>
     </section>
     
     <section class="content-section quick-reference">
         <div class="section-header">
-            <h2>Quick Reference Table</h2>
-            <p class="section-description">Below table gives fast glance for common ingredients. Each ingredient same cup looks different weight, so better to know grams. Helps when you cooking fast or checking recipe.</p>
+            <h2>Quick Reference for One Cup in Grams</h2>
+            <p class="section-description">This quick reference answers the everyday question one cup equal to how many grams for common kitchen ingredients. Although the cup size stays the same, the gram value changes based on ingredient density. Flour is light and airy, sugar is heavier, and butter is dense. Use this table when you need a fast cup to gram conversion while cooking or baking without stopping to calculate each time.</p>
         </div>
         <div class="quick-reference-grid">
             
@@ -1630,28 +1900,56 @@ body {
     
     <section class="content-section comparison-table">
         <div class="section-header">
-            <h2>US, UK, and Australian Cups Comparison</h2>
-            <p class="section-description">Different countries use different cup sizes. US 240ml, UK 284ml, AU 250ml. Same cup but grams of flour/sugar change. Know these to avoid recipe mistakes. Look below for quick idea.</p>
+            <h2>Cup to Gram Comparison</h2>
+            
         </div>
         <div class="table-container">
             <table class="comparison-table">
                 <thead>
                     <tr>
-                        <th>Cup Type</th><th>Milliliters (ml)</th><th>Flour (grams)</th><th>Sugar (grams)</th>
+                        <th>[object Object]</th><th>[object Object]</th><th>[object Object]</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <tr>
-                        <td>US Cup</td><td>240</td><td>125</td><td>200</td>
+                        <td>All-purpose flour</td><td>1</td><td>125</td>
                     </tr>
                     
                     <tr>
-                        <td>UK Cup</td><td>284</td><td>150</td><td>225</td>
+                        <td>Granulated sugar</td><td>1</td><td>225</td>
                     </tr>
                     
                     <tr>
-                        <td>Australian Cup</td><td>250</td><td>140</td><td>220</td>
+                        <td>Butter</td><td>1</td><td>227</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Milk</td><td>1</td><td>240</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Vegetable oil</td><td>1</td><td>218</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Honey</td><td>1</td><td>340</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>White rice</td><td>1</td><td>200</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Cocoa powder</td><td>1</td><td>100</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Brown sugar</td><td>1</td><td>220</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Yogurt</td><td>1</td><td>245</td>
                     </tr>
                     
                 </tbody>
@@ -1698,7 +1996,7 @@ body {
     
     <section class="content-section step-by-step">
         <div class="section-header">
-            <h2>Step-by-Step Usage Guide</h2>
+            <h2>How to Convert One Cup to Grams Correctly</h2>
             
         </div>
         <div class="steps-container">
@@ -1706,8 +2004,8 @@ body {
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h3>Select Your Ingredient</h3>
-                    <p>Even if converter mostly uses units, think what ingredient is. Flour, sugar, butter all weigh differently. Helps you imagine exact grams.</p>
+                    <h3>Identify the Ingredient</h3>
+                    <p>When asking one cup equal to how many grams, the first step is always identifying the ingredient. A cup of flour weighs far less than a cup of sugar or butter. Ignoring this step is the most common cause of wrong results in baking.</p>
                     
                     
                     
@@ -1717,8 +2015,8 @@ body {
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>Choose Source Unit</h3>
-                    <p>Select unit you starting from, usually cup. Could be tablespoon, gram — all works.</p>
+                    <h3>Confirm the Cup Standard</h3>
+                    <p>Check whether the recipe uses US, UK, or Australian cups. One cup is not the same worldwide, and this difference directly affects how many grams one cup equals.</p>
                     
                     
                     
@@ -1728,8 +2026,8 @@ body {
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>Enter Amount</h3>
-                    <p>Type number of cups or fraction, e.g., 1, 3/4, 1/8. Works fine for precise baking.</p>
+                    <h3>Enter the Cup Amount</h3>
+                    <p>Enter the exact cup value such as 1, 3/4, or 1/2. Fractions matter because even small changes can affect baking texture and consistency.</p>
                     
                     
                     
@@ -1739,8 +2037,8 @@ body {
             <div class="step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                    <h3>Select Target Unit</h3>
-                    <p>Pick what you convert to: gram, cup, tablespoon. Instant results.</p>
+                    <h3>Convert to Grams</h3>
+                    <p>Select grams as the target unit. The result shows how much one cup equals in grams for the selected ingredient.</p>
                     
                     
                     
@@ -1750,8 +2048,8 @@ body {
             <div class="step">
                 <div class="step-number">5</div>
                 <div class="step-content">
-                    <h3>View Results</h3>
-                    <p>Hit convert. See grams, tablespoons. No guesswork, just quick easy cooking.</p>
+                    <h3>Measure Accurately</h3>
+                    <p>For best results, use a kitchen scale to measure grams. This removes guesswork and gives more consistent outcomes than using cups alone.</p>
                     
                     
                     
@@ -1763,7 +2061,7 @@ body {
     
     <section class="content-section common-mistakes">
         <div class="section-header">
-            <h2>Common Mistakes to Avoid</h2>
+            <h2>Common Mistakes When Converting One Cup to Grams</h2>
             
         </div>
         <div class="mistakes-container">
@@ -1771,36 +2069,36 @@ body {
             <div class="mistake-item high">
                 
                 <div class="mistake-content">
-                    <h3>Using US cups when recipe is UK or Australian</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Can be heavier or lighter result.</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Check recipe origin and use correct cup.</div>
+                    <h3>Assuming one cup always equals the same grams</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Recipes turn out too dry or too dense because ingredient weights differ.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Always check ingredient-specific gram values.</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item high">
+                
+                <div class="mistake-content">
+                    <h3>Ignoring regional cup differences</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Using a UK or AU cup instead of a US cup changes the final gram amount.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Confirm the recipe’s country before converting.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Assuming all ingredients weigh same</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Flour and sugar same cup looks same but grams differ.</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Use ingredient-specific conversion.</div>
-                </div>
-            </div>
-            
-            <div class="mistake-item medium">
-                
-                <div class="mistake-content">
-                    <h3>Measuring packed or loose wrongly</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Brown sugar packed vs loose changes weight.</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Follow recipe instructions.</div>
+                    <h3>Scooping flour directly with the cup</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Adds extra grams without realizing it.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Spoon flour into the cup and level it.</div>
                 </div>
             </div>
             
             <div class="mistake-item low">
                 
                 <div class="mistake-content">
-                    <h3>Rounding too much</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Small changes ruin delicate baking.</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Measure closer to gram.</div>
+                    <h3>Over-rounding gram values</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Small rounding errors add up in baking.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Measure as close as possible to the exact grams.</div>
                 </div>
             </div>
             
@@ -1911,23 +2209,51 @@ body {
     
     <section class="content-section scientific-background">
         <div class="section-header">
-            <h2>Why Volume and Weight Differ</h2>
+            <h2>Why One Cup Does Not Equal the Same Grams</h2>
             
         </div>
         <div class="concepts-container">
             
             <div class="concept">
-                <h3>Density Differences</h3>
-                <p>Cup measures space, grams measure mass. Flour lighter than sugar. Baking needs precision so weight more reliable.</p>
+                <h3>Volume vs Weight</h3>
+                <p>A cup measures volume, while grams measure weight. This is the main reason the question one cup equal to how many grams does not have a single fixed answer. A cup only tells how much space an ingredient occupies, not how heavy it is.</p>
                 
                 <div class="concept-examples">
                     <strong>Examples:</strong>
                     <ul>
-                        <li>Flour: 125g/cup</li><li>Sugar: 200g/cup</li><li>Butter: 227g/cup</li>
+                        <li>Flour: about 125 grams per cup</li><li>Sugar: about 200 grams per cup</li><li>Butter: about 227 grams per cup</li>
                     </ul>
                 </div>
                 
-                <div class="concept-impact"><strong>Impact:</strong> Better baking result using grams than cups.</div>
+                <div class="concept-impact"><strong>Impact:</strong> Relying only on cups can cause variation in recipes, while grams give more control and consistency.</div>
+            </div>
+            
+            <div class="concept">
+                <h3>Ingredient Density</h3>
+                <p>Different ingredients have different densities. Ingredients with more air, like flour or cocoa powder, weigh less in one cup. Dense ingredients like sugar, honey, or butter pack more mass into the same cup volume.</p>
+                
+                <div class="concept-examples">
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>Oats: around 90 grams per cup</li><li>Honey: around 340 grams per cup</li><li>Cocoa powder: around 100 grams per cup</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-impact"><strong>Impact:</strong> Understanding density helps explain why one cup does not convert to the same grams across ingredients.</div>
+            </div>
+            
+            <div class="concept">
+                <h3>Packing and Measuring Method</h3>
+                <p>How an ingredient is placed into the cup also changes the gram value. Scooped flour is heavier than spooned and leveled flour. Brown sugar packed tightly weighs more than loosely filled sugar in the same cup.</p>
+                
+                <div class="concept-examples">
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>Scooped flour weighs more than spooned flour</li><li>Packed brown sugar weighs more than loose brown sugar</li><li>Sifted flour weighs less per cup</li>
+                    </ul>
+                </div>
+                
+                <div class="concept-impact"><strong>Impact:</strong> Using a scale in grams removes errors caused by different packing and measuring methods.</div>
             </div>
             
         </div>
@@ -2063,9 +2389,9 @@ body {
     </section>
     
         <section class="content-section tips-section">
-            <h2>Tips & Best Practices</h2>
+            <h2>Practical Tips for One Cup to Gram Accuracy</h2>
             <ul class="tips-list">
-                <li>Spoon flour into cup, don’t scoop.</li><li>Level ingredients for accuracy.</li><li>Kitchen scale better for precise grams.</li><li>Remember US, UK, AU cup differences.</li><li>Sticky ingredients: pack lightly or check grams.</li>
+                <li>If precision matters, always convert one cup to grams instead of estimating.</li><li>For baking, measuring 1 cup in grams gives more consistent texture and rise.</li><li>Liquids are closer to cup volume, but dry ingredients vary widely in weight.</li><li>When a recipe fails, incorrect cup to gram conversion is often the reason.</li><li>A digital kitchen scale removes most conversion errors.</li>
             </ul>
         </section>
         
@@ -2218,7 +2544,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -2231,15 +2557,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2263,6 +2599,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

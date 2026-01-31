@@ -70,8 +70,8 @@
   "name": "What gas mark is 180C?",
   "description": "Learn what gas mark 180°C means for cooking and baking in different ovens, including fan ovens, traditional gas ovens, and electric ovens. Understand temperature conversions, cooking times, and best practices with clear tables, examples, and tips to ensure your dishes turn out perfectly every time.",
   "url": "https://bakingmath.org/converters/what-gas-mark-is-180c/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"what-gas-mark-is-180c","slug":"what-gas-mark-is-180c","title":"What gas mark is 180C?","description":"Learn what gas mark 180°C means for cooking and baking in different ovens, including fan ovens, traditional gas ovens, and electric ovens. Understand temperature conversions, cooking times, and best practices with clear tables, examples, and tips to ensure your dishes turn out perfectly every time.","keywords":["what gas mark is 180c","180c gas mark","180c oven gas mark","gas mark for 180 degrees","180c fan oven gas mark"],"categories":["temperature"],"subcategory":"oven","featured":true,"popularity":91,"lastUpdated":"2026-01-27","contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":180,"from":"celsius","to":"gas mark"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"conversionTable":[{"Gas Mark":1,"Celsius":140,"Fahrenheit":275,"Fan Celsius":120},{"Gas Mark":2,"Celsius":150,"Fahrenheit":300,"Fan Celsius":130},{"Gas Mark":3,"Celsius":165,"Fahrenheit":325,"Fan Celsius":145},{"Gas Mark":4,"Celsius":180,"Fahrenheit":350,"Fan Celsius":160},{"Gas Mark":5,"Celsius":190,"Fahrenheit":375,"Fan Celsius":170},{"Gas Mark":6,"Celsius":200,"Fahrenheit":400,"Fan Celsius":180},{"Gas Mark":7,"Celsius":220,"Fahrenheit":425,"Fan Celsius":200},{"Gas Mark":8,"Celsius":230,"Fahrenheit":450,"Fan Celsius":210},{"Gas Mark":9,"Celsius":240,"Fahrenheit":475,"Fan Celsius":220},{"Gas Mark":10,"Celsius":250,"Fahrenheit":500,"Fan Celsius":230}],"contentSections":{"hero":{"title":"What Gas Mark Is 180C?","subtitle":"Simple answer for oven users, bakers, and home cooking","intro":"If your recipe says 180C and your oven only has gas mark, you are not alone. Many people get confused. Short answer is 180C is Gas Mark 4. But there is more story behind this, like fan oven, old gas oven, country difference, and how accurate your oven really is."},"quickReference":{"title":"Quick Answer for 180C","description":"Use this when you are in hurry and just want correct oven setting.","items":[{"ingredient":"180°C Conventional Oven","gasMark":4,"fanC":160,"icon":"🔥"},{"ingredient":"180°C Fan Oven","gasMark":4,"fanC":160,"icon":"🌀"},{"ingredient":"180°C Gas Oven","gasMark":4,"fanC":"not used","icon":"🔥"},{"ingredient":"180°C = Fahrenheit","gasMark":4,"fanC":350,"icon":"🌡️"}]},"comparisonTable":{"title":"180C Compared with Other Oven Systems","description":"This table helps you understand how 180C fits in different oven types and countries.","columns":["System","Value","Equivalent Gas Mark","Notes"],"rows":[{"System":"Celsius","Value":"180°C","Equivalent Gas Mark":4,"Notes":"Standard baking temperature"},{"System":"Gas Mark","Value":"4","Equivalent Gas Mark":4,"Notes":"Used mostly in UK gas ovens"},{"System":"Fahrenheit","Value":"350°F","Equivalent Gas Mark":4,"Notes":"Common in US recipes"},{"System":"Fan Oven","Value":"160°C","Equivalent Gas Mark":4,"Notes":"Fan oven needs lower temp"},{"System":"Old Gas Oven","Value":"Between 4 and 5","Equivalent Gas Mark":4,"Notes":"Dial may not be exact"},{"System":"Electric Oven","Value":"180°C","Equivalent Gas Mark":4,"Notes":"Most modern ovens"},{"System":"Convection Oven","Value":"160–170°C","Equivalent Gas Mark":4,"Notes":"Air circulation cooks faster"},{"System":"Recipe Book UK","Value":"Gas 4","Equivalent Gas Mark":4,"Notes":"Traditional UK books"},{"System":"Recipe Book EU","Value":"180°C","Equivalent Gas Mark":4,"Notes":"Metric system"},{"System":"Recipe Book US","Value":"350°F","Equivalent Gas Mark":4,"Notes":"Imperial system"}]},"scientificBackground":{"title":"Why 180C Equals Gas Mark 4 (But Not Always Simple)","description":"This section explains why 180°C corresponds to Gas Mark 4 and explores common reasons why people can still get confused. Learn the temperature conversion, tips for accurate baking, and examples to make understanding oven settings easier, helping you cook and bake with confidence every time.","concepts":[{"concept":"Origin of Gas Mark System","explanation":"Gas Mark is old UK system. Before digital ovens, gas ovens had numbers instead of degrees. Gas Mark 1 was very low heat, Gas Mark 9 or 10 very high heat. Over time, people tested and matched these numbers with Celsius. From this testing, Gas Mark 4 came close to 180C. That is why today, cookbooks say 180C = Gas Mark 4.","examples":["Old UK recipe says Gas 4 means moderate oven","Modern recipe writes same as 180C"],"impact":"Because it is approximate system, small variation always possible."},{"concept":"Why 180C Is Called Moderate Oven","explanation":"In cooking language, 180C is called moderate oven. Gas Mark 4 also known as moderate oven. This temperature is used for cakes, cookies, roasted vegetables, chicken, and many everyday bakes. It is not too hot and not too slow. Gas Mark 4 gives balanced heat for even cooking.","examples":["Victoria sponge cake baked at 180C / Gas 4","Roast vegetables bake well at this setting"],"impact":"Using correct moderate heat avoids burning outside and raw inside."},{"concept":"Fan Oven Confusion","explanation":"Many people have fan oven now. Fan oven blows hot air, so food cooks faster. Because of this, when recipe says 180C, fan oven should be set to 160C. But gas mark stays same. Gas Mark 4 still correct, but actual temperature setting changes.","examples":["180C conventional = 160C fan","Gas Mark remains 4"],"impact":"Not reducing fan oven temperature can overcook food."},{"concept":"Old Gas Oven Dial Issues","explanation":"Old gas ovens sometimes do not show exact temperature. Dial may say Gas 4 but actual heat could be higher or lower. This is because old thermostat wear out over time. That is why sometimes cake burns even when you set Gas Mark 4.","examples":["Gas Mark 4 behaving like Gas Mark 5","Uneven heating in old ovens"],"impact":"Using oven thermometer helps a lot."},{"concept":"Country and Recipe Differences","explanation":"UK recipes often use Gas Mark. European recipes use Celsius. US recipes use Fahrenheit. All of them describe same heat level differently. 180C, Gas Mark 4, and 350F are same cooking zone. Problem happens when people mix systems without converting.","examples":["US recipe says 350F","UK oven only shows Gas Mark"],"impact":"Wrong conversion leads to wrong baking result."},{"concept":"Why Exact Match Is Not Always Possible","explanation":"Gas Mark system is not exact science. It is range based, not single number based. Gas Mark 4 usually means around 175C to 185C. That is why people say 180C equals Gas Mark 4. But if your oven is slightly hotter or cooler, result change. That is normal. Gas ovens heat in pulses, not stable like electric ovens. So temperature moves up and down during cooking.","examples":["Gas Mark 4 may feel hotter in small oven","Large oven may feel slightly cooler at same mark"],"impact":"Understanding range avoids panic when food cooks faster or slower."},{"concept":"Effect of Oven Size and Load","explanation":"Small ovens heat faster than big ovens. Also when oven is full with trays, temperature drop little bit. If you bake many trays at 180C Gas Mark 4, real heat inside may drop. Fan oven handles this better. Gas oven without fan may struggle. This is why professional kitchens use convection ovens.","examples":["Two cake tins bake slower than one","Full oven of cookies need more time"],"impact":"Adjust baking time instead of changing Gas Mark blindly."},{"concept":"Why Bakers Trust 180C / Gas Mark 4","explanation":"Most baking science is built around 180C. Butter melts properly, sugar caramelizes slowly, eggs set without burning. Gas Mark 4 gives this balance. That is why so many cake recipes default to this temperature. It is safe zone for beginners and professionals.","examples":["Sponge cake structure sets well","Cookies spread without burning"],"impact":"Using Gas Mark 4 gives predictable baking results."},{"concept":"Moisture and Heat Balance","explanation":"At 180C, moisture evaporates slowly. If oven too hot, moisture escapes too fast and cake becomes dry. If too cool, cake stays dense. Gas Mark 4 keeps balance. Fan ovens dry food faster, so temperature reduction is needed.","examples":["Bread crust forms nicely","Cakes stay soft inside"],"impact":"Correct Gas Mark helps texture and softness."},{"concept":"Professional Tip from Kitchens","explanation":"Professional chefs always say: know your oven. Gas Mark 4 is guide, not law. Use it as starting point. Watch food, smell it, check color. Even same model ovens behave different in two houses.","examples":["Chef checks cake 5 minutes early","Adjust next batch based on result"],"impact":"Experience matters more than numbers alone."}]},"commonMistakes":{"title":"Common Mistakes When Using 180C and Gas Mark 4","mistakes":[{"mistake":"Not reducing temperature for fan oven","consequence":"Food cooks too fast or burns","solution":"Reduce to 160C for fan oven","severity":"high"},{"mistake":"Confusing Fahrenheit and Celsius","consequence":"Setting oven too hot or too cold","solution":"Check unit before setting oven","severity":"high"},{"mistake":"Trusting old gas oven dial blindly","consequence":"Uneven or wrong cooking","solution":"Use oven thermometer","severity":"medium"},{"mistake":"Opening oven door too often","consequence":"Temperature drops suddenly","solution":"Check only when needed","severity":"medium"}]},"tips":{"title":"Helpful Tips for Cooking at 180C (Gas Mark 4)","description":"Simple tips to get best result when recipe says 180C or Gas Mark 4.","tips":["Always preheat oven fully before baking","For fan oven, set 160C instead of 180C","Use middle rack for even heat","Rotate tray halfway if oven heats uneven","Check food 5–10 minutes before end time","Use light colored baking tins for even browning","Do not overcrowd oven","Learn how your oven behaves over time"]},"related":{"title":"Related Oven Conversion Topics","items":["What is gas mark 4","Is 350F same as 180C","Fan oven temperature conversion","Celsius to gas mark chart","Oven temperature guide UK"]}},"faqs":[{"question":"What gas mark is 180C?","answer":"180C is Gas Mark 4 in most UK ovens. This is standard moderate oven setting."},{"question":"Is 180C same for fan oven?","answer":"No. For fan oven, you usually reduce temperature by 20C. So use 160C fan, still Gas Mark 4."},{"question":"Is 180C same as 350F?","answer":"Yes. 180C is equal to 350F and Gas Mark 4."},{"question":"Why my cake burns at Gas Mark 4?","answer":"Your oven may run hot or you did not reduce temperature for fan oven."},{"question":"Is Gas Mark 4 exact temperature?","answer":"No. It is approximate range around 180C."},{"question":"Do all ovens follow same Gas Mark?","answer":"No. Oven models differ. Always learn your own oven behavior."},{"question":"Should I trust recipe or my oven?","answer":"Use recipe as guide, but trust your oven experience more."},{"question":"Can I bake everything at 180C?","answer":"Many things yes, but some recipes need lower or higher heat."}]}
+            {"id":"what-gas-mark-is-180c","slug":"what-gas-mark-is-180c","title":"What gas mark is 180C?","description":"Learn what gas mark 180°C means for cooking and baking in different ovens, including fan ovens, traditional gas ovens, and electric ovens. Understand temperature conversions, cooking times, and best practices with clear tables, examples, and tips to ensure your dishes turn out perfectly every time.","keywords":["what gas mark is 180c","180c gas mark","180c oven gas mark","gas mark for 180 degrees","180c fan oven gas mark"],"manualRelatedLinks":["celsius-to-fahrenheit-oven-chart","tbsp-to-gram","grams-to-cups"],"categories":["temperature"],"subcategory":"oven","featured":true,"popularity":91,"lastUpdated":"2026-01-27","contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":180,"from":"celsius","to":"gas mark"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"celsius","formula":"x"},{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"celsius","to":"fan celsius","formula":"x - 20"},{"from":"fahrenheit","to":"fahrenheit","formula":"x"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"fahrenheit","to":"fan celsius","formula":"(x - 32) * 5/9 - 20"},{"from":"gas mark","to":"gas mark","formula":"x"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"gas mark","to":"fan celsius","formula":"x === 1 ? 120 : x === 1.5 ? 125 : x === 2 ? 130 : x === 3 ? 145 : x === 4 ? 160 : x === 5 ? 170 : x === 6 ? 180 : x === 7 ? 200 : x === 8 ? 210 : x === 9 ? 220 : 230"},{"from":"fan celsius","to":"fan celsius","formula":"x"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"conversionTable":[{"Gas Mark":1,"Celsius":140,"Fahrenheit":275,"Fan Celsius":120},{"Gas Mark":2,"Celsius":150,"Fahrenheit":300,"Fan Celsius":130},{"Gas Mark":3,"Celsius":165,"Fahrenheit":325,"Fan Celsius":145},{"Gas Mark":4,"Celsius":180,"Fahrenheit":350,"Fan Celsius":160},{"Gas Mark":5,"Celsius":190,"Fahrenheit":375,"Fan Celsius":170},{"Gas Mark":6,"Celsius":200,"Fahrenheit":400,"Fan Celsius":180},{"Gas Mark":7,"Celsius":220,"Fahrenheit":425,"Fan Celsius":200},{"Gas Mark":8,"Celsius":230,"Fahrenheit":450,"Fan Celsius":210},{"Gas Mark":9,"Celsius":240,"Fahrenheit":475,"Fan Celsius":220},{"Gas Mark":10,"Celsius":250,"Fahrenheit":500,"Fan Celsius":230}],"contentSections":{"hero":{"title":"What Gas Mark Is 180C?","subtitle":"Simple answer for oven users, bakers, and home cooking","intro":"If your recipe says 180C and your oven only has gas mark, you are not alone. Many people get confused. Short answer is 180C is Gas Mark 4. But there is more story behind this, like fan oven, old gas oven, country difference, and how accurate your oven really is."},"quickReference":{"title":"Quick Answer for 180C","description":"Use this when you are in hurry and just want correct oven setting.","items":[{"ingredient":"180°C Conventional Oven","gasMark":4,"fanC":160,"icon":"🔥"},{"ingredient":"180°C Fan Oven","gasMark":4,"fanC":160,"icon":"🌀"},{"ingredient":"180°C Gas Oven","gasMark":4,"fanC":"not used","icon":"🔥"},{"ingredient":"180°C = Fahrenheit","gasMark":4,"fanC":350,"icon":"🌡️"}]},"comparisonTable":{"title":"180C Compared with Other Oven Systems","description":"This table helps you understand how 180C fits in different oven types and countries.","columns":["System","Value","Equivalent Gas Mark","Notes"],"rows":[{"System":"Celsius","Value":"180°C","Equivalent Gas Mark":4,"Notes":"Standard baking temperature"},{"System":"Gas Mark","Value":"4","Equivalent Gas Mark":4,"Notes":"Used mostly in UK gas ovens"},{"System":"Fahrenheit","Value":"350°F","Equivalent Gas Mark":4,"Notes":"Common in US recipes"},{"System":"Fan Oven","Value":"160°C","Equivalent Gas Mark":4,"Notes":"Fan oven needs lower temp"},{"System":"Old Gas Oven","Value":"Between 4 and 5","Equivalent Gas Mark":4,"Notes":"Dial may not be exact"},{"System":"Electric Oven","Value":"180°C","Equivalent Gas Mark":4,"Notes":"Most modern ovens"},{"System":"Convection Oven","Value":"160–170°C","Equivalent Gas Mark":4,"Notes":"Air circulation cooks faster"},{"System":"Recipe Book UK","Value":"Gas 4","Equivalent Gas Mark":4,"Notes":"Traditional UK books"},{"System":"Recipe Book EU","Value":"180°C","Equivalent Gas Mark":4,"Notes":"Metric system"},{"System":"Recipe Book US","Value":"350°F","Equivalent Gas Mark":4,"Notes":"Imperial system"}]},"scientificBackground":{"title":"Why 180C Equals Gas Mark 4 (But Not Always Simple)","description":"This section explains why 180°C corresponds to Gas Mark 4 and explores common reasons why people can still get confused. Learn the temperature conversion, tips for accurate baking, and examples to make understanding oven settings easier, helping you cook and bake with confidence every time.","concepts":[{"concept":"Origin of Gas Mark System","explanation":"Gas Mark is old UK system. Before digital ovens, gas ovens had numbers instead of degrees. Gas Mark 1 was very low heat, Gas Mark 9 or 10 very high heat. Over time, people tested and matched these numbers with Celsius. From this testing, Gas Mark 4 came close to 180C. That is why today, cookbooks say 180C = Gas Mark 4.","examples":["Old UK recipe says Gas 4 means moderate oven","Modern recipe writes same as 180C"],"impact":"Because it is approximate system, small variation always possible."},{"concept":"Why 180C Is Called Moderate Oven","explanation":"In cooking language, 180C is called moderate oven. Gas Mark 4 also known as moderate oven. This temperature is used for cakes, cookies, roasted vegetables, chicken, and many everyday bakes. It is not too hot and not too slow. Gas Mark 4 gives balanced heat for even cooking.","examples":["Victoria sponge cake baked at 180C / Gas 4","Roast vegetables bake well at this setting"],"impact":"Using correct moderate heat avoids burning outside and raw inside."},{"concept":"Fan Oven Confusion","explanation":"Many people have fan oven now. Fan oven blows hot air, so food cooks faster. Because of this, when recipe says 180C, fan oven should be set to 160C. But gas mark stays same. Gas Mark 4 still correct, but actual temperature setting changes.","examples":["180C conventional = 160C fan","Gas Mark remains 4"],"impact":"Not reducing fan oven temperature can overcook food."},{"concept":"Old Gas Oven Dial Issues","explanation":"Old gas ovens sometimes do not show exact temperature. Dial may say Gas 4 but actual heat could be higher or lower. This is because old thermostat wear out over time. That is why sometimes cake burns even when you set Gas Mark 4.","examples":["Gas Mark 4 behaving like Gas Mark 5","Uneven heating in old ovens"],"impact":"Using oven thermometer helps a lot."},{"concept":"Country and Recipe Differences","explanation":"UK recipes often use Gas Mark. European recipes use Celsius. US recipes use Fahrenheit. All of them describe same heat level differently. 180C, Gas Mark 4, and 350F are same cooking zone. Problem happens when people mix systems without converting.","examples":["US recipe says 350F","UK oven only shows Gas Mark"],"impact":"Wrong conversion leads to wrong baking result."},{"concept":"Why Exact Match Is Not Always Possible","explanation":"Gas Mark system is not exact science. It is range based, not single number based. Gas Mark 4 usually means around 175C to 185C. That is why people say 180C equals Gas Mark 4. But if your oven is slightly hotter or cooler, result change. That is normal. Gas ovens heat in pulses, not stable like electric ovens. So temperature moves up and down during cooking.","examples":["Gas Mark 4 may feel hotter in small oven","Large oven may feel slightly cooler at same mark"],"impact":"Understanding range avoids panic when food cooks faster or slower."},{"concept":"Effect of Oven Size and Load","explanation":"Small ovens heat faster than big ovens. Also when oven is full with trays, temperature drop little bit. If you bake many trays at 180C Gas Mark 4, real heat inside may drop. Fan oven handles this better. Gas oven without fan may struggle. This is why professional kitchens use convection ovens.","examples":["Two cake tins bake slower than one","Full oven of cookies need more time"],"impact":"Adjust baking time instead of changing Gas Mark blindly."},{"concept":"Why Bakers Trust 180C / Gas Mark 4","explanation":"Most baking science is built around 180C. Butter melts properly, sugar caramelizes slowly, eggs set without burning. Gas Mark 4 gives this balance. That is why so many cake recipes default to this temperature. It is safe zone for beginners and professionals.","examples":["Sponge cake structure sets well","Cookies spread without burning"],"impact":"Using Gas Mark 4 gives predictable baking results."},{"concept":"Moisture and Heat Balance","explanation":"At 180C, moisture evaporates slowly. If oven too hot, moisture escapes too fast and cake becomes dry. If too cool, cake stays dense. Gas Mark 4 keeps balance. Fan ovens dry food faster, so temperature reduction is needed.","examples":["Bread crust forms nicely","Cakes stay soft inside"],"impact":"Correct Gas Mark helps texture and softness."},{"concept":"Professional Tip from Kitchens","explanation":"Professional chefs always say: know your oven. Gas Mark 4 is guide, not law. Use it as starting point. Watch food, smell it, check color. Even same model ovens behave different in two houses.","examples":["Chef checks cake 5 minutes early","Adjust next batch based on result"],"impact":"Experience matters more than numbers alone."}]},"commonMistakes":{"title":"Common Mistakes When Using 180C and Gas Mark 4","mistakes":[{"mistake":"Not reducing temperature for fan oven","consequence":"Food cooks too fast or burns","solution":"Reduce to 160C for fan oven","severity":"high"},{"mistake":"Confusing Fahrenheit and Celsius","consequence":"Setting oven too hot or too cold","solution":"Check unit before setting oven","severity":"high"},{"mistake":"Trusting old gas oven dial blindly","consequence":"Uneven or wrong cooking","solution":"Use oven thermometer","severity":"medium"},{"mistake":"Opening oven door too often","consequence":"Temperature drops suddenly","solution":"Check only when needed","severity":"medium"}]},"tips":{"title":"Helpful Tips for Cooking at 180C (Gas Mark 4)","description":"Simple tips to get best result when recipe says 180C or Gas Mark 4.","tips":["Always preheat oven fully before baking","For fan oven, set 160C instead of 180C","Use middle rack for even heat","Rotate tray halfway if oven heats uneven","Check food 5–10 minutes before end time","Use light colored baking tins for even browning","Do not overcrowd oven","Learn how your oven behaves over time"]},"related":{"title":"Related Oven Conversion Topics","items":["What is gas mark 4","Is 350F same as 180C","Fan oven temperature conversion","Celsius to gas mark chart","Oven temperature guide UK"]}},"faqs":[{"question":"What gas mark is 180C?","answer":"180C is Gas Mark 4 in most UK ovens. This is standard moderate oven setting."},{"question":"Is 180C same for fan oven?","answer":"No. For fan oven, you usually reduce temperature by 20C. So use 160C fan, still Gas Mark 4."},{"question":"Is 180C same as 350F?","answer":"Yes. 180C is equal to 350F and Gas Mark 4."},{"question":"Why my cake burns at Gas Mark 4?","answer":"Your oven may run hot or you did not reduce temperature for fan oven."},{"question":"Is Gas Mark 4 exact temperature?","answer":"No. It is approximate range around 180C."},{"question":"Do all ovens follow same Gas Mark?","answer":"No. Oven models differ. Always learn your own oven behavior."},{"question":"Should I trust recipe or my oven?","answer":"Use recipe as guide, but trust your oven experience more."},{"question":"Can I bake everything at 180C?","answer":"Many things yes, but some recipes need lower or higher heat."}]}
             </script>
         </div>
     </section>
@@ -1953,6 +2223,19 @@ body {
         </div>
     </section>
     
+    <section class="content-section related-converters">
+        <h2>Related Converters</h2>
+        <div class="related-grid">
+            
+            <div class="related-item">
+                <h3>Celsius to Fahrenheit Oven Chart</h3>
+                <p>Quickly convert oven temperatures from Celsius to Fahrenheit and understand fan/...</p>
+                <a href="../celsius-to-fahrenheit-oven-chart/" class="related-link">Use Tool</a>
+            </div>
+            
+        </div>
+    </section>
+    
                 </div>
 
                 
@@ -1992,7 +2275,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -2005,15 +2288,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2037,6 +2330,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 
