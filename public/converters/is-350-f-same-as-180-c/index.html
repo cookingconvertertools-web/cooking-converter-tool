@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Is 350 F the Same as 180 C? | Cooking Converter Pro</title>
     <meta name="description" content="Learn if 350 Fahrenheit equals 180 Celsius in ovens, how fan/convection affects it, gas mark equivalence, baking tips, and common mistakes for home cooks.">
-    <meta name="keywords" content="Is 350 F the Same as 180 C?">
+    <meta name="keywords" content="what gas mark is 180c,180c gas mark,180c oven gas mark,gas mark for 180 degrees,180c fan oven gas mark">
     <meta name="author" content="Cooking Converter Pro">
 
     <!-- Open Graph / Facebook -->
@@ -70,8 +70,8 @@
   "name": "Is 350 F the Same as 180 C?",
   "description": "Learn if 350 Fahrenheit equals 180 Celsius in ovens, how fan/convection affects it, gas mark equivalence, baking tips, and common mistakes for home cooks.",
   "url": "https://bakingmath.org/converters/is-350-f-same-as-180-c/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"is-350-f-same-as-180-c","slug":"is-350-f-same-as-180-c","title":"Is 350 F the Same as 180 C?","description":"Learn if 350 Fahrenheit equals 180 Celsius in ovens, how fan/convection affects it, gas mark equivalence, baking tips, and common mistakes for home cooks.","categories":["temperature"],"subcategory":"oven","featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq"],"defaults":{"value":350,"from":"fahrenheit","to":"celsius"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"contentSections":{"hero":{"title":"Is 350 F the Same as 180 C?","subtitle":"Understand Fahrenheit vs Celsius in ovens, fan oven adjustments, gas mark and baking success","intro":"350 Fahrenheit often used in US recipes. Many people wonder if it same 180 Celsius. Short answer yes, long answer depends on oven type, fan, rack, pan, recipe. Learn careful way to bake, roast, cook safely."},"quickReference":{"title":"Quick Reference: Fahrenheit to Celsius","items":[{"ingredient":"275°F","value":"135°C","icon":"🔥"},{"ingredient":"285°F","value":"140°C","icon":"🔥"},{"ingredient":"300°F","value":"150°C","icon":"🔥"},{"ingredient":"325°F","value":"165°C","icon":"🔥"},{"ingredient":"350°F","value":"180°C","icon":"🔥"},{"ingredient":"375°F","value":"190°C","icon":"🔥"},{"ingredient":"400°F","value":"205°C","icon":"🔥"},{"ingredient":"425°F","value":"220°C","icon":"🔥"},{"ingredient":"450°F","value":"230°C","icon":"🔥"},{"ingredient":"475°F","value":"245°C","icon":"🔥"}]},"comparisonTable":{"title":"Oven Temperature Comparison Table","columns":["Fahrenheit (°F)","Celsius (°C)","Fan °C","Gas Mark"],"rows":[{"Fahrenheit":275,"Celsius":140,"Fan °C":120,"Gas Mark":1},{"Fahrenheit":285,"Celsius":145,"Fan °C":125,"Gas Mark":1.5},{"Fahrenheit":300,"Celsius":150,"Fan °C":130,"Gas Mark":2},{"Fahrenheit":325,"Celsius":165,"Fan °C":145,"Gas Mark":3},{"Fahrenheit":338,"Celsius":170,"Fan °C":150,"Gas Mark":3.5},{"Fahrenheit":350,"Celsius":180,"Fan °C":160,"Gas Mark":4},{"Fahrenheit":360,"Celsius":182,"Fan °C":162,"Gas Mark":4},{"Fahrenheit":375,"Celsius":190,"Fan °C":170,"Gas Mark":5},{"Fahrenheit":392,"Celsius":200,"Fan °C":180,"Gas Mark":6},{"Fahrenheit":400,"Celsius":205,"Fan °C":185,"Gas Mark":6}]},"scientificBackground":{"title":"Why 350 F Equals 180 C, But Not Always","concepts":[{"concept":"Fahrenheit vs Celsius","explanation":"350 F mathematically equal 180 C. People think direct same. But oven type change effect. US uses F, Europe uses C. If set 350 F in C oven, may get wrong bake."},{"concept":"Fan Oven Difference","explanation":"Fan ovens cook faster. 350 F normal oven may burn in fan oven. Reduce 20 C, so 160 C fan oven to same heat effect. People ignore fan, cake burned."},{"concept":"Gas Mark Conversion","explanation":"Gas ovens in UK use gas mark. 350 F = 180 C = Gas Mark 4. Old recipes say 4, modern say 180 C. Confusing if use wrong oven type. Cookies burnt bottom if mistake."},{"concept":"Heat Penetration","explanation":"350 F heat penetrate food moderate. Outside brown, inside cook right. Too hot = outside burn, inside raw. Too low = slow bake. Cake, bread depend this."},{"concept":"Rack Position","explanation":"Middle rack best. Top rack, top burns. Bottom rack, bottom cooks faster. People bake same 350 F everywhere, get uneven results."},{"concept":"Pan Material Effect","explanation":"Metal dark pans absorb more heat, bake faster. Glass or light pans slower. So 350 F in dark pan burns cookies, light pan slower. People ignore pan type, get uneven food."},{"concept":"Food Thickness","explanation":"Thick roast or cake needs longer time. Thin cookies finish quick. 350 F same for all thickness not correct. Must adjust time. Many home cooks forget, inside raw outside cooked."},{"concept":"Oven Accuracy","explanation":"Oven dials not exact ±5–10 F. 350 F can be 355 real. Using thermometer better. People set oven dial only, bake inconsistent."},{"concept":"Multiple Trays Effect","explanation":"Many trays inside oven drop heat inside when door open. 350 F can become lower temporary. If check only dial, bake uneven."},{"concept":"Convection vs Conventional Timing","explanation":"350 F conventional takes full time. Fan oven 20% faster, must reduce temp or shorten time. People bake same 350 F fan oven, food overdone."}]},"commonMistakes":{"title":"Common Mistakes","mistakes":[{"mistake":"Use 350 F same for fan oven","problem":"Food burn faster","solution":"Reduce temp 20 C, so 160 C fan oven"},{"mistake":"Confuse Fahrenheit and Celsius","problem":"Wrong bake temp, cake burn or raw inside","solution":"Check unit carefully, convert if needed"},{"mistake":"Not preheat oven","problem":"Inside raw, outside brown","solution":"Preheat fully before bake"},{"mistake":"Wrong rack position","problem":"Top burn, bottom raw","solution":"Use middle rack"},{"mistake":"Ignore pan type","problem":"Dark pan burns, light pan slow cook","solution":"Adjust time or temp"},{"mistake":"Overcrowd oven","problem":"Air no circulate, bake uneven","solution":"Leave space between trays"},{"mistake":"Not check food thickness","problem":"Inside raw, outside cook","solution":"Adjust bake time for thick or thin food"}]},"tips":{"title":"Baking Tips for 350 F / 180 C","tips":["Always preheat oven to full 350 F","Use thermometer for accuracy","Fan oven need lower temp 160 C","Check food 5–10 min early","Rotate trays for even bake","Middle rack best for even heat","Adjust time for dark/light pans","Adjust time for thick or thin food","Open door minimum, heat lost if open","Follow recipe oven type carefully"]}},"faqs":[{"question":"Is 350 F same as 180 C?","answer":"Yes, mathematically 350 F equals 180 C, but oven type matter. Fan oven need lower temp."},{"question":"Can I bake cake at 350 F same as 180 C?","answer":"Yes, but check oven, pan, rack. Fan oven 160 C better."},{"question":"What gas mark is 350 F?","answer":"350 F equals gas mark 4."},{"question":"Do fan ovens change 350 F?","answer":"Yes, reduce 20 C. Otherwise food burn."},{"question":"Does 350 F bake same in all ovens?","answer":"No, ovens vary. Always check thermometer and food."},{"question":"Why recipes use 350 F or 180 C?","answer":"Medium heat, safe for cakes, cookies, roast. Not too hot, not low."},{"question":"What happen if ignore fan oven?","answer":"Food overcooked, burnt top, dry inside."},{"question":"Can I convert 350 F to Celsius easy?","answer":"Yes, formula (F-32)*5/9, 350 F = 180 C."}]}
+            {"id":"is-350-f-same-as-180-c","slug":"is-350-f-same-as-180-c","title":"Is 350 F the Same as 180 C?","description":"Learn if 350 Fahrenheit equals 180 Celsius in ovens, how fan/convection affects it, gas mark equivalence, baking tips, and common mistakes for home cooks.","categories":["temperature"],"keywords":["what gas mark is 180c","180c gas mark","180c oven gas mark","gas mark for 180 degrees","180c fan oven gas mark"],"manualRelatedLinks":["celsius-to-fahrenheit-oven-chart","tbsp-to-gram","grams-to-cups"],"subcategory":"oven","featured":true,"contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":350,"from":"fahrenheit","to":"celsius"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"contentSections":{"hero":{"title":"Is 350 F the Same as 180 C?","subtitle":"Understand Fahrenheit vs Celsius in ovens, fan oven adjustments, gas mark and baking success","intro":"350 Fahrenheit often used in US recipes. Many people wonder if it same 180 Celsius. Short answer yes, long answer depends on oven type, fan, rack, pan, recipe. Learn careful way to bake, roast, cook safely."},"quickReference":{"title":"Quick Reference: Fahrenheit to Celsius","items":[{"ingredient":"275°F","value":"135°C","icon":"🔥"},{"ingredient":"285°F","value":"140°C","icon":"🔥"},{"ingredient":"300°F","value":"150°C","icon":"🔥"},{"ingredient":"325°F","value":"165°C","icon":"🔥"},{"ingredient":"350°F","value":"180°C","icon":"🔥"},{"ingredient":"375°F","value":"190°C","icon":"🔥"},{"ingredient":"400°F","value":"205°C","icon":"🔥"},{"ingredient":"425°F","value":"220°C","icon":"🔥"},{"ingredient":"450°F","value":"230°C","icon":"🔥"},{"ingredient":"475°F","value":"245°C","icon":"🔥"}]},"comparisonTable":{"title":"Oven Temperature Comparison Table","columns":["Fahrenheit (°F)","Celsius (°C)","Fan °C","Gas Mark"],"rows":[{"Fahrenheit":275,"Celsius":140,"Fan °C":120,"Gas Mark":1},{"Fahrenheit":285,"Celsius":145,"Fan °C":125,"Gas Mark":1.5},{"Fahrenheit":300,"Celsius":150,"Fan °C":130,"Gas Mark":2},{"Fahrenheit":325,"Celsius":165,"Fan °C":145,"Gas Mark":3},{"Fahrenheit":338,"Celsius":170,"Fan °C":150,"Gas Mark":3.5},{"Fahrenheit":350,"Celsius":180,"Fan °C":160,"Gas Mark":4},{"Fahrenheit":360,"Celsius":182,"Fan °C":162,"Gas Mark":4},{"Fahrenheit":375,"Celsius":190,"Fan °C":170,"Gas Mark":5},{"Fahrenheit":392,"Celsius":200,"Fan °C":180,"Gas Mark":6},{"Fahrenheit":400,"Celsius":205,"Fan °C":185,"Gas Mark":6}]},"scientificBackground":{"title":"Why 350 F Equals 180 C, But Not Always","concepts":[{"concept":"Fahrenheit vs Celsius","explanation":"350 F mathematically equal 180 C. People think direct same. But oven type change effect. US uses F, Europe uses C. If set 350 F in C oven, may get wrong bake."},{"concept":"Fan Oven Difference","explanation":"Fan ovens cook faster. 350 F normal oven may burn in fan oven. Reduce 20 C, so 160 C fan oven to same heat effect. People ignore fan, cake burned."},{"concept":"Gas Mark Conversion","explanation":"Gas ovens in UK use gas mark. 350 F = 180 C = Gas Mark 4. Old recipes say 4, modern say 180 C. Confusing if use wrong oven type. Cookies burnt bottom if mistake."},{"concept":"Heat Penetration","explanation":"350 F heat penetrate food moderate. Outside brown, inside cook right. Too hot = outside burn, inside raw. Too low = slow bake. Cake, bread depend this."},{"concept":"Rack Position","explanation":"Middle rack best. Top rack, top burns. Bottom rack, bottom cooks faster. People bake same 350 F everywhere, get uneven results."},{"concept":"Pan Material Effect","explanation":"Metal dark pans absorb more heat, bake faster. Glass or light pans slower. So 350 F in dark pan burns cookies, light pan slower. People ignore pan type, get uneven food."},{"concept":"Food Thickness","explanation":"Thick roast or cake needs longer time. Thin cookies finish quick. 350 F same for all thickness not correct. Must adjust time. Many home cooks forget, inside raw outside cooked."},{"concept":"Oven Accuracy","explanation":"Oven dials not exact ±5–10 F. 350 F can be 355 real. Using thermometer better. People set oven dial only, bake inconsistent."},{"concept":"Multiple Trays Effect","explanation":"Many trays inside oven drop heat inside when door open. 350 F can become lower temporary. If check only dial, bake uneven."},{"concept":"Convection vs Conventional Timing","explanation":"350 F conventional takes full time. Fan oven 20% faster, must reduce temp or shorten time. People bake same 350 F fan oven, food overdone."},{"concept":"Direct Conversion Between Fahrenheit and Centigrade","explanation":"The page 'Is 350 F the Same as 180 C?' focuses on explaining that 350 Fahrenheit mathematically equals 180 Centigrade, which is a medium heat suitable for baking cakes, cookies, and roasting most foods; however, it emphasizes that merely knowing the conversion is not enough because oven types, rack positions, and pan materials all influence the actual cooking effect."},{"concept":"Fan Oven or Convection Considerations","explanation":"When following 'Is 350 F the Same as 180 C?' for baking, a fan or convection oven circulates hot air more efficiently, meaning that if you use 350 F, the equivalent 180 Centigrade effect may actually overcook or burn your food unless you reduce the temperature by about 20 Centigrade and adjust cooking time accordingly."},{"concept":"Gas Mark Equivalence","explanation":"Many UK recipes use gas marks instead of Fahrenheit or Centigrade; 'Is 350 F the Same as 180 C?' clarifies that 350 F equals 180 Centigrade and corresponds to Gas Mark 4, helping cooks avoid mistakes when switching between US and UK recipes."},{"concept":"Heat Penetration and Food Consistency","explanation":"The guide explains that at 350 F / 180 Centigrade, heat penetrates food slowly enough to allow the interior to cook fully while the exterior browns properly; this ensures baked goods and roasts are cooked evenly, which would not be the case if the oven is set too high or too low."},{"concept":"Rack Position Importance","explanation":"Following 'Is 350 F the Same as 180 C?' it is recommended to use the middle oven rack, as placing trays too high can burn the top while too low may undercook the upper layers, ensuring optimal even cooking at this medium temperature."},{"concept":"Pan Material and Thickness","explanation":"The type and color of pans influence baking at 350 F or 180 Centigrade: dark pans absorb more heat, causing faster cooking, while light pans or glass cook slower, and the thickness of the food also affects how long it should stay in the oven, which is explained in detail to avoid mistakes in home baking."},{"concept":"Oven Accuracy and Monitoring","explanation":"Even when using 350 F to match 180 Centigrade, oven dials are often inaccurate; using a thermometer and monitoring food ensures that results are consistent, which is why 'Is 350 F the Same as 180 C?' emphasizes checking the actual internal oven temperature rather than trusting the dial alone."}]},"commonMistakes":{"title":"Common Mistakes When Assuming 350 F is the Same as 180 C","mistakes":[{"mistake":"Using 350 F in a fan oven the same way as in a conventional oven","consequence":"Many home cooks think that 350 F is always the same as 180 C regardless of the oven type, but using 350 F in a fan oven without adjustment can lead to food burning on the outside while remaining undercooked inside.","solution":"When baking or roasting and trying to follow 350 F = 180 C, reduce the temperature by at least 20 Centigrade in fan or convection ovens to achieve the same baking effect safely and consistently."},{"mistake":"Confusing Fahrenheit and Celsius while interpreting 350 F as 180 C","consequence":"People often assume 350 F is automatically equivalent to 180 C in all recipes, but failing to check the oven type or scale can result in cakes, cookies, or roasts being burnt or remaining raw in the center.","solution":"Always verify the unit on your recipe and convert accurately from Fahrenheit to Centigrade if needed, ensuring that 350 F truly corresponds to 180 C before starting to bake."},{"mistake":"Skipping preheating while using 350 F to match 180 C","consequence":"Omitting preheating can ruin baking outcomes even if the oven is set at 350 F to emulate 180 C, because starting in a cold oven causes uneven heat distribution and prevents proper rising or browning.","solution":"Always preheat the oven fully to 350 F, which is equivalent to 180 Centigrade, before placing your food inside to ensure predictable and uniform cooking."},{"mistake":"Ignoring proper rack placement when baking at 350 F / 180 C","consequence":"Placing your baking tray too high or too low while assuming 350 F equals 180 C often results in top-heavy browning or undercooked bottoms because heat intensity differs by rack location.","solution":"For optimal results when using 350 F to achieve 180 C, always place trays on the middle rack and rotate trays halfway through cooking if necessary for even heat distribution."},{"mistake":"Not accounting for pan material while using 350 F as 180 C","consequence":"Using dark or metal pans with 350 F thinking it equals 180 C can overcook or burn the food, whereas glass or light pans may undercook if the recipe timing isn’t adjusted accordingly.","solution":"Adjust cooking time and closely monitor food when using 350 F to represent 180 Centigrade, depending on whether your pan is dark metal, glass, or light-colored to avoid uneven cooking."},{"mistake":"Overcrowding the oven when baking at 350 F / 180 C","consequence":"Assuming 350 F equals 180 C without leaving sufficient space between items reduces airflow, leading to uneven cooking and inconsistent browning.","solution":"Leave enough space between trays or items when using 350 F to match 180 C, ensuring hot air circulates freely for uniform results."},{"mistake":"Neglecting food thickness or density while baking at 350 F / 180 C","consequence":"Treating all foods as if 350 F equals 180 C regardless of thickness often leads to thick loaves or roasts being undercooked inside, while thin cookies or pastries may burn quickly.","solution":"Adjust cooking time for thicker or denser items and monitor smaller or thinner items carefully, even when using 350 F to simulate 180 Centigrade, to ensure perfect doneness."}]},"tips":{"title":"Helpful Tips for Using 350 F as 180 C in Your Oven","items":["When following recipes that specify 350 F, remember that this is equivalent to 180 Centigrade, but always preheat your oven fully to ensure the correct temperature is reached for consistent baking or roasting results.","Use an oven thermometer to double-check that your oven actually reaches 350 F, which should correspond to 180 Centigrade, because oven dials can often be inaccurate by ±5–10 Centigrade, and this can dramatically affect your baking outcome.","For fan or convection ovens, always reduce the temperature by approximately 20 Centigrade when using 350 F as 180 C to prevent over-browning or burning the exterior while ensuring the interior cooks properly.","Place baking trays or roasting pans on the middle rack whenever possible when using 350 F to replicate 180 Centigrade, as this ensures even heat distribution and prevents top or bottom layers from cooking unevenly.","Rotate trays or pans halfway through cooking when baking at 350 F to achieve 180 Centigrade, especially when cooking multiple items simultaneously, to maintain uniform browning and doneness across all baked goods.","Adjust cooking time based on the type of pan you are using; dark metal pans absorb more heat, while glass or light-colored pans may cook slower, so 350 F may require slightly different times to match 180 Centigrade.","Monitor thicker or denser foods closely while baking at 350 F / 180 C, as they require longer cooking times, whereas smaller or thinner items may finish much sooner and need to be checked for doneness earlier.","Minimize opening the oven door frequently when using 350 F as 180 C, because each opening allows heat to escape, temporarily lowering the oven temperature and causing uneven baking.","Always double-check the recipe for its intended oven type and unit; if the recipe uses Fahrenheit, ensure proper conversion to 180 Centigrade for accuracy when baking or roasting.","Keep a notepad handy to jot down adjustments made when using 350 F to simulate 180 C, including rack positions, pan types, and cooking times, so you can replicate successful results consistently in the future."]},"related":{"title":"Related Converters","links":["c-to-gas-mark-conversion","what-gas-mark-is-180c","grams-to-cups"]}},"faqs":[{"question":"Is 350 F same as 180 C?","answer":"Yes, mathematically 350 F equals 180 C, but oven type matter. Fan oven need lower temp."},{"question":"Can I bake cake at 350 F same as 180 C?","answer":"Yes, but check oven, pan, rack. Fan oven 160 C better."},{"question":"What gas mark is 350 F?","answer":"350 F equals gas mark 4."},{"question":"Do fan ovens change 350 F?","answer":"Yes, reduce 20 C. Otherwise food burn."},{"question":"Does 350 F bake same in all ovens?","answer":"No, ovens vary. Always check thermometer and food."},{"question":"Why recipes use 350 F or 180 C?","answer":"Medium heat, safe for cakes, cookies, roast. Not too hot, not low."},{"question":"What happen if ignore fan oven?","answer":"Food overcooked, burnt top, dry inside."},{"question":"Can I convert 350 F to Celsius easy?","answer":"Yes, formula (F-32)*5/9, 350 F = 180 C."}]}
             </script>
         </div>
     </section>
@@ -1812,12 +2082,61 @@ body {
                 
             </div>
             
+            <div class="concept">
+                <h3>Direct Conversion Between Fahrenheit and Centigrade</h3>
+                <p>The page 'Is 350 F the Same as 180 C?' focuses on explaining that 350 Fahrenheit mathematically equals 180 Centigrade, which is a medium heat suitable for baking cakes, cookies, and roasting most foods; however, it emphasizes that merely knowing the conversion is not enough because oven types, rack positions, and pan materials all influence the actual cooking effect.</p>
+                
+                
+            </div>
+            
+            <div class="concept">
+                <h3>Fan Oven or Convection Considerations</h3>
+                <p>When following 'Is 350 F the Same as 180 C?' for baking, a fan or convection oven circulates hot air more efficiently, meaning that if you use 350 F, the equivalent 180 Centigrade effect may actually overcook or burn your food unless you reduce the temperature by about 20 Centigrade and adjust cooking time accordingly.</p>
+                
+                
+            </div>
+            
+            <div class="concept">
+                <h3>Gas Mark Equivalence</h3>
+                <p>Many UK recipes use gas marks instead of Fahrenheit or Centigrade; 'Is 350 F the Same as 180 C?' clarifies that 350 F equals 180 Centigrade and corresponds to Gas Mark 4, helping cooks avoid mistakes when switching between US and UK recipes.</p>
+                
+                
+            </div>
+            
+            <div class="concept">
+                <h3>Heat Penetration and Food Consistency</h3>
+                <p>The guide explains that at 350 F / 180 Centigrade, heat penetrates food slowly enough to allow the interior to cook fully while the exterior browns properly; this ensures baked goods and roasts are cooked evenly, which would not be the case if the oven is set too high or too low.</p>
+                
+                
+            </div>
+            
+            <div class="concept">
+                <h3>Rack Position Importance</h3>
+                <p>Following 'Is 350 F the Same as 180 C?' it is recommended to use the middle oven rack, as placing trays too high can burn the top while too low may undercook the upper layers, ensuring optimal even cooking at this medium temperature.</p>
+                
+                
+            </div>
+            
+            <div class="concept">
+                <h3>Pan Material and Thickness</h3>
+                <p>The type and color of pans influence baking at 350 F or 180 Centigrade: dark pans absorb more heat, causing faster cooking, while light pans or glass cook slower, and the thickness of the food also affects how long it should stay in the oven, which is explained in detail to avoid mistakes in home baking.</p>
+                
+                
+            </div>
+            
+            <div class="concept">
+                <h3>Oven Accuracy and Monitoring</h3>
+                <p>Even when using 350 F to match 180 Centigrade, oven dials are often inaccurate; using a thermometer and monitoring food ensures that results are consistent, which is why 'Is 350 F the Same as 180 C?' emphasizes checking the actual internal oven temperature rather than trusting the dial alone.</p>
+                
+                
+            </div>
+            
         </div>
     </section>
     
     <section class="content-section common-mistakes">
         <div class="section-header">
-            <h2>Common Mistakes</h2>
+            <h2>Common Mistakes When Assuming 350 F is the Same as 180 C</h2>
             
         </div>
         <div class="mistakes-container">
@@ -1825,76 +2144,69 @@ body {
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Use 350 F same for fan oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Reduce temp 20 C, so 160 C fan oven</div>
+                    <h3>Using 350 F in a fan oven the same way as in a conventional oven</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Many home cooks think that 350 F is always the same as 180 C regardless of the oven type, but using 350 F in a fan oven without adjustment can lead to food burning on the outside while remaining undercooked inside.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> When baking or roasting and trying to follow 350 F = 180 C, reduce the temperature by at least 20 Centigrade in fan or convection ovens to achieve the same baking effect safely and consistently.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Confuse Fahrenheit and Celsius</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Check unit carefully, convert if needed</div>
+                    <h3>Confusing Fahrenheit and Celsius while interpreting 350 F as 180 C</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> People often assume 350 F is automatically equivalent to 180 C in all recipes, but failing to check the oven type or scale can result in cakes, cookies, or roasts being burnt or remaining raw in the center.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Always verify the unit on your recipe and convert accurately from Fahrenheit to Centigrade if needed, ensuring that 350 F truly corresponds to 180 C before starting to bake.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Not preheat oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Preheat fully before bake</div>
+                    <h3>Skipping preheating while using 350 F to match 180 C</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Omitting preheating can ruin baking outcomes even if the oven is set at 350 F to emulate 180 C, because starting in a cold oven causes uneven heat distribution and prevents proper rising or browning.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Always preheat the oven fully to 350 F, which is equivalent to 180 Centigrade, before placing your food inside to ensure predictable and uniform cooking.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Wrong rack position</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Use middle rack</div>
+                    <h3>Ignoring proper rack placement when baking at 350 F / 180 C</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Placing your baking tray too high or too low while assuming 350 F equals 180 C often results in top-heavy browning or undercooked bottoms because heat intensity differs by rack location.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> For optimal results when using 350 F to achieve 180 C, always place trays on the middle rack and rotate trays halfway through cooking if necessary for even heat distribution.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Ignore pan type</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Adjust time or temp</div>
+                    <h3>Not accounting for pan material while using 350 F as 180 C</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Using dark or metal pans with 350 F thinking it equals 180 C can overcook or burn the food, whereas glass or light pans may undercook if the recipe timing isn’t adjusted accordingly.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Adjust cooking time and closely monitor food when using 350 F to represent 180 Centigrade, depending on whether your pan is dark metal, glass, or light-colored to avoid uneven cooking.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Overcrowd oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Leave space between trays</div>
+                    <h3>Overcrowding the oven when baking at 350 F / 180 C</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Assuming 350 F equals 180 C without leaving sufficient space between items reduces airflow, leading to uneven cooking and inconsistent browning.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Leave enough space between trays or items when using 350 F to match 180 C, ensuring hot air circulates freely for uniform results.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Not check food thickness</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> undefined</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Adjust bake time for thick or thin food</div>
+                    <h3>Neglecting food thickness or density while baking at 350 F / 180 C</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Treating all foods as if 350 F equals 180 C regardless of thickness often leads to thick loaves or roasts being undercooked inside, while thin cookies or pastries may burn quickly.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Adjust cooking time for thicker or denser items and monitor smaller or thinner items carefully, even when using 350 F to simulate 180 Centigrade, to ensure perfect doneness.</div>
                 </div>
             </div>
             
         </div>
     </section>
     
-        <section class="content-section tips-section">
-            <h2>Baking Tips for 350 F / 180 C</h2>
-            <ul class="tips-list">
-                <li>Always preheat oven to full 350 F</li><li>Use thermometer for accuracy</li><li>Fan oven need lower temp 160 C</li><li>Check food 5–10 min early</li><li>Rotate trays for even bake</li><li>Middle rack best for even heat</li><li>Adjust time for dark/light pans</li><li>Adjust time for thick or thin food</li><li>Open door minimum, heat lost if open</li><li>Follow recipe oven type carefully</li>
-            </ul>
-        </section>
-        
     <section class="content-section faq-section">
         <h2>Frequently Asked Questions</h2>
         <div class="faq-container">
@@ -1982,6 +2294,19 @@ body {
         </div>
     </section>
     
+    <section class="content-section related-converters">
+        <h2>Related Converters</h2>
+        <div class="related-grid">
+            
+            <div class="related-item">
+                <h3>Celsius to Fahrenheit Oven Chart</h3>
+                <p>Quickly convert oven temperatures from Celsius to Fahrenheit and understand fan/...</p>
+                <a href="../celsius-to-fahrenheit-oven-chart/" class="related-link">Use Tool</a>
+            </div>
+            
+        </div>
+    </section>
+    
                 </div>
 
                 
@@ -2021,7 +2346,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -2034,15 +2359,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2066,6 +2401,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

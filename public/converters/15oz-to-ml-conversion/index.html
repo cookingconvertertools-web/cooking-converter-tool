@@ -70,8 +70,8 @@
   "name": "15 Ounce to Milliliter Conversion",
   "description": "Quickly convert 15 ounces to milliliters, including US fluid and Imperial units, and related volume measures.",
   "url": "https://bakingmath.org/converters/15oz-to-ml-conversion/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"15oz-to-ml-conversion","slug":"15oz-to-ml-conversion","title":"15 Ounce to Milliliter Conversion","description":"Quickly convert 15 ounces to milliliters, including US fluid and Imperial units, and related volume measures.","keywords":["15 oz to ml","ounce to ml conversion","us fluid ounce to ml","imperial ounce to ml","volume conversion ounce milliliter"],"categories":["volume"],"subcategory":"volume","featured":true,"popularity":80,"lastUpdated":"2026-01-24","contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":15,"from":"ounce","to":"ml"},"supportedUnits":["ounce","ml","us fluid ounce","imperial ounce","cup us","cup imperial","pint us","pint imperial","quart us","quart imperial","gallon us","gallon imperial"],"conversionFormulas":[{"from":"ounce","to":"ml","formula":"x * 29.5735"},{"from":"us fluid ounce","to":"ml","formula":"x * 29.5735"},{"from":"imperial ounce","to":"ml","formula":"x * 28.4131"},{"from":"ml","to":"us fluid ounce","formula":"x / 29.5735"},{"from":"ml","to":"imperial ounce","formula":"x / 28.4131"},{"from":"ml","to":"cup us","formula":"x / 236.588"},{"from":"ml","to":"cup imperial","formula":"x / 284.131"},{"from":"ml","to":"pint us","formula":"x / 473.176"},{"from":"ml","to":"pint imperial","formula":"x / 568.261"},{"from":"ml","to":"quart us","formula":"x / 946.353"},{"from":"ml","to":"quart imperial","formula":"x / 1136.52"},{"from":"ml","to":"gallon us","formula":"x / 3785.41"},{"from":"ml","to":"gallon imperial","formula":"x / 4546.09"}],"conversionTable":[{"from":"1000ml","to":"33.814 fl oz","factor":"US fluid ounce"},{"from":"1000ml","to":"35.195 oz","factor":"Imperial ounce"},{"from":"1000ml","to":"4.227 cups","factor":"US cup"},{"from":"1000ml","to":"3.52 cups","factor":"Imperial cup"},{"from":"1000ml","to":"2.113 pints","factor":"US pint"},{"from":"1000ml","to":"1.76 pints","factor":"Imperial pint"},{"from":"1000ml","to":"1.057 quarts","factor":"US quart"},{"from":"1000ml","to":"0.88 quarts","factor":"Imperial quart"},{"from":"1000ml","to":"0.264 gallons","factor":"US gallon"},{"from":"1000ml","to":"0.22 gallons","factor":"Imperial gallon"}],"faqs":[{"question":"How many ml in 15 US fluid ounces?","answer":"About 443.602 ml. Useful for drinks, recipes, small batches."},{"question":"How many ml in 15 Imperial ounces?","answer":"About 426.197 ml. Slightly smaller than US ounces."},{"question":"Does ounce type really matter?","answer":"Yes, 15 oz US = 443.6 ml, 15 oz Imperial = 426.2 ml. Using wrong one = recipe off."},{"question":"Can I convert cups to ml?","answer":"Yes, US cup = 236.588ml, Imperial cup = 284.131ml. Multiply to get correct ml."}],"contentSections":{"hero":{"title":"15 Ounce to Milliliter Conversion","subtitle":"Convert 15 ounces to milliliters quickly in US or Imperial system","intro":"Accurate measurement for cooking, baking, drinks. Avoid errors when ounces differ."},"quickReference":{"title":"Quick Reference: 15oz Volume Conversions","description":"See 15oz in milliliters and cups for fast glance.","items":[{"ingredient":"15 oz","usMl":"443.602 ml","imperialMl":"426.197 ml","icon":"💧"},{"ingredient":"15 oz","usCups":"1.879 cups","imperialCups":"1.529 cups","icon":"🥛"},{"ingredient":"15 oz","usPints":"0.939 pints","imperialPints":"0.765 pints","icon":"🍺"}]},"comparisonTable":{"title":"15oz Volume Conversion Table","description":"Compare 15oz in US and Imperial units quickly.","columns":["Unit","Value for 15oz"],"rows":[{"Unit":"US fluid ounce","Value for 15oz":"443.602 ml"},{"Unit":"Imperial ounce","Value for 15oz":"426.197 ml"},{"Unit":"US cup","Value for 15oz":"1.879 cups"},{"Unit":"Imperial cup","Value for 15oz":"1.529 cups"},{"Unit":"US pint","Value for 15oz":"0.939 pints"},{"Unit":"Imperial pint","Value for 15oz":"0.765 pints"}]},"scientificBackground":{"title":"Why 15 Ounce to Milliliter Conversion Can Be Confusing","description":"Understanding why converting 15 ounces to milliliters requires attention to ounce type, historical definitions, and practical implications in cooking, drinks, and small batch recipes.","concepts":[{"concept":"US vs Imperial Ounces","explanation":"Ounces differ depending on whether the US or Imperial system is used. The US fluid ounce is defined as exactly 29.5735 ml, while the Imperial ounce is slightly smaller at 28.4131 ml. For small to moderate volumes like 15 ounces, the difference is noticeable: 15 US fl oz ≈ 443.602 ml, whereas 15 Imperial oz ≈ 426.197 ml. Though the difference seems minor, 17 ml can impact the final outcome in recipes, drinks, or laboratory solutions. In baking, this difference can affect batter consistency, rise, or texture; in drinks, it can alter flavor balance.","examples":["15 US oz ≈ 443.602 ml","15 Imperial oz ≈ 426.197 ml"],"impact":"Using the wrong ounce type can result in too much or too little liquid, potentially compromising taste, texture, or chemical reaction in recipes."},{"concept":"Historical Context of Fluid Ounces","explanation":"The fluid ounce evolved from the division of pints and gallons in various regions. The US adopted a slightly smaller pint in the 19th century, resulting in a smaller ounce than the UK Imperial version. Understanding this history clarifies why measurements differ across countries. While the US uses a 16-fl-oz pint, the Imperial pint is 20 fl oz. Recipes from different regions may mix units, and assuming equivalence leads to miscalculations.","examples":["1 US pint = 16 US fl oz = 473.176 ml","1 Imperial pint = 20 Imperial fl oz = 568.261 ml"],"impact":"Recipes from UK or US sources may need conversion for correct liquid measurement to ensure consistent results."},{"concept":"Practical Cooking and Baking Implications","explanation":"For small batches or medium recipes, precise liquid measurement is crucial. A difference of 17 ml in a 15 oz measurement may affect sauces, soups, or cocktails. For instance, a custard or cake batter requires exact ratios for proper thickening. Similarly, in mixology, 1–2 teaspoons can alter the flavor of a cocktail. Using US vs Imperial ounces correctly ensures the intended consistency and taste.","examples":["Cake: 15 US oz milk ≈ 443.6 ml, using Imperial would reduce volume to 426.2 ml","Cocktail: 15 oz US vs Imperial difference changes alcohol balance slightly but perceptibly"],"impact":"Accurate measurement maintains intended flavor, texture, and chemical reaction in food or drink preparation."},{"concept":"Conversions Beyond Ounces","explanation":"15 ounces can also be expressed in cups, pints, quarts, or gallons. US and Imperial measures differ, so converting requires caution. A US cup is 236.588 ml, while an Imperial cup is 284.131 ml. Therefore, 15 US oz ≈ 1.879 US cups, 15 Imperial oz ≈ 1.529 Imperial cups. Similarly, pints and quarts scale differently. Understanding these relationships is crucial when using recipes with different unit systems or when adjusting batch sizes.","examples":["15 US oz ≈ 1.879 US cups, 0.939 US pints","15 Imperial oz ≈ 1.529 Imperial cups, 0.765 Imperial pints"],"impact":"Knowing these conversions ensures correct recipe scaling and avoids miscalculations in international or multi-step recipes."},{"concept":"Measurement Precision and Tools","explanation":"Accurate conversion of 15 oz to milliliters requires proper tools. Measuring cups and spoons can introduce small errors, especially if US and Imperial systems are confused. Digital kitchen scales or graduated cylinders calibrated in ml offer precise measurement. Applying the correct conversion formula—x × 29.5735 for US fl oz, x × 28.4131 for Imperial oz—ensures exact results. Even minor rounding errors can accumulate in multi-step recipes or large batch preparations.","examples":["Digital scale: 15 US fl oz = 443.602 ml","Graduated cylinder: 15 Imperial oz = 426.197 ml"],"impact":"Precision tools minimize human error and guarantee recipe consistency, especially important in baking, beverages, or laboratory applications."},{"concept":"Common Misconceptions","explanation":"Many assume ounces are universal, leading to mistakes when converting. Online recipes may not specify the system, and small batch measurements amplify the effects of incorrect assumptions. Being aware of US vs Imperial differences, checking the source of the recipe, and applying accurate conversion formulas are crucial to avoid errors.","examples":["Assuming 15 oz = 443 ml regardless of system → may lead to 17 ml error","Misreading cups or pints across systems → under/over pouring liquids"],"impact":"Correct conversions prevent failed recipes, flavor imbalance, or inconsistencies in chemical applications."},{"concept":"Summary and Best Practices","explanation":"To convert 15 oz to milliliters accurately: determine whether US or Imperial ounces are used, apply the correct formula, use precise measuring tools, and double-check for cumulative differences in multi-step recipes. Clearly documenting conversions also helps when scaling recipes or sharing instructions. Awareness of small differences ensures consistency, taste, and desired chemical outcomes in both cooking and laboratory contexts.","examples":["Use x × 29.5735 for US fl oz, x × 28.4131 for Imperial oz","Always verify ounce type in recipe before measuring"],"impact":"Following these steps ensures precise and reliable results for cooking, baking, drinks, and small volume measurements."}]},"tips":{"title":"Tips for 15oz Conversion","description":"Practical guidance for small volume conversions","tips":["Check US vs Imperial before measuring","Use ml for accuracy if unsure","Use decimal for small measurements","Even few ml difference can affect taste","For drinks or sauces, always measure precisely"]},"commonMistakes":{"title":"Common Mistakes in 15oz Conversion","mistakes":[{"mistake":"Ignoring ounce type","consequence":"Wrong volume in recipe","solution":"Always clarify US vs Imperial","severity":"high"},{"mistake":"Rounding decimals too much","consequence":"Small batch affected","solution":"Keep precise decimal measurement","severity":"medium"}]}}}
+            {"id":"15oz-to-ml-conversion","slug":"15oz-to-ml-conversion","title":"15 Ounce to Milliliter Conversion","description":"Quickly convert 15 ounces to milliliters, including US fluid and Imperial units, and related volume measures.","keywords":["15 oz to ml","ounce to ml conversion","us fluid ounce to ml","imperial ounce to ml","volume conversion ounce milliliter"],"categories":["volume"],"subcategory":"volume","manualRelatedLinks":["Convert 500 ml to ounces","How many ounces in 1 liter","Fluid ounce to milliliter conversion chart"],"featured":true,"popularity":80,"lastUpdated":"2026-01-31","contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":15,"from":"ounce","to":"ml"},"supportedUnits":["ounce","ml","us fluid ounce","imperial ounce","cup us","cup imperial","pint us","pint imperial","quart us","quart imperial","gallon us","gallon imperial"],"conversionFormulas":[{"from":"ounce","to":"ml","formula":"x * 29.5735"},{"from":"us fluid ounce","to":"ml","formula":"x * 29.5735"},{"from":"imperial ounce","to":"ml","formula":"x * 28.4131"},{"from":"ml","to":"us fluid ounce","formula":"x / 29.5735"},{"from":"ml","to":"imperial ounce","formula":"x / 28.4131"},{"from":"ml","to":"cup us","formula":"x / 236.588"},{"from":"ml","to":"cup imperial","formula":"x / 284.131"},{"from":"ml","to":"pint us","formula":"x / 473.176"},{"from":"ml","to":"pint imperial","formula":"x / 568.261"},{"from":"ml","to":"quart us","formula":"x / 946.353"},{"from":"ml","to":"quart imperial","formula":"x / 1136.52"},{"from":"ml","to":"gallon us","formula":"x / 3785.41"},{"from":"ml","to":"gallon imperial","formula":"x / 4546.09"}],"conversionTable":[{"from":"1000ml","to":"33.814 fl oz","factor":"US fluid ounce"},{"from":"1000ml","to":"35.195 oz","factor":"Imperial ounce"},{"from":"1000ml","to":"4.227 cups","factor":"US cup"},{"from":"1000ml","to":"3.52 cups","factor":"Imperial cup"},{"from":"1000ml","to":"2.113 pints","factor":"US pint"},{"from":"1000ml","to":"1.76 pints","factor":"Imperial pint"},{"from":"1000ml","to":"1.057 quarts","factor":"US quart"},{"from":"1000ml","to":"0.88 quarts","factor":"Imperial quart"},{"from":"1000ml","to":"0.264 gallons","factor":"US gallon"},{"from":"1000ml","to":"0.22 gallons","factor":"Imperial gallon"}],"faqs":[{"question":"How many ml in 15 US fluid ounces?","answer":"About 443.602 ml. Useful for drinks, recipes, small batches."},{"question":"How many ml in 15 Imperial ounces?","answer":"About 426.197 ml. Slightly smaller than US ounces."},{"question":"Does ounce type really matter?","answer":"Yes, 15 oz US = 443.6 ml, 15 oz Imperial = 426.2 ml. Using wrong one = recipe off."},{"question":"Can I convert cups to ml?","answer":"Yes, US cup = 236.588ml, Imperial cup = 284.131ml. Multiply to get correct ml."}],"contentSections":{"hero":{"title":"15 Ounce to Milliliter Conversion","subtitle":"Convert 15 ounces to milliliters quickly in US or Imperial system","intro":"Accurate measurement for cooking, baking, drinks. Avoid errors when ounces differ."},"quickReference":{"title":"Quick Reference: 15oz Volume Conversions","description":"See 15oz in milliliters and cups for fast glance.","items":[{"ingredient":"15 oz","usMl":"443.602 ml","imperialMl":"426.197 ml","icon":"💧"},{"ingredient":"15 oz","usCups":"1.879 cups","imperialCups":"1.529 cups","icon":"🥛"},{"ingredient":"15 oz","usPints":"0.939 pints","imperialPints":"0.765 pints","icon":"🍺"}]},"comparisonTable":{"title":"15oz Volume Conversion Table","description":"Compare 15oz in US and Imperial units quickly.","columns":["Unit","Value for 15oz"],"rows":[{"Unit":"US fluid ounce","Value for 15oz":"443.602 ml"},{"Unit":"Imperial ounce","Value for 15oz":"426.197 ml"},{"Unit":"US cup","Value for 15oz":"1.879 cups"},{"Unit":"Imperial cup","Value for 15oz":"1.529 cups"},{"Unit":"US pint","Value for 15oz":"0.939 pints"},{"Unit":"Imperial pint","Value for 15oz":"0.765 pints"},{"Unit":"US quart","Value for 15oz":"0.470 quarts"},{"Unit":"Imperial quart","Value for 15oz":"0.382 quarts"},{"Unit":"US gallon","Value for 15oz":"0.117 gallons"},{"Unit":"Imperial gallon","Value for 15oz":"0.094 gallons"},{"Unit":"US tablespoon","Value for 15oz":"30.000 tbsp"},{"Unit":"US teaspoon","Value for 15oz":"90.000 tsp"},{"Unit":"Liter","Value for 15oz":"0.444 L"}]},"scientificBackground":{"title":"Why 15 Ounce to Milliliter Conversion Can Be Confusing","description":"Understanding why converting 15 ounces to milliliters requires attention to ounce type, historical definitions, and practical implications in cooking, drinks, and small batch recipes.","concepts":[{"concept":"US vs Imperial Ounces","explanation":"Ounces differ depending on whether the US or Imperial system is used. The US fluid ounce is defined as exactly 29.5735 ml, while the Imperial ounce is slightly smaller at 28.4131 ml. For small to moderate volumes like 15 ounces, the difference is noticeable: 15 US fl oz ≈ 443.602 ml, whereas 15 Imperial oz ≈ 426.197 ml. Though the difference seems minor, 17 ml can impact the final outcome in recipes, drinks, or laboratory solutions. In baking, this difference can affect batter consistency, rise, or texture; in drinks, it can alter flavor balance.","examples":["15 US oz ≈ 443.602 ml","15 Imperial oz ≈ 426.197 ml"],"impact":"Using the wrong ounce type can result in too much or too little liquid, potentially compromising taste, texture, or chemical reaction in recipes."},{"concept":"Historical Context of Fluid Ounces","explanation":"The fluid ounce evolved from the division of pints and gallons in various regions. The US adopted a slightly smaller pint in the 19th century, resulting in a smaller ounce than the UK Imperial version. Understanding this history clarifies why measurements differ across countries. While the US uses a 16-fl-oz pint, the Imperial pint is 20 fl oz. Recipes from different regions may mix units, and assuming equivalence leads to miscalculations.","examples":["1 US pint = 16 US fl oz = 473.176 ml","1 Imperial pint = 20 Imperial fl oz = 568.261 ml"],"impact":"Recipes from UK or US sources may need conversion for correct liquid measurement to ensure consistent results."},{"concept":"Practical Cooking and Baking Implications","explanation":"For small batches or medium recipes, precise liquid measurement is crucial. A difference of 17 ml in a 15 oz measurement may affect sauces, soups, or cocktails. For instance, a custard or cake batter requires exact ratios for proper thickening. Similarly, in mixology, 1–2 teaspoons can alter the flavor of a cocktail. Using US vs Imperial ounces correctly ensures the intended consistency and taste.","examples":["Cake: 15 US oz milk ≈ 443.6 ml, using Imperial would reduce volume to 426.2 ml","Cocktail: 15 oz US vs Imperial difference changes alcohol balance slightly but perceptibly"],"impact":"Accurate measurement maintains intended flavor, texture, and chemical reaction in food or drink preparation."},{"concept":"Conversions Beyond Ounces","explanation":"15 ounces can also be expressed in cups, pints, quarts, or gallons. US and Imperial measures differ, so converting requires caution. A US cup is 236.588 ml, while an Imperial cup is 284.131 ml. Therefore, 15 US oz ≈ 1.879 US cups, 15 Imperial oz ≈ 1.529 Imperial cups. Similarly, pints and quarts scale differently. Understanding these relationships is crucial when using recipes with different unit systems or when adjusting batch sizes.","examples":["15 US oz ≈ 1.879 US cups, 0.939 US pints","15 Imperial oz ≈ 1.529 Imperial cups, 0.765 Imperial pints"],"impact":"Knowing these conversions ensures correct recipe scaling and avoids miscalculations in international or multi-step recipes."},{"concept":"Measurement Precision and Tools","explanation":"Accurate conversion of 15 oz to milliliters requires proper tools. Measuring cups and spoons can introduce small errors, especially if US and Imperial systems are confused. Digital kitchen scales or graduated cylinders calibrated in ml offer precise measurement. Applying the correct conversion formula—x × 29.5735 for US fl oz, x × 28.4131 for Imperial oz—ensures exact results. Even minor rounding errors can accumulate in multi-step recipes or large batch preparations.","examples":["Digital scale: 15 US fl oz = 443.602 ml","Graduated cylinder: 15 Imperial oz = 426.197 ml"],"impact":"Precision tools minimize human error and guarantee recipe consistency, especially important in baking, beverages, or laboratory applications."},{"concept":"Common Misconceptions","explanation":"Many assume ounces are universal, leading to mistakes when converting. Online recipes may not specify the system, and small batch measurements amplify the effects of incorrect assumptions. Being aware of US vs Imperial differences, checking the source of the recipe, and applying accurate conversion formulas are crucial to avoid errors.","examples":["Assuming 15 oz = 443 ml regardless of system → may lead to 17 ml error","Misreading cups or pints across systems → under/over pouring liquids"],"impact":"Correct conversions prevent failed recipes, flavor imbalance, or inconsistencies in chemical applications."},{"concept":"Summary and Best Practices","explanation":"To convert 15 oz to milliliters accurately: determine whether US or Imperial ounces are used, apply the correct formula, use precise measuring tools, and double-check for cumulative differences in multi-step recipes. Clearly documenting conversions also helps when scaling recipes or sharing instructions. Awareness of small differences ensures consistency, taste, and desired chemical outcomes in both cooking and laboratory contexts.","examples":["Use x × 29.5735 for US fl oz, x × 28.4131 for Imperial oz","Always verify ounce type in recipe before measuring"],"impact":"Following these steps ensures precise and reliable results for cooking, baking, drinks, and small volume measurements."}]},"tips":{"title":"Tips for 15oz Conversion","description":"Practical guidance for small volume conversions","tips":["Check US vs Imperial before measuring","Use ml for accuracy if unsure","Use decimal for small measurements","Even few ml difference can affect taste","For drinks or sauces, always measure precisely"]},"commonMistakes":{"title":"Common Mistakes in 15oz Conversion","mistakes":[{"mistake":"Ignoring ounce type","consequence":"Wrong volume in recipe","solution":"Always clarify US vs Imperial","severity":"high"},{"mistake":"Rounding decimals too much","consequence":"Small batch affected","solution":"Keep precise decimal measurement","severity":"medium"}]},"related":{"title":"Related Converters","links":["tbsp-to-ml","how many oz are in 1000 ml","grams-to-cups"]}}}
             </script>
         </div>
     </section>
@@ -1628,6 +1898,34 @@ body {
                     
                     <tr>
                         <td>Imperial pint</td><td>0.765 pints</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>US quart</td><td>0.470 quarts</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Imperial quart</td><td>0.382 quarts</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>US gallon</td><td>0.117 gallons</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Imperial gallon</td><td>0.094 gallons</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>US tablespoon</td><td>30.000 tbsp</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>US teaspoon</td><td>90.000 tsp</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Liter</td><td>0.444 L</td>
                     </tr>
                     
                 </tbody>
@@ -1864,7 +2162,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -1877,15 +2175,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -1909,6 +2217,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 

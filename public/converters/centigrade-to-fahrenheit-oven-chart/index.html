@@ -70,8 +70,8 @@
   "name": "Centigrade to Fahrenheit Oven Chart",
   "description": "Quick lookup to convert oven temperatures from Centigrade (°C) to Fahrenheit, including fan/convection adjustments for better baking results.",
   "url": "https://bakingmath.org/converters/centigrade-to-fahrenheit-oven-chart/",
-  "datePublished": "2026-01-28",
-  "dateModified": "2026-01-28",
+  "datePublished": "2026-01-31",
+  "dateModified": "2026-01-31",
   "publisher": {
     "@type": "Organization",
     "name": "Cooking Converter Pro",
@@ -107,21 +107,26 @@ body {
     color: var(--text);
     background-color: var(--background);
     min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    width: 100%;
+    overflow-x: hidden; /* Prevent container overflow */
 }
 
-/* Header */
+/* Header - FIXED FOR MOBILE */
 .header {
     background: var(--surface);
     box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    overflow-x: hidden; /* Prevent header overflow */
 }
 
 .navbar {
@@ -129,6 +134,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    width: 100%;
+    overflow: hidden; /* Prevent navbar overflow */
 }
 
 .logo {
@@ -139,6 +146,10 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%; /* Prevent logo from pushing menu off screen */
 }
 
 .mobile-menu-btn {
@@ -148,6 +159,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text);
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
+    padding: 0.5rem;
 }
 
 .nav-links {
@@ -163,6 +177,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 4px;
     transition: all 0.3s;
+    white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -175,20 +190,25 @@ body {
     padding: 1rem 0;
     background: var(--background);
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll only for breadcrumbs */
+    -webkit-overflow-scrolling: touch;
 }
 
 .breadcrumb {
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Keep breadcrumbs in one line */
     gap: 0.5rem;
+    min-width: min-content; /* Allow breadcrumbs to shrink */
 }
 
 .breadcrumb-link {
     color: var(--primary);
     text-decoration: none;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .breadcrumb-link:hover {
@@ -199,11 +219,13 @@ body {
 .breadcrumb-current {
     color: var(--text);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .breadcrumb-separator {
     color: #999;
     margin: 0 0.25rem;
+    flex-shrink: 0;
 }
 
 /* Back to converters link */
@@ -211,6 +233,8 @@ body {
     margin: 0.5rem 0 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .back-to-converters a {
@@ -221,6 +245,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .back-to-converters a:hover {
@@ -232,6 +257,8 @@ body {
 .main-content {
     padding: 2rem 0;
     min-height: 70vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll in main content */
 }
 
 /* Cards */
@@ -242,11 +269,15 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     border: 1px solid var(--border);
+    width: 100%;
+    overflow-x: hidden; /* Prevent card overflow */
 }
 
 /* NEW: Category and Search Styles */
 .converters-header {
     margin-bottom: 2.5rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .category-filters {
@@ -255,6 +286,10 @@ body {
     gap: 0.75rem;
     margin: 1.5rem 0;
     align-items: center;
+    width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll for filters on mobile */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem; /* Space for scrollbar */
 }
 
 .category-filter {
@@ -269,6 +304,7 @@ body {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
+    flex-shrink: 0; /* Prevent filters from shrinking */
 }
 
 .category-filter:hover,
@@ -281,6 +317,7 @@ body {
 .search-container {
     position: relative;
     margin: 1rem 0 1.5rem;
+    width: 100%;
 }
 
 .search-input {
@@ -291,6 +328,7 @@ body {
     font-size: 1rem;
     background: var(--surface);
     transition: all 0.3s;
+    -webkit-appearance: none; /* Remove iOS default styling */
 }
 
 .search-input:focus {
@@ -311,6 +349,7 @@ body {
     color: var(--primary);
     font-weight: 600;
     margin: 0 0.5rem;
+    white-space: nowrap;
 }
 
 .converters-grid {
@@ -318,6 +357,7 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    width: 100%;
 }
 
 .converter-card {
@@ -327,6 +367,8 @@ body {
     border: 1px solid var(--border);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
+    width: 100%;
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .converter-card:hover {
@@ -339,6 +381,7 @@ body {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin: 0.75rem 0 1rem;
+    width: 100%;
 }
 
 .category-tag {
@@ -349,6 +392,9 @@ body {
     font-size: 0.8rem;
     color: var(--text);
     white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .no-results {
@@ -358,6 +404,7 @@ body {
     font-style: italic;
     grid-column: 1 / -1;
     display: none;
+    width: 100%;
 }
 
 .clear-filters {
@@ -371,6 +418,7 @@ body {
     font-family: inherit;
     font-size: 0.95rem;
     white-space: nowrap;
+    flex-shrink: 0; /* Prevent button from shrinking */
 }
 
 .clear-filters:hover {
@@ -385,6 +433,8 @@ body {
     padding: 2rem;
     margin: 2rem 0;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: hidden; /* Prevent wrapper overflow */
 }
 
 .converter-ui {
@@ -393,7 +443,8 @@ body {
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
-    flex-wrap: nowrap;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
+    width: 100%;
 }
 
 .converter-box {
@@ -404,6 +455,7 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 450px;
+    width: 100%;
 }
 
 .converter-input {
@@ -413,8 +465,11 @@ body {
     border-radius: 8px;
     text-align: center;
     flex: 1;
-    min-width: 140px;
+    min-width: 120px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    -webkit-appearance: none; /* Remove iOS styling */
 }
 
 .converter-select {
@@ -424,8 +479,12 @@ body {
     background: white;
     font-size: 1rem;
     flex: 1;
-    min-width: 160px;
+    min-width: 140px; /* Reduced for mobile */
     height: 56px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .converter-swap {
@@ -439,6 +498,8 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     flex-shrink: 0;
+    min-width: 44px; /* Better touch target */
+    min-height: 44px;
 }
 
 .converter-swap:hover {
@@ -455,12 +516,16 @@ body {
     padding: 1rem;
     background: var(--background);
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    word-break: break-word; /* Allow long results to wrap */
 }
 
 .ingredient-selector {
     margin: 1rem auto;
     text-align: center;
     max-width: 500px;
+    width: 100%;
 }
 
 .ingredient-selector label {
@@ -468,6 +533,9 @@ body {
     margin-bottom: 0.5rem;
     font-weight: 500;
     color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .ingredient-selector select {
@@ -478,20 +546,26 @@ body {
     border-radius: 8px;
     background: white;
     font-size: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* Tables */
+/* Tables - FIXED FOR MOBILE */
 .table-container {
-    overflow-x: auto;
+    overflow-x: auto; /* Allow horizontal scroll for tables */
     margin: 1.5rem 0;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    display: block;
 }
 
 .conversion-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 600px;
+    min-width: 600px; /* Minimum width for table */
+    table-layout: auto;
 }
 
 .conversion-table th {
@@ -500,11 +574,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .conversion-table td {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word; /* Allow content to wrap */
 }
 
 .conversion-table tr:last-child td {
@@ -515,6 +591,19 @@ body {
     background-color: var(--background);
 }
 
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    min-width: 600px; /* Minimum width */
+    table-layout: auto;
+}
+
+.comparison-table th,
+.comparison-table td {
+    white-space: normal; /* Allow wrapping */
+    word-break: break-word;
+}
+
 /* Ads */
 .ad-unit {
     margin: 2rem 0;
@@ -523,6 +612,8 @@ body {
     border-radius: 8px;
     padding: 1rem;
     border: 2px dashed var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .ad-label {
@@ -531,6 +622,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .ad-content {
@@ -541,16 +633,21 @@ body {
     background: var(--background);
     border-radius: 4px;
     color: #666;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* FAQ */
 .faq-section {
     margin: 2rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .faq-item {
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
+    width: 100%;
 }
 
 .faq-question {
@@ -566,20 +663,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: normal; /* Allow question to wrap */
+    word-break: break-word;
 }
 
 .faq-answer {
     padding: 1rem 0;
     color: #555;
     line-height: 1.8;
+    width: 100%;
+    word-break: break-word;
 }
 
-/* Footer */
+/* Footer - FIXED FOR MOBILE */
 .footer {
     background: var(--primary-dark);
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 3rem;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -587,26 +690,35 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .footer-section h3 {
     color: white;
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 .footer-links {
     list-style: none;
+    width: 100%;
 }
 
 .footer-links li {
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .footer-links a {
     color: rgba(255,255,255,0.8);
     text-decoration: none;
     transition: color 0.3s;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .footer-links a:hover {
@@ -619,6 +731,8 @@ body {
     border-top: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.6);
     font-size: 0.9rem;
+    width: 100%;
+    overflow: hidden;
 }
 
 /* Content Section Styles */
@@ -628,17 +742,21 @@ body {
     background: var(--surface);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: hidden; /* Prevent section overflow */
 }
 
 .section-header {
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 .section-header h2 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
     font-size: 1.8rem;
+    word-break: break-word;
 }
 
 .section-description {
@@ -646,18 +764,21 @@ body {
     opacity: 0.8;
     max-width: 800px;
     margin: 0 auto;
+    word-break: break-word;
 }
 
 /* Hero Section */
 .hero-section {
     text-align: center;
     padding: 2rem 2rem 1.5rem;
+    width: 100%;
 }
 
 .hero-section h1 {
     color: var(--primary);
     font-size: 2.2rem;
     margin-bottom: 0.75rem;
+    word-break: break-word;
 }
 
 .hero-subtitle {
@@ -667,6 +788,7 @@ body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    word-break: break-word;
 }
 
 .hero-intro {
@@ -675,6 +797,7 @@ body {
     color: var(--text);
     max-width: 800px;
     margin: 1.5rem auto 0;
+    word-break: break-word;
 }
 
 /* Quick Reference */
@@ -683,6 +806,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .reference-item {
@@ -692,6 +816,8 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .reference-item:hover {
@@ -707,6 +833,7 @@ body {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     color: var(--primary-dark);
+    word-break: break-word;
 }
 
 .reference-values {
@@ -715,27 +842,32 @@ body {
     align-items: center;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    flex-wrap: wrap; /* Allow values to wrap on small screens */
 }
 
 .reference-from {
     color: var(--text);
     font-weight: 500;
+    word-break: break-word;
 }
 
 .reference-arrow {
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .reference-to {
     color: var(--primary);
     font-weight: bold;
     font-size: 1.1rem;
+    word-break: break-word;
 }
 
 /* Comparison Table */
 .comparison-table table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px; /* Minimum width */
 }
 
 .comparison-table th {
@@ -744,11 +876,13 @@ body {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .comparison-table td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
+    word-break: break-word;
 }
 
 /* Visual Chart */
@@ -757,6 +891,7 @@ body {
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
+    width: 100%;
 }
 
 .visual-item {
@@ -769,6 +904,8 @@ body {
     border-left: 4px solid var(--primary);
     text-align: center;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .visual-item:hover {
@@ -785,18 +922,21 @@ body {
     font-weight: bold;
     color: var(--primary);
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 .visual-comparison {
     color: var(--text);
     opacity: 0.8;
     font-style: italic;
+    word-break: break-word;
 }
 
 /* Step by Step */
 .steps-container {
     max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .step {
@@ -804,6 +944,7 @@ body {
     gap: 1.5rem;
     margin-bottom: 2rem;
     align-items: flex-start;
+    width: 100%;
 }
 
 .step-number {
@@ -817,21 +958,27 @@ body {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+    min-width: 40px;
 }
 
 .step-content {
     flex: 1;
+    min-width: 0; /* Allow content to shrink */
+    overflow: hidden;
 }
 
 .step-content h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .step-tip, .step-warning, .step-note {
     padding: 0.75rem;
     border-radius: 6px;
     margin-top: 0.5rem;
+    width: 100%;
+    word-break: break-word;
 }
 
 .step-tip {
@@ -853,6 +1000,7 @@ body {
 .mistakes-container {
     display: grid;
     gap: 1rem;
+    width: 100%;
 }
 
 .mistake-item {
@@ -861,6 +1009,8 @@ body {
     border-radius: 8px;
     border-left: 4px solid #ddd;
     transition: transform 0.3s;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mistake-item:hover {
@@ -886,6 +1036,7 @@ body {
 
 .mistake-consequence, .mistake-solution {
     margin-top: 0.5rem;
+    word-break: break-word;
 }
 
 /* Equipment Guide */
@@ -893,6 +1044,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .equipment-item {
@@ -900,6 +1052,8 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .equipment-header {
@@ -908,15 +1062,21 @@ body {
     gap: 0.75rem;
     margin-bottom: 1rem;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .equipment-icon {
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .equipment-header h3 {
     flex: 1;
     color: var(--primary-dark);
+    min-width: 0; /* Allow text to shrink */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .equipment-importance {
@@ -924,6 +1084,8 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .equipment-importance.essential {
@@ -953,32 +1115,39 @@ body {
 
 .equipment-price, .equipment-brands {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Scientific Background */
 .concepts-container {
     display: grid;
     gap: 1.5rem;
+    width: 100%;
 }
 
 .concept {
     background: var(--background);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .concept h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .concept-examples, .concept-impact {
     margin-top: 1rem;
+    width: 100%;
 }
 
 .concept-examples ul {
     margin-left: 1.5rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 /* Regional Variations */
@@ -986,6 +1155,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+    width: 100%;
 }
 
 .region-item {
@@ -993,11 +1163,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .region-header h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .region-cup-size {
@@ -1008,10 +1181,12 @@ body {
     display: inline-block;
     margin-top: 0.5rem;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .region-units, .region-system, .region-note {
     margin: 0.5rem 0;
+    word-break: break-word;
 }
 
 /* Recipe Examples */
@@ -1020,11 +1195,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     margin: 1.5rem 0;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-example h3 {
     color: var(--primary-dark);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-comparison {
@@ -1033,6 +1211,7 @@ body {
     margin: 1.5rem 0;
     flex-wrap: wrap;
     align-items: flex-start;
+    width: 100%;
 }
 
 .recipe-original, .recipe-converted {
@@ -1041,15 +1220,19 @@ body {
     background: var(--surface);
     padding: 1.5rem;
     border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .recipe-original h4, .recipe-converted h4 {
     color: var(--primary);
     margin-bottom: 1rem;
+    word-break: break-word;
 }
 
 .recipe-original ul, .recipe-converted ul {
     margin-left: 1.5rem;
+    width: 100%;
 }
 
 .recipe-arrow {
@@ -1057,6 +1240,7 @@ body {
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary);
+    flex-shrink: 0;
 }
 
 .recipe-serves, .recipe-tip {
@@ -1064,6 +1248,8 @@ body {
     padding: 0.75rem;
     background: var(--surface);
     border-radius: 6px;
+    width: 100%;
+    word-break: break-word;
 }
 
 /* Related Converters */
@@ -1072,6 +1258,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .related-item {
@@ -1079,11 +1266,14 @@ body {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .related-item h3 {
     color: var(--primary-dark);
     margin-bottom: 0.5rem;
+    word-break: break-word;
 }
 
 .related-link {
@@ -1096,6 +1286,7 @@ body {
     border-radius: 4px;
     font-weight: 500;
     transition: background 0.3s;
+    white-space: nowrap;
 }
 
 .related-link:hover {
@@ -1106,12 +1297,14 @@ body {
 .tips-section ul {
     margin-left: 1.5rem;
     margin-top: 1rem;
+    width: 100%;
 }
 
 .tips-section li {
     margin-bottom: 0.5rem;
     position: relative;
     padding-left: 1.5rem;
+    word-break: break-word;
 }
 
 .tips-section li:before {
@@ -1125,6 +1318,7 @@ body {
 /* FAQ Container */
 .faq-container {
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 /* Sidebar Ads */
@@ -1140,6 +1334,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     text-align: center;
+    width: 100%;
 }
 
 /* Mobile Sticky Ad */
@@ -1156,6 +1351,8 @@ body {
     align-items: center;
     z-index: 1000;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-sticky-ad .ad-close {
@@ -1169,6 +1366,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 /* Two Column Layout for Converter Pages */
@@ -1176,11 +1376,14 @@ body {
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .converter-main-content {
     flex: 1;
-    min-width: 0;
+    min-width: 0; /* Allow content to shrink */
+    overflow-x: hidden;
 }
 
 /* Responsive Design */
@@ -1214,16 +1417,27 @@ body {
         flex-direction: column;
         padding: 1rem;
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        width: 100%;
+        overflow-y: auto;
+        max-height: 70vh;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
     .converter-ui {
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .converter-box {
@@ -1231,14 +1445,16 @@ body {
         width: 100%;
         max-width: 100%;
         min-width: auto;
+        flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
     }
 
     .converter-input,
     .converter-select {
         width: 50%;
-        height: 44px;
-        padding: 0.5rem;
+        height: 48px;
+        padding: 0.75rem;
         font-size: 1rem;
+        min-width: 100px; /* Reduced minimum width */
     }
 
     .converter-input {
@@ -1246,15 +1462,15 @@ body {
     }
 
     .converter-select {
-        font-size: 0.9rem;
-        min-width: 120px;
+        font-size: 0.95rem;
+        min-width: 100px;
     }
 
     .converter-swap {
-            width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
-        margin: 0.25rem auto;
+        margin: 0.5rem auto;
         order: 3;
     }
 
@@ -1262,7 +1478,7 @@ body {
     .converter-result {
         font-size: 1.1rem;
         padding: 0.75rem;
-        text-align: left;
+        text-align: center;
         line-height: 1.4;
         background: var(--background);
         border-radius: 8px;
@@ -1270,6 +1486,7 @@ body {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        width: 100%;
     }
 
     .converter-result::before {
@@ -1286,6 +1503,7 @@ body {
         padding-bottom: 0.5rem;
         -webkit-overflow-scrolling: touch;
         margin: 1rem 0;
+        flex-wrap: nowrap; /* Keep filters in one line */
     }
 
     .search-input {
@@ -1302,42 +1520,14 @@ body {
         margin-top: 0.5rem;
     }
 
-    @media (max-width: 480px) {
-        .converter-input,
-        .converter-select {
-            height: 40px;
-            padding: 0.4rem;
-        }
-
-        .converter-input {
-            font-size: 0.95rem;
-        }
-
-        .converter-select {
-            font-size: 0.85rem;
-        }
-
-        .converter-swap {
-            width: 40px;
-            height: 40px;
-        }
-
-        .converter-result {
-            font-size: 1rem;
-            padding: 0.6rem;
-        }
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
+    /* Fix tables for mobile */
     .table-container {
         margin: 1rem -1rem;
+        width: calc(100% + 2rem); /* Full width with negative margin */
     }
 
-    .conversion-table {
+    .conversion-table,
+    .comparison-table {
         min-width: 100%;
     }
 
@@ -1345,15 +1535,25 @@ body {
     .conversion-table td {
         padding: 0.75rem 0.5rem;
         font-size: 0.9rem;
+        white-space: normal;
     }
 
+    /* Fix breadcrumbs for mobile */
     .breadcrumb {
         font-size: 0.85rem;
+        flex-wrap: nowrap;
     }
 
+    .breadcrumb-container {
+        padding: 0.75rem 0;
+    }
+
+    /* Fix content sections for mobile */
     .content-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+        border-radius: 8px;
     }
 
     .quick-reference-grid {
@@ -1367,6 +1567,7 @@ body {
     .step {
         flex-direction: column;
         text-align: center;
+        gap: 1rem;
     }
 
     .step-number {
@@ -1388,44 +1589,83 @@ body {
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .section-header h2 {
         font-size: 1.5rem;
     }
-}
 
-@media (min-width: 769px) {
-    .mobile-sticky-ad {
-        display: none !important;
+    .converter-wrapper {
+        padding: 1.5rem 1rem;
+        margin: 1.5rem -0.5rem;
+        width: calc(100% + 1rem);
+    }
+
+    /* Fix header logo for mobile */
+    .logo {
+        font-size: 1.2rem;
+        max-width: 60%;
+    }
+
+    /* Fix footer for mobile */
+    .footer {
+        padding: 2rem 0 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .footer-links a {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+        width: 100%;
     }
 
     .card, .converter-wrapper {
-        padding: 1.5rem;
+        padding: 1.25rem 1rem;
+        margin: 1rem -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .converter-input {
         font-size: 1rem;
-        padding: 0.75rem;
-        height: 48px;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 70px;
+        width: 45%;
     }
 
     .converter-select {
-        font-size: 0.95rem;
-        padding: 0.75rem;
-        height: 48px;
+        font-size: 0.9rem;
+        padding: 0.75rem 0.5rem;
+        height: 44px;
+        min-width: 90px;
+        width: 55%;
     }
 
     .converter-swap {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.9rem;
+    }
+
+    .converter-result {
+        font-size: 1rem;
+        padding: 0.6rem;
     }
 
     .equipment-container,
@@ -1435,7 +1675,9 @@ body {
     }
 
     .converter-card {
-        padding: 1.25rem;
+        padding: 1.25rem 1rem;
+        margin: 0 -0.5rem;
+        width: calc(100% + 1rem);
     }
 
     .category-tags {
@@ -1445,6 +1687,34 @@ body {
     .category-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
+    }
+
+    /* Fix very small screens */
+    @media (max-width: 320px) {
+        .converter-input,
+        .converter-select {
+            width: 100%;
+            min-width: 100%;
+        }
+
+        .converter-box {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .logo {
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-sticky-ad {
+        display: none !important;
     }
 }
 </style>
@@ -1541,7 +1811,7 @@ body {
             
             <div class="converter-result" id="converterResult"></div>
             <script type="application/json" id="converter-data">
-            {"id":"centigrade-to-fahrenheit-oven-chart","slug":"centigrade-to-fahrenheit-oven-chart","title":"Centigrade to Fahrenheit Oven Chart","description":"Quick lookup to convert oven temperatures from Centigrade (°C) to Fahrenheit, including fan/convection adjustments for better baking results.","keywords":["centigrade to fahrenheit oven chart","celsius to fahrenheit oven","oven temp centigrade fahrenheit","fan oven fahrenheit","convection oven chart"],"categories":["temperature"],"subcategory":"oven","featured":true,"popularity":90,"lastUpdated":"2026-01-24","contentSequence":["hero","converter","quickReference","comparisonTable","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":180,"from":"celsius","to":"fahrenheit"},"supportedUnits":["celsius","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"celsius","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"celsius","formula":"(x - 32) * 5/9"},{"from":"celsius","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"celsius","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan celsius","to":"celsius","formula":"x + 20"},{"from":"fan celsius","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan celsius","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"conversionTable":[{"Gas Mark":1,"°F":275,"°C":140,"Fan °C":120},{"Gas Mark":1.5,"°F":285,"°C":145,"Fan °C":125},{"Gas Mark":2,"°F":300,"°C":150,"Fan °C":130},{"Gas Mark":3,"°F":325,"°C":165,"Fan °C":145},{"Gas Mark":4,"°F":350,"°C":180,"Fan °C":160},{"Gas Mark":5,"°F":375,"°C":190,"Fan °C":170},{"Gas Mark":6,"°F":400,"°C":200,"Fan °C":180},{"Gas Mark":7,"°F":425,"°C":220,"Fan °C":200},{"Gas Mark":8,"°F":450,"°C":230,"Fan °C":210},{"Gas Mark":9,"°F":475,"°C":240,"Fan °C":220},{"Gas Mark":10,"°F":500,"°C":250,"Fan °C":230}],"faqs":[{"question":"How to use centigrade to Fahrenheit oven chart?","answer":"Find Centigrade (°C) in chart, see corresponding Fahrenheit. For fan oven, subtract 20°C for same cooking result."},{"question":"Why fan oven need lower Fahrenheit?","answer":"Fan moves hot air faster, cooks quicker. So same Centigrade converts to lower Fahrenheit effectively. Example: 180°C = 356°F normal, fan oven 160°C = 320°F."},{"question":"Can I use chart for all ovens?","answer":"Mostly yes, but old ovens may vary ±5–10°C. Fan/convection effect changes too. Oven thermometer best."},{"question":"Do Gas Mark numbers work with Fahrenheit?","answer":"Yes, first convert Fahrenheit to Centigrade, then use Gas Mark scale. Gas Mark does not auto account fan ovens."},{"question":"Is chart valid for UK and US recipes?","answer":"US recipes use Fahrenheit, UK old cookbooks Gas Mark, modern UK Celsius. Chart bridges conversion, safe for most cases."},{"question":"Why recipe says 350°F but chart different?","answer":"350°F ≈ 175°C. Small difference due rounding, oven calibration. Fan oven adjustment may needed."}],"contentSections":{"hero":{"title":"Centigrade to Fahrenheit Oven Chart","subtitle":"Quick lookup for accurate oven temperatures including fan/convection adjustment","intro":"Easily convert Centigrade (°C) to Fahrenheit, consider fan oven effect and Gas Mark equivalents. Right temp = perfect bake."},"quickReference":{"title":"Quick Reference: Centigrade to Fahrenheit","description":"Common oven temps with fan adjustment for quick glance.","items":[{"ingredient":"140°C","fahrenheit":284,"fanC":120,"icon":"🔥"},{"ingredient":"150°C","fahrenheit":302,"fanC":130,"icon":"🔥"},{"ingredient":"165°C","fahrenheit":329,"fanC":145,"icon":"🔥"},{"ingredient":"180°C","fahrenheit":356,"fanC":160,"icon":"🔥"},{"ingredient":"190°C","fahrenheit":374,"fanC":170,"icon":"🔥"},{"ingredient":"200°C","fahrenheit":392,"fanC":180,"icon":"🔥"},{"ingredient":"220°C","fahrenheit":428,"fanC":200,"icon":"🔥"},{"ingredient":"230°C","fahrenheit":446,"fanC":210,"icon":"🔥"},{"ingredient":"240°C","fahrenheit":464,"fanC":220,"icon":"🔥"},{"ingredient":"250°C","fahrenheit":482,"fanC":230,"icon":"🔥"}]},"comparisonTable":{"title":"Gas Mark to Fahrenheit & Celsius Comparison","description":"Compare Gas Mark with Fahrenheit, Celsius, and Fan-adjusted Celsius for oven settings.","columns":["Gas Mark","°F","°C","Fan °C"],"rows":[{"Gas Mark":1,"°F":275,"°C":140,"Fan °C":120},{"Gas Mark":2,"°F":300,"°C":150,"Fan °C":130},{"Gas Mark":3,"°F":325,"°C":170,"Fan °C":150},{"Gas Mark":4,"°F":350,"°C":180,"Fan °C":160},{"Gas Mark":5,"°F":375,"°C":190,"Fan °C":170},{"Gas Mark":6,"°F":400,"°C":200,"Fan °C":180},{"Gas Mark":7,"°F":425,"°C":220,"Fan °C":200},{"Gas Mark":8,"°F":450,"°C":230,"Fan °C":210},{"Gas Mark":9,"°F":475,"°C":240,"Fan °C":220},{"Gas Mark":10,"°F":500,"°C":250,"Fan °C":230},{"Gas Mark":11,"°F":525,"°C":260,"Fan °C":240},{"Gas Mark":12,"°F":550,"°C":290,"Fan °C":270},{"Gas Mark":13,"°F":575,"°C":300,"Fan °C":280},{"Gas Mark":14,"°F":600,"°C":315,"Fan °C":295},{"Gas Mark":15,"°F":625,"°C":330,"Fan °C":310}]},"scientificBackground":{"title":"Why Centigrade to Fahrenheit Conversion Can Confuse","description":"Understanding oven temp systems, fan/convection, historical differences.","concepts":[{"concept":"Centigrade vs Fahrenheit","explanation":"Centigrade (°C) metric, Fahrenheit (°F) imperial. Convert by (°C*9/5)+32 = °F. Fan oven moves heat fast, makes temp effective lower, so must adjust. Charts simple guide, but understanding why important.","examples":["180°C conventional = 356°F","180°C fan = 320°F effective"],"impact":"Ignoring fan oven = burnt or dry baked goods."},{"concept":"Fan Oven Effect","explanation":"Fan oven circulates hot air, cooks faster. So same Centigrade converts lower Fahrenheit effectively. Subtract ~20°C for fan ovens. Chart gives safe reference.","examples":["200°C conventional = 392°F, fan 180°C = 356°F","220°C conventional = 428°F, fan 200°C = 392°F"],"impact":"Proper conversion prevents overcooking."},{"concept":"Gas Mark Relation","explanation":"Gas Mark UK scale 1–10. Conversion maps °C to Gas Mark. Fan not included, user adjust manually. Some online recipes mix units, chart bridges confusion. Oven type + recipe origin matters.","examples":["180°C = Gas Mark 4 ≈ 356°F","Fan oven 160°C = Gas Mark 4 ≈ 320°F"],"impact":"Manual adjustment ensures correct bake."},{"concept":"Practical Baking Implications","explanation":"Chart helps home bakers convert temp fast. Correct Fahrenheit ensures bake success. Fan oven changes time/temp. Thermometer gives precision.","examples":["140°C conventional = 284°F, fan 120°C = 248°F","250°C conventional = 482°F, fan 230°C = 446°F"],"impact":"Understanding conversions + fan effect ensures perfect baked goods."}]},"tips":{"title":"Tips for Using Centigrade to Fahrenheit Oven Chart","description":"Practical guidance for safe baking","tips":["Check oven type: fan/convection or conventional","Subtract ~20°C for fan oven","Use thermometer, ovens vary ±5–10°C","Don’t eyeball temp; small error affects bake","Chart helps convert °C to °F fast","Know recipe origin: US = Fahrenheit, UK old = Gas Mark, Europe = Celsius","Pan type affects bake: dark pans cook faster","Fan moves air, adjust both temp and time if needed"]},"commonMistakes":{"title":"Common Mistakes in Centigrade to Fahrenheit Conversion","mistakes":[{"mistake":"Ignoring fan oven","consequence":"Overcooked, burnt baking","solution":"Lower temp by ~20°C for fan ovens","severity":"high"},{"mistake":"Confusing units","consequence":"Wrong oven temp, recipe fail","solution":"Check if recipe uses °C, °F, or Gas Mark","severity":"high"},{"mistake":"Assuming chart works for all ovens","consequence":"Oven variations can affect bake","solution":"Use thermometer, consider fan, pan type","severity":"medium"}]}}}
+            {"id":"centigrade-to-fahrenheit-oven-chart","slug":"centigrade-to-fahrenheit-oven-chart","title":"Centigrade to Fahrenheit Oven Chart","description":"Quick lookup to convert oven temperatures from Centigrade (°C) to Fahrenheit, including fan/convection adjustments for better baking results.","keywords":["centigrade to fahrenheit oven chart","celsius to fahrenheit oven","oven temp centigrade fahrenheit","fan oven fahrenheit","convection oven chart"],"manualRelatedLinks":["celsius-to-fahrenheit-oven-chart","tbsp-to-gram","grams-to-cups"],"categories":["temperature"],"subcategory":"oven","featured":true,"popularity":90,"lastUpdated":"2026-01-31","contentSequence":["hero","converter","quickReference","comparisonTable","visualChart","stepByStep","scientificBackground","commonMistakes","tips","faq","related"],"defaults":{"value":180,"from":"centigrade","to":"fahrenheit"},"supportedUnits":["centigrade","fahrenheit","gas mark","fan celsius"],"conversionFormulas":[{"from":"centigrade","to":"fahrenheit","formula":"(x * 9/5) + 32"},{"from":"fahrenheit","to":"centigrade","formula":"(x - 32) * 5/9"},{"from":"centigrade","to":"gas mark","formula":"x <= 130 ? 1 : x <= 140 ? 1.5 : x <= 150 ? 2 : x <= 165 ? 3 : x <= 180 ? 4 : x <= 190 ? 5 : x <= 200 ? 6 : x <= 220 ? 7 : x <= 230 ? 8 : x <= 240 ? 9 : 10"},{"from":"gas mark","to":"centigrade","formula":"x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250"},{"from":"fahrenheit","to":"gas mark","formula":"((x - 32) * 5/9) <= 130 ? 1 : ((x - 32) * 5/9) <= 140 ? 1.5 : ((x - 32) * 5/9) <= 150 ? 2 : ((x - 32) * 5/9) <= 165 ? 3 : ((x - 32) * 5/9) <= 180 ? 4 : ((x - 32) * 5/9) <= 190 ? 5 : ((x - 32) * 5/9) <= 200 ? 6 : ((x - 32) * 5/9) <= 220 ? 7 : ((x - 32) * 5/9) <= 230 ? 8 : ((x - 32) * 5/9) <= 240 ? 9 : 10"},{"from":"gas mark","to":"fahrenheit","formula":"(x === 1 ? 140 : x === 1.5 ? 150 : x === 2 ? 160 : x === 3 ? 170 : x === 4 ? 180 : x === 5 ? 190 : x === 6 ? 200 : x === 7 ? 220 : x === 8 ? 230 : x === 9 ? 240 : 250) * 9/5 + 32"},{"from":"fan centigrade","to":"centigrade","formula":"x + 20"},{"from":"fan centigrade","to":"fahrenheit","formula":"(x + 20) * 9/5 + 32"},{"from":"fan centigrade","to":"gas mark","formula":"x <= 120 ? 1 : x <= 125 ? 1.5 : x <= 130 ? 2 : x <= 145 ? 3 : x <= 160 ? 4 : x <= 170 ? 5 : x <= 180 ? 6 : x <= 200 ? 7 : x <= 210 ? 8 : x <= 220 ? 9 : 10"}],"conversionTable":[{"Gas Mark":1,"°F":275,"°C":140,"Fan °C":120},{"Gas Mark":1.5,"°F":285,"°C":145,"Fan °C":125},{"Gas Mark":2,"°F":300,"°C":150,"Fan °C":130},{"Gas Mark":3,"°F":325,"°C":165,"Fan °C":145},{"Gas Mark":4,"°F":350,"°C":180,"Fan °C":160},{"Gas Mark":5,"°F":375,"°C":190,"Fan °C":170},{"Gas Mark":6,"°F":400,"°C":200,"Fan °C":180},{"Gas Mark":7,"°F":425,"°C":220,"Fan °C":200},{"Gas Mark":8,"°F":450,"°C":230,"Fan °C":210},{"Gas Mark":9,"°F":475,"°C":240,"Fan °C":220},{"Gas Mark":10,"°F":500,"°C":250,"Fan °C":230},{"Gas Mark":11,"°F":525,"°C":260,"Fan °C":240},{"Gas Mark":12,"°F":550,"°C":290,"Fan °C":270},{"Gas Mark":13,"°F":575,"°C":300,"Fan °C":280},{"Gas Mark":14,"°F":600,"°C":315,"Fan °C":295},{"Gas Mark":15,"°F":625,"°C":330,"Fan °C":310}],"faqs":[{"question":"How do I use Centigrade to Fahrenheit oven chart?","answer":"Simply match the Centigrade value in chart with its Fahrenheit equivalent. If fan oven, reduce 20°C from Centigrade for accurate cooking time."},{"question":"Why fan oven needs different Fahrenheit?","answer":"Fan circulates hot air, cooks faster. So same Centigrade converts to lower Fahrenheit effectively. Example: 180°C = 356°F normal, but fan oven may need 320°F."},{"question":"Can I trust chart for all ovens?","answer":"Mostly yes, but old ovens may be off by 5–10°C. Use oven thermometer if unsure. Fan/convection impact varies too."},{"question":"Do Gas Mark numbers work with Fahrenheit?","answer":"Yes, first convert Fahrenheit to Centigrade, then use Gas Mark scale from chart. Gas Mark does not account fan ovens directly."},{"question":"Is chart same for US and UK recipes?","answer":"US mainly uses Fahrenheit, UK older cookbooks use Gas Mark. Modern UK recipes use Centigrade. Chart helps cross-convert safely."},{"question":"Why recipe says 350°F and chart shows different?","answer":"350°F = 175°C approx. Small differences exist due to rounding or oven calibration. Always check fan adjustment too."}],"contentSections":{"hero":{"title":"Centigrade to Fahrenheit Oven Chart","subtitle":"Quick lookup for accurate oven temperatures including fan/convection adjustment","intro":"Easily convert Centigrade (°C) to Fahrenheit, consider fan oven effect and Gas Mark equivalents. Right temp = perfect bake."},"quickReference":{"title":"Quick Reference: Centigrade to Fahrenheit","description":"Common oven temps with fan adjustment for quick glance.","items":[{"ingredient":"140°C","fahrenheit":284,"fanC":120,"icon":"🔥"},{"ingredient":"150°C","fahrenheit":302,"fanC":130,"icon":"🔥"},{"ingredient":"165°C","fahrenheit":329,"fanC":145,"icon":"🔥"},{"ingredient":"180°C","fahrenheit":356,"fanC":160,"icon":"🔥"},{"ingredient":"190°C","fahrenheit":374,"fanC":170,"icon":"🔥"},{"ingredient":"200°C","fahrenheit":392,"fanC":180,"icon":"🔥"},{"ingredient":"220°C","fahrenheit":428,"fanC":200,"icon":"🔥"},{"ingredient":"230°C","fahrenheit":446,"fanC":210,"icon":"🔥"},{"ingredient":"240°C","fahrenheit":464,"fanC":220,"icon":"🔥"},{"ingredient":"250°C","fahrenheit":482,"fanC":230,"icon":"🔥"}]},"comparisonTable":{"title":"Gas Mark to Fahrenheit & Celsius Comparison","description":"Compare Gas Mark with Fahrenheit, Celsius, and Fan-adjusted Celsius for oven settings.","columns":["Gas Mark","°F","°C","Fan °C"],"rows":[{"Gas Mark":1,"°F":275,"°C":140,"Fan °C":120},{"Gas Mark":2,"°F":300,"°C":150,"Fan °C":130},{"Gas Mark":3,"°F":325,"°C":170,"Fan °C":150},{"Gas Mark":4,"°F":350,"°C":180,"Fan °C":160},{"Gas Mark":5,"°F":375,"°C":190,"Fan °C":170},{"Gas Mark":6,"°F":400,"°C":200,"Fan °C":180},{"Gas Mark":7,"°F":425,"°C":220,"Fan °C":200},{"Gas Mark":8,"°F":450,"°C":230,"Fan °C":210},{"Gas Mark":9,"°F":475,"°C":240,"Fan °C":220},{"Gas Mark":10,"°F":500,"°C":250,"Fan °C":230},{"Gas Mark":11,"°F":525,"°C":260,"Fan °C":240},{"Gas Mark":12,"°F":550,"°C":290,"Fan °C":270},{"Gas Mark":13,"°F":575,"°C":300,"Fan °C":280},{"Gas Mark":14,"°F":600,"°C":315,"Fan °C":295},{"Gas Mark":15,"°F":625,"°C":330,"Fan °C":310}]},"visualChart":{"title":"Visual Guide for Centigrade to Fahrenheit Oven Chart","items":[{"name":"Low Temperature Baking","weight":"140°C to 160°C corresponds to 284°F to 320°F approximately","comparison":"Ideal for delicate cakes, meringues, and slow baking where gentle heat is needed","visual":"🧁","color":"#ffe5b4"},{"name":"Medium Temperature Baking","weight":"170°C to 190°C corresponds to 338°F to 374°F","comparison":"Perfect for cookies, muffins, and moderate roasting; ensures even cooking without burning edges","visual":"🍪","color":"#ffd699"},{"name":"High Temperature Roasting","weight":"200°C to 230°C corresponds to 392°F to 446°F","comparison":"Used for roasting vegetables, bread, or meat; higher heat creates browning and crust while keeping interior moist","visual":"🍖","color":"#ffb84d"},{"name":"Very High Temperature","weight":"240°C to 250°C corresponds to 464°F to 482°F","comparison":"Mostly for professional or pizza ovens; extreme heat for crispy crusts or quick searing, not recommended for delicate baked goods","visual":"🍕","color":"#ff9900"}]},"stepByStep":{"title":"Step-by-Step Guide to Using the Centigrade to Fahrenheit Oven Chart","steps":[{"number":1,"title":"Identify the Temperature in Centigrade","content":"First, identify the exact temperature required by your recipe in Centigrade. Check whether the recipe expects a conventional or fan oven to avoid errors."},{"number":2,"title":"Locate the Matching Fahrenheit Value","content":"Consult the chart to find the corresponding Fahrenheit temperature. The chart provides approximate equivalents for each Centigrade value, helping you adjust ovens set in Fahrenheit without guessing."},{"number":3,"title":"Consider Fan or Convection Adjustments","content":"If using a fan/convection oven, lower the temperature by around 10–20°C from the conventional Centigrade value. Use the chart to find the adjusted Fahrenheit equivalent."},{"number":4,"title":"Verify Regional Differences","content":"Different regions use different standards; the Centigrade to Fahrenheit chart assumes standard behavior. US recipes may be in Fahrenheit, UK may use Gas Mark, European recipes use Centigrade."},{"number":5,"title":"Set the Oven and Monitor","content":"Set your oven to the Fahrenheit temperature obtained from the chart. Use an oven thermometer for accuracy and adjust slightly if needed to prevent overbaking or undercooking. Following the chart ensures baking accuracy and consistency."}]},"scientificBackground":{"title":"Understanding Centigrade to Fahrenheit Conversion in Oven Baking","description":"Detailed explanation why oven conversion matters and how fan/convection changes outcomes.","concepts":[{"concept":"Centigrade vs Fahrenheit","explanation":"Centigrade is metric, Fahrenheit is imperial. Centigrade measures degrees relative to water freezing/boiling. Fahrenheit used in US. When converting oven, formula is (°C * 9/5) + 32 = °F. Fan ovens complicate this because heat moves faster, so effective Fahrenheit is lower. People forget this, baked goods burn. Chart simplifies conversion and shows why numbers differ.","examples":["180°C conventional = 356°F","180°C fan = 320°F effective for same cooking"],"impact":"Ignoring fan oven leads to overdone baked goods, hard crusts, and dry centers."},{"concept":"Fan Oven Impact","explanation":"Fan circulates hot air, spreads heat evenly. Centigrade converted to Fahrenheit directly may not reflect real heat in fan oven. Best practice: subtract 20°C from conventional for fan oven. Some recipes suggest 10–15°C depending on oven. Conversion chart gives safe reference.","examples":["200°C conventional = 392°F, fan set 180°C = 356°F","220°C conventional = 428°F, fan set 200°C = 392°F"],"impact":"Understanding circulation avoids under/overcooking."},{"concept":"Gas Mark Relation","explanation":"Gas Mark mostly UK, old scale 1–10. Conversion formula: chart maps °C to Gas Mark. Fan oven adjustment not reflected in Gas Mark; user must adjust manually. Some recipes mix units. Centigrade to Fahrenheit chart helps bridge confusion. Key: know oven type and recipe origin.","examples":["180°C = Gas Mark 4 ≈ 356°F","Fan oven subtract 20°C, 160°C = Gas Mark 4 ≈ 320°F"],"impact":"Without chart, guessing Fahrenheit from Gas Mark may ruin the dish."},{"concept":"Practical Implications","explanation":"Charts help home bakers convert temperatures quickly. Correct Fahrenheit ensures consistent baking. Fan ovens require temp/time adjustments. Using thermometer adds precision.","examples":["140°C conventional = 284°F, fan = 120°C/248°F","250°C conventional = 482°F, fan = 230°C/446°F"],"impact":"Baking precision depends on accurate conversion and fan consideration."}]},"tips":{"title":"Tips for Using Centigrade to Fahrenheit Oven Chart","description":"Practical guidance for accurate baking and avoiding temperature mistakes when converting from Centigrade to Fahrenheit.","tips":["Always confirm whether your oven is a fan/convection model or a conventional oven before using the Centigrade to Fahrenheit oven chart, as the heat distribution differs significantly between types.","When using a fan oven, subtract approximately 20°C from the conventional Centigrade temperature listed in the recipe to ensure your baked goods cook evenly without burning or drying out the interior.","Invest in a reliable oven thermometer to verify that the actual oven temperature matches the Centigrade value you have converted to Fahrenheit, because oven dials can often be inaccurate by 5–10°C.","Do not rely solely on visual estimation or guessing when adjusting oven temperatures from Centigrade to Fahrenheit, as even small differences can result in overbaked edges or undercooked centers in delicate items such as cakes and soufflés.","Use the Centigrade to Fahrenheit oven chart as a reference to quickly cross-convert temperatures, ensuring that you maintain consistent baking results regardless of whether the recipe specifies Centigrade, Fahrenheit, or Gas Mark.","Be aware of the origin of your recipe: US recipes are usually in Fahrenheit, older UK recipes may use Gas Mark, while most European recipes use Centigrade. This context helps avoid confusion when setting your oven.","Adjust temperatures slightly if you are using dark or non-stick pans, as these tend to absorb and retain heat differently than light-colored pans, which can affect the effective Centigrade temperature in the oven.","When baking thin or small items in a fan oven, consider lowering the Centigrade temperature a bit further than the chart suggests to prevent burning, especially for cookies or pastries that cook quickly."]},"commonMistakes":{"title":"Common Mistakes When Using Centigrade to Fahrenheit Conversion for Oven Baking","mistakes":[{"mistake":"Ignoring fan or convection oven adjustments","consequence":"Many bakers assume that the Centigrade to Fahrenheit conversion is the same for all ovens, but fan ovens circulate heat differently and can overcook or burn your baked goods if the temperature is not lowered appropriately.","solution":"Always subtract around 20°C from the Centigrade temperature when using a fan oven, and verify with an oven thermometer to ensure proper cooking.","severity":"high"},{"mistake":"Confusing different temperature units","consequence":"Setting your oven to the wrong scale, such as interpreting Centigrade as Fahrenheit or misreading Gas Mark equivalents, can ruin delicate recipes and produce inconsistent results.","solution":"Double-check the recipe’s original temperature unit and use the Centigrade to Fahrenheit oven chart to cross-convert accurately, taking fan oven adjustments into account.","severity":"high"},{"mistake":"Assuming the chart applies perfectly to all ovens","consequence":"Every oven behaves slightly differently; some ovens run hotter or cooler than indicated, so following the Centigrade to Fahrenheit chart blindly can result in overbaked or underbaked food.","solution":"Use an oven thermometer and monitor the cooking progress, adjusting Centigrade and Fahrenheit values slightly as needed based on your specific oven’s performance.","severity":"medium"},{"mistake":"Neglecting pan type and placement","consequence":"Heavy, dark, or non-stick pans can increase the effective Centigrade temperature inside the oven, leading to faster browning or burning if unaccounted for, especially when converting from Centigrade to Fahrenheit.","solution":"Adjust the temperature downward slightly or check food early, ensuring that your Centigrade to Fahrenheit conversion takes oven type and pan characteristics into account.","severity":"medium"}]},"related":{"title":"Related Converters","links":["c-to-gas-mark-conversion","what-gas-mark-is-180c","grams-to-cups"]}}}
             </script>
         </div>
     </section>
@@ -1755,67 +2025,178 @@ body {
         </div>
     </section>
     
+    <section class="content-section visual-chart">
+        <div class="section-header">
+            <h2>Visual Guide for Centigrade to Fahrenheit Oven Chart</h2>
+            
+        </div>
+        <div class="visual-chart-container">
+            
+            <div class="visual-item" style="border-color: #ffe5b4;">
+                <div class="visual-icon">🧁</div>
+                <div class="visual-content">
+                    <h3>Low Temperature Baking</h3>
+                    <div class="visual-weight">140°C to 160°C corresponds to 284°F to 320°F approximately</div>
+                    <div class="visual-comparison">Ideal for delicate cakes, meringues, and slow baking where gentle heat is needed</div>
+                </div>
+            </div>
+            
+            <div class="visual-item" style="border-color: #ffd699;">
+                <div class="visual-icon">🍪</div>
+                <div class="visual-content">
+                    <h3>Medium Temperature Baking</h3>
+                    <div class="visual-weight">170°C to 190°C corresponds to 338°F to 374°F</div>
+                    <div class="visual-comparison">Perfect for cookies, muffins, and moderate roasting; ensures even cooking without burning edges</div>
+                </div>
+            </div>
+            
+            <div class="visual-item" style="border-color: #ffb84d;">
+                <div class="visual-icon">🍖</div>
+                <div class="visual-content">
+                    <h3>High Temperature Roasting</h3>
+                    <div class="visual-weight">200°C to 230°C corresponds to 392°F to 446°F</div>
+                    <div class="visual-comparison">Used for roasting vegetables, bread, or meat; higher heat creates browning and crust while keeping interior moist</div>
+                </div>
+            </div>
+            
+            <div class="visual-item" style="border-color: #ff9900;">
+                <div class="visual-icon">🍕</div>
+                <div class="visual-content">
+                    <h3>Very High Temperature</h3>
+                    <div class="visual-weight">240°C to 250°C corresponds to 464°F to 482°F</div>
+                    <div class="visual-comparison">Mostly for professional or pizza ovens; extreme heat for crispy crusts or quick searing, not recommended for delicate baked goods</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <section class="content-section step-by-step">
+        <div class="section-header">
+            <h2>Step-by-Step Guide to Using the Centigrade to Fahrenheit Oven Chart</h2>
+            
+        </div>
+        <div class="steps-container">
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Identify the Temperature in Centigrade</h3>
+                    <p>First, identify the exact temperature required by your recipe in Centigrade. Check whether the recipe expects a conventional or fan oven to avoid errors.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Locate the Matching Fahrenheit Value</h3>
+                    <p>Consult the chart to find the corresponding Fahrenheit temperature. The chart provides approximate equivalents for each Centigrade value, helping you adjust ovens set in Fahrenheit without guessing.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Consider Fan or Convection Adjustments</h3>
+                    <p>If using a fan/convection oven, lower the temperature by around 10–20°C from the conventional Centigrade value. Use the chart to find the adjusted Fahrenheit equivalent.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Verify Regional Differences</h3>
+                    <p>Different regions use different standards; the Centigrade to Fahrenheit chart assumes standard behavior. US recipes may be in Fahrenheit, UK may use Gas Mark, European recipes use Centigrade.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>Set the Oven and Monitor</h3>
+                    <p>Set your oven to the Fahrenheit temperature obtained from the chart. Use an oven thermometer for accuracy and adjust slightly if needed to prevent overbaking or undercooking. Following the chart ensures baking accuracy and consistency.</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
     <section class="content-section scientific-background">
         <div class="section-header">
-            <h2>Why Centigrade to Fahrenheit Conversion Can Confuse</h2>
-            <p class="section-description">Understanding oven temp systems, fan/convection, historical differences.</p>
+            <h2>Understanding Centigrade to Fahrenheit Conversion in Oven Baking</h2>
+            <p class="section-description">Detailed explanation why oven conversion matters and how fan/convection changes outcomes.</p>
         </div>
         <div class="concepts-container">
             
             <div class="concept">
                 <h3>Centigrade vs Fahrenheit</h3>
-                <p>Centigrade (°C) metric, Fahrenheit (°F) imperial. Convert by (°C*9/5)+32 = °F. Fan oven moves heat fast, makes temp effective lower, so must adjust. Charts simple guide, but understanding why important.</p>
+                <p>Centigrade is metric, Fahrenheit is imperial. Centigrade measures degrees relative to water freezing/boiling. Fahrenheit used in US. When converting oven, formula is (°C * 9/5) + 32 = °F. Fan ovens complicate this because heat moves faster, so effective Fahrenheit is lower. People forget this, baked goods burn. Chart simplifies conversion and shows why numbers differ.</p>
                 
                 <div class="concept-examples">
                     <strong>Examples:</strong>
                     <ul>
-                        <li>180°C conventional = 356°F</li><li>180°C fan = 320°F effective</li>
+                        <li>180°C conventional = 356°F</li><li>180°C fan = 320°F effective for same cooking</li>
                     </ul>
                 </div>
                 
-                <div class="concept-impact"><strong>Impact:</strong> Ignoring fan oven = burnt or dry baked goods.</div>
+                <div class="concept-impact"><strong>Impact:</strong> Ignoring fan oven leads to overdone baked goods, hard crusts, and dry centers.</div>
             </div>
             
             <div class="concept">
-                <h3>Fan Oven Effect</h3>
-                <p>Fan oven circulates hot air, cooks faster. So same Centigrade converts lower Fahrenheit effectively. Subtract ~20°C for fan ovens. Chart gives safe reference.</p>
+                <h3>Fan Oven Impact</h3>
+                <p>Fan circulates hot air, spreads heat evenly. Centigrade converted to Fahrenheit directly may not reflect real heat in fan oven. Best practice: subtract 20°C from conventional for fan oven. Some recipes suggest 10–15°C depending on oven. Conversion chart gives safe reference.</p>
                 
                 <div class="concept-examples">
                     <strong>Examples:</strong>
                     <ul>
-                        <li>200°C conventional = 392°F, fan 180°C = 356°F</li><li>220°C conventional = 428°F, fan 200°C = 392°F</li>
+                        <li>200°C conventional = 392°F, fan set 180°C = 356°F</li><li>220°C conventional = 428°F, fan set 200°C = 392°F</li>
                     </ul>
                 </div>
                 
-                <div class="concept-impact"><strong>Impact:</strong> Proper conversion prevents overcooking.</div>
+                <div class="concept-impact"><strong>Impact:</strong> Understanding circulation avoids under/overcooking.</div>
             </div>
             
             <div class="concept">
                 <h3>Gas Mark Relation</h3>
-                <p>Gas Mark UK scale 1–10. Conversion maps °C to Gas Mark. Fan not included, user adjust manually. Some online recipes mix units, chart bridges confusion. Oven type + recipe origin matters.</p>
+                <p>Gas Mark mostly UK, old scale 1–10. Conversion formula: chart maps °C to Gas Mark. Fan oven adjustment not reflected in Gas Mark; user must adjust manually. Some recipes mix units. Centigrade to Fahrenheit chart helps bridge confusion. Key: know oven type and recipe origin.</p>
                 
                 <div class="concept-examples">
                     <strong>Examples:</strong>
                     <ul>
-                        <li>180°C = Gas Mark 4 ≈ 356°F</li><li>Fan oven 160°C = Gas Mark 4 ≈ 320°F</li>
+                        <li>180°C = Gas Mark 4 ≈ 356°F</li><li>Fan oven subtract 20°C, 160°C = Gas Mark 4 ≈ 320°F</li>
                     </ul>
                 </div>
                 
-                <div class="concept-impact"><strong>Impact:</strong> Manual adjustment ensures correct bake.</div>
+                <div class="concept-impact"><strong>Impact:</strong> Without chart, guessing Fahrenheit from Gas Mark may ruin the dish.</div>
             </div>
             
             <div class="concept">
-                <h3>Practical Baking Implications</h3>
-                <p>Chart helps home bakers convert temp fast. Correct Fahrenheit ensures bake success. Fan oven changes time/temp. Thermometer gives precision.</p>
+                <h3>Practical Implications</h3>
+                <p>Charts help home bakers convert temperatures quickly. Correct Fahrenheit ensures consistent baking. Fan ovens require temp/time adjustments. Using thermometer adds precision.</p>
                 
                 <div class="concept-examples">
                     <strong>Examples:</strong>
                     <ul>
-                        <li>140°C conventional = 284°F, fan 120°C = 248°F</li><li>250°C conventional = 482°F, fan 230°C = 446°F</li>
+                        <li>140°C conventional = 284°F, fan = 120°C/248°F</li><li>250°C conventional = 482°F, fan = 230°C/446°F</li>
                     </ul>
                 </div>
                 
-                <div class="concept-impact"><strong>Impact:</strong> Understanding conversions + fan effect ensures perfect baked goods.</div>
+                <div class="concept-impact"><strong>Impact:</strong> Baking precision depends on accurate conversion and fan consideration.</div>
             </div>
             
         </div>
@@ -1823,7 +2204,7 @@ body {
     
     <section class="content-section common-mistakes">
         <div class="section-header">
-            <h2>Common Mistakes in Centigrade to Fahrenheit Conversion</h2>
+            <h2>Common Mistakes When Using Centigrade to Fahrenheit Conversion for Oven Baking</h2>
             
         </div>
         <div class="mistakes-container">
@@ -1831,27 +2212,36 @@ body {
             <div class="mistake-item high">
                 
                 <div class="mistake-content">
-                    <h3>Ignoring fan oven</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Overcooked, burnt baking</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Lower temp by ~20°C for fan ovens</div>
+                    <h3>Ignoring fan or convection oven adjustments</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Many bakers assume that the Centigrade to Fahrenheit conversion is the same for all ovens, but fan ovens circulate heat differently and can overcook or burn your baked goods if the temperature is not lowered appropriately.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Always subtract around 20°C from the Centigrade temperature when using a fan oven, and verify with an oven thermometer to ensure proper cooking.</div>
                 </div>
             </div>
             
             <div class="mistake-item high">
                 
                 <div class="mistake-content">
-                    <h3>Confusing units</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Wrong oven temp, recipe fail</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Check if recipe uses °C, °F, or Gas Mark</div>
+                    <h3>Confusing different temperature units</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Setting your oven to the wrong scale, such as interpreting Centigrade as Fahrenheit or misreading Gas Mark equivalents, can ruin delicate recipes and produce inconsistent results.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Double-check the recipe’s original temperature unit and use the Centigrade to Fahrenheit oven chart to cross-convert accurately, taking fan oven adjustments into account.</div>
                 </div>
             </div>
             
             <div class="mistake-item medium">
                 
                 <div class="mistake-content">
-                    <h3>Assuming chart works for all ovens</h3>
-                    <div class="mistake-consequence"><strong>Result:</strong> Oven variations can affect bake</div>
-                    <div class="mistake-solution"><strong>Solution:</strong> Use thermometer, consider fan, pan type</div>
+                    <h3>Assuming the chart applies perfectly to all ovens</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Every oven behaves slightly differently; some ovens run hotter or cooler than indicated, so following the Centigrade to Fahrenheit chart blindly can result in overbaked or underbaked food.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Use an oven thermometer and monitor the cooking progress, adjusting Centigrade and Fahrenheit values slightly as needed based on your specific oven’s performance.</div>
+                </div>
+            </div>
+            
+            <div class="mistake-item medium">
+                
+                <div class="mistake-content">
+                    <h3>Neglecting pan type and placement</h3>
+                    <div class="mistake-consequence"><strong>Result:</strong> Heavy, dark, or non-stick pans can increase the effective Centigrade temperature inside the oven, leading to faster browning or burning if unaccounted for, especially when converting from Centigrade to Fahrenheit.</div>
+                    <div class="mistake-solution"><strong>Solution:</strong> Adjust the temperature downward slightly or check food early, ensuring that your Centigrade to Fahrenheit conversion takes oven type and pan characteristics into account.</div>
                 </div>
             </div>
             
@@ -1861,7 +2251,7 @@ body {
         <section class="content-section tips-section">
             <h2>Tips for Using Centigrade to Fahrenheit Oven Chart</h2>
             <ul class="tips-list">
-                <li>Check oven type: fan/convection or conventional</li><li>Subtract ~20°C for fan oven</li><li>Use thermometer, ovens vary ±5–10°C</li><li>Don’t eyeball temp; small error affects bake</li><li>Chart helps convert °C to °F fast</li><li>Know recipe origin: US = Fahrenheit, UK old = Gas Mark, Europe = Celsius</li><li>Pan type affects bake: dark pans cook faster</li><li>Fan moves air, adjust both temp and time if needed</li>
+                <li>Always confirm whether your oven is a fan/convection model or a conventional oven before using the Centigrade to Fahrenheit oven chart, as the heat distribution differs significantly between types.</li><li>When using a fan oven, subtract approximately 20°C from the conventional Centigrade temperature listed in the recipe to ensure your baked goods cook evenly without burning or drying out the interior.</li><li>Invest in a reliable oven thermometer to verify that the actual oven temperature matches the Centigrade value you have converted to Fahrenheit, because oven dials can often be inaccurate by 5–10°C.</li><li>Do not rely solely on visual estimation or guessing when adjusting oven temperatures from Centigrade to Fahrenheit, as even small differences can result in overbaked edges or undercooked centers in delicate items such as cakes and soufflés.</li><li>Use the Centigrade to Fahrenheit oven chart as a reference to quickly cross-convert temperatures, ensuring that you maintain consistent baking results regardless of whether the recipe specifies Centigrade, Fahrenheit, or Gas Mark.</li><li>Be aware of the origin of your recipe: US recipes are usually in Fahrenheit, older UK recipes may use Gas Mark, while most European recipes use Centigrade. This context helps avoid confusion when setting your oven.</li><li>Adjust temperatures slightly if you are using dark or non-stick pans, as these tend to absorb and retain heat differently than light-colored pans, which can affect the effective Centigrade temperature in the oven.</li><li>When baking thin or small items in a fan oven, consider lowering the Centigrade temperature a bit further than the chart suggests to prevent burning, especially for cookies or pastries that cook quickly.</li>
             </ul>
         </section>
         
@@ -1871,31 +2261,31 @@ body {
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    How to use centigrade to Fahrenheit oven chart?
+                    How do I use Centigrade to Fahrenheit oven chart?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Find Centigrade (°C) in chart, see corresponding Fahrenheit. For fan oven, subtract 20°C for same cooking result.</p>
+                    <p>Simply match the Centigrade value in chart with its Fahrenheit equivalent. If fan oven, reduce 20°C from Centigrade for accurate cooking time.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Why fan oven need lower Fahrenheit?
+                    Why fan oven needs different Fahrenheit?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Fan moves hot air faster, cooks quicker. So same Centigrade converts to lower Fahrenheit effectively. Example: 180°C = 356°F normal, fan oven 160°C = 320°F.</p>
+                    <p>Fan circulates hot air, cooks faster. So same Centigrade converts to lower Fahrenheit effectively. Example: 180°C = 356°F normal, but fan oven may need 320°F.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Can I use chart for all ovens?
+                    Can I trust chart for all ovens?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Mostly yes, but old ovens may vary ±5–10°C. Fan/convection effect changes too. Oven thermometer best.</p>
+                    <p>Mostly yes, but old ovens may be off by 5–10°C. Use oven thermometer if unsure. Fan/convection impact varies too.</p>
                 </div>
             </div>
             
@@ -1905,28 +2295,41 @@ body {
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>Yes, first convert Fahrenheit to Centigrade, then use Gas Mark scale. Gas Mark does not auto account fan ovens.</p>
+                    <p>Yes, first convert Fahrenheit to Centigrade, then use Gas Mark scale from chart. Gas Mark does not account fan ovens directly.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Is chart valid for UK and US recipes?
+                    Is chart same for US and UK recipes?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>US recipes use Fahrenheit, UK old cookbooks Gas Mark, modern UK Celsius. Chart bridges conversion, safe for most cases.</p>
+                    <p>US mainly uses Fahrenheit, UK older cookbooks use Gas Mark. Modern UK recipes use Centigrade. Chart helps cross-convert safely.</p>
                 </div>
             </div>
             
             <div class="faq-item">
                 <button class="faq-question" aria-expanded="false">
-                    Why recipe says 350°F but chart different?
+                    Why recipe says 350°F and chart shows different?
                     <span>+</span>
                 </button>
                 <div class="faq-answer" style="display: none;">
-                    <p>350°F ≈ 175°C. Small difference due rounding, oven calibration. Fan oven adjustment may needed.</p>
+                    <p>350°F = 175°C approx. Small differences exist due to rounding or oven calibration. Always check fan adjustment too.</p>
                 </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <section class="content-section related-converters">
+        <h2>Related Converters</h2>
+        <div class="related-grid">
+            
+            <div class="related-item">
+                <h3>Celsius to Fahrenheit Oven Chart</h3>
+                <p>Quickly convert oven temperatures from Celsius to Fahrenheit and understand fan/...</p>
+                <a href="../celsius-to-fahrenheit-oven-chart/" class="related-link">Use Tool</a>
             </div>
             
         </div>
@@ -1971,7 +2374,7 @@ body {
                 </div>
                 <div class="copyright">
                     <p>&copy; 2026 Cooking Converter Pro. All rights reserved.</p>
-                    <p>Generated on: 2026-01-28</p>
+                    <p>Generated on: 2026-01-31</p>
                 </div>
             </div>
         </footer>
@@ -1984,15 +2387,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelector('.nav-links');
 
     if (mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             navLinks.classList.toggle('active');
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuBtn.contains(event.target) && !navLinks.contains(event.target)) {
+            if (navLinks.classList.contains('active') &&
+                !mobileMenuBtn.contains(event.target) &&
+                !navLinks.contains(event.target)) {
                 navLinks.classList.remove('active');
             }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
         });
     }
 
@@ -2016,6 +2429,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current FAQ
             this.setAttribute('aria-expanded', !isExpanded);
             answer.style.display = isExpanded ? 'none' : 'block';
+
+            // Update icon
+            const icon = this.querySelector('span');
+            if (icon) {
+                icon.textContent = isExpanded ? '+' : '−';
+            }
         });
     });
 
