@@ -4593,7 +4593,6 @@
         "comparisonTable",
         "quickReference",
         "visualChart",
-        "comparisonTable",
         "commonMistakes",
         "scientificBackground",
         "tips",
@@ -4670,69 +4669,6 @@
         { "from": "milliliter", "to": "fluid ounce", "formula": "x / 29.5735" }
       ],
 
-      "conversionTable": [
-        {
-          "Region": "US",
-          "Unit": "1 tablespoon",
-          "Milliliters": 14.7868,
-          "Notes": "US tablespoon common in recipes and nutrition labels"
-        },
-        {
-          "Region": "UK",
-          "Unit": "1 imperial tablespoon",
-          "Milliliters": 17.758,
-          "Notes": "UK tablespoon is bigger than US"
-        },
-        {
-          "Region": "Australia",
-          "Unit": "1 tablespoon",
-          "Milliliters": 20,
-          "Notes": "Australia tablespoon is largest, used in AU cooking"
-        },
-        {
-          "Region": "US",
-          "Unit": "2 tablespoons",
-          "Milliliters": 29.5736,
-          "Notes": "Equal to 1 US fluid ounce"
-        },
-        {
-          "Region": "UK",
-          "Unit": "2 imperial tablespoons",
-          "Milliliters": 35.516,
-          "Notes": "Close to 1.25 UK fluid ounce"
-        },
-        {
-          "Region": "Australia",
-          "Unit": "2 tablespoons",
-          "Milliliters": 40,
-          "Notes": "Very common in baking measures"
-        },
-        {
-          "Region": "US",
-          "Unit": "3 tablespoons",
-          "Milliliters": 44.3604,
-          "Notes": "Used in medicine syrup dosing sometimes"
-        },
-        {
-          "Region": "UK",
-          "Unit": "3 imperial tablespoons",
-          "Milliliters": 53.274,
-          "Notes": "Bigger volume due to imperial system"
-        },
-        {
-          "Region": "Australia",
-          "Unit": "3 tablespoons",
-          "Milliliters": 60,
-          "Notes": "Exact multiple in metric style cooking"
-        },
-        {
-          "Region": "Global",
-          "Unit": "1 tablespoon (average)",
-          "Milliliters": 15,
-          "Notes": "Rounded value used in most online calculators"
-        }
-      ],
-
       "faqs": [
         {
           "question": "Is 1 tablespoon 5 mL?",
@@ -4796,11 +4732,11 @@
         "quickReference": {
           "title": "Common Tablespoon to Milliliter Conversions",
           "items": [
-            { "ingredient": "1 Tablespoon", "milliliters": 15, "note": "US tablespoon standard; answers the question: 'Is a tablespoon 15 or 20 mL?'", "icon": "🥄" },
-            { "ingredient": "1 Teaspoon", "milliliters": 5, "note": "Useful for small measurements; see if 1 tablespoon = 5 mL (it's 3 teaspoons)", "icon": "🥄" },
-            { "ingredient": "2 Tablespoons", "milliliters": 30, "note": "Helps clarify: 'Does 2 tablespoons equal 20 mL?' — the correct US value is 30 mL", "icon": "🥄" },
-            { "ingredient": "1 Fluid Ounce", "milliliters": 29.5735, "note": "Nearly equals 2 US tablespoons", "icon": "💧" },
-            { "ingredient": "1 Cup", "milliliters": 240, "note": "Used in US recipes, multiples of tablespoons", "icon": "🥤" }
+            { "ingredient": "1 Tablespoon", "milliliters": 15, "tip": "US tablespoon standard; answers the question: 'Is a tablespoon 15 or 20 mL?'", "icon": "🥄" },
+            { "ingredient": "1 Teaspoon", "milliliters": 5, "tip": "Useful for small measurements; see if 1 tablespoon = 5 mL (it's 3 teaspoons)", "icon": "🥄" },
+            { "ingredient": "2 Tablespoons", "milliliters": 30, "tip": "Helps clarify: 'Does 2 tablespoons equal 20 mL?' — the correct US value is 30 mL", "icon": "🥄" },
+            { "ingredient": "1 Fluid Ounce", "milliliters": 29.5735, "tip": "Nearly equals 2 US tablespoons", "icon": "💧" },
+            { "ingredient": "1 Cup", "milliliters": 240, "tip": "Used in US recipes, multiples of tablespoons", "icon": "🥤" }
           ]
         },
         "comparisonTable": {
