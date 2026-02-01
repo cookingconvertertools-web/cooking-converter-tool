@@ -4772,6 +4772,34 @@
               "weight": "60ml",
               "comparison": "Like small coffee cup",
               "visual": "☕"
+            },
+            {
+              "name": "1/3 Cup",
+              "equivalent": "5 tablespoons + 1 teaspoon",
+              "weight": "80ml",
+              "comparison": "Looks like medium teacup",
+              "visual": "🍵"
+            },
+            {
+              "name": "1/2 Cup",
+              "equivalent": "8 tablespoons",
+              "weight": "120ml",
+              "comparison": "Half of regular drinking cup",
+              "visual": "🥛"
+            },
+            {
+              "name": "3/4 Cup",
+              "equivalent": "12 tablespoons",
+              "weight": "180ml",
+              "comparison": "Almost full glass",
+              "visual": "🥤"
+            },
+            {
+              "name": "1 Cup",
+              "equivalent": "16 tablespoons",
+              "weight": "240ml",
+              "comparison": "Standard US measuring cup",
+              "visual": "🍶"
             }
           ]
         },
