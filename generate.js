@@ -11,11 +11,18 @@ const { existsSync, mkdirSync } = require('fs');
 let CONFIG = {};
 let CONVERTERS = {};
 let CONTENT = {};
+let BLOGS = {}; // NEW: Add blogs variable
 
 try {
     CONFIG = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
     CONVERTERS = JSON.parse(fs.readFileSync('./converters.json', 'utf8'));
     CONTENT = JSON.parse(fs.readFileSync('./content.json', 'utf8'));
+
+    // NEW: Load blogs if file exists
+    if (existsSync('./blogs.json')) {
+        BLOGS = JSON.parse(fs.readFileSync('./blogs.json', 'utf8'));
+        console.log(`📝 Loaded ${BLOGS.blogs ? BLOGS.blogs.length : 0} blog posts`);
+    }
 } catch (error) {
     console.error('❌ Error loading JSON files:', error.message);
 
@@ -110,7 +117,7 @@ function slugify(text) {
 }
 
 // ==============================
-// NAVIGATION & BREADCRUMB GENERATION
+// NAVIGATION & BREADCRUMB GENERATION (UPDATED WITH BLOG)
 // ==============================
 
 function generateNavigation(currentPage = '', location = 'root') {
@@ -119,6 +126,7 @@ function generateNavigation(currentPage = '', location = 'root') {
             const paths = {
                 home: 'index.html',
                 converters: 'converters/',
+                blog: 'blog/',
                 about: 'about/index.html',
                 contact: 'contact/index.html',
                 privacy: 'privacy/index.html',
@@ -131,6 +139,7 @@ function generateNavigation(currentPage = '', location = 'root') {
             const paths = {
                 home: '../index.html',
                 converters: './',
+                blog: '../blog/',
                 about: '../about/index.html',
                 contact: '../contact/index.html',
                 privacy: '../privacy/index.html',
@@ -143,6 +152,20 @@ function generateNavigation(currentPage = '', location = 'root') {
             const paths = {
                 home: '../../index.html',
                 converters: '../',
+                blog: '../../blog/',
+                about: '../../about/index.html',
+                contact: '../../contact/index.html',
+                privacy: '../../privacy/index.html',
+                terms: '../../terms/index.html'
+            };
+            return paths[target];
+        }
+
+        if (currentLoc.startsWith('blog/')) {
+            const paths = {
+                home: '../../index.html',
+                converters: '../../converters/',
+                blog: '../',
                 about: '../../about/index.html',
                 contact: '../../contact/index.html',
                 privacy: '../../privacy/index.html',
@@ -154,6 +177,7 @@ function generateNavigation(currentPage = '', location = 'root') {
         const paths = {
             home: '../index.html',
             converters: '../converters/',
+            blog: '../blog/',
             about: './index.html',
             contact: './index.html',
             privacy: './index.html',
@@ -166,6 +190,9 @@ function generateNavigation(currentPage = '', location = 'root') {
         return currentPage === pageName ? 'style="color:#2e7d32;font-weight:600;"' : '';
     };
 
+    // Check if we have blogs before showing blog link
+    const hasBlogs = BLOGS.blogs && BLOGS.blogs.length > 0;
+
     return `
         <header class="header">
             <div class="header-container">
@@ -177,6 +204,7 @@ function generateNavigation(currentPage = '', location = 'root') {
                     <ul class="nav-links">
                         <li><a href="${getPath('home', location)}" ${getLinkStyle('home')}>Home</a></li>
                         <li><a href="${getPath('converters', location)}" ${getLinkStyle('converters')}>Converters</a></li>
+                        ${hasBlogs ? `<li><a href="${getPath('blog', location)}" ${getLinkStyle('blog')}>Blog</a></li>` : ''}
                         <li><a href="${getPath('about', location)}" ${getLinkStyle('about')}>About</a></li>
                         <li><a href="${getPath('contact', location)}" ${getLinkStyle('contact')}>Contact</a></li>
                     </ul>
@@ -201,6 +229,24 @@ function generateBreadcrumbs(pageType, pageData = {}, location = 'root') {
         name: 'Home',
         url: location === 'root' ? 'index.html' : '../index.html'
     });
+
+    if (pageType === 'blog') {
+        breadcrumbs.push({
+            name: 'Blog',
+            url: location === 'blog' ? './' : '../blog/'
+        });
+        breadcrumbs.push({
+            name: pageData.title || 'Blog Post',
+            url: '#current'
+        });
+    }
+
+    if (pageType === 'blogIndex') {
+        breadcrumbs.push({
+            name: 'Blog',
+            url: '#current'
+        });
+    }
 
     if (pageType === 'converter') {
         breadcrumbs.push({
@@ -258,6 +304,31 @@ function generateBreadcrumbSchema(pageType, pageData = {}, location = 'root') {
         "item": baseUrl + (location === 'root' ? '/' : '../')
     });
 
+    if (pageType === 'blog') {
+        schemaItems.push({
+            "@type": "ListItem",
+            "position": position++,
+            "name": "Blog",
+            "item": baseUrl + (location === 'blog' ? '/blog/' : '../blog/')
+        });
+    }
+
+    if (pageType === 'blogIndex') {
+        schemaItems.push({
+            "@type": "ListItem",
+            "position": position++,
+            "name": "Blog",
+            "item": baseUrl + '/blog/'
+        });
+    } else if (pageType === 'blog' && pageData.slug) {
+        schemaItems.push({
+            "@type": "ListItem",
+            "position": position++,
+            "name": pageData.title || 'Blog Post',
+            "item": baseUrl + '/blog/' + pageData.slug + '/'
+        });
+    }
+
     if (pageType === 'converter') {
         schemaItems.push({
             "@type": "ListItem",
@@ -309,6 +380,7 @@ function generateFooter(location = 'root') {
             const paths = {
                 home: 'index.html',
                 converters: 'converters/',
+                blog: 'blog/',
                 about: 'about/index.html',
                 contact: 'contact/index.html',
                 privacy: 'privacy/index.html',
@@ -322,6 +394,7 @@ function generateFooter(location = 'root') {
             const paths = {
                 home: '../index.html',
                 converters: './',
+                blog: '../blog/',
                 about: '../about/index.html',
                 contact: '../contact/index.html',
                 privacy: '../privacy/index.html',
@@ -335,6 +408,21 @@ function generateFooter(location = 'root') {
             const paths = {
                 home: '../../index.html',
                 converters: '../',
+                blog: '../../blog/',
+                about: '../../about/index.html',
+                contact: '../../contact/index.html',
+                privacy: '../../privacy/index.html',
+                terms: '../../terms/index.html',
+                sitemap: '../../sitemap.xml'
+            };
+            return paths[target];
+        }
+
+        if (currentLoc.startsWith('blog/')) {
+            const paths = {
+                home: '../../index.html',
+                converters: '../../converters/',
+                blog: '../',
                 about: '../../about/index.html',
                 contact: '../../contact/index.html',
                 privacy: '../../privacy/index.html',
@@ -347,6 +435,7 @@ function generateFooter(location = 'root') {
         const paths = {
             home: '../index.html',
             converters: '../converters/',
+            blog: '../blog/',
             about: './index.html',
             contact: './index.html',
             privacy: './index.html',
@@ -380,6 +469,7 @@ function generateFooter(location = 'root') {
                             <li><a href="${getPath('privacy', location)}">Privacy Policy</a></li>
                             <li><a href="${getPath('terms', location)}">Terms of Service</a></li>
                             <li><a href="${getPath('contact', location)}">Contact Us</a></li>
+                            <li><a href="${getPath('blog', location)}">Blog</a></li>
                             <li><a href="${getPath('sitemap', location)}">Sitemap</a></li>
                         </ul>
                     </div>
@@ -394,7 +484,7 @@ function generateFooter(location = 'root') {
 }
 
 // ==============================
-// NEW: CONTENT SECTION GENERATORS
+// CONTENT SECTION GENERATORS
 // ==============================
 
 function generateHeroSection(converter) {
@@ -912,7 +1002,7 @@ function generateRelatedConvertersSection(converter) {
 }
 
 // ==============================
-// NEW: GENERATE CONTENT BY SEQUENCE
+// GENERATE CONTENT BY SEQUENCE
 // ==============================
 
 function generateContentBySequence(converter) {
@@ -970,6 +1060,205 @@ function generateContentBySequence(converter) {
     });
 
     return content;
+}
+
+// ==============================
+// BLOG FUNCTIONS
+// ==============================
+
+function generateBlogContent(content) {
+    if (!content) return '';
+
+    let html = '';
+    if (Array.isArray(content)) {
+        content.forEach(section => {
+            if (section.type === 'paragraph' && section.text) {
+                html += `<p>${section.text}</p>`;
+            } else if (section.type === 'heading' && section.text) {
+                const level = section.level || 2;
+                html += `<h${level}>${section.text}</h${level}>`;
+            } else if (section.type === 'list' && section.items) {
+                const tag = section.ordered ? 'ol' : 'ul';
+                html += `<${tag}>`;
+                section.items.forEach(item => {
+                    if (typeof item === 'object') {
+                        html += `<li>${item.text || ''}</li>`;
+                    } else {
+                        html += `<li>${item}</li>`;
+                    }
+                });
+                html += `</${tag}>`;
+            } else if (section.type === 'image' && section.src) {
+                html += `<img src="${section.src}" alt="${section.alt || ''}" style="max-width:100%;border-radius:8px;margin:1rem 0;">`;
+            } else if (section.type === 'code' && section.code) {
+                html += `<pre><code>${section.code}</code></pre>`;
+            }
+        });
+    } else if (typeof content === 'string') {
+        // Simple fallback for string content
+        html = `<p>${content}</p>`;
+    }
+    return html;
+}
+
+function generateBlogPost(blog) {
+    const page = {
+        title: blog.title,
+        description: blog.description || blog.title,
+        url: `/blog/${blog.slug}/`,
+        type: 'blog'
+    };
+
+    const blogContent = generateBlogContent(blog.content);
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ${generateMetaTags(page)}
+    <style>${STYLES}</style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${CONFIG.site.logo}</text></svg>">
+</head>
+<body>
+    ${generateNavigation('blog', 'blog/' + blog.slug)}
+    ${generateBreadcrumbs('blog', blog, 'blog')}
+    ${generateBreadcrumbSchema('blog', blog, 'blog')}
+
+    <main class="main-content">
+        <div class="container">
+            <div class="card">
+                <h1 style="color:var(--primary-dark);font-size:1.75rem;margin-bottom:0.5rem;">${blog.title}</h1>
+                ${blog.subtitle ? `<p style="color:#666;font-style:italic;font-size:1.1rem;margin-bottom:1rem;">${blog.subtitle}</p>` : ''}
+
+                <div style="margin:1rem 0;padding:1rem;background:var(--background);border-radius:8px;border-left:4px solid var(--primary);">
+                    ${blog.published_date ? `<p><strong>Published:</strong> ${formatDate(new Date(blog.published_date))}</p>` : ''}
+                    ${blog.author ? `<p><strong>Author:</strong> ${blog.author}</p>` : ''}
+                    ${blog.category ? `<p><strong>Category:</strong> ${blog.category}</p>` : ''}
+                    ${blog.read_time ? `<p><strong>Read time:</strong> ${blog.read_time} minutes</p>` : ''}
+                </div>
+
+                ${blog.featured_image ? `
+                <div style="margin:1.5rem 0;">
+                    <img src="${blog.featured_image}" alt="${blog.title}" style="width:100%;border-radius:12px;max-height:400px;object-fit:cover;">
+                </div>
+                ` : ''}
+
+                <div style="margin-top:2rem;line-height:1.8;font-size:1rem;">
+                    ${blogContent}
+                </div>
+
+                <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+                    <a href="../" style="color:var(--primary);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:0.5rem;">← Back to Blog</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    ${generateFooter('blog/' + blog.slug)}
+    <script>${CONVERTER_JS}</script>
+</body>
+</html>
+    `;
+}
+
+function generateBlogsIndex() {
+    if (!BLOGS.blogs || BLOGS.blogs.length === 0) {
+        return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ${generateMetaTags({
+        title: 'Blog | ' + CONFIG.site.name,
+        description: 'Read our latest articles and guides',
+        url: '/blog/',
+        type: 'blogIndex'
+    })}
+    <style>${STYLES}</style>
+</head>
+<body>
+    ${generateNavigation('blog', 'blog')}
+    ${generateBreadcrumbs('blogIndex', {title: 'Blog'}, 'blog')}
+    ${generateBreadcrumbSchema('blogIndex', {title: 'Blog'}, 'blog')}
+    <main class="main-content">
+        <div class="container">
+            <div class="card">
+                <h1 style="color:var(--primary);">Blog</h1>
+                <p>No blog posts available.</p>
+            </div>
+        </div>
+    </main>
+    ${generateFooter('blog')}
+</body>
+</html>
+        `;
+    }
+
+    const publishedBlogs = BLOGS.blogs.filter(blog => blog.published !== false);
+
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    ${generateMetaTags({
+        title: 'Blog | ' + CONFIG.site.name,
+        description: 'Read our latest articles and guides',
+        url: '/blog/',
+        type: 'blogIndex'
+    })}
+    <style>${STYLES}</style>
+</head>
+<body>
+    ${generateNavigation('blog', 'blog')}
+    ${generateBreadcrumbs('blogIndex', {title: 'Blog'}, 'blog')}
+    ${generateBreadcrumbSchema('blogIndex', {title: 'Blog'}, 'blog')}
+
+    <main class="main-content">
+        <div class="container">
+            <div class="card">
+                <h1 style="color:var(--primary);font-size:1.75rem;">Blog</h1>
+                <p style="margin:1rem 0;font-size:1.1rem;">Read our latest articles, guides, and cooking tips.</p>
+            </div>
+
+            <div class="converters-grid" style="margin-top:1.5rem;">
+                ${publishedBlogs.map(blog => `
+                <div class="converter-card">
+                    ${blog.featured_image ? `
+                    <div style="margin:-1.25rem -1.25rem 1rem -1.25rem;border-radius:12px 12px 0 0;overflow:hidden;">
+                        <img src="${blog.featured_image}" alt="${blog.title}" style="width:100%;height:150px;object-fit:cover;">
+                    </div>
+                    ` : ''}
+                    <h3 style="color:var(--primary-dark);margin-bottom:0.5rem;font-size:1.1rem;">${blog.title}</h3>
+                    <p style="margin-bottom:0.75rem;color:var(--text);font-size:0.9rem;line-height:1.5;">
+                        ${blog.description || ''}
+                    </p>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto;">
+                        ${blog.published_date ? `
+                        <span style="font-size:0.8rem;color:#666;">
+                            ${formatDate(new Date(blog.published_date))}
+                        </span>
+                        ` : ''}
+                        <a href="${blog.slug}/" style="
+                            padding:0.5rem 1rem;
+                            background:var(--primary);
+                            color:white;
+                            text-decoration:none;
+                            border-radius:4px;
+                            font-weight:500;
+                            transition:background 0.3s;
+                            font-size:0.9rem;
+                        ">Read Article</a>
+                    </div>
+                </div>
+                `).join('')}
+            </div>
+        </div>
+    </main>
+
+    ${generateFooter('blog')}
+    <script>${CONVERTER_JS}</script>
+</body>
+</html>
+    `;
 }
 
 // ==============================
@@ -1073,9 +1362,6 @@ function getCategoryDisplayName(category) {
     return categoryConfig[category] || category.charAt(0).toUpperCase() + category.slice(1);
 }
 
-// ==============================
-// IMPROVED CSS STYLES (Mobile-First Responsive Design)
-// ==============================
 // ==============================
 // IMPROVED CSS STYLES (Mobile-First Responsive Design)
 // ==============================
@@ -1525,7 +1811,6 @@ body {
     display: block;
 }
 
-/* ===== IMPROVED RESPONSIVE TABLES - MOBILE FRIENDLY ===== */
 /* ===== SIMPLE RESPONSIVE TABLES - JUST CSS FIX ===== */
 .table-container {
     margin: 1rem 0;
@@ -2741,8 +3026,6 @@ body {
 }
 `;
 
-// Also need to update the navigation and footer functions to use the new container classes:
-
 // ==============================
 // CONVERTER JAVASCRIPT LOGIC - WITH CATEGORY FILTERING
 // ==============================
@@ -3329,6 +3612,38 @@ function generateSchemaOrg(page) {
         `;
     }
 
+    if (page.type === 'blog') {
+        return `
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "${page.title}",
+            "description": "${page.description}",
+            "image": "${CONFIG.site.url}/og-image.jpg",
+            "datePublished": "${formatDate()}",
+            "dateModified": "${formatDate()}",
+            "author": {
+                "@type": "Person",
+                "name": "${CONFIG.site.name}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "${CONFIG.site.name}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "${CONFIG.site.url}/logo.png"
+                }
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "${CONFIG.site.url}${page.url}"
+            }
+        }
+        </script>
+        `;
+    }
+
     return `<script type="application/ld+json">${JSON.stringify(baseSchema, null, 2)}</script>`;
 }
 
@@ -3678,6 +3993,12 @@ function generateSitemap() {
             changefreq: 'yearly',
             priority: '0.5'
         },
+        {
+            url: '/blog/',
+            lastmod: formatDate(),
+            changefreq: 'weekly',
+            priority: '0.7'
+        },
         ...CONVERTERS.converters.map(converter => ({
             url: '/converters/' + converter.slug + '/',
             lastmod: formatDate(),
@@ -3685,6 +4006,19 @@ function generateSitemap() {
             priority: '0.9'
         }))
     ];
+
+    // Add blog posts to sitemap
+    if (BLOGS.blogs && BLOGS.blogs.length > 0) {
+        const publishedBlogs = BLOGS.blogs.filter(blog => blog.published !== false);
+        publishedBlogs.forEach(blog => {
+            pages.push({
+                url: '/blog/' + blog.slug + '/',
+                lastmod: blog.published_date || formatDate(),
+                changefreq: 'monthly',
+                priority: '0.6'
+            });
+        });
+    }
 
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -3940,25 +4274,165 @@ function createDefaultJSON() {
     fs.writeFileSync('./converters.json', JSON.stringify(defaultConverters, null, 2));
     fs.writeFileSync('./content.json', JSON.stringify(defaultContent, null, 2));
 
+    // NEW: Create default blogs.json
+    const defaultBlogs = {
+        "blogs": [
+            {
+                "id": "welcome-blog",
+                "slug": "welcome-to-our-blog",
+                "title": "Welcome to Our Blog",
+                "description": "Learn about cooking conversions and tips in our new blog section",
+                "published": true,
+                "published_date": formatDate(),
+                "author": "Admin",
+                "category": "General",
+                "read_time": 3,
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "text": "Welcome to our new blog section! Here you'll find helpful articles about cooking measurements, conversion tips, and kitchen hacks."
+                    },
+                    {
+                        "type": "heading",
+                        "level": 2,
+                        "text": "Why Accurate Measurements Matter"
+                    },
+                    {
+                        "type": "paragraph",
+                        "text": "In baking especially, precise measurements can mean the difference between success and failure. That's why we created these accurate converters."
+                    },
+                    {
+                        "type": "list",
+                        "ordered": false,
+                        "items": [
+                            "Use proper measuring tools",
+                            "Level off dry ingredients",
+                            "Use liquid measuring cups for liquids",
+                            "Measure at eye level"
+                        ]
+                    }
+                ]
+            }
+        ]
+    };
+
+    fs.writeFileSync('./blogs.json', JSON.stringify(defaultBlogs, null, 2));
+
     console.log('✅ Created default JSON files:');
     console.log('   - config.json (with categories)');
     console.log('   - converters.json');
     console.log('   - content.json');
+    console.log('   - blogs.json (NEW!)');
     console.log('\n📝 Edit these files and run: node generate.js');
 }
 
 // ==============================
-// MAIN GENERATION FUNCTION
+// VALIDATION FUNCTIONS
 // ==============================
 
+function validateConverter(converter) {
+    console.log(`   Validating: ${converter.id}`);
+
+    // Check required fields
+    const required = ['id', 'slug', 'title', 'description'];
+    for (const field of required) {
+        if (!converter[field]) {
+            throw new Error(`Missing required field: ${field}`);
+        }
+    }
+
+    // Check contentSections if present
+    if (converter.contentSections) {
+        // Check recipeExamples
+        if (converter.contentSections.recipeExamples) {
+            if (!converter.contentSections.recipeExamples.examples ||
+                !Array.isArray(converter.contentSections.recipeExamples.examples)) {
+                throw new Error(`Invalid recipeExamples.examples - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check quickReference
+        if (converter.contentSections.quickReference) {
+            if (converter.contentSections.quickReference.items &&
+                !Array.isArray(converter.contentSections.quickReference.items)) {
+                throw new Error(`Invalid quickReference.items - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check comparisonTable
+        if (converter.contentSections.comparisonTable) {
+            if (converter.contentSections.comparisonTable.rows &&
+                !Array.isArray(converter.contentSections.comparisonTable.rows)) {
+                throw new Error(`Invalid comparisonTable.rows - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check visualChart
+        if (converter.contentSections.visualChart) {
+            if (converter.contentSections.visualChart.items &&
+                !Array.isArray(converter.contentSections.visualChart.items)) {
+                throw new Error(`Invalid visualChart.items - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check stepByStep
+        if (converter.contentSections.stepByStep) {
+            if (converter.contentSections.stepByStep.steps &&
+                !Array.isArray(converter.contentSections.stepByStep.steps)) {
+                throw new Error(`Invalid stepByStep.steps - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check commonMistakes
+        if (converter.contentSections.commonMistakes) {
+            if (converter.contentSections.commonMistakes.mistakes &&
+                !Array.isArray(converter.contentSections.commonMistakes.mistakes)) {
+                throw new Error(`Invalid commonMistakes.mistakes - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check equipmentGuide
+        if (converter.contentSections.equipmentGuide) {
+            if (converter.contentSections.equipmentGuide.tools &&
+                !Array.isArray(converter.contentSections.equipmentGuide.tools)) {
+                throw new Error(`Invalid equipmentGuide.tools - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check scientificBackground
+        if (converter.contentSections.scientificBackground) {
+            if (converter.contentSections.scientificBackground.concepts &&
+                !Array.isArray(converter.contentSections.scientificBackground.concepts)) {
+                throw new Error(`Invalid scientificBackground.concepts - must be an array in converter ${converter.id}`);
+            }
+        }
+
+        // Check regionalVariations
+        if (converter.contentSections.regionalVariations) {
+            if (converter.contentSections.regionalVariations.regions &&
+                !Array.isArray(converter.contentSections.regionalVariations.regions)) {
+                throw new Error(`Invalid regionalVariations.regions - must be an array in converter ${converter.id}`);
+            }
+        }
+    }
+
+    // Check FAQs
+    if (converter.faqs && !Array.isArray(converter.faqs)) {
+        throw new Error(`Invalid faqs - must be an array in converter ${converter.id}`);
+    }
+
+    console.log(`   ✓ Validated: ${converter.id}`);
+}
+
 // ==============================
-// MAIN GENERATION FUNCTION - UPDATED WITH ERROR HANDLING
+// MAIN GENERATION FUNCTION - UPDATED WITH BLOG SUPPORT
 // ==============================
 
 async function generateWebsite() {
-    console.log('🚀 Starting website generation with improved responsive design...');
+    console.log('🚀 Starting website generation with blog support...');
     console.log(`📊 Site: ${CONFIG.site.name}`);
     console.log(`📊 Converters: ${CONVERTERS.converters.length}`);
+    console.log(`📊 Blog Posts: ${BLOGS.blogs ? BLOGS.blogs.filter(b => b.published !== false).length : 0}`);
 
     // Get categories info
     const allCategories = getAllCategories();
@@ -3975,9 +4449,10 @@ async function generateWebsite() {
         ensureDirectory(path.join(outputDir, 'contact'));
         ensureDirectory(path.join(outputDir, 'privacy'));
         ensureDirectory(path.join(outputDir, 'terms'));
+        ensureDirectory(path.join(outputDir, 'blog')); // NEW: Blog directory
 
         // Generate pages
-        console.log('📄 Generating homepage with improved responsive design...');
+        console.log('📄 Generating homepage...');
         await writeFile(path.join(outputDir, 'index.html'), generateHomepage());
 
         // Converter pages - WITH ERROR HANDLING FOR EACH CONVERTER
@@ -4008,25 +4483,31 @@ async function generateWebsite() {
             }
         }
 
-        // Log converter errors if any
-        if (converterErrors.length > 0) {
-            console.error('\n❌ Converter generation errors:');
-            converterErrors.forEach(err => {
-                console.error(`   • ${err.id}: ${err.error}`);
-                // Log more details for debugging
-                console.error(`     Problem likely in: converters.json -> "${err.id}"`);
+        // NEW: Generate blog pages if blogs exist
+        if (BLOGS.blogs && BLOGS.blogs.length > 0) {
+            console.log(`📝 Generating blog pages...`);
+            const publishedBlogs = BLOGS.blogs.filter(blog => blog.published !== false);
 
-                // Try to identify which section caused the error
-                if (err.error.includes('recipeExamples')) {
-                    console.error(`     Check the "recipeExamples" section in converter "${err.id}"`);
-                    console.error(`     Make sure it has proper structure: recipeExamples.examples should be an array`);
-                } else if (err.error.includes('contentSections')) {
-                    console.error(`     Check the "contentSections" in converter "${err.id}"`);
-                } else if (err.error.includes('map')) {
-                    console.error(`     Likely an array is missing or undefined in converter "${err.id}"`);
-                    console.error(`     Check arrays like: examples, items, rows, steps, etc.`);
+            // Generate individual blog pages
+            for (const blog of publishedBlogs) {
+                try {
+                    ensureDirectory(path.join(outputDir, 'blog', blog.slug));
+                    await writeFile(
+                        path.join(outputDir, 'blog', blog.slug, 'index.html'),
+                        generateBlogPost(blog)
+                    );
+                    console.log(`   ✓ Generated blog: ${blog.slug}`);
+                } catch (error) {
+                    console.error(`   ✗ Error generating blog ${blog.slug}:`, error.message);
                 }
-            });
+            }
+
+            // Generate blog index page
+            await writeFile(
+                path.join(outputDir, 'blog', 'index.html'),
+                generateBlogsIndex()
+            );
+            console.log('   ✓ Generated blog index');
         }
 
         // Static pages
@@ -4043,7 +4524,7 @@ async function generateWebsite() {
         }
 
         // Converters index page WITH CATEGORY FILTERING
-        console.log('📁 Generating converters index with improved responsive design...');
+        console.log('📁 Generating converters index...');
 
         const convertersIndex = `
 <!DOCTYPE html>
@@ -4167,13 +4648,14 @@ async function generateWebsite() {
         );
 
         console.log('\n' + '='.repeat(60));
-        console.log('✅ GENERATION COMPLETE WITH IMPROVED RESPONSIVE DESIGN!');
+        console.log('✅ GENERATION COMPLETE WITH BLOG SUPPORT!');
         console.log('='.repeat(60));
         console.log(`📊 Statistics:`);
-        console.log(`   Total pages: ${4 + CONVERTERS.converters.length}`);
+        console.log(`   Total pages: ${4 + CONVERTERS.converters.length + (BLOGS.blogs ? BLOGS.blogs.filter(b => b.published !== false).length : 0)}`);
         console.log(`   Converters: ${CONVERTERS.converters.length}`);
         console.log(`   Successful: ${CONVERTERS.converters.length - converterErrors.length}`);
         console.log(`   Failed: ${converterErrors.length}`);
+        console.log(`   Blog Posts: ${BLOGS.blogs ? BLOGS.blogs.filter(b => b.published !== false).length : 0}`);
         console.log(`   Categories: ${allCategories.length}`);
 
         if (converterErrors.length > 0) {
@@ -4182,21 +4664,20 @@ async function generateWebsite() {
             console.log('\n🔧 Fix these converters in converters.json and run again.');
         }
 
-        console.log('\n🎯 IMPROVEMENTS ADDED:');
-        console.log('   • Mobile-first responsive design');
-        console.log('   • Full-width header/footer on all devices');
-        console.log('   • Proper converter UI layout on mobile');
-        console.log('   • Better table and visual chart responsiveness');
-        console.log('   • Improved mobile menu with proper closing');
-        console.log('   • Touch-friendly buttons and inputs');
-        console.log('   • Dark mode support');
-        console.log('   • Print styles');
-        console.log('   • Better category filtering UI');
+        console.log('\n🎯 NEW FEATURES:');
+        console.log('   • Blog system with individual post pages');
+        console.log('   • Blog index page with featured images');
+        console.log('   • Blog navigation in header');
+        console.log('   • Blog breadcrumbs and SEO');
+        console.log('   • Blog sitemap inclusion');
         console.log('\n📁 File structure:');
         console.log(`   ${outputDir}/`);
-        console.log(`   ├── index.html (with filters)`);
+        console.log(`   ├── index.html`);
         console.log(`   ├── converters/`);
-        console.log(`   │   ├── index.html (with filters)`);
+        console.log(`   │   ├── index.html`);
+        console.log(`   │   └── [slug]/index.html`);
+        console.log(`   ├── blog/`);
+        console.log(`   │   ├── index.html`);
         console.log(`   │   └── [slug]/index.html`);
         console.log(`   ├── about/index.html`);
         console.log(`   ├── contact/index.html`);
@@ -4206,10 +4687,10 @@ async function generateWebsite() {
         console.log(`   └── robots.txt`);
         console.log('\n🚀 To serve locally:');
         console.log('   cd public && npx serve');
-        console.log('\n📱 Test responsiveness:');
-        console.log('   • Open Chrome DevTools (F12)');
-        console.log('   • Toggle device toolbar (Ctrl+Shift+M)');
-        console.log('   • Test different screen sizes');
+        console.log('\n📝 To add blog posts:');
+        console.log('   1. Edit blogs.json');
+        console.log('   2. Run: node generate.js');
+        console.log('   3. Blog will appear at /blog/');
         console.log('='.repeat(60));
 
     } catch (error) {
@@ -4244,104 +4725,6 @@ async function generateWebsite() {
             }
         }
     }
-}
-
-// ==============================
-// NEW: CONVERTER VALIDATION FUNCTION
-// ==============================
-
-function validateConverter(converter) {
-    console.log(`   Validating: ${converter.id}`);
-
-    // Check required fields
-    const required = ['id', 'slug', 'title', 'description'];
-    for (const field of required) {
-        if (!converter[field]) {
-            throw new Error(`Missing required field: ${field}`);
-        }
-    }
-
-    // Check contentSections if present
-    if (converter.contentSections) {
-        // Check recipeExamples
-        if (converter.contentSections.recipeExamples) {
-            if (!converter.contentSections.recipeExamples.examples ||
-                !Array.isArray(converter.contentSections.recipeExamples.examples)) {
-                throw new Error(`Invalid recipeExamples.examples - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check quickReference
-        if (converter.contentSections.quickReference) {
-            if (converter.contentSections.quickReference.items &&
-                !Array.isArray(converter.contentSections.quickReference.items)) {
-                throw new Error(`Invalid quickReference.items - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check comparisonTable
-        if (converter.contentSections.comparisonTable) {
-            if (converter.contentSections.comparisonTable.rows &&
-                !Array.isArray(converter.contentSections.comparisonTable.rows)) {
-                throw new Error(`Invalid comparisonTable.rows - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check visualChart
-        if (converter.contentSections.visualChart) {
-            if (converter.contentSections.visualChart.items &&
-                !Array.isArray(converter.contentSections.visualChart.items)) {
-                throw new Error(`Invalid visualChart.items - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check stepByStep
-        if (converter.contentSections.stepByStep) {
-            if (converter.contentSections.stepByStep.steps &&
-                !Array.isArray(converter.contentSections.stepByStep.steps)) {
-                throw new Error(`Invalid stepByStep.steps - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check commonMistakes
-        if (converter.contentSections.commonMistakes) {
-            if (converter.contentSections.commonMistakes.mistakes &&
-                !Array.isArray(converter.contentSections.commonMistakes.mistakes)) {
-                throw new Error(`Invalid commonMistakes.mistakes - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check equipmentGuide
-        if (converter.contentSections.equipmentGuide) {
-            if (converter.contentSections.equipmentGuide.tools &&
-                !Array.isArray(converter.contentSections.equipmentGuide.tools)) {
-                throw new Error(`Invalid equipmentGuide.tools - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check scientificBackground
-        if (converter.contentSections.scientificBackground) {
-            if (converter.contentSections.scientificBackground.concepts &&
-                !Array.isArray(converter.contentSections.scientificBackground.concepts)) {
-                throw new Error(`Invalid scientificBackground.concepts - must be an array in converter ${converter.id}`);
-            }
-        }
-
-        // Check regionalVariations
-        if (converter.contentSections.regionalVariations) {
-            if (converter.contentSections.regionalVariations.regions &&
-                !Array.isArray(converter.contentSections.regionalVariations.regions)) {
-                throw new Error(`Invalid regionalVariations.regions - must be an array in converter ${converter.id}`);
-            }
-        }
-    }
-
-    // Check FAQs
-    if (converter.faqs && !Array.isArray(converter.faqs)) {
-        throw new Error(`Invalid faqs - must be an array in converter ${converter.id}`);
-    }
-
-    console.log(`   ✓ Validated: ${converter.id}`);
 }
 
 // Helper function for async file writing
