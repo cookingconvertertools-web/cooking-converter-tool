@@ -12,7 +12,7 @@
       "author": "Baker Michael Chen",
       "category": "Baking",
       "read_time": 8,
-      "featured_image": "https://images.unsplash.com/photo-neu4T59mTcY?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      "featured_image": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
       "keywords": ["cups to grams", "baking measurements", "conversion chart", "ingredient weights"],
       "content": [
         {
@@ -142,7 +142,7 @@
         },
         {
           "type": "image",
-          "src": "https://images.unsplash.com/photo-neu4T59mTcY?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+          "src": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
           "alt": "Measuring cups with flour and sugar"
         }
       ]
