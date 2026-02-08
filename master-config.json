@@ -1,0 +1,148 @@
+{
+  "site": {
+    "name": "Your Site Name",
+    "url": "https://yoursite.com",
+    "logo": "📐",
+    "tagline": "Your tagline",
+    "description": "Site description"
+  },
+  "theme": {
+    "primary": "#2e7d32",
+    "dark": "#1b5e20",
+    "light": "#4caf50",
+    "background": "#ffffff",
+    "surface": "#f5f5f5",
+    "text": "#333333"
+  },
+  "converters": [
+    {
+      "id": "converter-1",
+      "slug": "converter-url",
+      "title": "Converter Title",
+      "description": "Converter description",
+      "categories": ["category1", "category2"]
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-id",
+      "slug": "blog-url",
+      "title": "Blog Title",
+      "description": "Blog description",
+      "categories": ["category1", "category2"],
+      "date": "2024-01-20",
+      "author": "Author Name",
+      "readTime": 5,
+      "intro": "Introduction text with [inline links]",
+
+      "contentSequence": ["hero", "intro", "paragraphTable", "bulletList", "faq", "cta"],
+
+      "contentSections": {
+        "intro": {
+          "title": "Section Title",
+          "content": "Your content with [embedded links] that get replaced automatically.",
+          "links": [
+            {
+              "text": "embedded links",
+              "url": "/page-url",
+              "target": "_blank",
+              "rel": "noopener"
+            }
+          ]
+        },
+
+        "paragraphTable": {
+          "title": "Reference Table",
+          "content": "Table description",
+          "tableData": {
+            "headers": ["Header 1", "Header 2"],
+            "rows": [
+              ["Data 1", "Data 2"],
+              ["Data 3", "Data 4"]
+            ]
+          }
+        },
+
+        "bulletList": {
+          "title": "Key Points",
+          "content": "Important points",
+          "items": [
+            "Point 1 with [link]",
+            "Point 2 with [another link]"
+          ],
+          "links": [
+            {
+              "text": "link",
+              "url": "/link-1"
+            },
+            {
+              "text": "another link",
+              "url": "/link-2"
+            }
+          ]
+        },
+
+        "faq": {
+          "title": "FAQs",
+          "faqs": [
+            {
+              "question": "Question 1?",
+              "answer": "Answer with [helpful link]",
+              "links": [
+                {
+                  "text": "helpful link",
+                  "url": "/help"
+                }
+              ]
+            }
+          ]
+        },
+
+        "cta": {
+          "title": "Call to Action",
+          "text": "Try our tools with [special offer]",
+          "buttons": [
+            {
+              "text": "Get Started",
+              "url": "/start",
+              "style": "primary"
+            }
+          ],
+          "links": [
+            {
+              "text": "special offer",
+              "url": "/offer"
+            }
+          ]
+        }
+      },
+
+      "ads": {
+        "sidebar": {
+          "enabled": true,
+          "items": [
+            {
+              "label": "Advertisement",
+              "title": "Ad Title",
+              "content": "Ad content",
+              "link": {
+                "url": "/ad-link",
+                "text": "Learn More"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "content": "Page content"
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Contact info"
+    }
+  }
+}
